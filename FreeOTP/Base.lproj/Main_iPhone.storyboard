@@ -102,12 +102,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="FreeOTP" id="r3K-oX-Is8">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" style="plain" id="qgc-XN-qCj">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="qgc-XN-qCj">
                             <connections>
                                 <action selector="editButtonClicked:" destination="qIu-I1-y3t" id="sCl-8w-MH2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="30a-hp-lOW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="30a-hp-lOW">
                             <connections>
                                 <action selector="addButtonClicked:" destination="qIu-I1-y3t" id="LZh-aJ-dgB"/>
                             </connections>
