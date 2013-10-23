@@ -20,6 +20,7 @@
 
 @import AVFoundation;
 #import "FreeOTPViewController.h"
+#import "CircleProgressView.h"
 #import "Token.h"
 
 @implementation FreeOTPViewController
@@ -49,7 +50,7 @@
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
     char value[[token digits] + 1];
     for (int i = 0; i < sizeof(value) - 1; i++)
-        value[i] = '-';
+        value[i] = '?';
     value[sizeof(value) - 1] = '\0';
     [label setText:[NSString stringWithFormat:@"%s", value]];
     
@@ -155,7 +156,49 @@
         [self.tableView beginUpdates];
         [self.tableView setEditing:YES animated:YES];
         [self.tableView endUpdates];
+
+        for (int i = 0; i < tokens.count; i++) {
+            Token* token = [tokens objectAtIndex:i];
+            if (![[token type] isEqualToString:@"totp"])
+                continue;
+            NSUInteger idx[2] = { 0, i };
+            UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
+            if (cell == nil)
+                continue;
+
+            CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            [UIView animateWithDuration:0.3
+                                  delay:0.0
+                                options: UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 CGRect f = cpv.frame;
+                                 f.origin.x -= 26;
+                                 cpv.frame = f;
+                             }
+                             completion:^(BOOL finished) {}];
+        }
     } else {
+        for (int i = 0; i < tokens.count; i++) {
+            Token* token = [tokens objectAtIndex:i];
+            if (![[token type] isEqualToString:@"totp"])
+                continue;
+            NSUInteger idx[2] = { 0, i };
+            UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
+            if (cell == nil)
+                continue;
+
+            CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            [UIView animateWithDuration:0.3
+                                  delay:0.0
+                                options: UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 CGRect f = cpv.frame;
+                                 f.origin.x -= 26;
+                                 cpv.frame = f;
+                             }
+                             completion:^(BOOL finished) {}];
+        }
+
         self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
         self.navigationItem.leftBarButtonItem.title = @"Edit";
         self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -178,8 +221,8 @@
         UILabel *l = (UILabel *)[cell.contentView viewWithTag:1];
         [l setText:[token value]];
         
-        UIProgressView* pv = (UIProgressView*)[cell.contentView viewWithTag:4];
-        pv.progress = [token progress];
+        CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
+        cpv.progress = [token progress];
     }
 }
 
@@ -187,7 +230,7 @@
     if (![[token type] isEqualToString:@"totp"] || timer != nil)
         return;
     
-    timer = [NSTimer scheduledTimerWithTimeInterval: 0.2 target: self
+    timer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target: self
                      selector: @selector(timerCallback:)
                      userInfo: nil repeats: YES];
 }
