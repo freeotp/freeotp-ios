@@ -46,7 +46,7 @@
 
 - (void)drawRect:(CGRect)xxx {
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    CGFloat radius = MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0);
+    CGFloat radius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - 4, 1);
     CGFloat radians = MAX(MIN((1.0 - self.progress) * 2 * M_PI, 2 * M_PI), 0);
 
     UIBezierPath* path = [UIBezierPath bezierPathWithArcCenter:center radius:radius

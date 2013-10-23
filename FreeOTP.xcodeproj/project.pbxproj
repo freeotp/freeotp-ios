@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1030ED11818322000E478F7 /* CircleProgressView.m */; };
+		F1030ED61818764C00E478F7 /* refresh-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F1030ED51818764C00E478F7 /* refresh-arrow.png */; };
 		F15300431801BB8800A0E179 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = F15300401801B9DF00A0E179 /* base32.c */; };
 		F15300461801BCD900A0E179 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = F15300451801BCD900A0E179 /* Token.m */; };
 		F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		F1030ED01818322000E478F7 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
 		F1030ED11818322000E478F7 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
+		F1030ED51818764C00E478F7 /* refresh-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-arrow.png"; sourceTree = "<group>"; };
 		F15300401801B9DF00A0E179 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; };
 		F15300421801BA1D00A0E179 /* base32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base32.h; sourceTree = "<group>"; };
 		F15300441801BCD900A0E179 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		F17A860617EC12670098E7F3 /* FreeOTP */ = {
 			isa = PBXGroup;
 			children = (
+				F1030ED51818764C00E478F7 /* refresh-arrow.png */,
 				F17A861217EC12670098E7F3 /* Main_iPhone.storyboard */,
 				F18A62CB1808A64F00345419 /* AddTokenViewController.h */,
 				F18A62CC1808A64F00345419 /* AddTokenViewController.m */,
@@ -229,6 +232,7 @@
 			files = (
 				F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */,
 				F17A861C17EC12670098E7F3 /* Images.xcassets in Resources */,
+				F1030ED61818764C00E478F7 /* refresh-arrow.png in Resources */,
 				F17A861417EC12670098E7F3 /* Main_iPhone.storyboard in Resources */,
 				F17A860B17EC12670098E7F3 /* InfoPlist.strings in Resources */,
 			);

@@ -158,43 +158,43 @@
         [self.tableView endUpdates];
 
         for (int i = 0; i < tokens.count; i++) {
-            Token* token = [tokens objectAtIndex:i];
-            if (![[token type] isEqualToString:@"totp"])
-                continue;
             NSUInteger idx[2] = { 0, i };
             UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
             if (cell == nil)
                 continue;
 
-            CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            UIView* v = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            if (v == nil)
+                continue;
+
             [UIView animateWithDuration:0.3
                                   delay:0.0
                                 options: UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                                 CGRect f = cpv.frame;
+                                 CGRect f = v.frame;
                                  f.origin.x -= 26;
-                                 cpv.frame = f;
+                                 v.frame = f;
                              }
                              completion:^(BOOL finished) {}];
         }
     } else {
         for (int i = 0; i < tokens.count; i++) {
-            Token* token = [tokens objectAtIndex:i];
-            if (![[token type] isEqualToString:@"totp"])
-                continue;
             NSUInteger idx[2] = { 0, i };
             UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
             if (cell == nil)
                 continue;
 
-            CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            UIView* v = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            if (v == nil)
+                continue;
+
             [UIView animateWithDuration:0.3
                                   delay:0.0
                                 options: UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                                 CGRect f = cpv.frame;
-                                 f.origin.x -= 26;
-                                 cpv.frame = f;
+                                 CGRect f = v.frame;
+                                 f.origin.x += 26;
+                                 v.frame = f;
                              }
                              completion:^(BOOL finished) {}];
         }
