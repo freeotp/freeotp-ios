@@ -50,9 +50,10 @@
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
     char value[[token digits] + 1];
     for (int i = 0; i < sizeof(value) - 1; i++)
-        value[i] = '?';
+        value[i] = '0';
     value[sizeof(value) - 1] = '\0';
     [label setText:[NSString stringWithFormat:@"%s", value]];
+    [label setTextColor:[UIColor lightGrayColor]];
     
     label = (UILabel *)[cell.contentView viewWithTag:2];
     [label setText:[token issuer]];
@@ -220,6 +221,7 @@
         
         UILabel *l = (UILabel *)[cell.contentView viewWithTag:1];
         [l setText:[token value]];
+        [l setTextColor:[UIColor blackColor]];
         
         CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
         cpv.progress = [token progress];
@@ -248,6 +250,7 @@
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
     [label setText:[token value]];
+    [label setTextColor:[UIColor blackColor]];
     [token increment];
     
     NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
@@ -287,9 +290,5 @@
 
     [self.tableView reloadData];
     [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 @end
