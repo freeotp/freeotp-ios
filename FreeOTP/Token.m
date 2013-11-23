@@ -234,7 +234,8 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 - (NSString*)description {
     NSString *tmp = [NSString
             stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@",
-            _type, encode(_issuer), encode(_label), unparseAlgo(algo), _digits, unparseKey(key), encode(issuerInt)];
+            _type, encode(_issuer), encode(_label), unparseAlgo(algo),
+            (unsigned long) _digits, unparseKey(key), encode(issuerInt)];
     if (tmp == nil)
         return nil;
     
