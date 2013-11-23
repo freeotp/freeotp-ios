@@ -128,24 +128,30 @@
 }
 
 - (IBAction)addButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"addToken" sender:self];
+    // If no capture device exists (mainly the simulator), don't show the menu.
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (device == nil) {
+        [self performSegueWithIdentifier:@"addToken" sender:self];
+        return;
+    }
 
-// TODO: Add Camera support
-//    [[[UIActionSheet alloc]
-//      initWithTitle:@"How will we add the token?"
-//      delegate:self
-//      cancelButtonTitle:@"Cancel"
-//      destructiveButtonTitle:nil
-//      otherButtonTitles:@"Scan QR Code", @"Manual Entry", nil]
-//     showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    [[[UIActionSheet alloc]
+      initWithTitle:@"How will we add the token?"
+      delegate:self
+      cancelButtonTitle:@"Cancel"
+      destructiveButtonTitle:nil
+      otherButtonTitles:@"Scan QR Code", @"Manual Entry", nil]
+     showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
-        case 0:
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"addToken" sender:self];
+    case 0:
+        [self performSegueWithIdentifier:@"scanToken" sender:self];
+        break;
+    case 1:
+        [self performSegueWithIdentifier:@"addToken" sender:self];
+        break;
     }
 }
 

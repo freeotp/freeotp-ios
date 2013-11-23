@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1030ED11818322000E478F7 /* CircleProgressView.m */; };
 		F1030ED61818764C00E478F7 /* refresh-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F1030ED51818764C00E478F7 /* refresh-arrow.png */; };
+		F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBE918412A2300548A3E /* QRCodeScanViewController.m */; };
 		F15300431801BB8800A0E179 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = F15300401801B9DF00A0E179 /* base32.c */; };
 		F15300461801BCD900A0E179 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = F15300451801BCD900A0E179 /* Token.m */; };
 		F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
@@ -41,6 +42,8 @@
 		F1030ED01818322000E478F7 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
 		F1030ED11818322000E478F7 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
 		F1030ED51818764C00E478F7 /* refresh-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-arrow.png"; sourceTree = "<group>"; };
+		F109DBE818412A2300548A3E /* QRCodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanViewController.h; sourceTree = "<group>"; };
+		F109DBE918412A2300548A3E /* QRCodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanViewController.m; sourceTree = "<group>"; };
 		F15300401801B9DF00A0E179 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; };
 		F15300421801BA1D00A0E179 /* base32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base32.h; sourceTree = "<group>"; };
 		F15300441801BCD900A0E179 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				F15300451801BCD900A0E179 /* Token.m */,
 				F17A861B17EC12670098E7F3 /* Images.xcassets */,
 				F17A860717EC12670098E7F3 /* Supporting Files */,
+				F109DBE818412A2300548A3E /* QRCodeScanViewController.h */,
+				F109DBE918412A2300548A3E /* QRCodeScanViewController.m */,
 			);
 			path = FreeOTP;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				F17A861117EC12670098E7F3 /* AppDelegate.m in Sources */,
 				F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */,
 				F17A860D17EC12670098E7F3 /* main.m in Sources */,
+				F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

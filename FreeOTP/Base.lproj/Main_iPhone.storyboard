@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TFk-q5-ews">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TFk-q5-ews">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--FreeOTP View Controller - FreeOTP-->
@@ -122,6 +122,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="zcw-Me-iDw" kind="push" identifier="addToken" id="HWE-JY-DbZ"/>
+                        <segue destination="FxP-SK-Cyn" kind="push" identifier="scanToken" id="VvE-eu-ntA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ses-15-grA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,7 +411,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHe-Wr-zSN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="439"/>
+            <point key="canvasLocation" x="1003" y="111"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OQn-yk-Els">
@@ -428,6 +429,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmv-Ag-5fn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="149" y="439"/>
+        </scene>
+        <!--Code Scan View Controller - QR Code Scan-->
+        <scene sceneID="F4S-3f-Gat">
+            <objects>
+                <viewController title="QR Code Scan" id="FxP-SK-Cyn" customClass="QRCodeScanViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nTL-6t-dPb"/>
+                        <viewControllerLayoutGuide type="bottom" id="FMv-Pj-y6G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pzg-K8-ube">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan" id="lt0-zb-DvO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qk-pV-hJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1003" y="767"/>
         </scene>
     </scenes>
     <resources>
