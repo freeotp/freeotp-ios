@@ -18,8 +18,6 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface FreeOTPViewController : UITableViewController <UIActionSheetDelegate>
 - (IBAction)addButtonClicked:(id)sender;
 - (IBAction)editButtonClicked:(id)sender;

@@ -18,8 +18,6 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CircleProgressView : UIView
 @property (nonatomic) float progress;
 @end

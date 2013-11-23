@@ -136,11 +136,13 @@
     }
 
     [[[UIActionSheet alloc]
-      initWithTitle:@"How will we add the token?"
+      initWithTitle:NSLocalizedString(@"How will we add the token?", nil)
       delegate:self
-      cancelButtonTitle:@"Cancel"
+      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
       destructiveButtonTitle:nil
-      otherButtonTitles:@"Scan QR Code", @"Manual Entry", nil]
+      otherButtonTitles:NSLocalizedString(@"Scan QR Code", nil),
+                        NSLocalizedString(@"Manual Entry", nil),
+                        nil]
      showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
 }
 
@@ -156,9 +158,9 @@
 }
 
 - (IBAction)editButtonClicked:(id)sender {
-    if ([self.navigationItem.leftBarButtonItem.title isEqualToString:@"Edit"]) {
+    if ([self.navigationItem.leftBarButtonItem.title isEqualToString:NSLocalizedString(@"Edit", nil)]) {
         self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
-        self.navigationItem.leftBarButtonItem.title = @"Done";
+        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Done", nil);
         self.navigationItem.rightBarButtonItem.enabled = NO;
         [self.tableView beginUpdates];
         [self.tableView setEditing:YES animated:YES];
@@ -207,7 +209,7 @@
         }
 
         self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
-        self.navigationItem.leftBarButtonItem.title = @"Edit";
+        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Edit", nil);
         self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.tableView beginUpdates];
         [self.tableView setEditing:NO animated:YES];

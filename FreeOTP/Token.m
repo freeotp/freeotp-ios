@@ -19,9 +19,11 @@
 //
 
 #import "Token.h"
-#import <CommonCrypto/CommonHMAC.h>
 #import "base32.h"
+
+#import <CommonCrypto/CommonHMAC.h>
 #import <sys/time.h>
+
 static NSString* decode(const NSString* str) {
     if (str == nil)
         return nil;
@@ -29,12 +31,14 @@ static NSString* decode(const NSString* str) {
     str = [str stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     return [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
+
 static NSString* encode(const NSString* str) {
     if (str == nil)
         return nil;
     str = [str stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
+
 static NSData* parseKey(const NSString *secret) {
     uint8_t key[4096];
     if (secret == nil)
@@ -137,6 +141,7 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     // Create the HMAC
     uint8_t digest[getDigestLength(algo)];
     CCHmac(algo, [key bytes], [key length], &counter, sizeof(counter), digest);
+
     // Truncate
     uint32_t binary;
     uint32_t off = digest[sizeof(digest) - 1] & 0xf;
@@ -145,6 +150,7 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     binary |= (digest[off + 2] & 0xff) << 0x08;
     binary |= (digest[off + 3] & 0xff) << 0x00;
     binary  = binary % div;
+
     return [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%hhulu", digits], binary];
 }
 
@@ -191,6 +197,7 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
         _issuer = @"";
         _label = decode([array objectAtIndex:0]);
     }
+
     // Parse query
     NSMutableDictionary *query = [[NSMutableDictionary alloc] init];
     array = [[url query] componentsSeparatedByString:@"&"];
@@ -210,9 +217,11 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     issuerInt = [query objectForKey:@"issuer"];
     if (issuerInt == nil)
         issuerInt = _issuer;
+
     // Get algorithm and digits
     algo = parseAlgo([query objectForKey:@"algorithm"]);
     _digits = parseDigits([query objectForKey:@"digits"]);
+
     // Get counter or period
     if ([_type isEqualToString:@"hotp"]) {
         NSString *c = [query objectForKey:@"counter"];

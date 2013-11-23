@@ -29,6 +29,7 @@
 #import <stdint.h>
 int __attribute__((visibility("hidden")))
 base32_decode(const char *encoded, uint8_t *result, int bufSize);
+
 int __attribute__((visibility("hidden")))
 base32_encode(const uint8_t *data, int length, char *result, int bufSize);
 #endif /* _BASE32_H_ */

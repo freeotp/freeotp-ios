@@ -16,12 +16,14 @@
 // limitations under the License.
 #import <string.h>
 #import "base32.h"
+
 int
 base32_decode(const char *encoded, uint8_t *result, int bufSize)
 {
     int buffer = 0;
     int bitsLeft = 0;
     int count = 0;
+
     for (const char *ptr = encoded; count < bufSize && *ptr; ++ptr) {
         char ch = *ptr;
         if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '-')
@@ -51,20 +53,26 @@ base32_decode(const char *encoded, uint8_t *result, int bufSize)
             bitsLeft -= 8;
         }
     }
+
     if (count < bufSize)
         result[count] = '\000';
+
     return count;
 }
+
 int
 base32_encode(const uint8_t *data, int length, char *result, int bufSize)
 {
+    int count = 0;
+
     if (length < 0 || length > (1 << 28))
         return -1;
-    int count = 0;
+
     if (length > 0) {
         int buffer = data[0];
         int next = 1;
         int bitsLeft = 8;
+
         while (count < bufSize && (bitsLeft > 0 || next < length)) {
             if (bitsLeft < 5) {
                 if (next < length) {
@@ -77,12 +85,15 @@ base32_encode(const uint8_t *data, int length, char *result, int bufSize)
                     bitsLeft += pad;
                 }
             }
+
             int index = 0x1F & (buffer >> (bitsLeft - 5));
             bitsLeft -= 5;
             result[count++] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"[index];
         }
     }
+
     if (count < bufSize)
         result[count] = '\000';
+
     return count;
 }

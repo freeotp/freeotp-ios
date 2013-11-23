@@ -18,7 +18,6 @@
 // limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
 #define TOKEN_ORDER @"tokenOrder"
 
 @interface Token : NSObject

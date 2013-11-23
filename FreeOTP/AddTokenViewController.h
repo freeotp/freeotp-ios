@@ -18,7 +18,6 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
 @interface AddTokenViewController : UITableViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *totp;
 @property (weak, nonatomic) IBOutlet UITableViewCell *hotp;
