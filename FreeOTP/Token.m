@@ -154,6 +154,16 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     return [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%hhulu", digits], binary];
 }
 
+static uint64_t currentTimeInMilli()
+{
+    struct timeval tv;
+
+    if (gettimeofday(&tv, NULL) != 0)
+        return 0;
+
+    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+}
+
 @implementation Token
 {
     NSString* issuerInt;
@@ -262,21 +272,14 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 }
 
 - (NSString*)value {
-    return getHOTP(algo, _digits, key,
-                   [_type isEqualToString:@"hotp"]
-                     ? counter
-                     : time(NULL) / period);
+    if ([_type isEqualToString:@"hotp"])
+        return getHOTP(algo, _digits, key, counter);
+
+    return getHOTP(algo, _digits, key, currentTimeInMilli() / (period * 1000));
 }
 
 - (float)progress {
-    struct timeval tv;
-    
-    if (gettimeofday(&tv, NULL) != 0)
-        return 0;
-    uint64_t time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-    uint64_t p = period * 1000;
-    
-    return ((float) (time % p)) / p;
+    return ((double) (currentTimeInMilli() % (period * 1000))) / (period * 1000);
 }
 
 - (NSString*)uid {
