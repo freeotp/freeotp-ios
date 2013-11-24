@@ -50,12 +50,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[token type]];
     
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
-    char value[[token digits] + 1];
-    for (int i = 0; i < sizeof(value) - 1; i++)
-        value[i] = '0';
-    value[sizeof(value) - 1] = '\0';
+    char value[token.digits + 1];
+    value[token.digits] = '\0';
+    for (int i = token.digits - 1; i >= 0; i--)
+        value[i] = '-';
     [label setText:[NSString stringWithFormat:@"%s", value]];
-    [label setTextColor:[UIColor lightGrayColor]];
     
     label = (UILabel *)[cell.contentView viewWithTag:2];
     [label setText:[token issuer]];
