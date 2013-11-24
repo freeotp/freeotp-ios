@@ -53,7 +53,11 @@
                             startAngle:-M_PI_2 endAngle:radians-M_PI_2 clockwise:YES];
     [path addLineToPoint:center];
     [path addClip];
-    [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setFill];
+
+    if (self.progress < 0.75)
+        [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setFill];
+    else
+        [[UIColor colorWithRed:1.0 green:(1 - self.progress) * 4 blue:0.0 alpha:1.0] setFill];
     UIRectFill(self.bounds);
 }
 @end
