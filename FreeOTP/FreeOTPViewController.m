@@ -95,7 +95,6 @@
 
     empty = store.count == 0 ? 1 : 0;
     self.navigationItem.leftBarButtonItem.enabled = !empty;
-    [self.tableView reloadData];
 
     // If we are in edit mode and we deleted the last item, exit edit mode.
     if (empty && self.tableView.isEditing)
