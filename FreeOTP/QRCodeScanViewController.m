@@ -7,7 +7,7 @@
 //
 
 #import "QRCodeScanViewController.h"
-#include "Token.h"
+#include "TokenStore.h"
 
 @interface QRCodeScanViewController ()
 @end
@@ -56,17 +56,8 @@
             NSLog(@"QR Code: %@", qrcode);
 
             Token* token = [[Token alloc] initWithString:qrcode];
-            if (token != nil) {
-                // Store
-                NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-                if ([def stringForKey:[token uid]] == nil) {
-                    NSMutableArray* order = [NSMutableArray arrayWithArray:[def objectForKey:TOKEN_ORDER]];
-                    [order insertObject:[token uid] atIndex:0];
-                    [def setObject:order forKey:TOKEN_ORDER];
-                }
-                [def setObject:[token description] forKey:[token uid]];
-                [def synchronize];
-            }
+            if (token != nil)
+                [[[TokenStore alloc] init] add:token];
 
             [self.session stopRunning];
             [self.navigationController popViewControllerAnimated:TRUE];

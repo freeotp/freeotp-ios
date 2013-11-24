@@ -21,29 +21,31 @@
 @import AVFoundation;
 #import "FreeOTPViewController.h"
 #import "CircleProgressView.h"
-#import "Token.h"
+#import "TokenStore.h"
 
 @implementation FreeOTPViewController
 {
-    NSMutableArray* tokens;
-    NSMutableArray* order;
+    TokenStore* store;
     NSTimer* timer;
     uint8_t empty;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return empty + tokens.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return empty + store.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (empty)
         return [tableView dequeueReusableCellWithIdentifier:@"empty"];
 
-    Token* token = [tokens objectAtIndex:[indexPath row]];
+    Token* token = [store get:[indexPath row]];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[token type]];
     
@@ -64,70 +66,45 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return !empty;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return !empty;
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    Token* token = [tokens objectAtIndex:[sourceIndexPath row]];
-    if (token == nil)
-        return;
-    
-    [order removeObjectAtIndex:[sourceIndexPath row]];
-    [tokens removeObjectAtIndex:[sourceIndexPath row]];
-    [order insertObject:[token uid] atIndex:[destinationIndexPath row]];
-    [tokens insertObject:token atIndex:[destinationIndexPath row]];
-    
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    [def setObject:order forKey:TOKEN_ORDER];
-    [def synchronize];
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [store moveFrom:sourceIndexPath.row to:destinationIndexPath.row];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (editingStyle != UITableViewCellEditingStyleDelete)
         return;
-    
-    Token* token = [tokens objectAtIndex:[indexPath row]];
+
+    Token* token = [store get:[indexPath row]];
     if (token == nil)
         return;
-    
-    [order removeObjectAtIndex:[indexPath row]];
-    [tokens removeObjectAtIndex:[indexPath row]];
-    
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    [def setObject:order forKey:TOKEN_ORDER];
-    [def removeObjectForKey:[token uid]];
-    [def synchronize];
 
+    [store del:[indexPath row]];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                     withRowAnimation:UITableViewRowAnimationLeft];
 
-    empty = tokens.count == 0 ? 1 : 0;
+    empty = store.count == 0 ? 1 : 0;
     self.navigationItem.leftBarButtonItem.enabled = !empty;
     [self.tableView reloadData];
 
     // If we are in edit mode and we deleted the last item, exit edit mode.
     if (empty && self.tableView.isEditing)
         [self editButtonClicked:self.navigationItem.leftBarButtonItem];
-
-    BOOL haveTOTP = NO;
-    for (Token* token in tokens) {
-        if ([[token type] isEqualToString:@"totp"]) {
-            haveTOTP = YES;
-            break;
-        }
-    }
-    if (!haveTOTP && timer != nil) {
-        [timer invalidate];
-        timer = nil;
-    }
 }
 
-- (IBAction)addButtonClicked:(id)sender {
+- (IBAction)addButtonClicked:(id)sender
+{
     // If no capture device exists (mainly the simulator), don't show the menu.
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (device == nil) {
@@ -146,7 +123,8 @@
      showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     switch (buttonIndex) {
     case 0:
         [self performSegueWithIdentifier:@"scanToken" sender:self];
@@ -157,7 +135,8 @@
     }
 }
 
-- (IBAction)editButtonClicked:(id)sender {
+- (IBAction)editButtonClicked:(id)sender
+{
     if ([self.navigationItem.leftBarButtonItem.title isEqualToString:NSLocalizedString(@"Edit", nil)]) {
         self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
         self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Done", nil);
@@ -166,7 +145,7 @@
         [self.tableView setEditing:YES animated:YES];
         [self.tableView endUpdates];
 
-        for (int i = 0; i < tokens.count; i++) {
+        for (long i = [self.tableView numberOfRowsInSection:0] - 1; i >= 0; i--) {
             NSUInteger idx[2] = { 0, i };
             UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
             if (cell == nil)
@@ -187,7 +166,7 @@
                              completion:^(BOOL finished) {}];
         }
     } else {
-        for (int i = 0; i < tokens.count; i++) {
+        for (long i = [self.tableView numberOfRowsInSection:0] - 1; i >= 0; i--) {
             NSUInteger idx[2] = { 0, i };
             UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
             if (cell == nil)
@@ -217,43 +196,44 @@
     }
 }
 
-- (void)timerCallback:(NSTimer*)timer {
-    for (int i = 0; i < tokens.count; i++) {
-        Token* token = [tokens objectAtIndex:i];
+- (void)timerCallback:(NSTimer*)timer
+{
+    long totpCount = 0;
+    for (long i = store.count - 1; i >= 0; i--) {
+        Token* token = [store get:i];
         if (![[token type] isEqualToString:@"totp"])
             continue;
+        totpCount++;
+
         NSUInteger idx[2] = { 0, i };
         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
         if (cell == nil)
             continue;
         
-        UILabel *l = (UILabel *)[cell.contentView viewWithTag:1];
+        UILabel* l = (UILabel*)[cell.contentView viewWithTag:1];
         [l setText:[token value]];
         [l setTextColor:[UIColor blackColor]];
-        
+
         CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
         cpv.progress = [token progress];
     }
+
+    // If we have no TOTP tokens, we can cancel the timer.
+    if (totpCount == 0) {
+        [self->timer invalidate];
+        self->timer = nil;
+    }
 }
 
-- (void)startTimer:(Token*)token {
-    if (![[token type] isEqualToString:@"totp"] || timer != nil)
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Token* token = [store get:[indexPath row]];
+    if (token == nil)
         return;
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target: self
-                     selector: @selector(timerCallback:)
-                     userInfo: nil repeats: YES];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tokens.count == 0)
+    if (![[token type] isEqualToString:@"hotp"])
         return;
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Token* token = [tokens objectAtIndex:[indexPath row]];
-    if (![[token type] isEqualToString:@"hotp"])
-        return;
     
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
@@ -266,37 +246,28 @@
     [def synchronize];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    
-    // Load token order
-    NSArray* tmp = [def objectForKey:TOKEN_ORDER];
-    if (tmp == nil) {
-        order = [[NSMutableArray alloc] init];
-        [def setObject:order forKey:TOKEN_ORDER];
-        [def synchronize];
-    } else
-        order = [NSMutableArray arrayWithArray:tmp];
-    
-    // Load tokens
-    tokens = [[NSMutableArray alloc] init];
-    for (NSString* key in order) {
-        NSString* uri = [def objectForKey:key];
-        if (uri == nil)
-            continue;
-        
-        Token* token = [[Token alloc] initWithString:uri];
-        if (token == nil)
-            continue;
-        
-        [tokens addObject:token];
-        [self startTimer:token];
+- (void)viewDidLoad
+{
+    store = [[TokenStore alloc] init];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (timer != nil) {
+        [timer invalidate];
+        timer = nil;
     }
+}
 
-    empty = tokens.count == 0 ? 1 : 0;
-    self.navigationItem.leftBarButtonItem.enabled = !empty;
-
-    [self.tableView reloadData];
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
+
+    empty = store.count == 0 ? 1 : 0;
+    self.navigationItem.leftBarButtonItem.enabled = !empty;
+    [self.tableView reloadData];
+    timer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target: self
+                                           selector: @selector(timerCallback:)
+                                           userInfo: nil repeats: YES];
 }
 @end

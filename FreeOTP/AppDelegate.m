@@ -19,7 +19,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Token.h"
+#import "TokenStore.h"
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -36,15 +36,8 @@
     if (token == nil)
         return NO;
 
-    // Add token
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    if ([def stringForKey:[token uid]] == nil) {
-        NSMutableArray* order = [NSMutableArray arrayWithArray:[def objectForKey:TOKEN_ORDER]];
-        [order insertObject:[token uid] atIndex:0];
-        [def setObject:order forKey:TOKEN_ORDER];
-    }
-    [def setObject:[token description] forKey:[token uid]];
-    [def synchronize];
+    // Save the token
+    [[[TokenStore alloc] init] add:token];
 
     // Reload the view
     [self.window.rootViewController loadView];

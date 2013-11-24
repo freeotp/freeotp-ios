@@ -19,7 +19,7 @@
 //
 
 #import "AddTokenViewController.h"
-#import "Token.h"
+#import "TokenStore.h"
 #import <float.h>
 
 #define isChecked(x) ((x) == UITableViewCellAccessoryCheckmark)
@@ -124,17 +124,8 @@
 
     // Make token
     Token* token = [[Token alloc] initWithURL:[urlc URL]];
-    if (token != nil) {
-        // Store
-        NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-        if ([def stringForKey:[token uid]] == nil) {
-            NSMutableArray* order = [NSMutableArray arrayWithArray:[def objectForKey:TOKEN_ORDER]];
-            [order insertObject:[token uid] atIndex:0];
-            [def setObject:order forKey:TOKEN_ORDER];
-        }
-        [def setObject:[token description] forKey:[token uid]];
-        [def synchronize];
-    }
+    if (token != nil)
+        [[[TokenStore alloc] init] add:token];
     
     // Return
     [self.navigationController popViewControllerAnimated:YES];

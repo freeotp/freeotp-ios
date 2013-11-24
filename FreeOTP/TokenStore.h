@@ -18,15 +18,13 @@
 // limitations under the License.
 //
 
-@interface Token : NSObject
-@property (readonly) NSString* type;
-@property (readonly) NSString* issuer;
-@property (readonly) NSString* label;
-@property (readonly) NSUInteger digits;
-- (id)initWithURL:(NSURL*)url;
-- (id)initWithString:(NSString*)string;
-- (void)increment;
-- (NSString*)value;
-- (float)progress;
-- (NSString*)uid;
+#import "Token.h"
+
+@interface TokenStore : NSObject
+- (NSUInteger)count;
+- (void)add:(Token*)token;
+- (void)add:(Token*)token atIndex:(NSUInteger)index;
+- (void)del:(NSUInteger)index;
+- (Token*)get:(NSUInteger)index;
+- (void)moveFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex;
 @end
