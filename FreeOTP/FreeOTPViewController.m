@@ -52,7 +52,7 @@
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
     char value[token.digits + 1];
     value[token.digits] = '\0';
-    for (int i = token.digits - 1; i >= 0; i--)
+    for (long i = token.digits - 1; i >= 0; i--)
         value[i] = '-';
     [label setText:[NSString stringWithFormat:@"%s", value]];
     
