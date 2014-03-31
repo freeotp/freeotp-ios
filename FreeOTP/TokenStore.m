@@ -90,6 +90,9 @@ getTokenOrder(NSUserDefaults* def)
 - (Token*)get:(NSUInteger)index
 {
     NSMutableArray* order = getTokenOrder(def);
+    if ([order count] < 1)
+        return nil;
+
     NSString* key = [order objectAtIndex:index];
     if (key == nil)
         return nil;
