@@ -27,6 +27,7 @@
 		F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
 		F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18A62CC1808A64F00345419 /* AddTokenViewController.m */; };
 		F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */; };
+		F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E7BF8818E9C85400C2DC82 /* TokenCode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		F18A62CB1808A64F00345419 /* AddTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTokenViewController.h; sourceTree = "<group>"; };
 		F18A62CC1808A64F00345419 /* AddTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTokenViewController.m; sourceTree = "<group>"; };
 		F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FreeOTP/iTunesArtwork@2x"; sourceTree = "<group>"; };
+		F1E7BF8718E9C85400C2DC82 /* TokenCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCode.h; sourceTree = "<group>"; };
+		F1E7BF8818E9C85400C2DC82 /* TokenCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				F109DBE918412A2300548A3E /* QRCodeScanViewController.m */,
 				F15300441801BCD900A0E179 /* Token.h */,
 				F15300451801BCD900A0E179 /* Token.m */,
+				F1E7BF8718E9C85400C2DC82 /* TokenCode.h */,
+				F1E7BF8818E9C85400C2DC82 /* TokenCode.m */,
 				F109DBED1841562600548A3E /* TokenStore.h */,
 				F109DBEE1841562600548A3E /* TokenStore.m */,
 				F15300421801BA1D00A0E179 /* base32.h */,
@@ -262,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */,
 				F109DBEF1841562600548A3E /* TokenStore.m in Sources */,
 				F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */,
 				F17A861A17EC12670098E7F3 /* FreeOTPViewController.m in Sources */,

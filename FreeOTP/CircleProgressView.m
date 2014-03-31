@@ -26,7 +26,8 @@
     if (self == nil)
         return nil;
 
-    self.progress = 0.0;
+    self.inner = 0.0;
+    self.outer = 0.0;
     return self;
 }
 
@@ -35,29 +36,52 @@
     if (self == nil)
         return nil;
 
-    self.progress = 0.0;
+    self.inner = 0.0;
+    self.outer = 0.0;
     return self;
 }
 
-- (void)setProgress:(float)progress {
-    _progress = progress;
+- (void)setDonut:(BOOL)donut {
+    _donut = donut;
+    [self setNeedsDisplay];
+}
+
+- (void)setInner:(float)inner {
+    _inner = inner;
+    [self setNeedsDisplay];
+}
+
+- (void)setOuter:(float)outer {
+    _outer = outer;
     [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)xxx {
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    CGFloat radius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - 4, 1);
-    CGFloat radians = MAX(MIN((1.0 - self.progress) * 2 * M_PI, 2 * M_PI), 0);
 
-    UIBezierPath* path = [UIBezierPath bezierPathWithArcCenter:center radius:radius
-                            startAngle:-M_PI_2 endAngle:radians-M_PI_2 clockwise:YES];
-    [path addLineToPoint:center];
-    [path addClip];
+    int padding = 4;
+    if (self.donut) {
+        CGFloat outerRadius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - padding, 1);
+        CGFloat outerRadians = MAX(MIN((1.0 - self.outer) * 2 * M_PI, 2 * M_PI), 0);
+        [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setStroke];
+        UIBezierPath* outerPath = [UIBezierPath bezierPathWithArcCenter:center radius:outerRadius
+                                    startAngle:-M_PI_2 endAngle:outerRadians-M_PI_2 clockwise:YES];
+        [outerPath setLineWidth:3.0];
+        [outerPath stroke];
 
-    if (self.progress < 0.75)
+        padding += 4;
+    }
+
+    CGFloat innerRadius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - padding, 1);
+    CGFloat innerRadians = MAX(MIN((1.0 - self.inner) * 2 * M_PI, 2 * M_PI), 0);
+    if (self.inner < 0.75)
         [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setFill];
     else
-        [[UIColor colorWithRed:1.0 green:(1 - self.progress) * 4 blue:0.0 alpha:1.0] setFill];
+        [[UIColor colorWithRed:1.0 green:(1 - self.inner) * 4 blue:0.0 alpha:1.0] setFill];
+    UIBezierPath* innerPath = [UIBezierPath bezierPathWithArcCenter:center radius:innerRadius
+                                    startAngle:-M_PI_2 endAngle:innerRadians-M_PI_2 clockwise:YES];
+    [innerPath addLineToPoint:center];
+    [innerPath addClip];
     UIRectFill(self.bounds);
 }
 @end

@@ -19,5 +19,7 @@
 //
 
 @interface CircleProgressView : UIView
-@property (nonatomic) float progress;
+@property (nonatomic) BOOL donut;
+@property (nonatomic) float inner;
+@property (nonatomic) float outer;
 @end

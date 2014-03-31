@@ -100,6 +100,15 @@ getTokenOrder(NSUserDefaults* def)
     return [[Token alloc] initWithString:[def objectForKey:key]];
 }
 
+- (void)save:(Token*)token
+{
+    if ([def stringForKey:token.uid] == nil)
+        return;
+
+    [def setObject:token.description forKey:token.uid];
+    [def synchronize];
+}
+
 - (void)moveFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex
 {
     NSMutableArray* order = getTokenOrder(def);

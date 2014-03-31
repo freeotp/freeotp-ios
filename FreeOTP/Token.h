@@ -18,6 +18,8 @@
 // limitations under the License.
 //
 
+#include "TokenCode.h"
+
 @interface Token : NSObject
 @property (readonly) NSString* type;
 @property (readonly) NSString* issuer;
@@ -25,8 +27,6 @@
 @property (readonly) NSUInteger digits;
 - (id)initWithURL:(NSURL*)url;
 - (id)initWithString:(NSString*)string;
-- (void)increment;
-- (NSString*)value;
-- (float)progress;
+- (TokenCode*)tokenCode;
 - (NSString*)uid;
 @end

@@ -154,16 +154,6 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     return [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%hhulu", digits], binary];
 }
 
-static uint64_t currentTimeInMilli()
-{
-    struct timeval tv;
-
-    if (gettimeofday(&tv, NULL) != 0)
-        return 0;
-
-    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
-}
-
 @implementation Token
 {
     NSString* issuerInt;
@@ -232,15 +222,16 @@ static uint64_t currentTimeInMilli()
     algo = parseAlgo([query objectForKey:@"algorithm"]);
     _digits = parseDigits([query objectForKey:@"digits"]);
 
-    // Get counter or period
+    // Get period
+    NSString *p = [query objectForKey:@"period"];
+    period = p != nil ? (int) [p integerValue] : 30;
+    if (period == 0)
+        period = 30;
+
+    // Get counter
     if ([_type isEqualToString:@"hotp"]) {
         NSString *c = [query objectForKey:@"counter"];
         counter = c != nil ? [c longLongValue] : 0;
-    } else if ([_type isEqualToString:@"totp"]) {
-        NSString *p = [query objectForKey:@"period"];
-        period = p != nil ? (int) [p integerValue] : 30;
-        if (period == 0)
-            period = 30;
     }
     
     return self;
@@ -252,34 +243,35 @@ static uint64_t currentTimeInMilli()
 
 - (NSString*)description {
     NSString *tmp = [NSString
-            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@",
+            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u",
             _type, encode(_issuer), encode(_label), unparseAlgo(algo),
-            (unsigned long) _digits, unparseKey(key), encode(issuerInt)];
+            (unsigned long) _digits, unparseKey(key), encode(issuerInt), period];
     if (tmp == nil)
         return nil;
     
     if ([_type isEqualToString:@"hotp"])
         return [NSString stringWithFormat:@"%@&counter=%llu", tmp, counter];
-    if ([_type isEqualToString:@"totp"])
-        return [NSString stringWithFormat:@"%@&period=%u", tmp, period];
     
-    return nil;
+    return tmp;
 }
 
-- (void)increment {
-    if ([_type isEqualToString:@"hotp"])
-        counter++;
-}
+- (TokenCode*)tokenCode {
+    time_t now = time(NULL);
+    if (now == (time_t) -1)
+        now = 0;
 
-- (NSString*)value {
-    if ([_type isEqualToString:@"hotp"])
-        return getHOTP(algo, _digits, key, counter);
+    if ([_type isEqualToString:@"hotp"]) {
+        NSString* code = getHOTP(algo, _digits, key, counter++);
+        return [[TokenCode alloc] initWithCode:code startTime:now endTime:now + period];
+    }
 
-    return getHOTP(algo, _digits, key, currentTimeInMilli() / (period * 1000));
-}
-
-- (float)progress {
-    return ((double) (currentTimeInMilli() % (period * 1000))) / (period * 1000);
+    TokenCode* next = [[TokenCode alloc] initWithCode:getHOTP(algo, _digits, key, now / period + 1)
+                                            startTime:now / period * period + period
+                                              endTime:now / period * period + period + period];
+    return [[TokenCode alloc] initWithCode:getHOTP(algo, _digits, key, now / period)
+                                 startTime:now / period * period
+                                   endTime:now / period * period + period
+                             nextTokenCode:next];
 }
 
 - (NSString*)uid {

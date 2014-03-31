@@ -3,7 +3,7 @@
 //
 // Authors: Nathaniel McCallum <npmccallum@redhat.com>
 //
-// Copyright (C) 2013  Nathaniel McCallum, Red Hat
+// Copyright (C) 2014  Nathaniel McCallum, Red Hat
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,14 +18,14 @@
 // limitations under the License.
 //
 
-#import "Token.h"
+#import <Foundation/Foundation.h>
+#import <sys/time.h>
 
-@interface TokenStore : NSObject
-- (NSUInteger)count;
-- (void)add:(Token*)token;
-- (void)add:(Token*)token atIndex:(NSUInteger)index;
-- (void)del:(NSUInteger)index;
-- (Token*)get:(NSUInteger)index;
-- (void)save:(Token*)token;
-- (void)moveFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex;
+@interface TokenCode : NSObject
+- (id)initWithCode:(NSString*)code startTime:(time_t)start endTime:(time_t)end;
+- (id)initWithCode:(NSString*)code startTime:(time_t)start endTime:(time_t)end nextTokenCode:(TokenCode*)next;
+- (NSString*)currentCode;
+- (float)currentProgress;
+- (float)totalProgress;
+- (NSUInteger)totalCodes;
 @end

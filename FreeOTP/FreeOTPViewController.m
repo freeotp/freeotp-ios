@@ -23,10 +23,21 @@
 #import "CircleProgressView.h"
 #import "TokenStore.h"
 
+static NSString* placeholder(NSUInteger length)
+{
+    char value[length + 1];
+    value[length] = '\0';
+    while (length-- > 0)
+        value[length] = '-';
+
+    return [NSString stringWithFormat:@"%s", value];
+}
+
 @implementation FreeOTPViewController
 {
     TokenStore* store;
     NSTimer* timer;
+    NSMutableDictionary* codes;
     uint8_t empty;
 }
 
@@ -47,14 +58,10 @@
 
     Token* token = [store get:[indexPath row]];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[token type]];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"token"];
     
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
-    char value[token.digits + 1];
-    value[token.digits] = '\0';
-    for (long i = token.digits - 1; i >= 0; i--)
-        value[i] = '-';
-    [label setText:[NSString stringWithFormat:@"%s", value]];
+    [label setText:placeholder(token.digits)];
     
     label = (UILabel *)[cell.contentView viewWithTag:2];
     [label setText:[token issuer]];
@@ -103,6 +110,8 @@
 
 - (IBAction)addButtonClicked:(id)sender
 {
+    [codes removeAllObjects];
+
     // If no capture device exists (mainly the simulator), don't show the menu.
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (device == nil) {
@@ -135,6 +144,8 @@
 
 - (IBAction)editButtonClicked:(id)sender
 {
+    [codes removeAllObjects];
+
     if ([self.navigationItem.leftBarButtonItem.title isEqualToString:NSLocalizedString(@"Edit", nil)]) {
         self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
         self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"Done", nil);
@@ -149,7 +160,7 @@
             if (cell == nil)
                 continue;
 
-            UIView* v = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            UIView* v = [cell.contentView viewWithTag:5];
             if (v == nil)
                 continue;
 
@@ -170,7 +181,7 @@
             if (cell == nil)
                 continue;
 
-            UIView* v = (CircleProgressView*)[cell.contentView viewWithTag:4];
+            UIView* v = [cell.contentView viewWithTag:5];
             if (v == nil)
                 continue;
 
@@ -196,28 +207,38 @@
 
 - (void)timerCallback:(NSTimer*)timer
 {
-    long totpCount = 0;
-    for (long i = store.count - 1; i >= 0; i--) {
-        Token* token = [store get:i];
-        if (![[token type] isEqualToString:@"totp"])
-            continue;
-        totpCount++;
+    long activeTokenCount = 0;
 
+    for (long i = store.count - 1; i >= 0; i--) {
         NSUInteger idx[2] = { 0, i };
-        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndexes:idx length:2]];
+        NSIndexPath* indexPath = [NSIndexPath indexPathWithIndexes:idx length:2];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil)
             continue;
+
+        NSString* code = nil;
+        TokenCode* tc = [codes objectForKey:[NSString stringWithFormat:@"%ld", i]];
+        if (tc != nil)
+            code = [tc currentCode];
+        if (code == nil) {
+            [(CircleProgressView*)[cell.contentView viewWithTag:4] setHidden:YES];
+            [(UIImageView*)[cell.contentView viewWithTag:5] setHidden:NO];
+            continue;
+        }
+        activeTokenCount++;
         
         UILabel* l = (UILabel*)[cell.contentView viewWithTag:1];
-        [l setText:[token value]];
         [l setTextColor:[UIColor blackColor]];
+        [l setText:code];
 
         CircleProgressView* cpv = (CircleProgressView*)[cell.contentView viewWithTag:4];
-        cpv.progress = [token progress];
+        cpv.donut = tc.totalCodes > 1;
+        cpv.outer = tc.totalProgress;
+        cpv.inner = tc.currentProgress;
     }
 
-    // If we have no TOTP tokens, we can cancel the timer.
-    if (totpCount == 0) {
+    // If we have no active tokens, we can cancel the timer.
+    if (activeTokenCount == 0) {
         [self->timer invalidate];
         self->timer = nil;
     }
@@ -225,28 +246,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil)
+        return;
+
     Token* token = [store get:[indexPath row]];
     if (token == nil)
         return;
-    if (![[token type] isEqualToString:@"hotp"])
-        return;
 
+    // Perform animation.
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
-    [label setText:[token value]];
-    [label setTextColor:[UIColor blackColor]];
-    [token increment];
-    
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    [def setObject:[token description] forKey:[token uid]];
-    [def synchronize];
+
+    // Get the token code and save the token state.
+    [codes setObject:[token tokenCode] forKey:[NSString stringWithFormat:@"%ld", (long)[indexPath row]]];
+    [store save:token];
+
+    // Setup the UI for progress.
+    [(CircleProgressView*)[cell.contentView viewWithTag:4] setHidden:NO];
+    [(UIImageView*)[cell.contentView viewWithTag:5] setHidden:YES];
+
+    if (timer == nil) {
+        timer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target: self
+                                               selector: @selector(timerCallback:)
+                                               userInfo: nil repeats: YES];
+    }
 }
 
 - (void)viewDidLoad
 {
     store = [[TokenStore alloc] init];
+    codes = [[NSMutableDictionary alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -255,6 +284,8 @@
         [timer invalidate];
         timer = nil;
     }
+
+    [codes removeAllObjects];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -264,6 +295,7 @@
     empty = store.count == 0 ? 1 : 0;
     self.navigationItem.leftBarButtonItem.enabled = !empty;
     [self.tableView reloadData];
+
     timer = [NSTimer scheduledTimerWithTimeInterval: 0.1 target: self
                                            selector: @selector(timerCallback:)
                                            userInfo: nil repeats: YES];
