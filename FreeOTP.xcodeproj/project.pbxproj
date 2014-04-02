@@ -13,6 +13,7 @@
 		F109DBEF1841562600548A3E /* TokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBEE1841562600548A3E /* TokenStore.m */; };
 		F15300431801BB8800A0E179 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = F15300401801B9DF00A0E179 /* base32.c */; };
 		F15300461801BCD900A0E179 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = F15300451801BCD900A0E179 /* Token.m */; };
+		F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */; };
 		F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
 		F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860217EC12670098E7F3 /* CoreGraphics.framework */; };
 		F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
@@ -52,6 +53,8 @@
 		F15300421801BA1D00A0E179 /* base32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base32.h; sourceTree = "<group>"; };
 		F15300441801BCD900A0E179 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
 		F15300451801BCD900A0E179 /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
+		F1673F1618EB40EC00ECD2DB /* RenameTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameTokenViewController.h; sourceTree = "<group>"; };
+		F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameTokenViewController.m; sourceTree = "<group>"; };
 		F17A85FD17EC12670098E7F3 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17A860017EC12670098E7F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F17A860217EC12670098E7F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				F17A861917EC12670098E7F3 /* FreeOTPViewController.m */,
 				F109DBE818412A2300548A3E /* QRCodeScanViewController.h */,
 				F109DBE918412A2300548A3E /* QRCodeScanViewController.m */,
+				F1673F1618EB40EC00ECD2DB /* RenameTokenViewController.h */,
+				F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */,
 				F15300441801BCD900A0E179 /* Token.h */,
 				F15300451801BCD900A0E179 /* Token.m */,
 				F1E7BF8718E9C85400C2DC82 /* TokenCode.h */,
@@ -269,6 +274,7 @@
 			files = (
 				F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */,
 				F109DBEF1841562600548A3E /* TokenStore.m in Sources */,
+				F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */,
 				F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */,
 				F17A861A17EC12670098E7F3 /* FreeOTPViewController.m in Sources */,
 				F15300461801BCD900A0E179 /* Token.m in Sources */,

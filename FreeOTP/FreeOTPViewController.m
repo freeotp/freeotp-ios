@@ -20,6 +20,7 @@
 
 @import AVFoundation;
 #import "FreeOTPViewController.h"
+#import "RenameTokenViewController.h"
 #import "CircleProgressView.h"
 #import "TokenStore.h"
 
@@ -119,25 +120,87 @@ static NSString* placeholder(NSUInteger length)
         return;
     }
 
-    [[[UIActionSheet alloc]
-      initWithTitle:NSLocalizedString(@"How will we add the token?", nil)
-      delegate:self
-      cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-      destructiveButtonTitle:nil
-      otherButtonTitles:NSLocalizedString(@"Scan QR Code", nil),
-                        NSLocalizedString(@"Manual Entry", nil),
-                        nil]
-     showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    UIActionSheet *as = [[UIActionSheet alloc] init];
+    as.delegate = self;
+    as.title = NSLocalizedString(@"How will we add the token?", nil);
+    as.tag = 0;
+
+    [as addButtonWithTitle:NSLocalizedString(@"Scan QR Code", nil)];
+    [as addButtonWithTitle:NSLocalizedString(@"Manual Entry", nil)];
+
+    as.cancelButtonIndex = [as addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [as showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    // Only do this stuff at the start of the gesture.
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+
+    // Get the index path.
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath == nil)
+        return;
+
+    // Get the cell.
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil)
+        return;
+
+    // Create the action sheet.
+    UIActionSheet* as = [[UIActionSheet alloc] init];
+    as.tag = indexPath.row + 1;
+    as.delegate = self;
+
+    // If the token is currently active, show the copy button.
+    TokenCode* tc = [codes objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+    if (tc != nil && tc.currentCode != nil)
+        [as addButtonWithTitle:NSLocalizedString(@"Copy", nil)];
+
+    // Create the remaining buttons and show the sheet.
+    [as addButtonWithTitle:NSLocalizedString(@"Rename", nil)];
+    as.cancelButtonIndex = [as addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+    [as showFromRect:[cell frame] inView:cell animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-    case 0:
-        [self performSegueWithIdentifier:@"scanToken" sender:self];
+    NSInteger buttonOffset = actionSheet.numberOfButtons - 1 - buttonIndex;
+    if (buttonOffset == 0) // Cancel
+        return;
+
+    // Add a token sheet
+    if (actionSheet.tag == 0) {
+        switch (buttonOffset) {
+        case 2:
+            [self performSegueWithIdentifier:@"scanToken" sender:self];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"addToken" sender:self];
+            break;
+        }
+
+        return;
+    }
+
+    // Token-specific sheet
+    TokenCode* tc;
+    RenameTokenViewController* c;
+    switch (buttonOffset) {
+    case 2: // Copy
+        tc = [codes objectForKey:[NSString stringWithFormat:@"%ld", (long)actionSheet.tag - 1]];
+        if (tc != nil) {
+            NSString* code = tc.currentCode;
+            if (code != nil)
+                [[UIPasteboard generalPasteboard] setString:code];
+        }
         break;
-    case 1:
-        [self performSegueWithIdentifier:@"addToken" sender:self];
+    case 1: // Rename
+        c = [self.storyboard instantiateViewControllerWithIdentifier:@"renameToken"];
+        c.token = actionSheet.tag - 1;
+        [self.navigationController pushViewController:c animated:YES];
         break;
     }
 }
@@ -258,7 +321,7 @@ static NSString* placeholder(NSUInteger length)
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     // Get the token code and save the token state.
-    [codes setObject:[token tokenCode] forKey:[NSString stringWithFormat:@"%ld", (long)[indexPath row]]];
+    [codes setObject:token.code forKey:[NSString stringWithFormat:@"%ld", (long)[indexPath row]]];
     [store save:token];
 
     // Setup the UI for progress.
@@ -276,6 +339,11 @@ static NSString* placeholder(NSUInteger length)
 {
     store = [[TokenStore alloc] init];
     codes = [[NSMutableDictionary alloc] init];
+
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.0;
+    [self.tableView addGestureRecognizer:lpgr];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

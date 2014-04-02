@@ -21,12 +21,16 @@
 #include "TokenCode.h"
 
 @interface Token : NSObject
-@property (readonly) NSString* type;
-@property (readonly) NSString* issuer;
-@property (readonly) NSString* label;
-@property (readonly) NSUInteger digits;
+@property (nonatomic) NSString* issuer;
+@property (nonatomic) NSString* label;
+@property (nonatomic, readonly) NSString* issuerDefault;
+@property (nonatomic, readonly) NSString* labelDefault;
+@property (nonatomic, readonly) NSString* type;
+@property (nonatomic, readonly) NSUInteger digits;
+@property (nonatomic, readonly) NSString* uid;
+@property (nonatomic, readonly) TokenCode* code;
 - (id)initWithURL:(NSURL*)url;
+- (id)initWithURL:(NSURL*)url internal:(BOOL)internal;
 - (id)initWithString:(NSString*)string;
-- (TokenCode*)tokenCode;
-- (NSString*)uid;
+- (id)initWithString:(NSString*)string internal:(BOOL)internal;
 @end

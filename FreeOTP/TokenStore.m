@@ -97,7 +97,7 @@ getTokenOrder(NSUserDefaults* def)
     if (key == nil)
         return nil;
 
-    return [[Token alloc] initWithString:[def objectForKey:key]];
+    return [[Token alloc] initWithString:[def objectForKey:key] internal:YES];
 }
 
 - (void)save:(Token*)token

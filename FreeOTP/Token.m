@@ -164,6 +164,10 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 }
 
 - (id)initWithURL:(NSURL*)url {
+    return [self initWithURL:url internal:NO];
+}
+
+- (id)initWithURL:(NSURL*)url internal:(BOOL)internal {
     if (!(self = [super init]))
         return nil;
     
@@ -191,11 +195,11 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     if (array == nil || [array count] == 0)
         return nil;
     if ([array count] > 1) {
-        _issuer = decode([array objectAtIndex:0]);
-        _label = decode([array objectAtIndex:1]);
+        _issuerDefault = decode([array objectAtIndex:0]);
+        _labelDefault = decode([array objectAtIndex:1]);
     } else {
-        _issuer = @"";
-        _label = decode([array objectAtIndex:0]);
+        _issuerDefault = @"";
+        _labelDefault = decode([array objectAtIndex:0]);
     }
 
     // Parse query
@@ -216,7 +220,7 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     // Get internal issuer
     issuerInt = [query objectForKey:@"issuer"];
     if (issuerInt == nil)
-        issuerInt = _issuer;
+        issuerInt = _issuerDefault;
 
     // Get algorithm and digits
     algo = parseAlgo([query objectForKey:@"algorithm"]);
@@ -233,29 +237,57 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
         NSString *c = [query objectForKey:@"counter"];
         counter = c != nil ? [c longLongValue] : 0;
     }
+
+    // Get altnames
+    if (internal) {
+        _issuer = [query objectForKey:@"issueralt"];
+        _label = [query objectForKey:@"labelalt"];
+    }
     
     return self;
 }
 
 - (id)initWithString:(NSString*)string {
-    return [self initWithURL:[[NSURL alloc] initWithString:string]];
+    return [self initWithURL:[[NSURL alloc] initWithString:string] internal:NO];
+}
+
+- (id)initWithString:(NSString*)string internal:(BOOL)internal {
+    return [self initWithURL:[[NSURL alloc] initWithString:string] internal:internal];
 }
 
 - (NSString*)description {
     NSString *tmp = [NSString
             stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u",
-            _type, encode(_issuer), encode(_label), unparseAlgo(algo),
+            _type, encode(_issuerDefault), encode(_labelDefault), unparseAlgo(algo),
             (unsigned long) _digits, unparseKey(key), encode(issuerInt), period];
     if (tmp == nil)
         return nil;
-    
+
+    if (_issuer != nil)
+        tmp = [NSString stringWithFormat:@"%@&issueralt=%@", tmp, _issuer];
+
+    if (_label != nil)
+        tmp = [NSString stringWithFormat:@"%@&labelalt=%@", tmp, _label];
+
     if ([_type isEqualToString:@"hotp"])
         return [NSString stringWithFormat:@"%@&counter=%llu", tmp, counter];
     
     return tmp;
 }
 
-- (TokenCode*)tokenCode {
+- (NSString*)issuer {
+    if (_issuer == nil)
+        return _issuerDefault;
+    return _issuer;
+}
+
+- (NSString*)label {
+    if (_label == nil)
+        return _labelDefault;
+    return _label;
+}
+
+- (TokenCode*)code {
     time_t now = time(NULL);
     if (now == (time_t) -1)
         now = 0;
@@ -275,6 +307,6 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 }
 
 - (NSString*)uid {
-    return [NSString stringWithFormat:@"%@:%@", issuerInt, _label];
+    return [NSString stringWithFormat:@"%@:%@", issuerInt, _labelDefault];
 }
 @end
