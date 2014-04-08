@@ -1,9 +1,21 @@
 //
-//  QRCodeScanViewController.m
-//  FreeOTP
+// FreeOTP
 //
-//  Created by Nathaniel McCallum on 11/23/13.
-//  Copyright (c) 2013 Nathaniel McCallum. All rights reserved.
+// Authors: Nathaniel McCallum <npmccallum@redhat.com>
+//
+// Copyright (C) 2013  Nathaniel McCallum, Red Hat
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 
 #import "QRCodeScanViewController.h"
@@ -23,7 +35,6 @@
     NSError* error = nil;
     AVCaptureDeviceInput* input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     if (input == nil) {
-        NSLog(@"Input error: %@", error);
         [self.navigationController popViewControllerAnimated:TRUE];
         return;
     }
@@ -53,14 +64,16 @@
             NSString* qrcode = [(AVMetadataMachineReadableCodeObject *)metadata stringValue];
             if (qrcode == nil)
                 continue;
-            NSLog(@"QR Code: %@", qrcode);
 
             Token* token = [[Token alloc] initWithString:qrcode];
             if (token != nil)
                 [[[TokenStore alloc] init] add:token];
 
             [self.session stopRunning];
-            [self.navigationController popViewControllerAnimated:TRUE];
+            if (self.popover == nil)
+                [self.navigationController popViewControllerAnimated:YES];
+            else
+                [self.popover dismissPopoverAnimated:YES];
             return;
         }
     }

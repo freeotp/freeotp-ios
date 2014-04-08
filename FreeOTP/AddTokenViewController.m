@@ -128,7 +128,12 @@
         [[[TokenStore alloc] init] add:token];
     
     // Return
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.popover == nil)
+        [self.navigationController popViewControllerAnimated:YES];
+    else {
+        [self.popover dismissPopoverAnimated:YES];
+        [self.popover.delegate popoverControllerDidDismissPopover:self.popover];
+    }
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

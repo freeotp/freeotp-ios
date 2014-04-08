@@ -24,19 +24,66 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <sys/time.h>
 
+#define URLCHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_~"
+
+static BOOL ishex(char c) {
+    if (c >= '0' && c <= '9')
+        return YES;
+
+    if (c >= 'A' && c <= 'F')
+        return YES;
+
+    if (c >= 'a' && c <= 'f')
+        return YES;
+
+    return NO;
+}
+
+static uint8_t fromhex(char c) {
+    if (c >= '0' && c <= '9')
+        return c - '0';
+
+    if (c >= 'A' && c <= 'F')
+        return c - 'A' + 10;
+
+    if (c >= 'a' && c <= 'f')
+        return c - 'a' + 10;
+
+    return 0;
+}
+
 static NSString* decode(const NSString* str) {
     if (str == nil)
         return nil;
-    
-    str = [str stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    return [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    const char *tmp = [str UTF8String];
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    for (NSUInteger i = 0; i < str.length; i++) {
+        if (tmp[i] != '%' || !ishex(tmp[i + 1]) || !ishex(tmp[i + 2])) {
+            [ret appendFormat:@"%c", tmp[i]];
+            continue;
+        }
+
+        uint8_t c = 0;
+        c |= fromhex(tmp[++i]) << 4;
+        c |= fromhex(tmp[++i]);
+
+        [ret appendFormat:@"%c", c];
+    }
+
+    return ret;
 }
 
-static NSString* encode(const NSString* str) {
+static NSString* encode(NSString* str) {
     if (str == nil)
         return nil;
-    str = [str stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    const char *tmp = [str UTF8String];
+    NSMutableString *ret = [[NSMutableString alloc] init];
+    for (NSUInteger i = 0; i < str.length; i++)
+        [ret appendFormat: strchr(URLCHARS, tmp[i]) ? @"%c" : @"%%%02X", tmp[i]];
+
+    return ret;
 }
 
 static NSData* parseKey(const NSString *secret) {
@@ -195,11 +242,11 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     if (array == nil || [array count] == 0)
         return nil;
     if ([array count] > 1) {
-        _issuerDefault = decode([array objectAtIndex:0]);
-        _labelDefault = decode([array objectAtIndex:1]);
+        _issuer = decode([array objectAtIndex:0]);
+        _label = decode([array objectAtIndex:1]);
     } else {
-        _issuerDefault = @"";
-        _labelDefault = decode([array objectAtIndex:0]);
+        _issuer = @"";
+        _label = decode([array objectAtIndex:0]);
     }
 
     // Parse query
@@ -216,11 +263,6 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     key = parseKey([query objectForKey:@"secret"]);
     if (key == nil)
         return nil;
-    
-    // Get internal issuer
-    issuerInt = [query objectForKey:@"issuer"];
-    if (issuerInt == nil)
-        issuerInt = _issuerDefault;
 
     // Get algorithm and digits
     algo = parseAlgo([query objectForKey:@"algorithm"]);
@@ -238,12 +280,30 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
         counter = c != nil ? [c longLongValue] : 0;
     }
 
-    // Get altnames
+    // Get image
+    if (internal)
+        _image = [NSURL URLWithString:decode([query objectForKey:@"image"])];
+    if (_image == nil)
+        _image = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"]];
+
+    // Get defaults
     if (internal) {
-        _issuer = [query objectForKey:@"issueralt"];
-        _label = [query objectForKey:@"labelalt"];
+        _issuerDefault = [query objectForKey:@"issuerorig"];
+        _labelDefault = [query objectForKey:@"nameorig"];
+        _imageDefault = [NSURL URLWithString:[decode([query objectForKey:@"imageorig"])stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
-    
+    if (_issuerDefault == nil)
+        _issuerDefault = _issuer;
+    if (_labelDefault == nil)
+        _labelDefault = _label;
+    if (_imageDefault == nil)
+        _imageDefault = _image;
+
+    // Get internal issuer
+    issuerInt = [query objectForKey:@"issuer"];
+    if (issuerInt == nil)
+        issuerInt = _issuerDefault;
+
     return self;
 }
 
@@ -257,34 +317,20 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 
 - (NSString*)description {
     NSString *tmp = [NSString
-            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u",
-            _type, encode(_issuerDefault), encode(_labelDefault), unparseAlgo(algo),
-            (unsigned long) _digits, unparseKey(key), encode(issuerInt), period];
+            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u&issuerorig=%@&nameorig=%@&imageorig=%@",
+            _type, encode(self.issuer), encode(self.label), unparseAlgo(algo),
+            (unsigned long) _digits, unparseKey(key), encode(issuerInt), period,
+            encode(self.issuerDefault), encode(self.labelDefault), encode(self.imageDefault.description)];
     if (tmp == nil)
         return nil;
 
-    if (_issuer != nil)
-        tmp = [NSString stringWithFormat:@"%@&issueralt=%@", tmp, _issuer];
-
-    if (_label != nil)
-        tmp = [NSString stringWithFormat:@"%@&labelalt=%@", tmp, _label];
+    if (_image != nil)
+        tmp = [NSString stringWithFormat:@"%@&image=%@", tmp, encode(self.image.description)];
 
     if ([_type isEqualToString:@"hotp"])
-        return [NSString stringWithFormat:@"%@&counter=%llu", tmp, counter];
-    
+        tmp = [NSString stringWithFormat:@"%@&counter=%llu", tmp, counter];
+
     return tmp;
-}
-
-- (NSString*)issuer {
-    if (_issuer == nil)
-        return _issuerDefault;
-    return _issuer;
-}
-
-- (NSString*)label {
-    if (_label == nil)
-        return _labelDefault;
-    return _label;
 }
 
 - (TokenCode*)code {
@@ -307,6 +353,6 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 }
 
 - (NSString*)uid {
-    return [NSString stringWithFormat:@"%@:%@", issuerInt, _labelDefault];
+    return [NSString stringWithFormat:@"%@:%@", issuerInt, self.labelDefault];
 }
 @end

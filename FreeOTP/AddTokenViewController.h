@@ -33,9 +33,9 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *sha1;
 @property (weak, nonatomic) IBOutlet UITableViewCell *sha256;
 @property (weak, nonatomic) IBOutlet UITableViewCell *sha512;
+@property (weak, nonatomic) UIPopoverController *popover;
 - (IBAction)requiredValueChanged:(id)sender;
 - (IBAction)intervalClicked:(id)sender;
 - (IBAction)digitsClicked:(id)sender;
 - (IBAction)addClicked:(id)sender;
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 @end

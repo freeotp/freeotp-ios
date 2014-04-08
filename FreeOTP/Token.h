@@ -23,8 +23,10 @@
 @interface Token : NSObject
 @property (nonatomic) NSString* issuer;
 @property (nonatomic) NSString* label;
+@property (nonatomic) NSURL* image;
 @property (nonatomic, readonly) NSString* issuerDefault;
 @property (nonatomic, readonly) NSString* labelDefault;
+@property (nonatomic, readonly) NSURL* imageDefault;
 @property (nonatomic, readonly) NSString* type;
 @property (nonatomic, readonly) NSUInteger digits;
 @property (nonatomic, readonly) NSString* uid;

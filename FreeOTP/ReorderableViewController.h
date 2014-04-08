@@ -3,7 +3,7 @@
 //
 // Authors: Nathaniel McCallum <npmccallum@redhat.com>
 //
-// Copyright (C) 2013  Nathaniel McCallum, Red Hat
+// Copyright (C) 2014  Nathaniel McCallum, Red Hat
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,8 @@
 // limitations under the License.
 //
 
-@interface FreeOTPViewController : UITableViewController <UIActionSheetDelegate>
-- (IBAction)addButtonClicked:(id)sender;
-- (IBAction)editButtonClicked:(id)sender;
+#import "BaseViewController.h"
+
+@interface ReorderableViewController : BaseViewController
+
 @end

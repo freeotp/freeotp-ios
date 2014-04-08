@@ -26,8 +26,11 @@
     if (self == nil)
         return nil;
 
-    self.inner = 0.0;
-    self.outer = 0.0;
+    self.hollow = false;
+    self.clockwise = true;
+    self.threshold = 0;
+    self.progress = 0.0;
+    self.backgroundColor = [UIColor clearColor];
     return self;
 }
 
@@ -36,52 +39,57 @@
     if (self == nil)
         return nil;
 
-    self.inner = 0.0;
-    self.outer = 0.0;
+    self.hollow = false;
+    self.clockwise = true;
+    self.threshold = 0;
+    self.progress = 0.0;
+    self.backgroundColor = [UIColor clearColor];
     return self;
 }
 
-- (void)setDonut:(BOOL)donut {
-    _donut = donut;
+- (void)setHollow:(BOOL)hollow {
+    _hollow = hollow;
     [self setNeedsDisplay];
 }
 
-- (void)setInner:(float)inner {
-    _inner = inner;
+- (void)setClockwise:(BOOL)clockwise {
+    _clockwise = clockwise;
     [self setNeedsDisplay];
 }
 
-- (void)setOuter:(float)outer {
-    _outer = outer;
+- (void)setThreshold:(float)threshold {
+    _threshold = threshold;
+    [self setNeedsDisplay];
+}
+
+- (void)setProgress:(float)progress {
+    _progress = progress;
     [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)xxx {
+    CGFloat progress = self.clockwise ? self.progress : (1.0f - self.progress);
     CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    CGFloat radius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - 4, 1);
+    CGFloat radians = MAX(MIN(progress * 2 * M_PI, 2 * M_PI), 0);
 
-    int padding = 4;
-    if (self.donut) {
-        CGFloat outerRadius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - padding, 1);
-        CGFloat outerRadians = MAX(MIN((1.0 - self.outer) * 2 * M_PI, 2 * M_PI), 0);
-        [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setStroke];
-        UIBezierPath* outerPath = [UIBezierPath bezierPathWithArcCenter:center radius:outerRadius
-                                    startAngle:-M_PI_2 endAngle:outerRadians-M_PI_2 clockwise:YES];
-        [outerPath setLineWidth:3.0];
-        [outerPath stroke];
+    UIColor* color = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    if (self.threshold < 0 && self.progress < fabsf(self.threshold))
+        color = [UIColor colorWithRed:1.0 green:self.progress * (1 / fabsf(self.threshold)) blue:0.0 alpha:1.0];
+    else if (self.threshold > 0 && self.progress > self.threshold)
+        color = [UIColor colorWithRed:1.0 green:(1 - self.progress) * (1 / (1 - self.threshold)) blue:0.0 alpha:1.0];
 
-        padding += 4;
+    UIBezierPath* path = [UIBezierPath bezierPathWithArcCenter:center radius:radius
+                             startAngle:-M_PI_2 endAngle:radians-M_PI_2 clockwise:self.clockwise];
+    if (self.hollow) {
+        [color setStroke];
+        [path setLineWidth:3.0];
+        [path stroke];
+    } else {
+        [color setFill];
+        [path addLineToPoint:center];
+        [path addClip];
+        UIRectFill(self.bounds);
     }
-
-    CGFloat innerRadius = MAX(MIN(self.bounds.size.height / 2.0, self.bounds.size.width / 2.0) - padding, 1);
-    CGFloat innerRadians = MAX(MIN((1.0 - self.inner) * 2 * M_PI, 2 * M_PI), 0);
-    if (self.inner < 0.75)
-        [[UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0] setFill];
-    else
-        [[UIColor colorWithRed:1.0 green:(1 - self.inner) * 4 blue:0.0 alpha:1.0] setFill];
-    UIBezierPath* innerPath = [UIBezierPath bezierPathWithArcCenter:center radius:innerRadius
-                                    startAngle:-M_PI_2 endAngle:innerRadians-M_PI_2 clockwise:YES];
-    [innerPath addLineToPoint:center];
-    [innerPath addClip];
-    UIRectFill(self.bounds);
 }
 @end

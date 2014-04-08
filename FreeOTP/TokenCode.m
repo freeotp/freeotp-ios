@@ -77,13 +77,15 @@ static uint64_t currentTimeInMilli()
     if (now < startTime)
         return 0.0;
 
-    if (now < endTime)
-        return ((float) (now - startTime)) / ((float) (endTime - startTime));
+    if (now < endTime) {
+        float totalTime = (float) (endTime - startTime);
+        return 1.0 - (now - startTime) / totalTime;
+    }
 
     if (nextCode != nil)
         return [nextCode currentProgress];
 
-    return 1.0;
+    return 0.0;
 }
 
 - (float)totalProgress
@@ -98,10 +100,12 @@ static uint64_t currentTimeInMilli()
     while (last->nextCode != nil)
         last = last->nextCode;
 
-    if (now < last->endTime)
-        return ((float) (now - startTime)) / ((float) (last->endTime - startTime));
+    if (now < last->endTime) {
+        float totalTime = (float) (last->endTime - startTime);
+        return 1.0 - (now - startTime) / totalTime;
+    }
 
-    return 1.0;
+    return 0.0;
 }
 
 - (NSUInteger)totalCodes {

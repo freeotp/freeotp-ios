@@ -18,15 +18,19 @@
 // limitations under the License.
 //
 
-@interface RenameTokenViewController : UITableViewController
-@property (weak, nonatomic) IBOutlet UITextField *issuer;
-@property (weak, nonatomic) IBOutlet UITextField *label;
-@property (weak, nonatomic) IBOutlet UILabel *issuerDefault;
-@property (weak, nonatomic) IBOutlet UILabel *labelDefault;
-@property (weak, nonatomic) IBOutlet UIButton *button;
-@property (weak, nonatomic) UIPopoverController *popover;
-@property (nonatomic) NSUInteger token;
-- (IBAction)cancelClicked:(id)sender;
-- (IBAction)resetClicked:(id)sender;
-- (IBAction)doneClicked:(id)sender;
+#import "CircleProgressView.h"
+#import "Token.h"
+#import "TokenCode.h"
+#import "URLImageView.h"
+
+@interface TokenCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet URLImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *code;
+@property (weak, nonatomic) IBOutlet UILabel *issuer;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *placeholder;
+@property (weak, nonatomic) IBOutlet CircleProgressView *outer;
+@property (weak, nonatomic) IBOutlet CircleProgressView *inner;
+@property (strong, nonatomic) TokenCode* state;
+- (BOOL)bind:(Token*)token;
 @end
