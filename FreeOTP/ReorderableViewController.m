@@ -23,7 +23,6 @@
 
 @implementation ReorderableViewController
 {
-    NSIndexPath* origPath;
     NSIndexPath* lastPath;
 }
 
@@ -42,7 +41,7 @@
         if (cell == nil)
             return; // Invalid state
 
-        origPath = lastPath = currPath;
+        lastPath = currPath;
 
         cell = [self.collectionView cellForItemAtIndexPath:currPath];
         {[UIView animateWithDuration:0.3f animations:^{
@@ -60,6 +59,16 @@
             // Move the display.
             [self.collectionView moveItemAtIndexPath:lastPath toIndexPath:currPath];
 
+            // Scroll the display to handle moving tokens up or down.
+            if (lastPath.row < currPath.row)
+                [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+            else
+                [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+
+            // Write changes.
+            TokenStore* ts = [[TokenStore alloc] init];
+            [ts moveFrom:lastPath.row to:currPath.row];
+
             // Reset state.
             cell.transform = CGAffineTransformMakeScale(1.1f, 1.1f); // Moving the token resets the size...
             [self.collectionView bringSubviewToFront:cell]; // ... and Z index.
@@ -70,15 +79,9 @@
         return;
 
     case UIGestureRecognizerStateEnded:
-        if (lastPath == nil || origPath == nil) {
+        if (lastPath == nil) {
             [self.collectionView reloadData];
             return; // Invalid state
-        }
-
-        // Write changes if successful.
-        if (origPath.row != lastPath.row) {
-            TokenStore* ts = [[TokenStore alloc] init];
-            [ts moveFrom:origPath.row to:lastPath.row];
         }
 
         // Animate back to the original state, but in the new location.
@@ -88,12 +91,12 @@
             cell.center = [l layoutAttributesForItemAtIndexPath:lastPath].center;
             cell.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         } completion:^(BOOL c){
-            origPath = lastPath = nil;
+            lastPath = nil;
         }];}
         return;
 
     case UIGestureRecognizerStateCancelled:
-        if (lastPath == nil || origPath == nil) {
+        if (lastPath == nil) {
             [self.collectionView reloadData];
             return; // Invalid state
         }
