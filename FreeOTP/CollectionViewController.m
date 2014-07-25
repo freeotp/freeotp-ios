@@ -37,6 +37,7 @@
 {
     TokenStore* store;
     NSIndexPath* lastPath;
+    UILongPressGestureRecognizer* longPressGesture;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -102,141 +103,32 @@
     // Perform animation.
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 
-    // Get the current cell.
-    TokenCell* cell = (TokenCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    if (cell == nil)
-        return;
-
-    // Get the selected token.
-    Token* token = [store get:indexPath.row];
-    if (token == nil)
-        return;
-
-    // Get the token code and save the token state.
-    cell.state = token.code;
-    [store save:token];
-}
-
-- (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    UICollectionViewCell* cell = nil;
-
-    // Get the current index path.
-    CGPoint p = [gestureRecognizer locationInView:self.collectionView];
-    NSIndexPath *currPath = [self.collectionView indexPathForItemAtPoint:p];
-
-    switch (gestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan:
-            if (currPath != nil)
-                cell = [self.collectionView cellForItemAtIndexPath:currPath];
-            if (cell == nil)
-                return; // Invalid state
-
-            lastPath = currPath;
-
-            cell = [self.collectionView cellForItemAtIndexPath:currPath];
-        {[UIView animateWithDuration:0.3f animations:^{
-            cell.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
-            [self.collectionView bringSubviewToFront:cell];
-        }];}
-
-        case UIGestureRecognizerStateChanged:
-            if (lastPath != nil)
-                cell = [self.collectionView cellForItemAtIndexPath:lastPath];
-            if (cell == nil)
-                return; // Invalid state
-
-            if (currPath != nil && lastPath.row != currPath.row) {
-                // Move the display.
-                [self.collectionView moveItemAtIndexPath:lastPath toIndexPath:currPath];
-
-                // Scroll the display to handle moving tokens up or down.
-                if (lastPath.row < currPath.row)
-                    [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-                else
-                    [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-
-                // Write changes.
-                TokenStore* ts = [[TokenStore alloc] init];
-                [ts moveFrom:lastPath.row to:currPath.row];
-
-                // Reset state.
-                cell.transform = CGAffineTransformMakeScale(1.1f, 1.1f); // Moving the token resets the size...
-                [self.collectionView bringSubviewToFront:cell]; // ... and Z index.
-                lastPath = currPath;
-            }
-
-            cell.center = [gestureRecognizer locationInView:self.collectionView];
+    // If we are not in edit mode, generate the token.
+    if (self.navigationItem.leftBarButtonItem.style == UIBarButtonItemStylePlain) {
+        // Get the current cell.
+        TokenCell* cell = (TokenCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        if (cell == nil)
             return;
 
-        case UIGestureRecognizerStateEnded:
-            if (lastPath == nil) {
-                [self.collectionView reloadData];
-                return; // Invalid state
-            }
-
-            // Animate back to the original state, but in the new location.
-            cell = [self.collectionView cellForItemAtIndexPath:lastPath];
-        {[UIView animateWithDuration:0.3f animations:^{
-            UICollectionViewLayout* l = self.collectionView.collectionViewLayout;
-            cell.center = [l layoutAttributesForItemAtIndexPath:lastPath].center;
-            cell.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-        } completion:^(BOOL c){
-            lastPath = nil;
-        }];}
+        // Get the selected token.
+        Token* token = [store get:indexPath.row];
+        if (token == nil)
             return;
 
-        case UIGestureRecognizerStateCancelled:
-            if (lastPath == nil) {
-                [self.collectionView reloadData];
-                return; // Invalid state
-            }
+        // Get the token code and save the token state.
+        TokenCode* tc = token.code;
+        [store save:token];
 
-            [self.collectionView reloadData];
-            return;
+        // Show the token code.
+        cell.state = tc;
 
-        default:
-            return;
-    }
-}
+        // Copy the token code to the clipboard.
+        NSString* code = tc.currentCode;
+        if (code != nil)
+            [[UIPasteboard generalPasteboard] setString:code];
 
-- (IBAction)addClicked:(id)sender
-{
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        [self performSegueWithIdentifier:@"addToken" sender:self];
         return;
     }
-
-    AddTokenViewController* c = [self.storyboard instantiateViewControllerWithIdentifier:@"addToken"];
-    UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:c];
-
-    c.popover = self.popover = [[UIPopoverController alloc] initWithContentViewController:nc];
-    self.popover.delegate = self;
-    self.popover.popoverContentSize = CGSizeMake(320, 715);
-    [self.popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
-- (IBAction)scanClicked:(id)sender
-{
-    [self performSegueWithIdentifier:@"scanToken" sender:self];
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    self.popover = nil;
-    [self.collectionView reloadData];
-}
-
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
-        return;
-
-    // Get the index path.
-    CGPoint p = [gestureRecognizer locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
-    if (indexPath == nil)
-        return;
 
     // Get the cell.
     TokenCell* cell = (TokenCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
@@ -250,11 +142,6 @@
     // Otherwise, add a title to make the context clear.
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
         as.title = [NSString stringWithFormat:@"%@\n%@", cell.issuer.text, cell.label.text];
-
-    // If the token is active, show the copy button.
-    TokenCode* tc = cell.state;
-    if (tc != nil && tc.currentCode != nil)
-        [as addButtonWithTitle:NSLocalizedString(@"Copy", nil)];
 
     // Add the remaining buttons.
     [as addButtonWithTitle:NSLocalizedString(@"Change Icon", nil)];
@@ -313,18 +200,143 @@
                     [self.popover presentPopoverFromRect:cell.frame inView:self.collectionView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
                 }
             }
-
-            case 4: { // Copy
-                TokenCode* tc = cell.state;
-                if (tc != nil) {
-                    NSString* code = tc.currentCode;
-                    if (code != nil)
-                        [[UIPasteboard generalPasteboard] setString:code];
-                }
-                break;
-            }
         }
     };
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    UICollectionViewCell* cell = nil;
+
+    // Get the current index path.
+    CGPoint p = [gestureRecognizer locationInView:self.collectionView];
+    NSIndexPath *currPath = [self.collectionView indexPathForItemAtPoint:p];
+
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            if (currPath != nil)
+                cell = [self.collectionView cellForItemAtIndexPath:currPath];
+            if (cell == nil)
+                return; // Invalid state
+
+            lastPath = currPath;
+
+            // Animate to the "lifted" state.
+            cell = [self.collectionView cellForItemAtIndexPath:currPath];
+        {[UIView animateWithDuration:0.3f animations:^{
+            cell.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+            [self.collectionView bringSubviewToFront:cell];
+        }];}
+
+            return;
+
+        case UIGestureRecognizerStateChanged:
+            if (lastPath != nil)
+                cell = [self.collectionView cellForItemAtIndexPath:lastPath];
+            if (cell == nil)
+                return; // Invalid state
+
+            if (currPath != nil && lastPath.row != currPath.row) {
+                // Move the display.
+                [self.collectionView moveItemAtIndexPath:lastPath toIndexPath:currPath];
+
+                // Scroll the display to handle moving tokens up or down.
+                if (lastPath.row < currPath.row)
+                    [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+                else
+                    [self.collectionView scrollToItemAtIndexPath:currPath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+
+                // Write changes.
+                TokenStore* ts = [[TokenStore alloc] init];
+                [ts moveFrom:lastPath.row to:currPath.row];
+
+                // Reset state.
+                cell.transform = CGAffineTransformMakeScale(1.1f, 1.1f); // Moving the token resets the size...
+                [self.collectionView bringSubviewToFront:cell]; // ... and Z index.
+                lastPath = currPath;
+            }
+
+            cell.center = [gestureRecognizer locationInView:self.collectionView];
+            return;
+
+        case UIGestureRecognizerStateEnded:
+            // Animate back to the original state, but in the new location.
+            if (lastPath != nil) {
+                cell = [self.collectionView cellForItemAtIndexPath:lastPath];
+                {[UIView animateWithDuration:0.3f animations:^{
+                    UICollectionViewLayout* l = self.collectionView.collectionViewLayout;
+                    cell.center = [l layoutAttributesForItemAtIndexPath:lastPath].center;
+                    cell.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                } completion:^(BOOL c){
+                    lastPath = nil;
+                }];}
+            }
+
+            break;
+
+        default:
+            break;
+    }
+
+    [self.collectionView reloadData];
+}
+
+- (IBAction)addClicked:(id)sender
+{
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        [self performSegueWithIdentifier:@"addToken" sender:self];
+        return;
+    }
+
+    AddTokenViewController* c = [self.storyboard instantiateViewControllerWithIdentifier:@"addToken"];
+    UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:c];
+
+    c.popover = self.popover = [[UIPopoverController alloc] initWithContentViewController:nc];
+    self.popover.delegate = self;
+    self.popover.popoverContentSize = CGSizeMake(320, 715);
+    [self.popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)scanClicked:(id)sender
+{
+    [self performSegueWithIdentifier:@"scanToken" sender:self];
+}
+
+- (IBAction)editClicked:(id)sender
+{
+    UIBarButtonItem* edit = sender;
+    [self.collectionView reloadData];
+
+    // Enable/disable the add/scan buttons.
+    for (UIBarButtonItem* i in self.navigationItem.rightBarButtonItems)
+        [i setEnabled:edit.style != UIBarButtonItemStylePlain];
+
+    switch (edit.style) {
+        case UIBarButtonItemStylePlain:
+            edit.title = NSLocalizedString(@"Done", nil);
+            edit.style = UIBarButtonItemStyleDone;
+
+            // Setup gesture.
+            longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+            longPressGesture.minimumPressDuration = 0.5;
+            [self.collectionView addGestureRecognizer:longPressGesture];
+            break;
+
+        default:
+            edit.title = NSLocalizedString(@"Edit", nil);
+            edit.style = UIBarButtonItemStylePlain;
+
+            // Remove gesture.
+            [self.collectionView removeGestureRecognizer:longPressGesture];
+            longPressGesture = nil;
+            break;
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popover = nil;
+    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad
@@ -338,19 +350,6 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = NO;
     self.collectionView.delegate = self;
-
-    // Setup pan.
-    UIPanGestureRecognizer* pgr = [[UIPanGestureRecognizer alloc]
-                                   initWithTarget:self action:@selector(handlePan:)];
-    pgr.minimumNumberOfTouches = 1;
-    pgr.maximumNumberOfTouches = 1;
-    [self.collectionView addGestureRecognizer:pgr];
-
-    // Setup long-press.
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 1.0;
-    [self.collectionView addGestureRecognizer:lpgr];
 
     // Setup buttons.
     UIBarButtonItem* add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addClicked:)];

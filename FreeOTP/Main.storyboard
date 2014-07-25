@@ -256,6 +256,11 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="FreeOTP" id="L5z-P6-1cO">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="4qg-16-ec1">
+                            <connections>
+                                <action selector="editClicked:" destination="mGg-KB-Kzc" id="J6m-Jl-enK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xI6-Hh-6eF">
                             <connections>
                                 <action selector="addClicked:" destination="mGg-KB-Kzc" id="GgT-19-tZK"/>
