@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F100667818EF188300F9EF2C /* ButtonsAndMenusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F100667718EF188300F9EF2C /* ButtonsAndMenusViewController.m */; };
 		F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F100667A18EF1E4900F9EF2C /* TokenCell.m */; };
 		F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1030ED11818322000E478F7 /* CircleProgressView.m */; };
 		F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBE918412A2300548A3E /* QRCodeScanViewController.m */; };
@@ -29,8 +28,7 @@
 		F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
 		F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18A62CC1808A64F00345419 /* AddTokenViewController.m */; };
 		F18E16F218F2603800722FE7 /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E16F118F2603800722FE7 /* qrcode.png */; };
-		F18E16F518F3D0DB00722FE7 /* ReorderableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16F418F3D0DB00722FE7 /* ReorderableViewController.m */; };
-		F18E16F818F3D1F100722FE7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16F718F3D1F100722FE7 /* BaseViewController.m */; };
+		F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16F718F3D1F100722FE7 /* CollectionViewController.m */; };
 		F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */; };
 		F18E170D18F4AB3000722FE7 /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E170618F4AB3000722FE7 /* token.png */; };
 		F1AD9C6B190FF5500023501C /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1AD9C6A190FF5500023501C /* default.png */; };
@@ -51,8 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F100667618EF188300F9EF2C /* ButtonsAndMenusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonsAndMenusViewController.h; sourceTree = "<group>"; };
-		F100667718EF188300F9EF2C /* ButtonsAndMenusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonsAndMenusViewController.m; sourceTree = "<group>"; };
 		F100667918EF1E4900F9EF2C /* TokenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCell.h; sourceTree = "<group>"; };
 		F100667A18EF1E4900F9EF2C /* TokenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCell.m; sourceTree = "<group>"; };
 		F1030ED01818322000E478F7 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
@@ -86,10 +82,8 @@
 		F18A62CB1808A64F00345419 /* AddTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTokenViewController.h; sourceTree = "<group>"; };
 		F18A62CC1808A64F00345419 /* AddTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTokenViewController.m; sourceTree = "<group>"; };
 		F18E16F118F2603800722FE7 /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
-		F18E16F318F3D0DB00722FE7 /* ReorderableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReorderableViewController.h; sourceTree = "<group>"; };
-		F18E16F418F3D0DB00722FE7 /* ReorderableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReorderableViewController.m; sourceTree = "<group>"; };
-		F18E16F618F3D1F100722FE7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		F18E16F718F3D1F100722FE7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		F18E16F618F3D1F100722FE7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		F18E16F718F3D1F100722FE7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		F18E16FA18F47D3E00722FE7 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockActionSheet.h; sourceTree = "<group>"; };
 		F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockActionSheet.m; sourceTree = "<group>"; };
 		F18E170618F4AB3000722FE7 /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
@@ -171,12 +165,8 @@
 				F17A861017EC12670098E7F3 /* AppDelegate.m */,
 				F18E16FA18F47D3E00722FE7 /* BlockActionSheet.h */,
 				F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */,
-				F18E16F618F3D1F100722FE7 /* BaseViewController.h */,
-				F18E16F718F3D1F100722FE7 /* BaseViewController.m */,
-				F18E16F318F3D0DB00722FE7 /* ReorderableViewController.h */,
-				F18E16F418F3D0DB00722FE7 /* ReorderableViewController.m */,
-				F100667618EF188300F9EF2C /* ButtonsAndMenusViewController.h */,
-				F100667718EF188300F9EF2C /* ButtonsAndMenusViewController.m */,
+				F18E16F618F3D1F100722FE7 /* CollectionViewController.h */,
+				F18E16F718F3D1F100722FE7 /* CollectionViewController.m */,
 				F1030ED01818322000E478F7 /* CircleProgressView.h */,
 				F1030ED11818322000E478F7 /* CircleProgressView.m */,
 				F100667918EF1E4900F9EF2C /* TokenCell.h */,
@@ -314,14 +304,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F100667818EF188300F9EF2C /* ButtonsAndMenusViewController.m in Sources */,
 				F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */,
 				F109DBEF1841562600548A3E /* TokenStore.m in Sources */,
 				F11EB05519117F77005FD565 /* TokenImagePickerController.m in Sources */,
 				F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */,
 				F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */,
 				F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */,
-				F18E16F818F3D1F100722FE7 /* BaseViewController.m in Sources */,
+				F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */,
 				F15300461801BCD900A0E179 /* Token.m in Sources */,
 				F15300431801BB8800A0E179 /* base32.c in Sources */,
 				F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */,
@@ -329,7 +318,6 @@
 				F17A861117EC12670098E7F3 /* AppDelegate.m in Sources */,
 				F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */,
 				F17A860D17EC12670098E7F3 /* main.m in Sources */,
-				F18E16F518F3D0DB00722FE7 /* ReorderableViewController.m in Sources */,
 				F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

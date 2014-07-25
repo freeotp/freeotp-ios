@@ -18,8 +18,7 @@
 // limitations under the License.
 //
 
-#import "BaseViewController.h"
-
-@interface ReorderableViewController : BaseViewController
-
+@interface CollectionViewController : UICollectionViewController
+- (IBAction)addClicked:(id)sender;
+- (IBAction)scanClicked:(id)sender;
 @end
