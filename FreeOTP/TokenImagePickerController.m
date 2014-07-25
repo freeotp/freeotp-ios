@@ -78,7 +78,7 @@
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (viewController == [navigationController.viewControllers objectAtIndex:0]) {
+    if (navigationController.viewControllers.count > 0 && viewController == [navigationController.viewControllers objectAtIndex:0]) {
         viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Default", nil)
                                                                                             style:UIBarButtonItemStylePlain
                                                                                            target:self
