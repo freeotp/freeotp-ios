@@ -283,21 +283,27 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
     // Get image
     if (internal)
         _image = [NSURL URLWithString:decode([query objectForKey:@"image"])];
-    if (_image == nil)
-        _image = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"default" ofType:@"png"]];
 
     // Get defaults
     if (internal) {
         _issuerDefault = [query objectForKey:@"issuerorig"];
         _labelDefault = [query objectForKey:@"nameorig"];
         _imageDefault = [NSURL URLWithString:[decode([query objectForKey:@"imageorig"])stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+        // This works around a bug where we stored a URL to the default image, but this changed with the app id.
+        if ([_imageDefault.scheme isEqualToString:@"file"] && [_imageDefault.path hasSuffix:@"/FreeOTP.app/default.png"]) {
+            if ([_imageDefault isEqual:_image])
+                _image = nil;
+            _imageDefault = nil;
+        }
+    } else {
+        if (_issuerDefault == nil)
+            _issuerDefault = _issuer;
+        if (_labelDefault == nil)
+            _labelDefault = _label;
+        if (_imageDefault == nil)
+            _imageDefault = _image;
     }
-    if (_issuerDefault == nil)
-        _issuerDefault = _issuer;
-    if (_labelDefault == nil)
-        _labelDefault = _label;
-    if (_imageDefault == nil)
-        _imageDefault = _image;
 
     // Get internal issuer
     issuerInt = [query objectForKey:@"issuer"];
@@ -317,12 +323,15 @@ static NSString* getHOTP(CCHmacAlgorithm algo, uint8_t digits, NSData* key, uint
 
 - (NSString*)description {
     NSString *tmp = [NSString
-            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u&issuerorig=%@&nameorig=%@&imageorig=%@",
+            stringWithFormat:@"otpauth://%@/%@:%@?algorithm=%s&digits=%lu&secret=%@&issuer=%@&period=%u&issuerorig=%@&nameorig=%@",
             _type, encode(self.issuer), encode(self.label), unparseAlgo(algo),
             (unsigned long) _digits, unparseKey(key), encode(issuerInt), period,
-            encode(self.issuerDefault), encode(self.labelDefault), encode(self.imageDefault.description)];
+            encode(self.issuerDefault), encode(self.labelDefault)];
     if (tmp == nil)
         return nil;
+
+    if (_imageDefault != nil)
+        tmp = [NSString stringWithFormat:@"%@&imageorig=%@", tmp, encode(self.imageDefault.description)];
 
     if (_image != nil)
         tmp = [NSString stringWithFormat:@"%@&image=%@", tmp, encode(self.image.description)];

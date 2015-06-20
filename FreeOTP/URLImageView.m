@@ -23,6 +23,9 @@
 
 @implementation URLImageView
 - (void)setUrl:(NSURL *)url {
+    if (url == nil)
+        url = [[NSBundle mainBundle] URLForResource:@"default" withExtension:@"png"];
+
     _url = url;
 
     if (url.isFileURL) {
