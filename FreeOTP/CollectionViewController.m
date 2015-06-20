@@ -50,52 +50,31 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch ((int) collectionView.frame.size.width) {
-    case 1024: // iPad
-    case 768:  // iPad
-        return CGSizeMake(328, 96);
+    int count = 1;
 
-    case 568:  // iPhone5 landscape
-    case 320:  // iPhone* portrait
-        return CGSizeMake(269, 80);
+    UIInterfaceOrientation o = [[UIApplication sharedApplication] statusBarOrientation];
+    if (o == UIInterfaceOrientationLandscapeLeft || o == UIInterfaceOrientationLandscapeRight)
+        count++;
 
-    case 480:  // iPhone4 landscape
-    default:
-        return CGSizeMake(225, 64);
-    }
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        count++;
+
+    int width = collectionView.frame.size.width;
+    width = (width - 10 * count - 10) / count;
+
+    int height = width / 3.25;
+    height = height / 8 * 7;
+
+    return CGSizeMake(width, height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* name = nil;
-    switch ((int) collectionView.frame.size.width) {
-    case 1024: // iPad
-    case 768:  // iPad
-        name = @"iPad";
-        break;
-
-    case 568:  // iPhone5 landscape
-    case 320:  // iPhone* portrait
-        name = @"iPhone5";
-        break;
-
-    case 480:  // iPhone4 landscape
-    default:
-        name = @"iPhone4";
-        break;
-    }
-
-    TokenCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:name forIndexPath:indexPath];
+    TokenCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"token" forIndexPath:indexPath];
     return [cell bind:[store get:indexPath.row]] ? cell : nil;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    // If the device is smaller than an iPhone5,
-    // then reload the data to pick up the new cell size.
-    // This is unfortunate because it resets token UI state.
-    // However, this works until we get completely dynamic resizing.
-    if ([[UIScreen mainScreen] bounds].size.height < 568)
-        [self.collectionView reloadData];
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionView performBatchUpdates:nil completion:nil];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

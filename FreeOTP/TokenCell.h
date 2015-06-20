@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *code;
 @property (weak, nonatomic) IBOutlet UILabel *issuer;
 @property (weak, nonatomic) IBOutlet UILabel *label;
-@property (weak, nonatomic) IBOutlet UILabel *placeholder;
+@property (weak, nonatomic) IBOutlet UIView *container;
 @property (weak, nonatomic) IBOutlet CircleProgressView *outer;
 @property (weak, nonatomic) IBOutlet CircleProgressView *inner;
 @property (strong, nonatomic) TokenCode* state;

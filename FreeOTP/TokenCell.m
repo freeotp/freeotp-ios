@@ -52,12 +52,7 @@
     if (token == nil)
         return NO;
 
-    unichar tmp[token.digits];
-    for (NSUInteger i = 0; i < sizeof(tmp) / sizeof(unichar); i++)
-        tmp[i] = [self.placeholder.text characterAtIndex:0];
-
     self.image.url = token.image;
-    self.placeholder.text = [NSString stringWithCharacters:tmp length:sizeof(tmp) / sizeof(unichar)];
     self.outer.hidden = ![token.type isEqualToString:@"totp"];
     self.issuer.text = token.issuer;
     self.label.text = token.label;
@@ -86,7 +81,7 @@
 
     if (state == nil) {
         [UIView animateWithDuration:0.5f animations:^{
-            self.placeholder.alpha = 1.0f;
+            self.container.alpha = 1.0f;
             self.inner.alpha = 0.0f;
             self.outer.alpha = 0.0f;
             self.image.alpha = 1.0f;
@@ -108,7 +103,7 @@
 
         // Setup the UI for progress.
         [UIView animateWithDuration:0.5f animations:^{
-            self.placeholder.alpha = 0.0f;
+            self.container.alpha = 0.0f;
             self.inner.alpha = 1.0f;
             self.outer.alpha = 1.0f;
             self.image.alpha = 0.1f;
@@ -117,5 +112,13 @@
     }
 
     _state = state;
+}
+
+- (void)updateConstraints {
+    float base = self.frame.size.height / 8 * 1.5;
+    self.issuer.font = [self.issuer.font fontWithSize: base];
+    self.label.font = [self.label.font fontWithSize: base * 0.75];
+
+    [super updateConstraints];
 }
 @end
