@@ -278,7 +278,8 @@
 
 - (IBAction)scanClicked:(id)sender
 {
-    [self performSegueWithIdentifier:@"scanToken" sender:self];
+    if ([AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] != nil)
+        [self performSegueWithIdentifier:@"scanToken" sender:self];
 }
 
 - (IBAction)editClicked:(id)sender
@@ -329,16 +330,6 @@
     self.collectionView.allowsSelection = YES;
     self.collectionView.allowsMultipleSelection = NO;
     self.collectionView.delegate = self;
-
-    // Setup buttons.
-    UIBarButtonItem* add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addClicked:)];
-    if ([AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] == nil) {
-        self.navigationItem.rightBarButtonItems = @[add];
-    } else {
-        id icon = [UIImage imageNamed:@"qrcode.png"];
-        id scan = [[UIBarButtonItem alloc] initWithImage:icon style:UIBarButtonItemStylePlain target:self action:@selector(scanClicked:)];
-        self.navigationItem.rightBarButtonItems = @[add, scan];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

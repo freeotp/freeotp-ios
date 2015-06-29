@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -162,11 +163,18 @@
                                 <action selector="editClicked:" destination="mGg-KB-Kzc" id="J6m-Jl-enK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xI6-Hh-6eF">
-                            <connections>
-                                <action selector="addClicked:" destination="mGg-KB-Kzc" id="GgT-19-tZK"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="xI6-Hh-6eF">
+                                <connections>
+                                    <action selector="addClicked:" destination="mGg-KB-Kzc" id="GgT-19-tZK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="qrcode.png" id="C1q-Am-S3f">
+                                <connections>
+                                    <action selector="scanClicked:" destination="mGg-KB-Kzc" id="Rmm-IW-Cxb"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="buE-8b-wvc" kind="push" identifier="scanToken" id="HQK-3f-OGH"/>
@@ -671,5 +679,6 @@
     </scenes>
     <resources>
         <image name="default.png" width="1024" height="1024"/>
+        <image name="qrcode.png" width="20" height="20"/>
     </resources>
 </document>
