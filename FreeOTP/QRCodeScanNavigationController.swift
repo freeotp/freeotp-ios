@@ -3,7 +3,7 @@
 //
 // Authors: Nathaniel McCallum <npmccallum@redhat.com>
 //
-// Copyright (C) 2013  Nathaniel McCallum, Red Hat
+// Copyright (C) 2015  Nathaniel McCallum, Red Hat
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,15 @@
 // limitations under the License.
 //
 
-@import AVFoundation;
-#import <UIKit/UIKit.h>
+import Foundation
+import UIKit
 
-@interface QRCodeScanViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
-@property (weak, nonatomic) UIPopoverController *popover;
-@property (strong) AVCaptureSession *session;
-@end
+class QRCodeScanNavigationController : UINavigationController {
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+}

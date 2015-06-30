@@ -19,7 +19,5 @@
 //
 
 @interface CollectionViewController : UICollectionViewController
-- (IBAction)addClicked:(id)sender;
-- (IBAction)scanClicked:(id)sender;
 - (IBAction)editClicked:(id)sender;
 @end

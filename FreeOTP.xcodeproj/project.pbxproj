@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F100667A18EF1E4900F9EF2C /* TokenCell.m */; };
 		F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1030ED11818322000E478F7 /* CircleProgressView.m */; };
-		F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBE918412A2300548A3E /* QRCodeScanViewController.m */; };
 		F109DBEF1841562600548A3E /* TokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBEE1841562600548A3E /* TokenStore.m */; };
 		F11EB05519117F77005FD565 /* TokenImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11EB05419117F77005FD565 /* TokenImagePickerController.m */; };
+		F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */; };
 		F15300431801BB8800A0E179 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = F15300401801B9DF00A0E179 /* base32.c */; };
 		F15300461801BCD900A0E179 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = F15300451801BCD900A0E179 /* Token.m */; };
 		F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */; };
@@ -26,7 +26,6 @@
 		F17A862317EC12670098E7F3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A862217EC12670098E7F3 /* XCTest.framework */; };
 		F17A862417EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
 		F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
-		F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18A62CC1808A64F00345419 /* AddTokenViewController.m */; };
 		F18E16F218F2603800722FE7 /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E16F118F2603800722FE7 /* qrcode.png */; };
 		F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16F718F3D1F100722FE7 /* CollectionViewController.m */; };
 		F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */; };
@@ -36,6 +35,8 @@
 		F1AD9C70191053780023501C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AD9C6F191053780023501C /* AssetsLibrary.framework */; };
 		F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */; };
 		F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E7BF8818E9C85400C2DC82 /* TokenCode.m */; };
+		F1F9F1201B42575B005C2B4B /* QRCodeScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */; };
+		F1F9F1231B430B1F005C2B4B /* QRCodeScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,12 +54,12 @@
 		F100667A18EF1E4900F9EF2C /* TokenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCell.m; sourceTree = "<group>"; };
 		F1030ED01818322000E478F7 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
 		F1030ED11818322000E478F7 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
-		F109DBE818412A2300548A3E /* QRCodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanViewController.h; sourceTree = "<group>"; };
-		F109DBE918412A2300548A3E /* QRCodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanViewController.m; sourceTree = "<group>"; };
 		F109DBED1841562600548A3E /* TokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenStore.h; sourceTree = "<group>"; };
 		F109DBEE1841562600548A3E /* TokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenStore.m; sourceTree = "<group>"; };
 		F11EB05319117F77005FD565 /* TokenImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenImagePickerController.h; sourceTree = "<group>"; };
 		F11EB05419117F77005FD565 /* TokenImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenImagePickerController.m; sourceTree = "<group>"; };
+		F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
+		F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
 		F15300401801B9DF00A0E179 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; };
 		F15300421801BA1D00A0E179 /* base32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base32.h; sourceTree = "<group>"; };
 		F15300441801BCD900A0E179 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
@@ -79,8 +80,6 @@
 		F17A861B17EC12670098E7F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F17A862117EC12670098E7F3 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17A862217EC12670098E7F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F18A62CB1808A64F00345419 /* AddTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTokenViewController.h; sourceTree = "<group>"; };
-		F18A62CC1808A64F00345419 /* AddTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTokenViewController.m; sourceTree = "<group>"; };
 		F18E16F118F2603800722FE7 /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
 		F18E16F618F3D1F100722FE7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		F18E16F718F3D1F100722FE7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
@@ -94,6 +93,8 @@
 		F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FreeOTP/iTunesArtwork@2x"; sourceTree = "<group>"; };
 		F1E7BF8718E9C85400C2DC82 /* TokenCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCode.h; sourceTree = "<group>"; };
 		F1E7BF8818E9C85400C2DC82 /* TokenCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCode.m; sourceTree = "<group>"; };
+		F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScanViewController.swift; sourceTree = "<group>"; };
+		F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScanNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +129,7 @@
 				F17A860617EC12670098E7F3 /* FreeOTP */,
 				F17A85FF17EC12670098E7F3 /* Frameworks */,
 				F17A85FE17EC12670098E7F3 /* Products */,
+				F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,8 +161,7 @@
 				F18E170618F4AB3000722FE7 /* token.png */,
 				F18E16F118F2603800722FE7 /* qrcode.png */,
 				F1673F1918EC51C900ECD2DB /* Main.storyboard */,
-				F18A62CB1808A64F00345419 /* AddTokenViewController.h */,
-				F18A62CC1808A64F00345419 /* AddTokenViewController.m */,
+				F1F9F1211B4262D3005C2B4B /* AddToken */,
 				F17A860F17EC12670098E7F3 /* AppDelegate.h */,
 				F17A861017EC12670098E7F3 /* AppDelegate.m */,
 				F18E16FA18F47D3E00722FE7 /* BlockActionSheet.h */,
@@ -171,8 +172,6 @@
 				F1030ED11818322000E478F7 /* CircleProgressView.m */,
 				F100667918EF1E4900F9EF2C /* TokenCell.h */,
 				F100667A18EF1E4900F9EF2C /* TokenCell.m */,
-				F109DBE818412A2300548A3E /* QRCodeScanViewController.h */,
-				F109DBE918412A2300548A3E /* QRCodeScanViewController.m */,
 				F1673F1618EB40EC00ECD2DB /* RenameTokenViewController.h */,
 				F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */,
 				F1AD9C6C191052B10023501C /* URLImageView.h */,
@@ -202,6 +201,16 @@
 				F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1F9F1211B4262D3005C2B4B /* AddToken */ = {
+			isa = PBXGroup;
+			children = (
+				F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */,
+				F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */,
+				F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */,
+			);
+			name = AddToken;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,21 +313,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */,
 				F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */,
 				F109DBEF1841562600548A3E /* TokenStore.m in Sources */,
 				F11EB05519117F77005FD565 /* TokenImagePickerController.m in Sources */,
 				F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */,
 				F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */,
-				F18A62CD1808A64F00345419 /* AddTokenViewController.m in Sources */,
+				F1F9F1231B430B1F005C2B4B /* QRCodeScanNavigationController.swift in Sources */,
 				F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */,
 				F15300461801BCD900A0E179 /* Token.m in Sources */,
 				F15300431801BB8800A0E179 /* base32.c in Sources */,
 				F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */,
 				F1AD9C6E191052B10023501C /* URLImageView.m in Sources */,
+				F1F9F1201B42575B005C2B4B /* QRCodeScanViewController.swift in Sources */,
 				F17A861117EC12670098E7F3 /* AppDelegate.m in Sources */,
 				F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */,
 				F17A860D17EC12670098E7F3 /* main.m in Sources */,
-				F109DBEA18412A2300548A3E /* QRCodeScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,11 +437,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
 				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -441,11 +458,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
 				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

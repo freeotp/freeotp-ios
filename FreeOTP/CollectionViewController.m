@@ -20,8 +20,6 @@
 
 #import "CollectionViewController.h"
 
-#import "AddTokenViewController.h"
-#import "QRCodeScanViewController.h"
 #import "RenameTokenViewController.h"
 #import "TokenImagePickerController.h"
 
@@ -260,28 +258,6 @@
     [self.collectionView reloadData];
 }
 
-- (IBAction)addClicked:(id)sender
-{
-    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
-        [self performSegueWithIdentifier:@"addToken" sender:self];
-        return;
-    }
-
-    AddTokenViewController* c = [self.storyboard instantiateViewControllerWithIdentifier:@"addToken"];
-    UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:c];
-
-    c.popover = self.popover = [[UIPopoverController alloc] initWithContentViewController:nc];
-    self.popover.delegate = self;
-    self.popover.popoverContentSize = CGSizeMake(320, 715);
-    [self.popover presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
-- (IBAction)scanClicked:(id)sender
-{
-    if ([AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo] != nil)
-        [self performSegueWithIdentifier:@"scanToken" sender:self];
-}
-
 - (IBAction)editClicked:(id)sender
 {
     UIBarButtonItem* edit = sender;
@@ -311,6 +287,11 @@
             longPressGesture = nil;
             break;
     }
+}
+
+- (IBAction)unwindToTokens:(UIStoryboardSegue *)unwindSegue
+{
+    [self.collectionView reloadData];
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
