@@ -7,36 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F100667A18EF1E4900F9EF2C /* TokenCell.m */; };
-		F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1030ED11818322000E478F7 /* CircleProgressView.m */; };
-		F109DBEF1841562600548A3E /* TokenStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F109DBEE1841562600548A3E /* TokenStore.m */; };
-		F11EB05519117F77005FD565 /* TokenImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11EB05419117F77005FD565 /* TokenImagePickerController.m */; };
 		F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */; };
-		F15300431801BB8800A0E179 /* base32.c in Sources */ = {isa = PBXBuildFile; fileRef = F15300401801B9DF00A0E179 /* base32.c */; };
-		F15300461801BCD900A0E179 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = F15300451801BCD900A0E179 /* Token.m */; };
-		F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */; };
+		F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */; };
+		F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F31B4AED3F0036859E /* TokensViewController.swift */; };
+		F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F41B4AED3F0036859E /* EditViewController.swift */; };
+		F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F51B4AED3F0036859E /* ImageViewController.swift */; };
+		F16015001B4AED3F0036859E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F61B4AED3F0036859E /* UIImage.swift */; };
+		F16015011B4AED3F0036859E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F71B4AED3F0036859E /* TokenCell.swift */; };
+		F16015021B4AED3F0036859E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F81B4AED3F0036859E /* Token.swift */; };
+		F16015031B4AED3F0036859E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F91B4AED3F0036859E /* EditButton.swift */; };
+		F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FA1B4AED3F0036859E /* CircleProgressView.swift */; };
+		F16015051B4AED3F0036859E /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FB1B4AED3F0036859E /* TokenStore.swift */; };
+		F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FC1B4AED3F0036859E /* AppDelegate.swift */; };
+		F160150A1B4AEED80036859E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16015091B4AEED80036859E /* Photos.framework */; };
 		F1673F1A18EC51C900ECD2DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1673F1918EC51C900ECD2DB /* Main.storyboard */; };
 		F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
 		F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860217EC12670098E7F3 /* CoreGraphics.framework */; };
 		F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
 		F17A860B17EC12670098E7F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F17A860917EC12670098E7F3 /* InfoPlist.strings */; };
-		F17A860D17EC12670098E7F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F17A860C17EC12670098E7F3 /* main.m */; };
-		F17A861117EC12670098E7F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F17A861017EC12670098E7F3 /* AppDelegate.m */; };
 		F17A861C17EC12670098E7F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17A861B17EC12670098E7F3 /* Images.xcassets */; };
-		F17A862317EC12670098E7F3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A862217EC12670098E7F3 /* XCTest.framework */; };
 		F17A862417EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
 		F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
+		F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17E7A541B4B2D3200A6E945 /* Base32.framework */; };
+		F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F17E7A541B4B2D3200A6E945 /* Base32.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18E16F218F2603800722FE7 /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E16F118F2603800722FE7 /* qrcode.png */; };
-		F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16F718F3D1F100722FE7 /* CollectionViewController.m */; };
-		F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */; };
 		F18E170D18F4AB3000722FE7 /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E170618F4AB3000722FE7 /* token.png */; };
 		F1AD9C6B190FF5500023501C /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1AD9C6A190FF5500023501C /* default.png */; };
-		F1AD9C6E191052B10023501C /* URLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD9C6D191052B10023501C /* URLImageView.m */; };
-		F1AD9C70191053780023501C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1AD9C6F191053780023501C /* AssetsLibrary.framework */; };
 		F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */; };
-		F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E7BF8818E9C85400C2DC82 /* TokenCode.m */; };
-		F1F9F1201B42575B005C2B4B /* QRCodeScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */; };
-		F1F9F1231B430B1F005C2B4B /* QRCodeScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */; };
+		F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */; };
+		F1F9F1231B430B1F005C2B4B /* ScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,23 +48,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F17E7A581B4B2E8300A6E945 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F100667918EF1E4900F9EF2C /* TokenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCell.h; sourceTree = "<group>"; };
-		F100667A18EF1E4900F9EF2C /* TokenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCell.m; sourceTree = "<group>"; };
-		F1030ED01818322000E478F7 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
-		F1030ED11818322000E478F7 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
-		F109DBED1841562600548A3E /* TokenStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenStore.h; sourceTree = "<group>"; };
-		F109DBEE1841562600548A3E /* TokenStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenStore.m; sourceTree = "<group>"; };
-		F11EB05319117F77005FD565 /* TokenImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenImagePickerController.h; sourceTree = "<group>"; };
-		F11EB05419117F77005FD565 /* TokenImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenImagePickerController.m; sourceTree = "<group>"; };
 		F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
 		F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
-		F15300401801B9DF00A0E179 /* base32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base32.c; sourceTree = "<group>"; };
-		F15300421801BA1D00A0E179 /* base32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base32.h; sourceTree = "<group>"; };
-		F15300441801BCD900A0E179 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
-		F15300451801BCD900A0E179 /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
-		F1673F1618EB40EC00ECD2DB /* RenameTokenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameTokenViewController.h; sourceTree = "<group>"; };
-		F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameTokenViewController.m; sourceTree = "<group>"; };
+		F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		F16014F31B4AED3F0036859E /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
+		F16014F41B4AED3F0036859E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		F16014F51B4AED3F0036859E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		F16014F61B4AED3F0036859E /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		F16014F71B4AED3F0036859E /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
+		F16014F81B4AED3F0036859E /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		F16014F91B4AED3F0036859E /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		F16014FA1B4AED3F0036859E /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		F16014FB1B4AED3F0036859E /* TokenStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		F16014FC1B4AED3F0036859E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F16015091B4AEED80036859E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		F1673F1918EC51C900ECD2DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F17A85FD17EC12670098E7F3 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F17A860017EC12670098E7F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,28 +84,16 @@
 		F17A860417EC12670098E7F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F17A860817EC12670098E7F3 /* FreeOTP-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FreeOTP-Info.plist"; sourceTree = "<group>"; };
 		F17A860A17EC12670098E7F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F17A860C17EC12670098E7F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Prefix.pch"; sourceTree = "<group>"; };
-		F17A860F17EC12670098E7F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F17A861017EC12670098E7F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F17A861B17EC12670098E7F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F17A862117EC12670098E7F3 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F17A862217EC12670098E7F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F17E7A541B4B2D3200A6E945 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		F18E16F118F2603800722FE7 /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
-		F18E16F618F3D1F100722FE7 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		F18E16F718F3D1F100722FE7 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		F18E16FA18F47D3E00722FE7 /* BlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockActionSheet.h; sourceTree = "<group>"; };
-		F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockActionSheet.m; sourceTree = "<group>"; };
 		F18E170618F4AB3000722FE7 /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
 		F1AD9C6A190FF5500023501C /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		F1AD9C6C191052B10023501C /* URLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLImageView.h; sourceTree = "<group>"; };
-		F1AD9C6D191052B10023501C /* URLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLImageView.m; sourceTree = "<group>"; };
-		F1AD9C6F191053780023501C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FreeOTP/iTunesArtwork@2x"; sourceTree = "<group>"; };
-		F1E7BF8718E9C85400C2DC82 /* TokenCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenCode.h; sourceTree = "<group>"; };
-		F1E7BF8818E9C85400C2DC82 /* TokenCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenCode.m; sourceTree = "<group>"; };
-		F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScanViewController.swift; sourceTree = "<group>"; };
-		F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScanNavigationController.swift; sourceTree = "<group>"; };
+		F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1AD9C70191053780023501C /* AssetsLibrary.framework in Frameworks */,
+				F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */,
+				F160150A1B4AEED80036859E /* Photos.framework in Frameworks */,
 				F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */,
 				F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */,
 				F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */,
@@ -113,7 +113,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F17A862317EC12670098E7F3 /* XCTest.framework in Frameworks */,
 				F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */,
 				F17A862417EC12670098E7F3 /* Foundation.framework in Frameworks */,
 			);
@@ -122,12 +121,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F16015071B4AED870036859E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */,
+				F16014F41B4AED3F0036859E /* EditViewController.swift */,
+				F16014F51B4AED3F0036859E /* ImageViewController.swift */,
+				F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */,
+				F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */,
+				F16014F31B4AED3F0036859E /* TokensViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F16015081B4AEDB70036859E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F16014FA1B4AED3F0036859E /* CircleProgressView.swift */,
+				F16014F91B4AED3F0036859E /* EditButton.swift */,
+				F16014F71B4AED3F0036859E /* TokenCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		F17A85F417EC12670098E7F3 = {
 			isa = PBXGroup;
 			children = (
 				F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */,
-				F17A860617EC12670098E7F3 /* FreeOTP */,
 				F17A85FF17EC12670098E7F3 /* Frameworks */,
+				F17A860617EC12670098E7F3 /* FreeOTP */,
 				F17A85FE17EC12670098E7F3 /* Products */,
 				F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */,
 			);
@@ -145,11 +167,11 @@
 		F17A85FF17EC12670098E7F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1AD9C6F191053780023501C /* AssetsLibrary.framework */,
+				F17E7A541B4B2D3200A6E945 /* Base32.framework */,
+				F16015091B4AEED80036859E /* Photos.framework */,
 				F17A860017EC12670098E7F3 /* Foundation.framework */,
 				F17A860217EC12670098E7F3 /* CoreGraphics.framework */,
 				F17A860417EC12670098E7F3 /* UIKit.framework */,
-				F17A862217EC12670098E7F3 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,31 +183,13 @@
 				F18E170618F4AB3000722FE7 /* token.png */,
 				F18E16F118F2603800722FE7 /* qrcode.png */,
 				F1673F1918EC51C900ECD2DB /* Main.storyboard */,
-				F1F9F1211B4262D3005C2B4B /* AddToken */,
-				F17A860F17EC12670098E7F3 /* AppDelegate.h */,
-				F17A861017EC12670098E7F3 /* AppDelegate.m */,
-				F18E16FA18F47D3E00722FE7 /* BlockActionSheet.h */,
-				F18E16FB18F47D3E00722FE7 /* BlockActionSheet.m */,
-				F18E16F618F3D1F100722FE7 /* CollectionViewController.h */,
-				F18E16F718F3D1F100722FE7 /* CollectionViewController.m */,
-				F1030ED01818322000E478F7 /* CircleProgressView.h */,
-				F1030ED11818322000E478F7 /* CircleProgressView.m */,
-				F100667918EF1E4900F9EF2C /* TokenCell.h */,
-				F100667A18EF1E4900F9EF2C /* TokenCell.m */,
-				F1673F1618EB40EC00ECD2DB /* RenameTokenViewController.h */,
-				F1673F1718EB40EC00ECD2DB /* RenameTokenViewController.m */,
-				F1AD9C6C191052B10023501C /* URLImageView.h */,
-				F1AD9C6D191052B10023501C /* URLImageView.m */,
-				F15300441801BCD900A0E179 /* Token.h */,
-				F15300451801BCD900A0E179 /* Token.m */,
-				F1E7BF8718E9C85400C2DC82 /* TokenCode.h */,
-				F1E7BF8818E9C85400C2DC82 /* TokenCode.m */,
-				F11EB05319117F77005FD565 /* TokenImagePickerController.h */,
-				F11EB05419117F77005FD565 /* TokenImagePickerController.m */,
-				F109DBED1841562600548A3E /* TokenStore.h */,
-				F109DBEE1841562600548A3E /* TokenStore.m */,
-				F15300421801BA1D00A0E179 /* base32.h */,
-				F15300401801B9DF00A0E179 /* base32.c */,
+				F16015071B4AED870036859E /* Controllers */,
+				F17E7A4C1B4AF4A200A6E945 /* Extensions */,
+				F16015081B4AEDB70036859E /* Views */,
+				F16014FC1B4AED3F0036859E /* AppDelegate.swift */,
+				F16014F81B4AED3F0036859E /* Token.swift */,
+				F16014FB1B4AED3F0036859E /* TokenStore.swift */,
+				F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */,
 				F17A861B17EC12670098E7F3 /* Images.xcassets */,
 				F17A860717EC12670098E7F3 /* Supporting Files */,
 			);
@@ -197,20 +201,17 @@
 			children = (
 				F17A860817EC12670098E7F3 /* FreeOTP-Info.plist */,
 				F17A860917EC12670098E7F3 /* InfoPlist.strings */,
-				F17A860C17EC12670098E7F3 /* main.m */,
 				F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F1F9F1211B4262D3005C2B4B /* AddToken */ = {
+		F17E7A4C1B4AF4A200A6E945 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */,
-				F1F9F11F1B42575B005C2B4B /* QRCodeScanViewController.swift */,
-				F1F9F1221B430B1F005C2B4B /* QRCodeScanNavigationController.swift */,
+				F16014F61B4AED3F0036859E /* UIImage.swift */,
 			);
-			name = AddToken;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +224,7 @@
 				F17A85F917EC12670098E7F3 /* Sources */,
 				F17A85FA17EC12670098E7F3 /* Frameworks */,
 				F17A85FB17EC12670098E7F3 /* Resources */,
+				F17E7A581B4B2E8300A6E945 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,7 +259,8 @@
 		F17A85F517EC12670098E7F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nathaniel McCallum";
 				TargetAttributes = {
 					F17A862017EC12670098E7F3 = {
@@ -313,22 +316,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F16015051B4AED3F0036859E /* TokenStore.swift in Sources */,
 				F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */,
-				F1E7BF8918E9C85400C2DC82 /* TokenCode.m in Sources */,
-				F109DBEF1841562600548A3E /* TokenStore.m in Sources */,
-				F11EB05519117F77005FD565 /* TokenImagePickerController.m in Sources */,
-				F18E16FC18F47D3E00722FE7 /* BlockActionSheet.m in Sources */,
-				F1673F1818EB40EC00ECD2DB /* RenameTokenViewController.m in Sources */,
-				F1F9F1231B430B1F005C2B4B /* QRCodeScanNavigationController.swift in Sources */,
-				F18E16F818F3D1F100722FE7 /* CollectionViewController.m in Sources */,
-				F15300461801BCD900A0E179 /* Token.m in Sources */,
-				F15300431801BB8800A0E179 /* base32.c in Sources */,
-				F100667B18EF1E4900F9EF2C /* TokenCell.m in Sources */,
-				F1AD9C6E191052B10023501C /* URLImageView.m in Sources */,
-				F1F9F1201B42575B005C2B4B /* QRCodeScanViewController.swift in Sources */,
-				F17A861117EC12670098E7F3 /* AppDelegate.m in Sources */,
-				F1030ED21818322000E478F7 /* CircleProgressView.m in Sources */,
-				F17A860D17EC12670098E7F3 /* main.m in Sources */,
+				F16015001B4AED3F0036859E /* UIImage.swift in Sources */,
+				F16015031B4AED3F0036859E /* EditButton.swift in Sources */,
+				F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */,
+				F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */,
+				F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */,
+				F16015021B4AED3F0036859E /* Token.swift in Sources */,
+				F1F9F1231B430B1F005C2B4B /* ScanNavigationController.swift in Sources */,
+				F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */,
+				F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */,
+				F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */,
+				F16015011B4AED3F0036859E /* TokenCell.swift in Sources */,
+				F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +380,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -393,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -426,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -440,11 +442,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
 				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";
@@ -461,11 +465,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
 				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";

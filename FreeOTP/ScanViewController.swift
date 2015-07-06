@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class QRCodeScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var preview: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: AVCaptureSession())
     var enabled: Bool = false
 
@@ -43,7 +43,7 @@ class QRCodeScanViewController : UIViewController, AVCaptureMetadataOutputObject
             let input = try AVCaptureDeviceInput(device: device)
             preview.session.addInput(input)
         } catch {
-            performSegueWithIdentifier("unwind", sender: nil)
+            dismissViewControllerAnimated(true, completion: nil)
             return
         }
 
@@ -71,6 +71,26 @@ class QRCodeScanViewController : UIViewController, AVCaptureMetadataOutputObject
         enabled = false
     }
 
+    private func showError(err: String) {
+        enabled = false
+        error.text = err
+        UIView.animateWithDuration(2, animations: {
+                self.error.alpha = 1.0
+                self.activity.alpha = 0.0
+            }, completion: {
+                (_: Bool) -> Void in
+                UIView.animateWithDuration(2, animations: {
+                        self.error.alpha = 0.0
+                        self.activity.alpha = 1.0
+                    }, completion: {
+                        (_: Bool) -> Void in
+                        self.enabled = true
+                    }
+                )
+            }
+        )
+    }
+
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         if (!enabled) {
             return
@@ -87,27 +107,21 @@ class QRCodeScanViewController : UIViewController, AVCaptureMetadataOutputObject
                 continue
             }
 
-            let token = Token(string: obj.stringValue)
-            if (token == nil) {
-                self.enabled = false
-                UIView.animateWithDuration(3, animations: {
-                        self.error.alpha = 1.0
-                        self.activity.alpha = 0.0
-                    }, completion: { (Bool finished) -> Void in
-                        UIView.animateWithDuration(3, animations: {
-                            self.error.alpha = 0.0
-                            self.activity.alpha = 1.0
-                        }, completion: { (Bool finished) -> Void in
-                            self.enabled = true
-                        })
-                    })
-                break
+            if let urlc = NSURLComponents(string: obj.stringValue) {
+                if let token = Token(urlc: urlc) {
+                    if TokenStore().add(token) {
+                        preview.session.stopRunning()
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        showError("Token already exists!")
+                    }
+                } else {
+                    showError("Invalid token URI!")
+                }
+            } else {
+                showError("Invalid URI!")
             }
 
-            preview.session.stopRunning()
-
-            TokenStore().add(token)
-            performSegueWithIdentifier("unwind", sender: nil)
             break
         }
     }

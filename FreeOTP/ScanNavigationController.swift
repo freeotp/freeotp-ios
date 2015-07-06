@@ -3,7 +3,7 @@
 //
 // Authors: Nathaniel McCallum <npmccallum@redhat.com>
 //
-// Copyright (C) 2013  Nathaniel McCallum, Red Hat
+// Copyright (C) 2015  Nathaniel McCallum, Red Hat
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,14 +18,15 @@
 // limitations under the License.
 //
 
-#import "Token.h"
+import Foundation
+import UIKit
 
-@interface TokenStore : NSObject
-- (NSUInteger)count;
-- (void)add:(Token*)token;
-- (void)add:(Token*)token atIndex:(NSUInteger)index;
-- (void)del:(NSUInteger)index;
-- (Token*)get:(NSUInteger)index;
-- (void)save:(Token*)token;
-- (void)moveFrom:(NSUInteger)fromIndex to:(NSUInteger)toIndex;
-@end
+class ScanNavigationController : UINavigationController {
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+}

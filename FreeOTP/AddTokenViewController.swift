@@ -34,7 +34,7 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var counterTitle: UILabel!
     @IBOutlet weak var counterStepper: UIStepper!
-    
+
     @IBAction func typeChanged(sender: UISegmentedControl) {
         self.counter.enabled = sender.selectedSegmentIndex == 0
         self.counterTitle.enabled = sender.selectedSegmentIndex == 0
@@ -53,7 +53,7 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         let s = secret.characters.count
         self.navigationItem.rightBarButtonItem!.enabled = issuer != "" && label != "" && s > 0 && s % 8 == 0
     }
-    
+
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let str: String = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
 
@@ -83,21 +83,17 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         return true
     }
 
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 8 : 32
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender !== self.navigationItem.rightBarButtonItem) {
             return
         }
-        
+
         // Built URI
         let urlc = NSURLComponents()
         urlc.scheme = "otpauth"
         urlc.path = String(format: "/%@:%@", issuer.text!, label.text!)
         urlc.query = String(format: "algorithm=%@&digits=%@&secret=%@&period=%u",
-            algo.titleForSegmentAtIndex(algo.selectedSegmentIndex)!,
+            "SHA" + algo.titleForSegmentAtIndex(algo.selectedSegmentIndex)!,
             digits.titleForSegmentAtIndex(digits.selectedSegmentIndex)!,
             secret.text!, UInt(interval.text!)!)
 
@@ -109,6 +105,8 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         }
 
         // Make token
-        TokenStore().add(Token(URL: urlc.URL!))
+        if let token = Token(urlc: urlc) {
+            TokenStore().add(token)
+        }
     }
 }

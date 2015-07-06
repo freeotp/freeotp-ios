@@ -3,7 +3,7 @@
 //
 // Authors: Nathaniel McCallum <npmccallum@redhat.com>
 //
-// Copyright (C) 2014  Nathaniel McCallum, Red Hat
+// Copyright (C) 2015  Nathaniel McCallum, Red Hat
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,6 +18,9 @@
 // limitations under the License.
 //
 
-@interface CollectionViewController : UICollectionViewController
-- (IBAction)editClicked:(id)sender;
-@end
+import Foundation
+import UIKit
+
+class EditButton : UIButton {
+    var token: Token?
+}
