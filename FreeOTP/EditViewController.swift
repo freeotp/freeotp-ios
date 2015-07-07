@@ -137,7 +137,14 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     private func token2UI() {
         issuer.text = token?.issuer
         label.text = token?.label
-        image.setImage(UIImage.fromURI(token?.image, size: image.bounds.size), forState: .Normal)
+
+        ImageDownloader(image.bounds.size).fromURI(token?.image, completion: {
+            (image: UIImage) -> Void in
+            UIView.animateWithDuration(0.3, animations: {
+                self.image.setImage(image, forState: .Normal)
+            })
+        })
+
         textField(issuer, shouldChangeCharactersInRange: NSRange(), replacementString: "")
     }
 

@@ -12,7 +12,7 @@
 		F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F31B4AED3F0036859E /* TokensViewController.swift */; };
 		F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F41B4AED3F0036859E /* EditViewController.swift */; };
 		F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F51B4AED3F0036859E /* ImageViewController.swift */; };
-		F16015001B4AED3F0036859E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F61B4AED3F0036859E /* UIImage.swift */; };
+		F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F61B4AED3F0036859E /* ImageDownloader.swift */; };
 		F16015011B4AED3F0036859E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F71B4AED3F0036859E /* TokenCell.swift */; };
 		F16015021B4AED3F0036859E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F81B4AED3F0036859E /* Token.swift */; };
 		F16015031B4AED3F0036859E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F91B4AED3F0036859E /* EditButton.swift */; };
@@ -32,6 +32,8 @@
 		F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F17E7A541B4B2D3200A6E945 /* Base32.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F18E16F218F2603800722FE7 /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E16F118F2603800722FE7 /* qrcode.png */; };
 		F18E170D18F4AB3000722FE7 /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E170618F4AB3000722FE7 /* token.png */; };
+		F1A5E9AF1B4C248400EA73A6 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A5E9AE1B4C248400EA73A6 /* moa.framework */; };
+		F1A5E9B01B4C248400EA73A6 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1A5E9AE1B4C248400EA73A6 /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1AD9C6B190FF5500023501C /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1AD9C6A190FF5500023501C /* default.png */; };
 		F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */; };
 		F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */; };
@@ -55,6 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				F1A5E9B01B4C248400EA73A6 /* moa.framework in Embed Frameworks */,
 				F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -69,7 +72,7 @@
 		F16014F31B4AED3F0036859E /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		F16014F41B4AED3F0036859E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		F16014F51B4AED3F0036859E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		F16014F61B4AED3F0036859E /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		F16014F61B4AED3F0036859E /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		F16014F71B4AED3F0036859E /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		F16014F81B4AED3F0036859E /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F16014F91B4AED3F0036859E /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		F17E7A541B4B2D3200A6E945 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		F18E16F118F2603800722FE7 /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
 		F18E170618F4AB3000722FE7 /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
+		F1A5E9AE1B4C248400EA73A6 /* moa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = moa.framework; path = Carthage/Build/iOS/moa.framework; sourceTree = "<group>"; };
 		F1AD9C6A190FF5500023501C /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FreeOTP/iTunesArtwork@2x"; sourceTree = "<group>"; };
 		F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			files = (
 				F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */,
 				F160150A1B4AEED80036859E /* Photos.framework in Frameworks */,
+				F1A5E9AF1B4C248400EA73A6 /* moa.framework in Frameworks */,
 				F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */,
 				F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */,
 				F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */,
@@ -167,6 +172,7 @@
 		F17A85FF17EC12670098E7F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1A5E9AE1B4C248400EA73A6 /* moa.framework */,
 				F17E7A541B4B2D3200A6E945 /* Base32.framework */,
 				F16015091B4AEED80036859E /* Photos.framework */,
 				F17A860017EC12670098E7F3 /* Foundation.framework */,
@@ -184,9 +190,9 @@
 				F18E16F118F2603800722FE7 /* qrcode.png */,
 				F1673F1918EC51C900ECD2DB /* Main.storyboard */,
 				F16015071B4AED870036859E /* Controllers */,
-				F17E7A4C1B4AF4A200A6E945 /* Extensions */,
 				F16015081B4AEDB70036859E /* Views */,
 				F16014FC1B4AED3F0036859E /* AppDelegate.swift */,
+				F16014F61B4AED3F0036859E /* ImageDownloader.swift */,
 				F16014F81B4AED3F0036859E /* Token.swift */,
 				F16014FB1B4AED3F0036859E /* TokenStore.swift */,
 				F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */,
@@ -204,14 +210,6 @@
 				F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F17E7A4C1B4AF4A200A6E945 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F16014F61B4AED3F0036859E /* UIImage.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +316,7 @@
 			files = (
 				F16015051B4AED3F0036859E /* TokenStore.swift in Sources */,
 				F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */,
-				F16015001B4AED3F0036859E /* UIImage.swift in Sources */,
+				F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */,
 				F16015031B4AED3F0036859E /* EditButton.swift in Sources */,
 				F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */,
 				F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */,

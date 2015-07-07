@@ -38,7 +38,13 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         if let token = TokenStore().get(indexPath.row) {
             cell.state = nil
 
-            cell.image.image = UIImage.fromURI(token.image, size: cell.image.bounds.size)
+            ImageDownloader(cell.image.bounds.size).fromURI(token.image, completion: {
+                (image: UIImage) -> Void in
+                UIView.animateWithDuration(0.3, animations: {
+                    cell.image.image = image
+                })
+            })
+
             cell.outer.hidden = token.type != .TOTP
             cell.issuer.text = token.issuer
             cell.label.text = token.label
