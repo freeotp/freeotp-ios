@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */; };
 		F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */; };
+		F14C3F181B4C64D0006CBB4B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */; };
+		F14C3F1A1B4C6E91006CBB4B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */; };
 		F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F31B4AED3F0036859E /* TokensViewController.swift */; };
 		F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F41B4AED3F0036859E /* EditViewController.swift */; };
 		F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F51B4AED3F0036859E /* ImageViewController.swift */; };
 		F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F61B4AED3F0036859E /* ImageDownloader.swift */; };
 		F16015011B4AED3F0036859E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F71B4AED3F0036859E /* TokenCell.swift */; };
 		F16015021B4AED3F0036859E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F81B4AED3F0036859E /* Token.swift */; };
-		F16015031B4AED3F0036859E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F91B4AED3F0036859E /* EditButton.swift */; };
+		F16015031B4AED3F0036859E /* TokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F91B4AED3F0036859E /* TokenButton.swift */; };
 		F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FA1B4AED3F0036859E /* CircleProgressView.swift */; };
 		F16015051B4AED3F0036859E /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FB1B4AED3F0036859E /* TokenStore.swift */; };
 		F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FC1B4AED3F0036859E /* AppDelegate.swift */; };
@@ -69,13 +71,15 @@
 		F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
 		F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
 		F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		F16014F31B4AED3F0036859E /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		F16014F41B4AED3F0036859E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		F16014F51B4AED3F0036859E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		F16014F61B4AED3F0036859E /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		F16014F71B4AED3F0036859E /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		F16014F81B4AED3F0036859E /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		F16014F91B4AED3F0036859E /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		F16014F91B4AED3F0036859E /* TokenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenButton.swift; sourceTree = "<group>"; };
 		F16014FA1B4AED3F0036859E /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		F16014FB1B4AED3F0036859E /* TokenStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		F16014FC1B4AED3F0036859E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14C3F1A1B4C6E91006CBB4B /* CoreBluetooth.framework in Frameworks */,
 				F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */,
 				F160150A1B4AEED80036859E /* Photos.framework in Frameworks */,
 				F1A5E9AF1B4C248400EA73A6 /* moa.framework in Frameworks */,
@@ -134,6 +139,7 @@
 				F16014F51B4AED3F0036859E /* ImageViewController.swift */,
 				F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */,
 				F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */,
+				F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */,
 				F16014F31B4AED3F0036859E /* TokensViewController.swift */,
 			);
 			name = Controllers;
@@ -143,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				F16014FA1B4AED3F0036859E /* CircleProgressView.swift */,
-				F16014F91B4AED3F0036859E /* EditButton.swift */,
+				F16014F91B4AED3F0036859E /* TokenButton.swift */,
 				F16014F71B4AED3F0036859E /* TokenCell.swift */,
 			);
 			name = Views;
@@ -172,6 +178,7 @@
 		F17A85FF17EC12670098E7F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */,
 				F1A5E9AE1B4C248400EA73A6 /* moa.framework */,
 				F17E7A541B4B2D3200A6E945 /* Base32.framework */,
 				F16015091B4AEED80036859E /* Photos.framework */,
@@ -317,7 +324,7 @@
 				F16015051B4AED3F0036859E /* TokenStore.swift in Sources */,
 				F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */,
 				F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */,
-				F16015031B4AED3F0036859E /* EditButton.swift in Sources */,
+				F16015031B4AED3F0036859E /* TokenButton.swift in Sources */,
 				F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */,
 				F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */,
 				F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */,
@@ -326,6 +333,7 @@
 				F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */,
 				F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */,
 				F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */,
+				F14C3F181B4C64D0006CBB4B /* ShareViewController.swift in Sources */,
 				F16015011B4AED3F0036859E /* TokenCell.swift in Sources */,
 				F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */,
 			);

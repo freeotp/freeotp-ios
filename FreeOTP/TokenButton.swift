@@ -21,6 +21,6 @@
 import Foundation
 import UIKit
 
-class EditButton : UIButton {
+class TokenButton : UIButton {
     var token: Token?
 }

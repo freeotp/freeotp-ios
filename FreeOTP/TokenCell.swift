@@ -30,7 +30,8 @@ class TokenCell : UICollectionViewCell {
     @IBOutlet weak var outer: CircleProgressView!
     @IBOutlet weak var inner: CircleProgressView!
     @IBOutlet weak var code: UILabel!
-    @IBOutlet weak var edit: EditButton!
+    @IBOutlet weak var edit: TokenButton!
+    @IBOutlet weak var share: TokenButton!
 
     var state: [Token.Code]? {
         didSet {
@@ -107,6 +108,7 @@ class TokenCell : UICollectionViewCell {
         issuer.font = issuer.font.fontWithSize(base * 0.85)
         label.font = label.font.fontWithSize(base * 0.80)
         edit.titleLabel?.font = edit.titleLabel?.font.fontWithSize(base * 0.80)
+        share.titleLabel?.font = share.titleLabel?.font.fontWithSize(base * 0.80)
         super.updateConstraints()
     }
 }

@@ -49,6 +49,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             cell.issuer.text = token.issuer
             cell.label.text = token.label
             cell.edit.token = token
+            cell.share.token = token
         }
 
         return cell
@@ -61,22 +62,33 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     private func next<T: UIViewController>(name: String, sender: AnyObject, dir: UIPopoverArrowDirection) -> T {
         switch UI_USER_INTERFACE_IDIOM() {
         case .Pad:
-            let nc = storyboard?.instantiateViewControllerWithIdentifier(name + "Nav") as! UINavigationController
-            nc.modalPresentationStyle = .Popover
+            var vc: UIViewController? = nil
 
-            nc.popoverPresentationController?.delegate = self
-            nc.popoverPresentationController?.permittedArrowDirections = dir
-
-            if sender is UIView {
-                let v = sender as! UIView
-                nc.popoverPresentationController?.sourceView = v
-                nc.popoverPresentationController?.sourceRect = v.bounds
+            if let nc = storyboard?.instantiateViewControllerWithIdentifier(name + "Nav") as! UINavigationController? {
+                vc = nc
             } else {
-                nc.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+                vc = storyboard?.instantiateViewControllerWithIdentifier(name)
             }
 
-            presentViewController(nc, animated: true, completion: nil)
-            return nc.topViewController! as! T
+            vc?.modalPresentationStyle = .Popover
+            vc?.popoverPresentationController?.delegate = self
+            vc?.popoverPresentationController?.permittedArrowDirections = dir
+            if sender is UIView {
+                let v = sender as! UIView
+                vc?.popoverPresentationController?.sourceView = v
+                vc?.popoverPresentationController?.sourceRect = v.bounds
+            } else {
+                vc?.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+            }
+
+            presentViewController(vc!, animated: true, completion: nil)
+
+            switch vc! {
+            case let nc as UINavigationController:
+                return nc.topViewController! as! T
+            default:
+                return vc! as! T
+            }
 
         default:
             let ret = storyboard?.instantiateViewControllerWithIdentifier(name) as! T
@@ -89,9 +101,14 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         self.next("add", sender: sender, dir: [.Up, .Down])
     }
 
-    @IBAction func editClicked(sender: EditButton) {
+    @IBAction func editClicked(sender: TokenButton) {
         let evc: EditViewController = self.next("edit", sender: sender, dir: [.Left, .Right])
         evc.token = sender.token
+    }
+
+    @IBAction func shareClicked(sender: TokenButton) {
+        let svc: ShareViewController = self.next("share", sender: sender, dir: [.Left, .Right])
+        svc.token = sender.token
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
