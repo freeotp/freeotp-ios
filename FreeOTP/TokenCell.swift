@@ -45,6 +45,7 @@ class TokenCell : UICollectionViewCell {
                         self.image.alpha = 1.0
                         self.code.alpha = 0.0
                         self.edit.alpha = 1.0
+                        self.share.alpha = 1.0
                     }, completion: {(Bool) -> Void in
                         self.outer.progress = 0.0
                         self.inner.progress = 0.0
@@ -68,6 +69,7 @@ class TokenCell : UICollectionViewCell {
                     self.image.alpha = 0.1
                     self.code.alpha = 1.0
                     self.edit.alpha = 0.0
+                    self.share.alpha = 0.0
                 })
             }
         }
