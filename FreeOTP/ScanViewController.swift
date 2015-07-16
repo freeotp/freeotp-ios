@@ -108,30 +108,26 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             }
 
             if let urlc = NSURLComponents(string: obj.stringValue) {
-                if let token = Token(urlc: urlc) {
-                    if TokenStore().add(token) {
-                        preview.session.stopRunning()
+                if let token = TokenStore().add(urlc) {
+                    preview.session.stopRunning()
 
-                        ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
-                            (image: UIImage) -> Void in
+                    ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
+                        (image: UIImage) -> Void in
 
-                            UIView.transitionWithView(
-                                self.image,
-                                duration: 2,
-                                options: .TransitionCrossDissolve,
-                                animations: {
-                                    self.image.image = image
-                                    self.activity.alpha = 0.0
-                                    self.activity.stopAnimating()
-                                }, completion: {
-                                    (_: Bool) -> Void in
-                                    self.dismissViewControllerAnimated(true, completion: nil)
-                                }
-                            )
-                        })
-                    } else {
-                        showError("Token already exists!")
-                    }
+                        UIView.transitionWithView(
+                            self.image,
+                            duration: 2,
+                            options: .TransitionCrossDissolve,
+                            animations: {
+                                self.image.image = image
+                                self.activity.alpha = 0.0
+                                self.activity.stopAnimating()
+                            }, completion: {
+                                (_: Bool) -> Void in
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                        )
+                    })
                 } else {
                     showError("Invalid token URI!")
                 }

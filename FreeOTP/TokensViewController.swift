@@ -23,19 +23,20 @@ import UIKit
 
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     private var lastPath: NSIndexPath? = nil
+    private var store = TokenStore()
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Int(TokenStore().count)
+        return store.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("token", forIndexPath: indexPath) as! TokenCell
 
-        if let token = TokenStore().get(indexPath.row) {
+        if let token = store.load(indexPath.row) {
             cell.state = nil
 
             ImageDownloader(cell.image.bounds.size).fromURI(token.image, completion: {
@@ -45,7 +46,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 })
             })
 
-            cell.outer.hidden = token.type != .TOTP
+            cell.lock.hidden = !token.locked
+            cell.outer.hidden = token.kind != .TOTP
             cell.issuer.text = token.issuer
             cell.label.text = token.label
             cell.edit.token = token
@@ -115,10 +117,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
 
         if let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TokenCell? {
-            let ts = TokenStore()
-            if let token = ts.get(indexPath.row) {
+            if let token = store.load(indexPath.row) {
                 cell.state = token.codes
-                ts.save(token)
             }
         }
     }
@@ -182,7 +182,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 }
 
                 // Write changes.
-                TokenStore().move(lastPath!.row, to: currPath!.row)
+                store.move(lastPath!.row, to: currPath!.row)
 
                 // Reset state.
                 cell!.transform = CGAffineTransformMakeScale(1.1, 1.1); // Moving the token resets the size...

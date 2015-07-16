@@ -117,22 +117,23 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        let code = token.codes[0].value
-        TokenStore().save(token)
+        let codes = token.codes
 
-        switch indexPath.section {
-        case 0:
-            UIPasteboard.generalPasteboard().string = code
-            finish()
+        if codes.count > 0 {
+            switch indexPath.section {
+            case 0:
+                UIPasteboard.generalPasteboard().string = codes[0].value
+                finish()
 
-        case 1:
-            let r = remotes[indexPath.row]
-            if let d = code.dataUsingEncoding(NSUTF8StringEncoding) {
-                r.peripheral.writeValue(d, forCharacteristic: r.characteristic!, type: .WithResponse)
+            case 1:
+                let r = remotes[indexPath.row]
+                if let d = codes[0].value.dataUsingEncoding(NSUTF8StringEncoding) {
+                    r.peripheral.writeValue(d, forCharacteristic: r.characteristic!, type: .WithResponse)
+                }
+
+            default:
+                break
             }
-
-        default:
-            break
         }
     }
 

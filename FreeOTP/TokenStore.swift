@@ -19,74 +19,91 @@
 //
 
 import Foundation
+import Security
 
-class TokenStore : NSObject {
-    private let TOKEN_ORDER = "tokenOrder"
-    private var def: NSUserDefaults? = nil
+public class TokenStore : NSObject {
+    private final class TokenOrder : NSObject, KeychainStorable {
+        static let ACCOUNT = "09E969FC-53C3-4BE2-B653-4802949A26A7"
+        static let store = KeychainStore<TokenOrder>()
+        let account = ACCOUNT
+        let array: NSMutableArray
 
-    private func loadKeys(inout array: [String]) {
-        if let order = def?.objectForKey(TOKEN_ORDER) {
-            for key in order as! [String] {
-                array.append(key)
+        override init() {
+            array = NSMutableArray()
+            super.init()
+        }
+
+        @objc init?(coder aDecoder: NSCoder) {
+            array = aDecoder.decodeObjectForKey("array") as! NSMutableArray
+        }
+
+        @objc private func encodeWithCoder(aCoder: NSCoder) {
+            aCoder.encodeObject(array, forKey: "array")
+        }
+    }
+
+    public var count: Int {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            return ord.array.count
+        }
+
+        return 0
+    }
+
+    public override init() {
+        super.init()
+
+        // Migrate UserDefaults tokens to Keyring tokens
+        let def = NSUserDefaults.standardUserDefaults()
+        if var keys = def.stringArrayForKey("tokenOrder") {
+            var remove = [String]()
+
+            for key in keys.reverse() {
+                if let url = def.stringForKey(key) {
+                    if let urlc = NSURLComponents(string: url) {
+                        if add(urlc) != nil {
+                            def.removeObjectForKey(key)
+                            remove.append(key)
+                        }
+                    }
+                }
+            }
+
+            for key in remove {
+                keys.removeAtIndex(keys.indexOf(key)!)
+            }
+
+            if keys.count == 0 {
+                def.removeObjectForKey("tokenOrder")
             }
         }
     }
 
-    var count: Int {
-        get {
-            var keys = Array<String>()
-            loadKeys(&keys)
-            return keys.count
-        }
-    }
-
-    override init() {
-        super.init()
-
-        def = NSUserDefaults.standardUserDefaults()
-    }
-
-    func add(token: Token) -> Bool {
-        return add(token, atIndex: 0)
-    }
-
-    func add(token: Token, atIndex: Int) -> Bool {
-        if def?.stringForKey(token.uid) !== nil {
-            return false
+    public func add(urlc: NSURLComponents) -> Token? {
+        var ord: TokenOrder
+        if let a = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            ord = a
+        } else {
+            ord = TokenOrder()
+            if !TokenOrder.store.add(ord) {
+                return nil
+            }
         }
 
-        var keys = Array<String>()
-        loadKeys(&keys)
-
-        keys.insert(token.uid, atIndex: atIndex)
-        def?.setObject(keys, forKey: TOKEN_ORDER)
-        def?.setObject(token.description, forKey: token.uid)
-        def?.synchronize()
-        return true
-    }
-
-    func del(token: Token) {
-        var keys = Array<String>()
-        loadKeys(&keys)
-
-        if let idx = keys.indexOf(token.uid) {
-            keys.removeAtIndex(idx)
-            def?.setObject(keys, forKey: TOKEN_ORDER)
-
-            def?.removeObjectForKey(token.uid)
-            def?.synchronize()
-        }
-    }
-
-    func get(index: Int) -> Token? {
-        var keys = Array<String>()
-        loadKeys(&keys)
-
-        if index >= 0 && index < keys.count {
-            let key = keys[index]
-            if let val = def?.objectForKey(key) {
-                if let urlc = NSURLComponents(string: val as! String) {
-                    return Token(urlc: urlc, load: true)
+        if let otp = OTP(urlc: urlc) {
+            if let token = Token(otp: otp, urlc: urlc) {
+                ord.array.insertObject(otp.account, atIndex: 0)
+                if OTP.store.add(otp, locked: token.locked) {
+                    if Token.store.add(token) {
+                        if TokenOrder.store.save(ord) {
+                            return token
+                        } else {
+                            Token.store.erase(token)
+                            OTP.store.erase(otp)
+                        }
+                    } else {
+                        OTP.store.erase(otp)
+                    }
                 }
             }
         }
@@ -94,23 +111,49 @@ class TokenStore : NSObject {
         return nil
     }
 
-    func save(token: Token) {
-        if let _ = def?.stringForKey(token.uid) {
-            def?.setObject(token.description, forKey: token.uid)
-            def?.synchronize()
+    public func erase(index index: Int) -> Bool {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            if let account = ord.array.objectAtIndex(index) as? String {
+                ord.array.removeObjectAtIndex(index)
+                if TokenOrder.store.save(ord) {
+                    Token.store.erase(account)
+                    OTP.store.erase(account)
+                    return true
+                }
+            }
         }
+
+        return false
     }
 
-    func move(from: Int, to: Int) {
-        var keys = Array<String>()
-        loadKeys(&keys)
-
-        if let key: String? = keys[from] {
-            keys.removeAtIndex(from)
-            keys.insert(key!, atIndex: to)
-
-            def?.setObject(keys, forKey: TOKEN_ORDER)
-            def?.synchronize()
+    public func erase(token token: Token) -> Bool {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            return erase(index: ord.array.indexOfObject(token.account))
         }
+
+        return false
+    }
+
+    public func load(index: Int) -> Token? {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            if let account = ord.array.objectAtIndex(index) as? String {
+                return Token.store.load(account)
+            }
+        }
+
+        return nil
+    }
+
+    public func move(from: Int, to: Int) -> Bool {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            if let id = ord.array.objectAtIndex(from) as? String {
+                ord.array.removeObjectAtIndex(from)
+                ord.array.insertObject(id, atIndex: to)
+
+                return TokenOrder.store.save(ord)
+            }
+        }
+
+        return false
     }
 }

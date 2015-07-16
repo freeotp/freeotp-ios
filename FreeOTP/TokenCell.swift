@@ -32,6 +32,7 @@ class TokenCell : UICollectionViewCell {
     @IBOutlet weak var code: UILabel!
     @IBOutlet weak var edit: TokenButton!
     @IBOutlet weak var share: TokenButton!
+    @IBOutlet weak var lock: UIImageView!
 
     var state: [Token.Code]? {
         didSet {
@@ -46,6 +47,7 @@ class TokenCell : UICollectionViewCell {
                         self.code.alpha = 0.0
                         self.edit.alpha = 1.0
                         self.share.alpha = 1.0
+                        self.lock.alpha = 0.5
                     }, completion: {(Bool) -> Void in
                         self.outer.progress = 0.0
                         self.inner.progress = 0.0
@@ -70,6 +72,7 @@ class TokenCell : UICollectionViewCell {
                     self.code.alpha = 1.0
                     self.edit.alpha = 0.0
                     self.share.alpha = 0.0
+                    self.lock.alpha = 0.0
                 })
             }
         }

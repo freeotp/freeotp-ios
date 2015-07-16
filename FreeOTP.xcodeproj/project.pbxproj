@@ -7,60 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */; };
-		F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */; };
-		F14C3F181B4C64D0006CBB4B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */; };
-		F14C3F1A1B4C6E91006CBB4B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */; };
-		F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F31B4AED3F0036859E /* TokensViewController.swift */; };
-		F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F41B4AED3F0036859E /* EditViewController.swift */; };
-		F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F51B4AED3F0036859E /* ImageViewController.swift */; };
-		F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F61B4AED3F0036859E /* ImageDownloader.swift */; };
-		F16015011B4AED3F0036859E /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F71B4AED3F0036859E /* TokenCell.swift */; };
-		F16015021B4AED3F0036859E /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F81B4AED3F0036859E /* Token.swift */; };
-		F16015031B4AED3F0036859E /* TokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014F91B4AED3F0036859E /* TokenButton.swift */; };
-		F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FA1B4AED3F0036859E /* CircleProgressView.swift */; };
-		F16015051B4AED3F0036859E /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FB1B4AED3F0036859E /* TokenStore.swift */; };
-		F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16014FC1B4AED3F0036859E /* AppDelegate.swift */; };
-		F160150A1B4AEED80036859E /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16015091B4AEED80036859E /* Photos.framework */; };
-		F1673F1A18EC51C900ECD2DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1673F1918EC51C900ECD2DB /* Main.storyboard */; };
-		F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
-		F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860217EC12670098E7F3 /* CoreGraphics.framework */; };
-		F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
-		F17A860B17EC12670098E7F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F17A860917EC12670098E7F3 /* InfoPlist.strings */; };
-		F17A861C17EC12670098E7F3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F17A861B17EC12670098E7F3 /* Images.xcassets */; };
-		F17A862417EC12670098E7F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860017EC12670098E7F3 /* Foundation.framework */; };
-		F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A860417EC12670098E7F3 /* UIKit.framework */; };
-		F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17E7A541B4B2D3200A6E945 /* Base32.framework */; };
-		F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F17E7A541B4B2D3200A6E945 /* Base32.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F18E16F218F2603800722FE7 /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E16F118F2603800722FE7 /* qrcode.png */; };
-		F18E170D18F4AB3000722FE7 /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F18E170618F4AB3000722FE7 /* token.png */; };
-		F1A5E9AF1B4C248400EA73A6 /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A5E9AE1B4C248400EA73A6 /* moa.framework */; };
-		F1A5E9B01B4C248400EA73A6 /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1A5E9AE1B4C248400EA73A6 /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F1AD9C6B190FF5500023501C /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1AD9C6A190FF5500023501C /* default.png */; };
-		F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */; };
-		F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */; };
-		F1F9F1231B430B1F005C2B4B /* ScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */; };
+		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
+		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
+		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
+		F10D89011B56A54B00482D15 /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */; };
+		F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F21B56A54B00482D15 /* CircleProgressView.swift */; };
+		F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F31B56A54B00482D15 /* EditViewController.swift */; };
+		F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F51B56A54B00482D15 /* ImageDownloader.swift */; };
+		F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F61B56A54B00482D15 /* ImageViewController.swift */; };
+		F10D89071B56A54B00482D15 /* OTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F71B56A54B00482D15 /* OTP.swift */; };
+		F10D89081B56A54B00482D15 /* ScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */; };
+		F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F91B56A54B00482D15 /* ScanViewController.swift */; };
+		F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FA1B56A54B00482D15 /* ShareViewController.swift */; };
+		F10D890B1B56A54B00482D15 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FB1B56A54B00482D15 /* Token.swift */; };
+		F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FC1B56A54B00482D15 /* TokenButton.swift */; };
+		F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FD1B56A54B00482D15 /* TokenCell.swift */; };
+		F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FE1B56A54B00482D15 /* TokenStore.swift */; };
+		F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FF1B56A54B00482D15 /* TokensViewController.swift */; };
+		F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */; };
+		F18FA5361B571E2200B1CEAD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA5351B571E2200B1CEAD /* CoreBluetooth.framework */; };
+		F18FA5381B571E3B00B1CEAD /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA5371B571E3B00B1CEAD /* Photos.framework */; };
+		F18FA53A1B571E4800B1CEAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA5391B571E4800B1CEAD /* CoreGraphics.framework */; };
+		F18FA53C1B571E5500B1CEAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA53B1B571E5500B1CEAD /* UIKit.framework */; };
+		F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA53D1B571E5D00B1CEAD /* Foundation.framework */; };
+		F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA53F1B57339F00B1CEAD /* Storage.swift */; };
+		F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA5431B58D30800B1CEAD /* KeychainStore.swift */; };
+		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
+		F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C61B56AA0000828B8B /* HOTP.swift */; };
+		F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C71B56AA0000828B8B /* TOTP.swift */; };
+		F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C81B56AA0000828B8B /* URI.swift */; };
+		F1CA93CE1B56AA8400828B8B /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
+		F1CA93CF1B56AA8400828B8B /* moa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1CA93D01B56AA8400828B8B /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
+		F1CA93D11B56AA8400828B8B /* Base32.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1CA93D71B56AB9500828B8B /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */; };
+		F1CA93D81B56AB9500828B8B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D41B56AB9500828B8B /* default.png */; };
+		F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D51B56AB9500828B8B /* qrcode.png */; };
+		F1CA93DA1B56AB9500828B8B /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D61B56AB9500828B8B /* token.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F17A862617EC12670098E7F3 /* PBXContainerItemProxy */ = {
+		F10D88D51B56A3C400482D15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F17A85F517EC12670098E7F3 /* Project object */;
+			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F17A85FC17EC12670098E7F3;
+			remoteGlobalIDString = F10D88BF1B56A3C400482D15;
 			remoteInfo = FreeOTP;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F17E7A581B4B2E8300A6E945 /* Embed Frameworks */ = {
+		F1CA93D21B56AA8400828B8B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1A5E9B01B4C248400EA73A6 /* moa.framework in Embed Frameworks */,
-				F17E7A571B4B2E8300A6E945 /* Base32.framework in Embed Frameworks */,
+				F1CA93D11B56AA8400828B8B /* Base32.framework in Embed Frameworks */,
+				F1CA93CF1B56AA8400828B8B /* moa.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,168 +72,190 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
-		F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
-		F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		F16014F31B4AED3F0036859E /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
-		F16014F41B4AED3F0036859E /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		F16014F51B4AED3F0036859E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		F16014F61B4AED3F0036859E /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		F16014F71B4AED3F0036859E /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
-		F16014F81B4AED3F0036859E /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		F16014F91B4AED3F0036859E /* TokenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenButton.swift; sourceTree = "<group>"; };
-		F16014FA1B4AED3F0036859E /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
-		F16014FB1B4AED3F0036859E /* TokenStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
-		F16014FC1B4AED3F0036859E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F16015091B4AEED80036859E /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
-		F1673F1918EC51C900ECD2DB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F17A85FD17EC12670098E7F3 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F17A860017EC12670098E7F3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F17A860217EC12670098E7F3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		F17A860417EC12670098E7F3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F17A860817EC12670098E7F3 /* FreeOTP-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FreeOTP-Info.plist"; sourceTree = "<group>"; };
-		F17A860A17EC12670098E7F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Prefix.pch"; sourceTree = "<group>"; };
-		F17A861B17EC12670098E7F3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F17A862117EC12670098E7F3 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F17E7A541B4B2D3200A6E945 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
-		F18E16F118F2603800722FE7 /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
-		F18E170618F4AB3000722FE7 /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
-		F1A5E9AE1B4C248400EA73A6 /* moa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = moa.framework; path = Carthage/Build/iOS/moa.framework; sourceTree = "<group>"; };
-		F1AD9C6A190FF5500023501C /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FreeOTP/iTunesArtwork@2x"; sourceTree = "<group>"; };
-		F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanNavigationController.swift; sourceTree = "<group>"; };
+		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F10D88CA1B56A3C400482D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F10D88CF1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10D88DA1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10D88E51B56A3C500482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
+		F10D88F21B56A54B00482D15 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		F10D88F31B56A54B00482D15 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		F10D88F51B56A54B00482D15 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		F10D88F61B56A54B00482D15 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		F10D88F71B56A54B00482D15 /* OTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTP.swift; sourceTree = "<group>"; };
+		F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanNavigationController.swift; sourceTree = "<group>"; };
+		F10D88F91B56A54B00482D15 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		F10D88FA1B56A54B00482D15 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		F10D88FB1B56A54B00482D15 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		F10D88FC1B56A54B00482D15 /* TokenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenButton.swift; sourceTree = "<group>"; };
+		F10D88FD1B56A54B00482D15 /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
+		F10D88FE1B56A54B00482D15 /* TokenStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		F10D88FF1B56A54B00482D15 /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
+		F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		F18FA5351B571E2200B1CEAD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		F18FA5371B571E3B00B1CEAD /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		F18FA5391B571E4800B1CEAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F18FA53B1B571E5500B1CEAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F18FA53D1B571E5D00B1CEAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F18FA53F1B57339F00B1CEAD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		F18FA5431B58D30800B1CEAD /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTPTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		F1CA93C61B56AA0000828B8B /* HOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
+		F1CA93C71B56AA0000828B8B /* TOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
+		F1CA93C81B56AA0000828B8B /* URI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URI.swift; sourceTree = "<group>"; };
+		F1CA93CC1B56AA8400828B8B /* moa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = moa.framework; path = Carthage/Build/iOS/moa.framework; sourceTree = "<group>"; };
+		F1CA93CD1B56AA8400828B8B /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
+		F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		F1CA93D41B56AB9500828B8B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		F1CA93D51B56AB9500828B8B /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
+		F1CA93D61B56AB9500828B8B /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
+		F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F17A85FA17EC12670098E7F3 /* Frameworks */ = {
+		F10D88BD1B56A3C400482D15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F14C3F1A1B4C6E91006CBB4B /* CoreBluetooth.framework in Frameworks */,
-				F17E7A561B4B2E8300A6E945 /* Base32.framework in Frameworks */,
-				F160150A1B4AEED80036859E /* Photos.framework in Frameworks */,
-				F1A5E9AF1B4C248400EA73A6 /* moa.framework in Frameworks */,
-				F17A860317EC12670098E7F3 /* CoreGraphics.framework in Frameworks */,
-				F17A860517EC12670098E7F3 /* UIKit.framework in Frameworks */,
-				F17A860117EC12670098E7F3 /* Foundation.framework in Frameworks */,
+				F1CA93CE1B56AA8400828B8B /* moa.framework in Frameworks */,
+				F1CA93D01B56AA8400828B8B /* Base32.framework in Frameworks */,
+				F18FA5361B571E2200B1CEAD /* CoreBluetooth.framework in Frameworks */,
+				F18FA53A1B571E4800B1CEAD /* CoreGraphics.framework in Frameworks */,
+				F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */,
+				F18FA5381B571E3B00B1CEAD /* Photos.framework in Frameworks */,
+				F18FA53C1B571E5500B1CEAD /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F17A861E17EC12670098E7F3 /* Frameworks */ = {
+		F10D88D11B56A3C400482D15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F17A862517EC12670098E7F3 /* UIKit.framework in Frameworks */,
-				F17A862417EC12670098E7F3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F16015071B4AED870036859E /* Controllers */ = {
+		F10D88B71B56A3C400482D15 = {
 			isa = PBXGroup;
 			children = (
-				F13D49311B41AE7C0048C9DF /* AddTokenViewController.swift */,
-				F16014F41B4AED3F0036859E /* EditViewController.swift */,
-				F16014F51B4AED3F0036859E /* ImageViewController.swift */,
-				F1F9F1221B430B1F005C2B4B /* ScanNavigationController.swift */,
-				F1F9F11F1B42575B005C2B4B /* ScanViewController.swift */,
-				F14C3F171B4C64D0006CBB4B /* ShareViewController.swift */,
-				F16014F31B4AED3F0036859E /* TokensViewController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		F16015081B4AEDB70036859E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F16014FA1B4AED3F0036859E /* CircleProgressView.swift */,
-				F16014F91B4AED3F0036859E /* TokenButton.swift */,
-				F16014F71B4AED3F0036859E /* TokenCell.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		F17A85F417EC12670098E7F3 = {
-			isa = PBXGroup;
-			children = (
-				F1E5CDE81815CB06009BE32F /* iTunesArtwork@2x */,
-				F17A85FF17EC12670098E7F3 /* Frameworks */,
-				F17A860617EC12670098E7F3 /* FreeOTP */,
-				F17A85FE17EC12670098E7F3 /* Products */,
-				F13D492E1B41AE150048C9DF /* FreeOTP-Bridging-Header.h */,
+				F18FA53D1B571E5D00B1CEAD /* Foundation.framework */,
+				F18FA53B1B571E5500B1CEAD /* UIKit.framework */,
+				F18FA5391B571E4800B1CEAD /* CoreGraphics.framework */,
+				F18FA5371B571E3B00B1CEAD /* Photos.framework */,
+				F18FA5351B571E2200B1CEAD /* CoreBluetooth.framework */,
+				F1CA93CC1B56AA8400828B8B /* moa.framework */,
+				F1CA93CD1B56AA8400828B8B /* Base32.framework */,
+				F10D88C21B56A3C400482D15 /* FreeOTP */,
+				F10D88D71B56A3C400482D15 /* FreeOTPTests */,
+				F10D88E21B56A3C500482D15 /* FreeOTPUITests */,
+				F10D88C11B56A3C400482D15 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F17A85FE17EC12670098E7F3 /* Products */ = {
+		F10D88C11B56A3C400482D15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F17A85FD17EC12670098E7F3 /* FreeOTP.app */,
-				F17A862117EC12670098E7F3 /* FreeOTPTests.xctest */,
+				F10D88C01B56A3C400482D15 /* FreeOTP.app */,
+				F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F17A85FF17EC12670098E7F3 /* Frameworks */ = {
+		F10D88C21B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXGroup;
 			children = (
-				F14C3F191B4C6E91006CBB4B /* CoreBluetooth.framework */,
-				F1A5E9AE1B4C248400EA73A6 /* moa.framework */,
-				F17E7A541B4B2D3200A6E945 /* Base32.framework */,
-				F16015091B4AEED80036859E /* Photos.framework */,
-				F17A860017EC12670098E7F3 /* Foundation.framework */,
-				F17A860217EC12670098E7F3 /* CoreGraphics.framework */,
-				F17A860417EC12670098E7F3 /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F17A860617EC12670098E7F3 /* FreeOTP */ = {
-			isa = PBXGroup;
-			children = (
-				F1AD9C6A190FF5500023501C /* default.png */,
-				F18E170618F4AB3000722FE7 /* token.png */,
-				F18E16F118F2603800722FE7 /* qrcode.png */,
-				F1673F1918EC51C900ECD2DB /* Main.storyboard */,
-				F16015071B4AED870036859E /* Controllers */,
-				F16015081B4AEDB70036859E /* Views */,
-				F16014FC1B4AED3F0036859E /* AppDelegate.swift */,
-				F16014F61B4AED3F0036859E /* ImageDownloader.swift */,
-				F16014F81B4AED3F0036859E /* Token.swift */,
-				F16014FB1B4AED3F0036859E /* TokenStore.swift */,
-				F14C3F151B4C554B006CBB4B /* UICollectionViewFlowLayout.swift */,
-				F17A861B17EC12670098E7F3 /* Images.xcassets */,
-				F17A860717EC12670098E7F3 /* Supporting Files */,
+				F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */,
+				F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */,
+				F1CA93D41B56AB9500828B8B /* default.png */,
+				F1CA93D51B56AB9500828B8B /* qrcode.png */,
+				F1CA93D61B56AB9500828B8B /* token.png */,
+				F19DA56F1B5EE73E00A54DDC /* lock.png */,
+				F10D89111B56A56600482D15 /* Controllers */,
+				F18FA5341B56AE1B00B1CEAD /* Core */,
+				F10D89121B56A59500482D15 /* Views */,
+				F10D88F51B56A54B00482D15 /* ImageDownloader.swift */,
+				F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */,
+				F10D88C31B56A3C400482D15 /* AppDelegate.swift */,
+				F10D88C71B56A3C400482D15 /* Main.storyboard */,
+				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
+				F10D88CF1B56A3C400482D15 /* Info.plist */,
 			);
 			path = FreeOTP;
 			sourceTree = "<group>";
 		};
-		F17A860717EC12670098E7F3 /* Supporting Files */ = {
+		F10D88D71B56A3C400482D15 /* FreeOTPTests */ = {
 			isa = PBXGroup;
 			children = (
-				F17A860817EC12670098E7F3 /* FreeOTP-Info.plist */,
-				F17A860917EC12670098E7F3 /* InfoPlist.strings */,
-				F17A860E17EC12670098E7F3 /* FreeOTP-Prefix.pch */,
+				F1CA93C61B56AA0000828B8B /* HOTP.swift */,
+				F1CA93C71B56AA0000828B8B /* TOTP.swift */,
+				F1CA93C81B56AA0000828B8B /* URI.swift */,
+				F18FA53F1B57339F00B1CEAD /* Storage.swift */,
+				F10D88DA1B56A3C400482D15 /* Info.plist */,
+				F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */,
 			);
-			name = "Supporting Files";
+			path = FreeOTPTests;
+			sourceTree = "<group>";
+		};
+		F10D88E21B56A3C500482D15 /* FreeOTPUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F10D88E51B56A3C500482D15 /* Info.plist */,
+			);
+			path = FreeOTPUITests;
+			sourceTree = "<group>";
+		};
+		F10D89111B56A56600482D15 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */,
+				F10D88F31B56A54B00482D15 /* EditViewController.swift */,
+				F10D88F61B56A54B00482D15 /* ImageViewController.swift */,
+				F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */,
+				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
+				F10D88FA1B56A54B00482D15 /* ShareViewController.swift */,
+				F10D88FF1B56A54B00482D15 /* TokensViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F10D89121B56A59500482D15 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F10D88F21B56A54B00482D15 /* CircleProgressView.swift */,
+				F10D88FC1B56A54B00482D15 /* TokenButton.swift */,
+				F10D88FD1B56A54B00482D15 /* TokenCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F18FA5341B56AE1B00B1CEAD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F10D88F71B56A54B00482D15 /* OTP.swift */,
+				F10D88FB1B56A54B00482D15 /* Token.swift */,
+				F10D88FE1B56A54B00482D15 /* TokenStore.swift */,
+				F18FA5431B58D30800B1CEAD /* KeychainStore.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F17A85FC17EC12670098E7F3 /* FreeOTP */ = {
+		F10D88BF1B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F17A863217EC12670098E7F3 /* Build configuration list for PBXNativeTarget "FreeOTP" */;
+			buildConfigurationList = F10D88E81B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTP" */;
 			buildPhases = (
-				F17A85F917EC12670098E7F3 /* Sources */,
-				F17A85FA17EC12670098E7F3 /* Frameworks */,
-				F17A85FB17EC12670098E7F3 /* Resources */,
-				F17E7A581B4B2E8300A6E945 /* Embed Frameworks */,
+				F10D88BC1B56A3C400482D15 /* Sources */,
+				F10D88BD1B56A3C400482D15 /* Frameworks */,
+				F10D88BE1B56A3C400482D15 /* Resources */,
+				F1CA93D21B56AA8400828B8B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,43 +263,47 @@
 			);
 			name = FreeOTP;
 			productName = FreeOTP;
-			productReference = F17A85FD17EC12670098E7F3 /* FreeOTP.app */;
+			productReference = F10D88C01B56A3C400482D15 /* FreeOTP.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F17A862017EC12670098E7F3 /* FreeOTPTests */ = {
+		F10D88D31B56A3C400482D15 /* FreeOTPTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F17A863517EC12670098E7F3 /* Build configuration list for PBXNativeTarget "FreeOTPTests" */;
+			buildConfigurationList = F10D88EB1B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTPTests" */;
 			buildPhases = (
-				F17A861D17EC12670098E7F3 /* Sources */,
-				F17A861E17EC12670098E7F3 /* Frameworks */,
-				F17A861F17EC12670098E7F3 /* Resources */,
+				F10D88D01B56A3C400482D15 /* Sources */,
+				F10D88D11B56A3C400482D15 /* Frameworks */,
+				F10D88D21B56A3C400482D15 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F17A862717EC12670098E7F3 /* PBXTargetDependency */,
+				F10D88D61B56A3C400482D15 /* PBXTargetDependency */,
 			);
 			name = FreeOTPTests;
 			productName = FreeOTPTests;
-			productReference = F17A862117EC12670098E7F3 /* FreeOTPTests.xctest */;
+			productReference = F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F17A85F517EC12670098E7F3 /* Project object */ = {
+		F10D88B81B56A3C400482D15 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Nathaniel McCallum";
+				ORGANIZATIONNAME = "Fedora Project";
 				TargetAttributes = {
-					F17A862017EC12670098E7F3 = {
-						TestTargetID = F17A85FC17EC12670098E7F3;
+					F10D88BF1B56A3C400482D15 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					F10D88D31B56A3C400482D15 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = F10D88BF1B56A3C400482D15;
 					};
 				};
 			};
-			buildConfigurationList = F17A85F817EC12670098E7F3 /* Build configuration list for PBXProject "FreeOTP" */;
+			buildConfigurationList = F10D88BB1B56A3C400482D15 /* Build configuration list for PBXProject "FreeOTP" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -281,33 +311,33 @@
 				en,
 				Base,
 			);
-			mainGroup = F17A85F417EC12670098E7F3;
-			productRefGroup = F17A85FE17EC12670098E7F3 /* Products */;
+			mainGroup = F10D88B71B56A3C400482D15;
+			productRefGroup = F10D88C11B56A3C400482D15 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F17A85FC17EC12670098E7F3 /* FreeOTP */,
-				F17A862017EC12670098E7F3 /* FreeOTPTests */,
+				F10D88BF1B56A3C400482D15 /* FreeOTP */,
+				F10D88D31B56A3C400482D15 /* FreeOTPTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F17A85FB17EC12670098E7F3 /* Resources */ = {
+		F10D88BE1B56A3C400482D15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F18E16F218F2603800722FE7 /* qrcode.png in Resources */,
-				F1E5CDE91815CB06009BE32F /* iTunesArtwork@2x in Resources */,
-				F1AD9C6B190FF5500023501C /* default.png in Resources */,
-				F17A861C17EC12670098E7F3 /* Images.xcassets in Resources */,
-				F18E170D18F4AB3000722FE7 /* token.png in Resources */,
-				F1673F1A18EC51C900ECD2DB /* Main.storyboard in Resources */,
-				F17A860B17EC12670098E7F3 /* InfoPlist.strings in Resources */,
+				F1CA93D71B56AB9500828B8B /* iTunesArtwork@2x in Resources */,
+				F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */,
+				F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */,
+				F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */,
+				F19DA5701B5EE73E00A54DDC /* lock.png in Resources */,
+				F1CA93D81B56AB9500828B8B /* default.png in Resources */,
+				F1CA93DA1B56AB9500828B8B /* token.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F17A861F17EC12670098E7F3 /* Resources */ = {
+		F10D88D21B56A3C400482D15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -317,58 +347,64 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F17A85F917EC12670098E7F3 /* Sources */ = {
+		F10D88BC1B56A3C400482D15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F16015051B4AED3F0036859E /* TokenStore.swift in Sources */,
-				F13D49321B41AE7C0048C9DF /* AddTokenViewController.swift in Sources */,
-				F16015001B4AED3F0036859E /* ImageDownloader.swift in Sources */,
-				F16015031B4AED3F0036859E /* TokenButton.swift in Sources */,
-				F16015041B4AED3F0036859E /* CircleProgressView.swift in Sources */,
-				F16015061B4AED3F0036859E /* AppDelegate.swift in Sources */,
-				F14C3F161B4C554B006CBB4B /* UICollectionViewFlowLayout.swift in Sources */,
-				F16015021B4AED3F0036859E /* Token.swift in Sources */,
-				F1F9F1231B430B1F005C2B4B /* ScanNavigationController.swift in Sources */,
-				F16014FF1B4AED3F0036859E /* ImageViewController.swift in Sources */,
-				F16014FE1B4AED3F0036859E /* EditViewController.swift in Sources */,
-				F16014FD1B4AED3F0036859E /* TokensViewController.swift in Sources */,
-				F14C3F181B4C64D0006CBB4B /* ShareViewController.swift in Sources */,
-				F16015011B4AED3F0036859E /* TokenCell.swift in Sources */,
-				F1F9F1201B42575B005C2B4B /* ScanViewController.swift in Sources */,
+				F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */,
+				F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */,
+				F10D89011B56A54B00482D15 /* AddTokenViewController.swift in Sources */,
+				F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */,
+				F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */,
+				F10D89071B56A54B00482D15 /* OTP.swift in Sources */,
+				F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */,
+				F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */,
+				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
+				F10D89081B56A54B00482D15 /* ScanNavigationController.swift in Sources */,
+				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
+				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
+				F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */,
+				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
+				F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */,
+				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,
+				F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F17A861D17EC12670098E7F3 /* Sources */ = {
+		F10D88D01B56A3C400482D15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */,
+				F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */,
+				F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */,
+				F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F17A862717EC12670098E7F3 /* PBXTargetDependency */ = {
+		F10D88D61B56A3C400482D15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F17A85FC17EC12670098E7F3 /* FreeOTP */;
-			targetProxy = F17A862617EC12670098E7F3 /* PBXContainerItemProxy */;
+			target = F10D88BF1B56A3C400482D15 /* FreeOTP */;
+			targetProxy = F10D88D51B56A3C400482D15 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F17A860917EC12670098E7F3 /* InfoPlist.strings */ = {
+		F10D88C71B56A3C400482D15 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F17A860A17EC12670098E7F3 /* en */,
+				F10D88C81B56A3C400482D15 /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F17A863017EC12670098E7F3 /* Debug */ = {
+		F10D88E61B56A3C500482D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -383,32 +419,39 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = Carthage/Build/iOS;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP/FreeOTP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		F17A863117EC12670098E7F3 /* Release */ = {
+		F10D88E71B56A3C500482D15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -423,140 +466,113 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = Carthage/Build/iOS;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP/FreeOTP-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		F17A863317EC12670098E7F3 /* Debug */ = {
+		F10D88E91B56A3C500482D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
-				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				INFOPLIST_FILE = FreeOTP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		F17A863417EC12670098E7F3 /* Release */ = {
+		F10D88EA1B56A3C500482D15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
-				INFOPLIST_FILE = "FreeOTP/FreeOTP-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				INFOPLIST_FILE = FreeOTP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
-		F17A863617EC12670098E7F3 /* Debug */ = {
+		F10D88EC1B56A3C500482D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FreeOTP.app/FreeOTP";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FreeOTPTests/FreeOTPTests-Info.plist";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = FreeOTPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeOTP.app/FreeOTP";
 			};
 			name = Debug;
 		};
-		F17A863717EC12670098E7F3 /* Release */ = {
+		F10D88ED1B56A3C500482D15 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FreeOTP.app/FreeOTP";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FreeOTP/FreeOTP-Prefix.pch";
-				INFOPLIST_FILE = "FreeOTPTests/FreeOTPTests-Info.plist";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = FreeOTPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreeOTP.app/FreeOTP";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F17A85F817EC12670098E7F3 /* Build configuration list for PBXProject "FreeOTP" */ = {
+		F10D88BB1B56A3C400482D15 /* Build configuration list for PBXProject "FreeOTP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F17A863017EC12670098E7F3 /* Debug */,
-				F17A863117EC12670098E7F3 /* Release */,
+				F10D88E61B56A3C500482D15 /* Debug */,
+				F10D88E71B56A3C500482D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F17A863217EC12670098E7F3 /* Build configuration list for PBXNativeTarget "FreeOTP" */ = {
+		F10D88E81B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F17A863317EC12670098E7F3 /* Debug */,
-				F17A863417EC12670098E7F3 /* Release */,
+				F10D88E91B56A3C500482D15 /* Debug */,
+				F10D88EA1B56A3C500482D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F17A863517EC12670098E7F3 /* Build configuration list for PBXNativeTarget "FreeOTPTests" */ = {
+		F10D88EB1B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTPTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F17A863617EC12670098E7F3 /* Debug */,
-				F17A863717EC12670098E7F3 /* Release */,
+				F10D88EC1B56A3C500482D15 /* Debug */,
+				F10D88ED1B56A3C500482D15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F17A85F517EC12670098E7F3 /* Project object */;
+	rootObject = F10D88B81B56A3C400482D15 /* Project object */;
 }

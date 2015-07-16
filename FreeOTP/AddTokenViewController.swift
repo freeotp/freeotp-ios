@@ -32,6 +32,9 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var interval: UILabel!
     @IBOutlet weak var counter: UILabel!
 
+    @IBOutlet var lockedTitle: UILabel!
+    @IBOutlet var lockedSwitch: UISwitch!
+
     @IBOutlet weak var counterTitle: UILabel!
     @IBOutlet weak var counterStepper: UIStepper!
 
@@ -83,6 +86,12 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         return true
     }
 
+    override func viewWillAppear(animated: Bool) {
+        let supported = Token.store.lockingSupported
+        lockedTitle.enabled = supported
+        lockedSwitch.enabled = supported
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender !== self.navigationItem.rightBarButtonItem) {
             return
@@ -92,10 +101,10 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         let urlc = NSURLComponents()
         urlc.scheme = "otpauth"
         urlc.path = String(format: "/%@:%@", issuer.text!, label.text!)
-        urlc.query = String(format: "algorithm=%@&digits=%@&secret=%@&period=%u",
+        urlc.query = String(format: "algorithm=%@&digits=%@&secret=%@&period=%u&lock=%d",
             "SHA" + algo.titleForSegmentAtIndex(algo.selectedSegmentIndex)!,
             digits.titleForSegmentAtIndex(digits.selectedSegmentIndex)!,
-            secret.text!, UInt(interval.text!)!)
+            secret.text!, UInt(interval.text!)!, lockedSwitch.on ? 1 : 0)
 
         if (type.selectedSegmentIndex == 0) {
             urlc.query = urlc.query! + String(format: "&counter=%u", UInt(counter.text!)!)
@@ -105,8 +114,6 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         }
 
         // Make token
-        if let token = Token(urlc: urlc) {
-            TokenStore().add(token)
-        }
+        TokenStore().add(urlc)
     }
 }

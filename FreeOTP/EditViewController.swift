@@ -32,6 +32,14 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet var yes: UIBarButtonItem!
     @IBOutlet var no: UIBarButtonItem!
 
+    @IBOutlet var lockLabel: UILabel!
+    @IBOutlet var lockSwitch: UISwitch!
+
+    @IBAction func lockClicked(sender: UISwitch) {
+        token.locked = sender.on
+        sender.on = token.locked
+    }
+
     var token: Token!
     private var titleBackup: String?
 
@@ -76,6 +84,11 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        let locking: Bool = Token.store.lockingSupported
+        lockLabel.enabled = locking
+        lockSwitch.enabled = locking
+        lockSwitch.on = token.locked
+
         switch PHPhotoLibrary.authorizationStatus() {
         case .NotDetermined:
             PHPhotoLibrary.requestAuthorization({
@@ -100,13 +113,13 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
 
     override func viewWillDisappear(animated: Bool) {
         if let t = token {
-            TokenStore().save(t)
+            Token.store.save(t)
         }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if sender === yes {
-            TokenStore().del(token)
+            TokenStore().erase(token: token)
             token = nil
         } else if sender === image {
             (segue.destinationViewController as! ImageViewController).token = token

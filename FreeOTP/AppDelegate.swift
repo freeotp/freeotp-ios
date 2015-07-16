@@ -35,8 +35,7 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         if let urlc = NSURLComponents(URL: url, resolvingAgainstBaseURL: true) {
-            if let token = Token(urlc: urlc) {
-                TokenStore().add(token)
+            if TokenStore().add(urlc) != nil {
                 window?.rootViewController?.loadView()
                 return true
             }

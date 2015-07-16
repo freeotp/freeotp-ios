@@ -18,171 +18,110 @@
 // limitations under the License.
 //
 
-import Base32
 import Foundation
 
-class Token : NSObject {
-    private var size: Int32 = CC_SHA1_DIGEST_LENGTH
-    private var algo: Int = kCCHmacAlgSHA1
-    private var counter: UInt64 = 0
-    private var digits: UInt = 6
-    private var period: UInt64 = 30
+public final class Token : NSObject, KeychainStorable {
+    public static let store = KeychainStore<Token>()
+    public let account: String
+
+    public enum Kind: Int {
+        case HOTP = 0
+        case TOTP = 1
+    }
+
+    public class Code {
+        private(set) public var value: String
+        private(set) public var from: NSDate
+        private(set) public var to: NSDate
+
+        private init(_ value: String, _ from: NSDate, _ period: Int64) {
+            self.value = value
+            self.from = from
+            self.to = from.dateByAddingTimeInterval(NSTimeInterval(period))
+        }
+    }
 
     private var issuerOrig: String = ""
     private var labelOrig: String = ""
     private var imageOrig: String?
+    private var counter: Int64 = 0
+    private var period: Int64 = 30
 
-    private var secret: NSData?
-    private var issuerInt: String?
+    private (set) public var kind: Kind = .HOTP
 
-    enum Type {
-        case HOTP
-        case TOTP
-    }
+    public var locked: Bool = false {
+        didSet {
+            if let otp = OTP.store.load(account) {
+                if OTP.store.erase(otp) {
+                    if OTP.store.add(otp, locked: locked) {
+                        return
+                    }
+                }
+            }
 
-    class Code {
-        private(set) var value: String
-        private(set) var from: NSDate
-        private(set) var to: NSDate
-        private init(_ value: String, _ from: NSDate, _ to: NSDate) {
-            self.value = value
-            self.from = from
-            self.to = to
+            locked = !locked
         }
     }
 
-    private(set) var type: Type = .HOTP
+    public var codes: [Code] {
+        if let otp = OTP.store.load(account) {
+            let now = NSDate()
 
-    var issuer: String! {
+            switch kind {
+            case .HOTP:
+                let code = Code(otp.code(counter++), now, period)
+                if Token.store.save(self) {
+                    return [code]
+                }
+
+            case .TOTP:
+                func totp(otp: OTP, now: NSDate) -> Code {
+                    let c = Int64(now.timeIntervalSince1970) / period
+                    let i = NSDate(timeIntervalSince1970: NSTimeInterval(c * period))
+                    return Code(otp.code(c), i, period)
+                }
+
+                let next = now.dateByAddingTimeInterval(NSTimeInterval(period))
+                return [totp(otp, now: now), totp(otp, now: next)]
+            }
+        }
+
+        return []
+    }
+
+    public var issuer: String! = nil {
         didSet {
             if issuer == nil { issuer = issuerOrig }
         }
     }
 
-    var label: String! {
+    public var label: String! = nil {
         didSet {
             if label == nil { label = labelOrig }
         }
     }
 
-    var image: String? {
+    public var image: String? = nil {
         didSet {
             if image == nil { image = imageOrig }
         }
     }
 
-    override var description: String {
-        get {
-            return uri.string!
-        }
-    }
-
-    var uri: NSURLComponents {
-        get {
-            let urlc = NSURLComponents()
-            urlc.scheme = "otpauth"
-
-            switch type {
-            case .HOTP:
-                urlc.host = "hotp"
-            case .TOTP:
-                urlc.host = "totp"
-            }
-
-            var alg: String = ""
-            switch algo {
-            case kCCHmacAlgMD5:
-                alg = "MD5"
-            case kCCHmacAlgSHA1:
-                alg = "SHA1"
-            case kCCHmacAlgSHA224:
-                alg = "SHA224"
-            case kCCHmacAlgSHA256:
-                alg = "SHA256"
-            case kCCHmacAlgSHA384:
-                alg = "SHA384"
-            case kCCHmacAlgSHA512:
-                alg = "SHA512"
-            default:
-                break
-            }
-
-            urlc.path = "/"
-            if issuer != "" {
-                urlc.path! += issuer
-                urlc.path! += ":"
-            }
-            urlc.path! += label
-
-            urlc.queryItems = [
-                NSURLQueryItem(name: "algorithm", value: alg),
-                NSURLQueryItem(name: "digits", value: String(digits)),
-                NSURLQueryItem(name: "secret", value: secret!.base32EncodedString),
-                NSURLQueryItem(name: "period", value: String(period)),
-                NSURLQueryItem(name: "issuerorig", value: issuerOrig),
-                NSURLQueryItem(name: "nameorig", value: labelOrig),
-            ]
-
-            if issuerInt != nil {
-                urlc.queryItems!.append(NSURLQueryItem(name: "issuer", value: issuerInt))
-            }
-
-            if self.image != nil {
-                urlc.queryItems!.append(NSURLQueryItem(name: "image", value: self.image))
-            }
-
-            if self.imageOrig != nil {
-                urlc.queryItems!.append(NSURLQueryItem(name: "imageorig", value: self.imageOrig))
-            }
-
-            if type == .HOTP {
-                urlc.queryItems!.append(NSURLQueryItem(name: "counter", value: String(counter)))
-            }
-
-            return urlc;
-        }
-    }
-
-    var uid: String {
-        get {
-            return String(format: "%@:%@", issuerInt == nil ? issuerOrig : issuerInt!, labelOrig)
-        }
-    }
-
-    var codes: [Code] {
-        get {
-            var now = NSDate()
-
-            switch type {
-            case .HOTP:
-                return [Code(getHOTP(counter++), now, now.dateByAddingTimeInterval(NSTimeInterval(period)))]
-
-            case .TOTP:
-                func totp(now: NSDate) -> Code {
-                    let c = UInt64(now.timeIntervalSince1970) / period
-                    let i = NSDate(timeIntervalSince1970: NSTimeInterval(c * period))
-                    return Code(getHOTP(c), i, i.dateByAddingTimeInterval(NSTimeInterval(period)))
-                }
-
-                return [totp(now), totp(now.dateByAddingTimeInterval(NSTimeInterval(period)))]
-            }
-        }
-    }
-
-    init?(urlc: NSURLComponents, load: Bool = false) {
+    public init?(otp: OTP, urlc: NSURLComponents, load: Bool = false) {
+        self.account = otp.account
         super.init()
 
         if urlc.scheme != "otpauth" || urlc.host == nil {
             return nil
         }
 
-        // Get type
+        // Get kind
         switch urlc.host!.lowercaseString {
         case "totp":
-            type = .TOTP
+            kind = .TOTP
 
         case "hotp":
-            type = .HOTP
+            kind = .HOTP
 
         default:
             return nil
@@ -199,130 +138,106 @@ class Token : NSObject {
 
         // Get issuer and label
         let comps = path.componentsSeparatedByString(":")
-        switch comps.count {
-        case 1:
-            label = comps[0]
-
-        case 2:
-            issuer = comps[0]
-            label = comps[1]
-
-        default:
-            return nil
-        }
+        issuer = comps[0]
+        label = comps.count > 1 ? comps[1] : ""
 
         let query = urlc.queryItems
         if (query == nil) { return nil }
         for item: NSURLQueryItem in query! {
             if item.value == nil { continue }
 
-            switch item.name {
-            case "secret":
-                secret = item.value!.base32DecodedData
-
-            case "algorithm":
-                switch item.value!.lowercaseString {
-                case "md5":
-                    algo = kCCHmacAlgMD5
-                    size = CC_MD5_DIGEST_LENGTH
-                case "sha1":
-                    algo = kCCHmacAlgSHA1
-                    size = CC_SHA1_DIGEST_LENGTH
-                case "sha224":
-                    algo = kCCHmacAlgSHA224
-                    size = CC_SHA224_DIGEST_LENGTH
-                case "sha256":
-                    algo = kCCHmacAlgSHA256
-                    size = CC_SHA256_DIGEST_LENGTH
-                case "sha384":
-                    algo = kCCHmacAlgSHA384
-                    size = CC_SHA384_DIGEST_LENGTH
-                case "sha512":
-                    algo = kCCHmacAlgSHA512
-                    size = CC_SHA512_DIGEST_LENGTH
-                default:
-                    return nil
-                }
-
-            case "digits":
-                switch item.value! {
-                case "6":
-                    digits = 6
-                case "8":
-                    digits = 8
-                default:
-                    return nil
-                }
-
+            switch item.name.lowercaseString {
             case "period":
-                if let tmp: UInt64? = UInt64(item.value!) {
-                    period = tmp!
+                if let tmp = Int64(item.value!) {
+                    if tmp < 5 {
+                        return nil
+                    }
+
+                    period = tmp
                 }
 
             case "counter":
-                if let tmp: UInt64? = UInt64(item.value!) {
-                    counter = tmp!
+                if let tmp = Int64(item.value!) {
+                    if tmp < 0 {
+                        return nil
+                    }
+
+                    counter = tmp
+                }
+
+            case "lock":
+                switch item.value!.lowercaseString {
+                case "": fallthrough
+                case "0": fallthrough
+                case "off": fallthrough
+                case "false":
+                    locked = false
+
+                default:
+                    locked = Token.store.lockingSupported
                 }
 
             case "image":
                 image = item.value!
-
-            case "issuer":
-                issuerInt = item.value!
+                if !load { image = item.value! }
 
             case "issuerorig":
-                if load { issuerOrig = item.value! }
+                if !load { issuerOrig = item.value! }
 
             case "nameorig":
-                if load { labelOrig = item.value! }
+                if !load { labelOrig = item.value! }
 
             case "imageorig":
-                if load { imageOrig = item.value! }
+                if !load { imageOrig = item.value! }
 
             default:
                 continue
             }
         }
 
-        if (secret == nil) {
-            return nil
-        }
-
         if load {
             // This works around a bug where we stored a URL to the default image,
             // but this changed with the app id.
-            if self.image != nil && self.image!.hasPrefix("file:") && self.image!.hasSuffix("/FreeOTP.app/default.png") {
-                self.image = nil
+            if image != nil && image!.hasPrefix("file:") && image!.hasSuffix("/FreeOTP.app/default.png") {
+                image = nil
             }
-            if self.imageOrig != nil && self.imageOrig!.hasPrefix("file:") && self.imageOrig!.hasSuffix("/FreeOTP.app/default.png") {
-                self.imageOrig = nil
+            if imageOrig != nil && imageOrig!.hasPrefix("file:") && imageOrig!.hasSuffix("/FreeOTP.app/default.png") {
+                imageOrig = nil
             }
         } else {
+            imageOrig = image
             issuerOrig = issuer
             labelOrig = label
-            imageOrig = image
         }
     }
 
-    private func getHOTP(var counter: UInt64) -> String {
-        // Network byte order
-        counter = counter.bigEndian
+    @objc required public init?(coder aDecoder: NSCoder) {
+        locked = aDecoder.decodeBoolForKey("locked")
+        account = aDecoder.decodeObjectForKey("account") as! String
+        counter = aDecoder.decodeInt64ForKey("counter")
+        image = aDecoder.decodeObjectForKey("image") as? String
+        imageOrig = aDecoder.decodeObjectForKey("imageOrig") as? String
+        issuer = aDecoder.decodeObjectForKey("issuer") as! String
+        issuerOrig = aDecoder.decodeObjectForKey("issuerOrig") as! String
+        kind = Kind(rawValue: aDecoder.decodeIntegerForKey("kind"))!
+        label = aDecoder.decodeObjectForKey("label") as! String
+        labelOrig = aDecoder.decodeObjectForKey("labelOrig") as! String
+        period = aDecoder.decodeInt64ForKey("period")
 
-        // Create digits divisor
-        var div: UInt32 = 1
-        for _ in 1...digits {
-            div *= 10
-        }
+        super.init()
+    }
 
-        // Create the HMAC
-        var digest = Array<UInt8>(count: Int(size), repeatedValue: 0)
-        CCHmac(UInt32(algo), secret!.bytes, secret!.length, &counter, sizeof(UInt64), &digest);
-
-        // Unparse UInt32
-        let off: Int = Int(digest[size - 1]) & 0x0f;
-        let byt = Array<UInt8>(digest[off..<off+sizeof(UInt32)])
-        let dec = (UnsafePointer<UInt32>(byt).memory.bigEndian & 0x7fffffff) % div
-
-        return String(format: String(format: "%%0%hhulu", digits), dec)
+    @objc public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeBool(locked, forKey: "locked")
+        aCoder.encodeObject(account, forKey: "account")
+        aCoder.encodeInt64(counter, forKey: "counter")
+        aCoder.encodeObject(image, forKey: "image")
+        aCoder.encodeObject(imageOrig, forKey: "imageOrig")
+        aCoder.encodeObject(issuer, forKey: "issuer")
+        aCoder.encodeObject(issuerOrig, forKey: "issuerOrig")
+        aCoder.encodeInteger(kind.rawValue, forKey: "kind")
+        aCoder.encodeObject(label, forKey: "label")
+        aCoder.encodeObject(labelOrig, forKey: "labelOrig")
+        aCoder.encodeInt64(period, forKey: "period")
     }
 }
