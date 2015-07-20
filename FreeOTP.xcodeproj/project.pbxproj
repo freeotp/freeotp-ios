@@ -33,6 +33,7 @@
 		F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA53F1B57339F00B1CEAD /* Storage.swift */; };
 		F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA5431B58D30800B1CEAD /* KeychainStore.swift */; };
 		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
+		F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56D1B5C832600A54DDC /* Launch.storyboard */; };
 		F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C61B56AA0000828B8B /* HOTP.swift */; };
 		F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C71B56AA0000828B8B /* TOTP.swift */; };
 		F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C81B56AA0000828B8B /* URI.swift */; };
@@ -103,6 +104,7 @@
 		F18FA53F1B57339F00B1CEAD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F18FA5431B58D30800B1CEAD /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		F19DA56D1B5C832600A54DDC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTPTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		F1CA93C61B56AA0000828B8B /* HOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		F1CA93C71B56AA0000828B8B /* TOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				F10D88F51B56A54B00482D15 /* ImageDownloader.swift */,
 				F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */,
 				F10D88C31B56A3C400482D15 /* AppDelegate.swift */,
+				F19DA56D1B5C832600A54DDC /* Launch.storyboard */,
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
 				F10D88CF1B56A3C400482D15 /* Info.plist */,
@@ -332,6 +335,7 @@
 				F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */,
 				F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */,
 				F19DA5701B5EE73E00A54DDC /* lock.png in Resources */,
+				F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */,
 				F1CA93D81B56AB9500828B8B /* default.png in Resources */,
 				F1CA93DA1B56AB9500828B8B /* token.png in Resources */,
 			);
