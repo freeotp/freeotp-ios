@@ -22,21 +22,38 @@ import CoreBluetooth
 import Foundation
 import UIKit
 
+extension CBPeripheral {
+    func findService(svc: CBUUID) -> CBService? {
+        if let svcs = services {
+            for s in svcs {
+                if s.UUID == svc {
+                    return s
+                }
+            }
+        }
+
+        return nil
+    }
+}
+
+extension CBService {
+    func findCharacteristic(chr: CBUUID) -> CBCharacteristic? {
+        if let chrs = characteristics {
+            for c in chrs {
+                if c.UUID == chr {
+                    return c
+                }
+            }
+        }
+
+        return nil
+    }
+}
+
 class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let SERVICE = CBUUID(string: "B670003C-0079-465C-9BA7-6C0539CCD67F")
     private let CHARACT = CBUUID(string: "F4186B06-D796-4327-AF39-AC22C50BDCA8")
-
-    private class Remote {
-        let peripheral: CBPeripheral
-        var characteristic: CBCharacteristic?
-
-        init(_ p: CBPeripheral, _ c: CBCharacteristic? = nil) {
-            peripheral = p
-            characteristic = c
-        }
-    }
-
-    private var remotes = Array<Remote>()
+    private var peripherals = [CBPeripheral]()
     private var manager: CBCentralManager!
 
     var token: Token!
@@ -49,18 +66,67 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         }
     }
 
-    private func remove(peripheral: CBPeripheral) {
-        for i in 0..<remotes.count {
-            if remotes[i].peripheral == peripheral {
-                remotes.removeAtIndex(i)
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 1)], withRowAnimation: .Fade)
-                break
+    private func register(peripheral: CBPeripheral) {
+        peripherals.append(peripheral)
+
+        // Add the device to the UI
+        tableView.beginUpdates()
+        if tableView.numberOfSections == 1 { tableView.insertSections(NSIndexSet(index: 1), withRowAnimation: .Fade) }
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: peripherals.count - 1, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.endUpdates()
+    }
+
+    private func unregister(peripheral: CBPeripheral) {
+        if let i = peripherals.indexOf(peripheral) {
+            manager.cancelPeripheralConnection(peripherals.removeAtIndex(i))
+
+            tableView.beginUpdates()
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: i, inSection: 1)], withRowAnimation: .Fade)
+            if i == 0 { tableView.deleteSections(NSIndexSet(index: 1), withRowAnimation: .Fade) }
+            tableView.endUpdates()
+        }
+    }
+
+    private func connect(peripheral: CBPeripheral) {
+        if peripherals.contains(peripheral) {
+            switch peripheral.state {
+            case .Disconnecting: fallthrough
+            case .Disconnected:
+                manager.connectPeripheral(peripheral, options: nil)
+
+            case .Connected:
+                self.centralManager(manager, didConnectPeripheral: peripheral)
+
+            case .Connecting:
+                return
+            }
+
+            NSTimer.scheduledTimerWithTimeInterval(
+                3,
+                target: self,
+                selector: "timeout:",
+                userInfo: peripheral,
+                repeats: false
+            )
+        }
+    }
+
+    func timeout(timer: NSTimer) {
+        if let p = timer.userInfo as! CBPeripheral? {
+            if p.findService(SERVICE)?.findCharacteristic(CHARACT) == nil {
+                switch p.state {
+                case .Connecting: fallthrough
+                case .Connected:
+                    manager.cancelPeripheralConnection(p)
+
+                default: break
+                }
             }
         }
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return remotes.count > 0 ? 2 : 1
+        return peripherals.count > 0 ? 2 : 1
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -82,7 +148,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
             return 1
 
         case 1:
-            return remotes.count
+            return peripherals.count
 
         default:
             return 0
@@ -101,11 +167,11 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
             lbl.enabled = true
 
         case 1:
-            let r = remotes[indexPath.row]
-            cell.userInteractionEnabled = r.characteristic != nil
-            act.alpha = r.characteristic != nil ? 0 : 1
-            lbl.enabled = r.characteristic != nil
-            lbl.text = r.peripheral.name
+            let chr = peripherals[indexPath.row].findService(SERVICE)?.findCharacteristic(CHARACT)
+            cell.userInteractionEnabled = chr != nil
+            act.alpha = chr != nil ? 0 : 1
+            lbl.enabled = chr != nil
+            lbl.text = peripherals[indexPath.row].name
 
         default:
             break
@@ -126,9 +192,10 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
                 finish()
 
             case 1:
-                let r = remotes[indexPath.row]
-                if let d = codes[0].value.dataUsingEncoding(NSUTF8StringEncoding) {
-                    r.peripheral.writeValue(d, forCharacteristic: r.characteristic!, type: .WithResponse)
+                if let c = peripherals[indexPath.row].findService(SERVICE)?.findCharacteristic(CHARACT) {
+                    if let d = codes[0].value.dataUsingEncoding(NSUTF8StringEncoding) {
+                        peripherals[indexPath.row].writeValue(d, forCharacteristic: c, type: .WithResponse)
+                    }
                 }
 
             default:
@@ -139,77 +206,80 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
 
     func centralManagerDidUpdateState(central: CBCentralManager) {
         switch central.state {
-        case .PoweredOn: manager.scanForPeripheralsWithServices(nil, options: nil)
-        default: manager.stopScan()
+        case .PoweredOn:
+            for p in central.retrieveConnectedPeripheralsWithServices([SERVICE]) {
+                register(p)
+                connect(p)
+            }
+
+            central.scanForPeripheralsWithServices([SERVICE], options: nil)
+
+        default:
+            central.stopScan()
         }
     }
 
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        // Skip devices we are connect(ed|ing) to
-        for r in remotes {
-            if r.peripheral == peripheral {
-                return
-            }
+        if peripheral.name != nil {
+            register(peripheral)
+            connect(peripheral)
         }
-
-        // Skip devices with no name
-        if peripheral.name == nil {
-            return
-        }
-
-        // Add the device to the UI
-        remotes.append(Remote(peripheral))
-        tableView.beginUpdates()
-        if tableView.numberOfSections == 1 { tableView.insertSections(NSIndexSet(index: 1), withRowAnimation: .Fade) }
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: remotes.count - 1, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Fade)
-        tableView.endUpdates()
-
-        // Attempt to connect to it
-        central.connectPeripheral(peripheral, options: nil)
     }
 
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         peripheral.delegate = self
-        peripheral.discoverServices([SERVICE])
+
+        if let svc = peripheral.findService(SERVICE) {
+            if let _ = svc.findCharacteristic(CHARACT) {
+                self.peripheral(peripheral, didDiscoverCharacteristicsForService: svc, error: nil)
+            } else {
+                peripheral.discoverCharacteristics([CHARACT], forService: svc)
+            }
+        } else {
+            peripheral.discoverServices(nil)
+        }
     }
 
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
-        if let svcs = peripheral.services {
-            for svc in svcs {
-                if svc.UUID == SERVICE {
-                    peripheral.discoverCharacteristics([CHARACT], forService: svc)
-                    return
-                }
+        if let svc = peripheral.findService(SERVICE) {
+            if let _ = svc.findCharacteristic(CHARACT) {
+                self.peripheral(peripheral, didDiscoverCharacteristicsForService: svc, error: nil)
+            } else {
+                peripheral.discoverCharacteristics([CHARACT], forService: svc)
+            }
+        } else {
+            switch peripheral.state {
+            case .Connecting: fallthrough
+            case .Connected:
+                unregister(peripheral)
+
+            default: break
             }
         }
-
-        remove(peripheral)
     }
 
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        if let chrs = service.characteristics {
-            for chr in chrs {
-                if chr.UUID == CHARACT {
-                    for i in 0..<remotes.count {
-                        if remotes[i].peripheral == peripheral {
-                            remotes[i].characteristic = chr
+        if let _ = service.findCharacteristic(CHARACT) {
+            let i = peripherals.indexOf(peripheral)!
+            let c = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 1))
 
-                            if let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 1)) {
-                                UIView.animateWithDuration(0.3, animations: {
-                                    (cell.viewWithTag(1)! as! UILabel).enabled = true
-                                    cell.viewWithTag(2)!.alpha = 0.0
-                                    cell.userInteractionEnabled = true
-                                })
-                            }
+            UIView.animateWithDuration(0.3, animations: {
+                let l = c?.viewWithTag(1) as! UILabel?
+                l?.enabled = true
+                c?.viewWithTag(2)?.alpha = 0.0
+                c?.userInteractionEnabled = true
+            })
 
-                            return
-                        }
-                    }
-                }
-            }
+            return
         }
 
-        remove(peripheral)
+        switch peripheral.state {
+        case .Connecting: fallthrough
+        case .Connected:
+            unregister(peripheral)
+
+        default: break
+        }
     }
 
     func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
@@ -217,11 +287,11 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
     }
 
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        remove(peripheral)
+        connect(peripheral)
     }
 
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        remove(peripheral)
+        connect(peripheral)
     }
 
     override func viewDidLoad() {
@@ -230,5 +300,8 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
 
     override func viewWillDisappear(animated: Bool) {
         manager.stopScan()
+        for p in peripherals.reverse() {
+            unregister(p)
+        }
     }
 }
