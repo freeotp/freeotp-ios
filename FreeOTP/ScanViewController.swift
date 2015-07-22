@@ -59,6 +59,14 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         preview.position = CGPointMake(CGRectGetMidX(view.layer.bounds), CGRectGetMidY(view.layer.bounds))
         view.layer.addSublayer(preview)
 
+        image.layer.borderColor = UIColor.whiteColor().CGColor
+        image.layer.borderWidth = 6
+        view.addSubview(image)
+        view.addSubview(error)
+
+        activity.startAnimating()
+        view.addSubview(activity)
+
         do {
             let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
             let input = try AVCaptureDeviceInput(device: device)
@@ -74,15 +82,6 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
         preview.session.startRunning()
-
-        image.layer.borderColor = UIColor.whiteColor().CGColor
-        image.layer.borderWidth = 6
-        view.addSubview(image)
-        view.addSubview(error)
-
-        activity.startAnimating()
-        view.addSubview(activity)
-
         orient(UIApplication.sharedApplication().statusBarOrientation)
     }
 
