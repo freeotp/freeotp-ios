@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -222,9 +223,7 @@
                             </barButtonItem>
                             <barButtonItem image="qrcode.png" id="C1q-Am-S3f">
                                 <connections>
-                                    <segue destination="I3u-yW-dFr" kind="popoverPresentation" popoverAnchorBarButtonItem="C1q-Am-S3f" id="RPY-df-Zrr">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="scanClicked:" destination="mGg-KB-Kzc" id="DMH-L2-ywH"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -245,7 +244,7 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shareRow" id="Mf6-nW-1Zf">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mf6-nW-1Zf" id="KeR-bk-SlQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -288,27 +287,11 @@
                             <outlet property="delegate" destination="kIc-US-32O" id="GFx-KA-q9B"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Share Code" id="pDi-fP-bo7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLp-uv-0Pk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-211" y="-51"/>
-        </scene>
-        <!--Scan Navigation Controller-->
-        <scene sceneID="Nd6-Yb-VJR">
-            <objects>
-                <navigationController storyboardIdentifier="scanNav" id="I3u-yW-dFr" customClass="ScanNavigationController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6cg-3d-M96">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="00Q-un-TmX" kind="relationship" relationship="rootViewController" id="ETt-FD-ZZx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6XD-Xi-kqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="539" y="-741"/>
         </scene>
         <!--Select Image-->
         <scene sceneID="jAB-BM-mZQ">
@@ -892,6 +875,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="565"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="algo" destination="Wg0-RB-Fzu" id="aMX-8s-l2s"/>
@@ -926,14 +910,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yh4-V8-vh6">
-                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <rect key="frame" x="60" y="60" width="480" height="480"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yh4-V8-vh6" secondAttribute="height" multiplier="1:1" id="yK3-lq-4nZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid token!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-XG-W6J">
-                                <rect key="frame" x="249" y="383.5" width="102" height="21.5"/>
+                                <rect key="frame" x="249" y="503" width="102" height="21.5"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="4r9-iZ-3ZU"/>
@@ -954,7 +938,7 @@
                                 </variation>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="LOj-V1-w8g">
-                                <rect key="frame" x="384" y="384" width="20" height="20"/>
+                                <rect key="frame" x="504" y="504" width="20" height="20"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LOj-V1-w8g" secondAttribute="height" multiplier="1:1" id="UKW-0z-4F9"/>
@@ -967,6 +951,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="centerY" secondItem="LOj-V1-w8g" secondAttribute="centerY" id="0k8-Nt-hSA"/>
+                            <constraint firstItem="yh4-V8-vh6" firstAttribute="width" secondItem="kQC-oP-FPa" secondAttribute="width" multiplier="0.8" priority="750" id="15T-nA-Vks"/>
                             <constraint firstItem="LOj-V1-w8g" firstAttribute="bottom" secondItem="yh4-V8-vh6" secondAttribute="bottom" constant="-16" id="4SE-GS-ZxJ"/>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="centerX" secondItem="yh4-V8-vh6" secondAttribute="centerX" id="9CU-1T-7DE"/>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="bottom" secondItem="yh4-V8-vh6" secondAttribute="bottom" id="DMb-zO-8qE"/>
@@ -974,14 +959,18 @@
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="trailing" secondItem="LOj-V1-w8g" secondAttribute="trailing" id="NMJ-V1-7CY"/>
                             <constraint firstItem="yh4-V8-vh6" firstAttribute="centerY" secondItem="kQC-oP-FPa" secondAttribute="centerY" id="XB4-dj-PoX"/>
                             <constraint firstItem="yh4-V8-vh6" firstAttribute="width" secondItem="kQC-oP-FPa" secondAttribute="height" multiplier="2:5" id="YCg-lS-8Wu"/>
+                            <constraint firstItem="yh4-V8-vh6" firstAttribute="height" secondItem="kQC-oP-FPa" secondAttribute="height" multiplier="0.8" priority="750" id="cUm-mP-1fm"/>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="leading" secondItem="yh4-V8-vh6" secondAttribute="leading" id="gp7-Ba-b0r"/>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="centerX" secondItem="yh4-V8-vh6" secondAttribute="centerX" id="ojh-Eq-AQ8"/>
                             <constraint firstItem="NRa-XG-W6J" firstAttribute="trailing" secondItem="yh4-V8-vh6" secondAttribute="trailing" id="tjk-43-Pb5"/>
                             <constraint firstItem="yh4-V8-vh6" firstAttribute="centerX" secondItem="kQC-oP-FPa" secondAttribute="centerX" id="u9Q-Ly-AF0"/>
                             <constraint firstItem="LOj-V1-w8g" firstAttribute="trailing" secondItem="yh4-V8-vh6" secondAttribute="trailing" constant="-16" id="xUF-07-byF"/>
+                            <constraint firstItem="yh4-V8-vh6" firstAttribute="width" relation="lessThanOrEqual" secondItem="kQC-oP-FPa" secondAttribute="width" multiplier="0.8" id="yU4-q3-TOy"/>
+                            <constraint firstItem="yh4-V8-vh6" firstAttribute="height" relation="lessThanOrEqual" secondItem="kQC-oP-FPa" secondAttribute="height" multiplier="0.8" id="yqc-BY-x96"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="YCg-lS-8Wu"/>
                                 <exclude reference="DMb-zO-8qE"/>
                                 <exclude reference="IgQ-Ni-2IH"/>
                                 <exclude reference="NMJ-V1-7CY"/>
@@ -991,13 +980,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan QR Code" id="NlQ-ih-McR">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tgD-KK-GQa">
-                            <connections>
-                                <segue destination="jKl-y4-yxJ" kind="unwind" unwindAction="unwindToTokens:" id="UiJ-ut-txO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Scan QR Code" id="NlQ-ih-McR"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="565"/>
                     <connections>
                         <outlet property="activity" destination="LOj-V1-w8g" id="QKI-eg-plA"/>
                         <outlet property="error" destination="NRa-XG-W6J" id="ffY-ki-sFZ"/>
@@ -1005,7 +989,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97M-kh-txV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="jKl-y4-yxJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1241" y="-741"/>
         </scene>
@@ -1266,6 +1249,44 @@
                 <exit id="0yx-8h-p4r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1241" y="-51"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5Gd-N1-mCh">
+            <objects>
+                <navigationController storyboardIdentifier="scanNav" automaticallyAdjustsScrollViewInsets="NO" id="9fw-0g-bOW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pYc-4d-D3C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="00Q-un-TmX" kind="relationship" relationship="rootViewController" id="CYa-rd-r6i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fkf-1J-FoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="539" y="-741"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cTz-Fm-jUN">
+            <objects>
+                <navigationController storyboardIdentifier="shareNav" automaticallyAdjustsScrollViewInsets="NO" id="R5J-QJ-ekx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nOI-pk-hyc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kIc-US-32O" kind="relationship" relationship="rootViewController" id="H21-gG-VBs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jLh-3p-Rio" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-917" y="-51"/>
         </scene>
     </scenes>
     <resources>

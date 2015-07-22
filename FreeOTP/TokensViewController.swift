@@ -64,33 +64,25 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     private func next<T: UIViewController>(name: String, sender: AnyObject, dir: UIPopoverArrowDirection) -> T {
         switch UI_USER_INTERFACE_IDIOM() {
         case .Pad:
-            var vc: UIViewController? = nil
+            let vc = storyboard!.instantiateViewControllerWithIdentifier(name + "Nav") as! UINavigationController
 
-            if let nc = storyboard?.instantiateViewControllerWithIdentifier(name + "Nav") as! UINavigationController? {
-                vc = nc
-            } else {
-                vc = storyboard?.instantiateViewControllerWithIdentifier(name)
-            }
+            vc.modalPresentationStyle = .Popover
+            vc.popoverPresentationController?.delegate = self
+            vc.popoverPresentationController?.permittedArrowDirections = dir
 
-            vc?.modalPresentationStyle = .Popover
-            vc?.popoverPresentationController?.delegate = self
-            vc?.popoverPresentationController?.permittedArrowDirections = dir
-            if sender is UIView {
-                let v = sender as! UIView
-                vc?.popoverPresentationController?.sourceView = v
-                vc?.popoverPresentationController?.sourceRect = v.bounds
-            } else {
-                vc?.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
-            }
-
-            presentViewController(vc!, animated: true, completion: nil)
-
-            switch vc! {
-            case let nc as UINavigationController:
-                return nc.topViewController! as! T
+            switch sender {
+            case let b as UIBarButtonItem:
+                vc.popoverPresentationController?.barButtonItem = b
+            case let v as UIView:
+                vc.popoverPresentationController?.sourceView = v
+                vc.popoverPresentationController?.sourceRect = v.bounds
             default:
-                return vc! as! T
+                break
             }
+
+            presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+            presentViewController(vc, animated: true, completion: nil)
+            return vc.topViewController! as! T
 
         default:
             let ret = storyboard?.instantiateViewControllerWithIdentifier(name) as! T
@@ -100,7 +92,19 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     }
 
     @IBAction func addClicked(sender: UIBarButtonItem) {
-        self.next("add", sender: sender, dir: [.Up, .Down])
+        let vc: UIViewController = self.next("add", sender: sender, dir: [.Up, .Down])
+        vc.preferredContentSize = CGSize(
+            width: UIScreen.mainScreen().bounds.width / 2,
+            height: vc.preferredContentSize.height
+        )
+    }
+
+    @IBAction func scanClicked(sender: UIBarButtonItem) {
+        let vc: UIViewController = self.next("scan", sender: sender, dir: [.Up, .Down])
+        vc.preferredContentSize = CGSize(
+            width: UIScreen.mainScreen().bounds.width / 2,
+            height: vc.preferredContentSize.height
+        )
     }
 
     @IBAction func editClicked(sender: TokenButton) {

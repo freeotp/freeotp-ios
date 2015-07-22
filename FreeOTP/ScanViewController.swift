@@ -31,10 +31,31 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var error: UILabel!
 
+    private func orient(toInterfaceOrientation: UIInterfaceOrientation) {
+        preview.frame = view.bounds
+
+        switch toInterfaceOrientation {
+        case .Portrait:
+            preview.connection.videoOrientation = .Portrait
+        case .PortraitUpsideDown:
+            preview.connection.videoOrientation = .PortraitUpsideDown
+        case .LandscapeLeft:
+            preview.connection.videoOrientation = .LandscapeLeft
+        case .LandscapeRight:
+            preview.connection.videoOrientation = .LandscapeRight
+        case .Unknown:
+            break
+        }
+    }
+
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        UIView.animateWithDuration(duration, animations: { self.orient(toInterfaceOrientation) })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        preview.frame = UIScreen.mainScreen().bounds
+        preview.videoGravity = AVLayerVideoGravityResizeAspectFill
         preview.position = CGPointMake(CGRectGetMidX(view.layer.bounds), CGRectGetMidY(view.layer.bounds))
         view.layer.addSublayer(preview)
 
@@ -61,6 +82,8 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
 
         activity.startAnimating()
         view.addSubview(activity)
+
+        orient(UIApplication.sharedApplication().statusBarOrientation)
     }
 
     override func viewDidAppear(animated: Bool) {

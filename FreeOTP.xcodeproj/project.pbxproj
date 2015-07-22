@@ -16,7 +16,6 @@
 		F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F51B56A54B00482D15 /* ImageDownloader.swift */; };
 		F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F61B56A54B00482D15 /* ImageViewController.swift */; };
 		F10D89071B56A54B00482D15 /* OTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F71B56A54B00482D15 /* OTP.swift */; };
-		F10D89081B56A54B00482D15 /* ScanNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */; };
 		F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F91B56A54B00482D15 /* ScanViewController.swift */; };
 		F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FA1B56A54B00482D15 /* ShareViewController.swift */; };
 		F10D890B1B56A54B00482D15 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FB1B56A54B00482D15 /* Token.swift */; };
@@ -87,7 +86,6 @@
 		F10D88F51B56A54B00482D15 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		F10D88F61B56A54B00482D15 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		F10D88F71B56A54B00482D15 /* OTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTP.swift; sourceTree = "<group>"; };
-		F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanNavigationController.swift; sourceTree = "<group>"; };
 		F10D88F91B56A54B00482D15 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		F10D88FA1B56A54B00482D15 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		F10D88FB1B56A54B00482D15 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 				F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */,
 				F10D88F31B56A54B00482D15 /* EditViewController.swift */,
 				F10D88F61B56A54B00482D15 /* ImageViewController.swift */,
-				F10D88F81B56A54B00482D15 /* ScanNavigationController.swift */,
 				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
 				F10D88FA1B56A54B00482D15 /* ShareViewController.swift */,
 				F10D88FF1B56A54B00482D15 /* TokensViewController.swift */,
@@ -364,7 +361,6 @@
 				F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */,
 				F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */,
 				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
-				F10D89081B56A54B00482D15 /* ScanNavigationController.swift in Sources */,
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
 				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
 				F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */,
