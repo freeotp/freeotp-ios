@@ -24,9 +24,9 @@ import XCTest
 
 class Storage: XCTestCase {
     func test() {
-        let def = NSUserDefaults.standardUserDefaults()
-        def.setObject(["baz:bar"] as [String], forKey: "tokenOrder")
-        def.setObject("otpauth://hotp/foo:bar?secret=JBSWY3DPEHPK3PXP&issuer=baz", forKey: "baz:bar")
+        let def = UserDefaults.standard
+        def.set(["baz:bar"] as [String], forKey: "tokenOrder")
+        def.set("otpauth://hotp/foo:bar?secret=JBSWY3DPEHPK3PXP&issuer=baz", forKey: "baz:bar")
         def.synchronize()
 
         let ts = TokenStore()
@@ -38,7 +38,7 @@ class Storage: XCTestCase {
         XCTAssertEqual(token!.label, "bar")
         ts.erase(token: token!)
 
-        XCTAssertNil(def.stringArrayForKey("tokenOrder"))
-        XCTAssertNil(def.stringForKey("baz:bar"))
+        XCTAssertNil(def.stringArray(forKey: "tokenOrder"))
+        XCTAssertNil(def.string(forKey: "baz:bar"))
     }
 }
