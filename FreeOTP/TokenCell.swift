@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 
 class TokenCell : UICollectionViewCell {
-    private var timer: NSTimer? = nil
+    fileprivate var timer: Timer? = nil
 
     @IBOutlet weak var issuer: UILabel!
     @IBOutlet weak var label: UILabel!
@@ -37,7 +37,7 @@ class TokenCell : UICollectionViewCell {
     var state: [Token.Code]? {
         didSet {
             if state == nil || state?.count == 0 {
-                UIView.animateWithDuration(0.5,
+                UIView.animate(withDuration: 0.5,
                     animations: {
                         self.issuer.alpha = 1.0
                         self.label.alpha = 1.0
@@ -55,15 +55,15 @@ class TokenCell : UICollectionViewCell {
                     })
 
                 timer?.invalidate()
-            } else if timer == nil || !timer!.valid {
-                timer = NSTimer.scheduledTimerWithTimeInterval(0.1,
+            } else if timer == nil || !timer!.isValid {
+                timer = Timer.scheduledTimer(timeInterval: 0.1,
                     target: self,
-                    selector: Selector("timerCallback:"),
+                    selector: #selector(TokenCell.timerCallback(_:)),
                     userInfo: nil,
                     repeats: true)
 
                 // Setup the UI for progress.
-                UIView.animateWithDuration(0.5, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.issuer.alpha = 0.0
                     self.label.alpha = 0.0
                     self.inner.alpha = 1.0
@@ -78,19 +78,19 @@ class TokenCell : UICollectionViewCell {
         }
     }
 
-    private func progress(start: NSDate, _ point: NSDate, _ end: NSDate) -> CGFloat {
+    fileprivate func progress(_ start: Date, _ point: Date, _ end: Date) -> CGFloat {
         let s = start.timeIntervalSince1970
         let p = point.timeIntervalSince1970
         let e = end.timeIntervalSince1970
         return 1.0 - CGFloat((p - s) / (e - s))
     }
 
-    func timerCallback(timer: NSTimer) {
+    func timerCallback(_ timer: Timer) {
         let frst: Token.Code = state!.first!
         let last: Token.Code = state!.last!
         var curr: Token.Code? = nil
 
-        let now = NSDate()
+        let now = Date()
         for c in state == nil ? [] : state! {
             if c.from.timeIntervalSince1970 <= now.timeIntervalSince1970
                 && now.timeIntervalSince1970 < c.to.timeIntervalSince1970 {
@@ -102,18 +102,18 @@ class TokenCell : UICollectionViewCell {
         if curr == nil {
             self.state = nil;
         } else {
-            inner.progress = progress(curr!.from, now, curr!.to)
-            outer.progress = progress(frst.from, now, last.to)
+            inner.progress = progress(curr!.from as Date, now, curr!.to as Date)
+            outer.progress = progress(frst.from as Date, now, last.to as Date)
             code.text = curr!.value;
         }
     }
 
     override func updateConstraints() {
         let base: CGFloat = frame.size.height / 8 * 1.5
-        issuer.font = issuer.font.fontWithSize(base * 0.85)
-        label.font = label.font.fontWithSize(base * 0.80)
-        edit.titleLabel?.font = edit.titleLabel?.font.fontWithSize(base * 0.80)
-        share.titleLabel?.font = share.titleLabel?.font.fontWithSize(base * 0.80)
+        issuer.font = issuer.font.withSize(base * 0.85)
+        label.font = label.font.withSize(base * 0.80)
+        edit.titleLabel?.font = edit.titleLabel?.font.withSize(base * 0.80)
+        share.titleLabel?.font = share.titleLabel?.font.withSize(base * 0.80)
         super.updateConstraints()
     }
 }

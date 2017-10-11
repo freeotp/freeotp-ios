@@ -31,35 +31,35 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var error: UILabel!
 
-    private func orient(toInterfaceOrientation: UIInterfaceOrientation) {
+    fileprivate func orient(_ toInterfaceOrientation: UIInterfaceOrientation) {
         preview.frame = view.bounds
 
         switch toInterfaceOrientation {
-        case .Portrait:
-            preview.connection.videoOrientation = .Portrait
-        case .PortraitUpsideDown:
-            preview.connection.videoOrientation = .PortraitUpsideDown
-        case .LandscapeLeft:
-            preview.connection.videoOrientation = .LandscapeLeft
-        case .LandscapeRight:
-            preview.connection.videoOrientation = .LandscapeRight
-        case .Unknown:
+        case .portrait:
+            preview.connection.videoOrientation = .portrait
+        case .portraitUpsideDown:
+            preview.connection.videoOrientation = .portraitUpsideDown
+        case .landscapeLeft:
+            preview.connection.videoOrientation = .landscapeLeft
+        case .landscapeRight:
+            preview.connection.videoOrientation = .landscapeRight
+        case .unknown:
             break
         }
     }
 
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        UIView.animateWithDuration(duration, animations: { self.orient(toInterfaceOrientation) })
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        UIView.animate(withDuration: duration, animations: { self.orient(toInterfaceOrientation) })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         preview.videoGravity = AVLayerVideoGravityResizeAspectFill
-        preview.position = CGPointMake(CGRectGetMidX(view.layer.bounds), CGRectGetMidY(view.layer.bounds))
+        preview.position = CGPoint(x: view.layer.bounds.midX, y: view.layer.bounds.midY)
         view.layer.addSublayer(preview)
 
-        image.layer.borderColor = UIColor.whiteColor().CGColor
+        image.layer.borderColor = UIColor.white.cgColor
         image.layer.borderWidth = 6
         view.addSubview(image)
         view.addSubview(error)
@@ -68,40 +68,40 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         view.addSubview(activity)
 
         do {
-            let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
             let input = try AVCaptureDeviceInput(device: device)
             preview.session.addInput(input)
         } catch {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
             return
         }
 
         let output = AVCaptureMetadataOutput()
         preview.session.addOutput(output)
-        output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
         preview.session.startRunning()
-        orient(UIApplication.sharedApplication().statusBarOrientation)
+        orient(UIApplication.shared.statusBarOrientation)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         enabled = true
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         enabled = false
     }
 
-    private func showError(err: String) {
+    fileprivate func showError(_ err: String) {
         enabled = false
         error.text = err
-        UIView.animateWithDuration(2, animations: {
+        UIView.animate(withDuration: 2, animations: {
                 self.error.alpha = 1.0
                 self.activity.alpha = 0.0
             }, completion: {
                 (_: Bool) -> Void in
-                UIView.animateWithDuration(2, animations: {
+                UIView.animate(withDuration: 2, animations: {
                         self.error.alpha = 0.0
                         self.activity.alpha = 1.0
                     }, completion: {
@@ -113,7 +113,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         )
     }
 
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if (!enabled) {
             return
         }
@@ -124,29 +124,29 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             }
 
             let obj = metadata as! AVMetadataMachineReadableCodeObject
-            let code = preview.transformedMetadataObjectForMetadataObject(obj)
-            if (!image.frame.contains(code.bounds)) {
+            let code = preview.transformedMetadataObject(for: obj)
+            if (!image.frame.contains((code?.bounds)!)) {
                 continue
             }
 
-            if let urlc = NSURLComponents(string: obj.stringValue) {
+            if let urlc = URLComponents(string: obj.stringValue) {
                 if let token = TokenStore().add(urlc) {
                     preview.session.stopRunning()
 
                     ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
                         (image: UIImage) -> Void in
 
-                        UIView.transitionWithView(
-                            self.image,
+                        UIView.transition(
+                            with: self.image,
                             duration: 2,
-                            options: .TransitionCrossDissolve,
+                            options: .transitionCrossDissolve,
                             animations: {
                                 self.image.image = image
                                 self.activity.alpha = 0.0
                                 self.activity.stopAnimating()
                             }, completion: {
                                 (_: Bool) -> Void in
-                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
                             }
                         )
                     })

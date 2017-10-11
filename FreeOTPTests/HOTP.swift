@@ -37,19 +37,19 @@ class HOTP: XCTestCase {
             "520489"
         ]
 
-        let urlc = NSURLComponents(string: "otpauth://hotp/foo?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&algorithm=SHA1&digits=6")
+        let urlc = URLComponents(string: "otpauth://hotp/foo?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&algorithm=SHA1&digits=6")
         XCTAssertNotNil(urlc)
 
         var otp = OTP(urlc: urlc!)
         XCTAssertNotNil(otp)
 
-        let data = NSKeyedArchiver.archivedDataWithRootObject(otp!)
+        let data = NSKeyedArchiver.archivedData(withRootObject: otp!)
 
         for i in 0..<tests.count {
             XCTAssertEqual(otp!.code(Int64(i)), tests[i])
         }
 
-        otp = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? OTP
+        otp = NSKeyedUnarchiver.unarchiveObject(with: data) as? OTP
         XCTAssertNotNil(otp)
 
         for i in 0..<tests.count {

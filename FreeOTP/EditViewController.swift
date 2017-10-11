@@ -35,73 +35,73 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     @IBOutlet var lockLabel: UILabel!
     @IBOutlet var lockSwitch: UISwitch!
 
-    @IBAction func lockClicked(sender: UISwitch) {
-        token.locked = sender.on
-        sender.on = token.locked
+    @IBAction func lockClicked(_ sender: UISwitch) {
+        token.locked = sender.isOn
+        sender.isOn = token.locked
     }
 
     var token: Token!
-    private var titleBackup: String?
+    fileprivate var titleBackup: String?
 
-    @IBAction func trashClicked(sender: UIBarButtonItem) {
+    @IBAction func trashClicked(_ sender: UIBarButtonItem) {
         titleBackup = self.navigationItem.title
         navigationItem.title = ""
 
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.navigationItem.rightBarButtonItems = [self.yes, self.no]
 
-            self.issuer.enabled = false
-            self.label.enabled = false
-            self.image.enabled = false
+            self.issuer.isEnabled = false
+            self.label.isEnabled = false
+            self.image.isEnabled = false
         }, completion: {
             (animated: Bool) -> Void in
             self.navigationItem.title = "Delete?"
         })
     }
 
-    @IBAction func noClicked(sender: UIBarButtonItem) {
+    @IBAction func noClicked(_ sender: UIBarButtonItem) {
         navigationItem.title = ""
-        issuer.enabled = true
-        label.enabled = true
-        image.enabled = PHPhotoLibrary.authorizationStatus() == .Authorized
+        issuer.isEnabled = true
+        label.isEnabled = true
+        image.isEnabled = PHPhotoLibrary.authorizationStatus() == .authorized
 
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.navigationItem.rightBarButtonItems = [self.reset, self.trash]
         }, completion: {
             (animated: Bool) -> Void in
             self.navigationItem.title = self.titleBackup
-            self.textField(self.issuer, shouldChangeCharactersInRange: NSRange(), replacementString: "")
+            self.textField(self.issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
         })
     }
 
-    @IBAction func resetClicked(sender: UIBarButtonItem) {
+    @IBAction func resetClicked(_ sender: UIBarButtonItem) {
         token.issuer = nil
         token.label = nil
         token.image = nil
         token2UI()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         let locking: Bool = Token.store.lockingSupported
-        lockLabel.enabled = locking
-        lockSwitch.enabled = locking
-        lockSwitch.on = token.locked
+        lockLabel.isEnabled = locking
+        lockSwitch.isEnabled = locking
+        lockSwitch.isOn = token.locked
 
         switch PHPhotoLibrary.authorizationStatus() {
-        case .NotDetermined:
+        case .notDetermined:
             PHPhotoLibrary.requestAuthorization({
                 (status: PHAuthorizationStatus) -> Void in
                 // For some reason this callback doesn't appear to fire on the main thread.
                 // So we will dispatch our updates to the main thread instead.
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.image.enabled = self.issuer.enabled && status == .Authorized
+                DispatchQueue.main.async(execute: {
+                    self.image.isEnabled = self.issuer.isEnabled && status == .authorized
                 })
             })
 
-        case .Authorized:
-            image.enabled = true
+        case .authorized:
+            image.isEnabled = true
 
         default:
             break
@@ -111,23 +111,23 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         token2UI()
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if let t = token {
             Token.store.save(t)
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if sender === yes {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sender = sender as? UIBarButtonItem, sender === yes {
             TokenStore().erase(token: token)
             token = nil
-        } else if sender === image {
-            (segue.destinationViewController as! ImageViewController).token = token
+        } else if let sender = sender as? UIBarButtonItem, sender === image {
+            (segue.destination as! ImageViewController).token = token
         }
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let str = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+    @discardableResult func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let str = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 
         let diss = def("issuer") as! String!
         let dlab = def("label") as! String!
@@ -136,10 +136,10 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         switch textField {
         case self.issuer:
             token.issuer = str
-            reset.enabled = diss != str || dlab != label.text || dimg != token.image
+            reset.isEnabled = diss != str || dlab != label.text || dimg != token.image
         case self.label:
             token.label = str
-            reset.enabled = diss != issuer.text || dlab != str || dimg != token.image
+            reset.isEnabled = diss != issuer.text || dlab != str || dimg != token.image
         default:
             return false
         }
@@ -147,25 +147,25 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         return true
     }
 
-    private func token2UI() {
+    fileprivate func token2UI() {
         issuer.text = token?.issuer
         label.text = token?.label
 
         ImageDownloader(image.bounds.size).fromURI(token?.image, completion: {
             (image: UIImage) -> Void in
-            UIView.animateWithDuration(0.3, animations: {
-                self.image.setImage(image, forState: .Normal)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.image.setImage(image, for: UIControlState())
             })
         })
 
-        textField(issuer, shouldChangeCharactersInRange: NSRange(), replacementString: "")
+        textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
     }
 
-    private func def(name: String) -> AnyObject? {
-        let prop = token.valueForKey(name)
+    fileprivate func def(_ name: String) -> AnyObject? {
+        let prop = token.value(forKey: name)
         token.setValue(nil, forKey: name)
-        let dflt = token.valueForKey(name)
+        let dflt = token.value(forKey: name)
         token.setValue(prop, forKey: name)
-        return dflt
+        return dflt as AnyObject
     }
 }

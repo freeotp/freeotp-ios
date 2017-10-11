@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 
 extension UICollectionViewFlowLayout {
-    func columnWidth(collectionView: UICollectionView, numCols: CGFloat) -> CGFloat {
+    func columnWidth(_ collectionView: UICollectionView, numCols: CGFloat) -> CGFloat {
         let ispace = minimumInteritemSpacing * (numCols - 1)
         let ospace = sectionInset.left + sectionInset.right
         return (collectionView.frame.size.width - ispace - ospace) / numCols

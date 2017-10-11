@@ -21,8 +21,8 @@
 import Foundation
 import Security
 
-public class TokenStore : NSObject {
-    private final class TokenOrder : NSObject, KeychainStorable {
+open class TokenStore : NSObject {
+    fileprivate final class TokenOrder : NSObject, KeychainStorable {
         static let ACCOUNT = "09E969FC-53C3-4BE2-B653-4802949A26A7"
         static let store = KeychainStore<TokenOrder>()
         let account = ACCOUNT
@@ -34,15 +34,15 @@ public class TokenStore : NSObject {
         }
 
         @objc init?(coder aDecoder: NSCoder) {
-            array = aDecoder.decodeObjectForKey("array") as! NSMutableArray
+            array = aDecoder.decodeObject(forKey: "array") as! NSMutableArray
         }
 
-        @objc private func encodeWithCoder(aCoder: NSCoder) {
-            aCoder.encodeObject(array, forKey: "array")
+        @objc fileprivate func encode(with aCoder: NSCoder) {
+            aCoder.encode(array, forKey: "array")
         }
     }
 
-    public var count: Int {
+    open var count: Int {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
             return ord.array.count
         }
@@ -54,15 +54,15 @@ public class TokenStore : NSObject {
         super.init()
 
         // Migrate UserDefaults tokens to Keyring tokens
-        let def = NSUserDefaults.standardUserDefaults()
-        if var keys = def.stringArrayForKey("tokenOrder") {
+        let def = UserDefaults.standard
+        if var keys = def.stringArray(forKey: "tokenOrder") {
             var remove = [String]()
 
-            for key in keys.reverse() {
-                if let url = def.stringForKey(key) {
-                    if let urlc = NSURLComponents(string: url) {
+            for key in keys.reversed() {
+                if let url = def.string(forKey: key) {
+                    if let urlc = URLComponents(string: url) {
                         if add(urlc) != nil {
-                            def.removeObjectForKey(key)
+                            def.removeObject(forKey: key)
                             remove.append(key)
                         }
                     }
@@ -70,16 +70,16 @@ public class TokenStore : NSObject {
             }
 
             for key in remove {
-                keys.removeAtIndex(keys.indexOf(key)!)
+                keys.remove(at: keys.index(of: key)!)
             }
 
             if keys.count == 0 {
-                def.removeObjectForKey("tokenOrder")
+                def.removeObject(forKey: "tokenOrder")
             }
         }
     }
 
-    public func add(urlc: NSURLComponents) -> Token? {
+    @discardableResult open func add(_ urlc: URLComponents) -> Token? {
         var ord: TokenOrder
         if let a = TokenOrder.store.load(TokenOrder.ACCOUNT) {
             ord = a
@@ -92,7 +92,7 @@ public class TokenStore : NSObject {
 
         if let otp = OTP(urlc: urlc) {
             if let token = Token(otp: otp, urlc: urlc) {
-                ord.array.insertObject(otp.account, atIndex: 0)
+                ord.array.insert(otp.account, at: 0)
                 if OTP.store.add(otp, locked: token.locked) {
                     if Token.store.add(token) {
                         if TokenOrder.store.save(ord) {
@@ -111,10 +111,10 @@ public class TokenStore : NSObject {
         return nil
     }
 
-    public func erase(index index: Int) -> Bool {
+    @discardableResult open func erase(index: Int) -> Bool {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let account = ord.array.objectAtIndex(index) as? String {
-                ord.array.removeObjectAtIndex(index)
+            if let account = ord.array.object(at: index) as? String {
+                ord.array.removeObject(at: index)
                 if TokenOrder.store.save(ord) {
                     Token.store.erase(account)
                     OTP.store.erase(account)
@@ -126,17 +126,17 @@ public class TokenStore : NSObject {
         return false
     }
 
-    public func erase(token token: Token) -> Bool {
+    @discardableResult open func erase(token: Token) -> Bool {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            return erase(index: ord.array.indexOfObject(token.account))
+            return erase(index: ord.array.index(of: token.account))
         }
 
         return false
     }
 
-    public func load(index: Int) -> Token? {
+    open func load(_ index: Int) -> Token? {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let account = ord.array.objectAtIndex(index) as? String {
+            if let account = ord.array.object(at: index) as? String {
                 return Token.store.load(account)
             }
         }
@@ -144,11 +144,11 @@ public class TokenStore : NSObject {
         return nil
     }
 
-    public func move(from: Int, to: Int) -> Bool {
+    @discardableResult open func move(_ from: Int, to: Int) -> Bool {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let id = ord.array.objectAtIndex(from) as? String {
-                ord.array.removeObjectAtIndex(from)
-                ord.array.insertObject(id, atIndex: to)
+            if let id = ord.array.object(at: from) as? String {
+                ord.array.removeObject(at: from)
+                ord.array.insert(id, at: to)
 
                 return TokenOrder.store.save(ord)
             }
