@@ -85,7 +85,7 @@ class TokenCell : UICollectionViewCell {
         return 1.0 - CGFloat((p - s) / (e - s))
     }
 
-    func timerCallback(_ timer: Timer) {
+    @objc func timerCallback(_ timer: Timer) {
         let frst: Token.Code = state!.first!
         let last: Token.Code = state!.last!
         var curr: Token.Code? = nil

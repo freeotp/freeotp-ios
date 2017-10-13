@@ -111,7 +111,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         }
     }
 
-    func timeout(_ timer: Timer) {
+    @objc func timeout(_ timer: Timer) {
         if let p = timer.userInfo as! CBPeripheral? {
             if p.findService(SERVICE)?.findCharacteristic(CHARACT) == nil {
                 switch p.state {

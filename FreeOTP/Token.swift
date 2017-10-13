@@ -131,7 +131,7 @@ public final class Token : NSObject, KeychainStorable {
         // Normalize path
         var path = urlc.path
         while path.hasPrefix("/") {
-            path = path.substring(from: path.index(path.startIndex, offsetBy: 1))
+            path = String(path[path.index(path.startIndex, offsetBy: 1)...])
         }
         if path == "" {
             return nil

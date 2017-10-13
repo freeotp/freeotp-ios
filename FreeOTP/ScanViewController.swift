@@ -36,13 +36,13 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
 
         switch toInterfaceOrientation {
         case .portrait:
-            preview.connection.videoOrientation = .portrait
+            preview.connection?.videoOrientation = .portrait
         case .portraitUpsideDown:
-            preview.connection.videoOrientation = .portraitUpsideDown
+            preview.connection?.videoOrientation = .portraitUpsideDown
         case .landscapeLeft:
-            preview.connection.videoOrientation = .landscapeLeft
+            preview.connection?.videoOrientation = .landscapeLeft
         case .landscapeRight:
-            preview.connection.videoOrientation = .landscapeRight
+            preview.connection?.videoOrientation = .landscapeRight
         case .unknown:
             break
         }
@@ -55,7 +55,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        preview.videoGravity = AVLayerVideoGravityResizeAspectFill
+        preview.videoGravity = AVLayerVideoGravity.resizeAspectFill
         preview.position = CGPoint(x: view.layer.bounds.midX, y: view.layer.bounds.midY)
         view.layer.addSublayer(preview)
 
@@ -68,20 +68,20 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         view.addSubview(activity)
 
         do {
-            let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-            let input = try AVCaptureDeviceInput(device: device)
-            preview.session.addInput(input)
+            let device = AVCaptureDevice.default(for: AVMediaType.video)
+            let input = try AVCaptureDeviceInput(device: device!)
+            preview.session!.addInput(input)
         } catch {
             dismiss(animated: true, completion: nil)
             return
         }
 
         let output = AVCaptureMetadataOutput()
-        preview.session.addOutput(output)
+        preview.session!.addOutput(output)
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
 
-        preview.session.startRunning()
+        preview.session!.startRunning()
         orient(UIApplication.shared.statusBarOrientation)
     }
 
@@ -113,13 +113,12 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         )
     }
 
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if (!enabled) {
             return
         }
-
-        for metadata in metadataObjects as! [AVMetadataObject] {
-            if metadata.type != AVMetadataObjectTypeQRCode {
+        for metadata in metadataObjects {
+            if metadata.type != AVMetadataObject.ObjectType.qr {
                 continue
             }
 
@@ -129,9 +128,9 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                 continue
             }
 
-            if let urlc = URLComponents(string: obj.stringValue) {
+            if let urlc = URLComponents(string: obj.stringValue!) {
                 if let token = TokenStore().add(urlc) {
-                    preview.session.stopRunning()
+                    preview.session?.stopRunning()
 
                     ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
                         (image: UIImage) -> Void in
