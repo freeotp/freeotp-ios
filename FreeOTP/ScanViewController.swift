@@ -132,7 +132,6 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             if let urlc = URLComponents(string: obj.stringValue!) {
                 if let token = TokenStore().add(urlc) {
                     preview.session?.stopRunning()
-
                     ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
                         (image: UIImage) -> Void in
 
