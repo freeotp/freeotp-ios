@@ -58,7 +58,6 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         preview.videoGravity = AVLayerVideoGravity.resizeAspectFill
         preview.position = CGPoint(x: view.layer.bounds.midX, y: view.layer.bounds.midY)
         view.layer.addSublayer(preview)
-
         
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.borderWidth = 6
@@ -115,8 +114,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         )
     }
 
-    func metadataOutput(captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        print("Got a callback!")
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if (!enabled) {
             return
         }
