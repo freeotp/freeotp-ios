@@ -22,7 +22,7 @@ import Foundation
 import Security
 
 open class TokenStore : NSObject {
-    fileprivate final class TokenOrder : NSObject, KeychainStorable {
+    @objc(_TtCC7FreeOTP10TokenStoreP33_D70905720516097C89A8E50A678ECB1610TokenOrder)fileprivate final class TokenOrder : NSObject, KeychainStorable {
         static let ACCOUNT = "09E969FC-53C3-4BE2-B653-4802949A26A7"
         static let store = KeychainStore<TokenOrder>()
         let account = ACCOUNT

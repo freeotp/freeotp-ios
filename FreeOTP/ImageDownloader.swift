@@ -101,7 +101,7 @@ class ImageDownloader : NSObject {
         if uri == nil { return completion(DEFAULT) }
 
         if uri!.hasPrefix("phasset:") {
-            let id = uri!.substring(from: uri!.index(uri!.startIndex, offsetBy: "phasset:".characters.count))
+            let id = String(uri![uri!.index(uri!.startIndex, offsetBy: "phasset:".characters.count)...])
             let rslt = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil)
             if rslt.count > 0 {
                 return fromPHAsset(rslt[0], completion: completion)

@@ -147,7 +147,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: width, height: width / 3.25);
     }
 
-    func handleLongPress(_ gestureRecognizer:UIGestureRecognizer) {
+    @objc func handleLongPress(_ gestureRecognizer:UIGestureRecognizer) {
         // Get the current index path.
         let p = gestureRecognizer.location(in: collectionView)
         let currPath = collectionView?.indexPathForItem(at: p)
