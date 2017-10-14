@@ -21,8 +21,8 @@
 import Foundation
 import UIKit
 
-class CircleProgressView : UIView {
-    var hollow: Bool = true {
+@IBDesignable class CircleProgressView : UIView {
+    @IBInspectable var hollow: Bool = true {
         didSet {
             setNeedsDisplay()
         }
@@ -34,7 +34,7 @@ class CircleProgressView : UIView {
         }
     }
 
-    var threshold: CGFloat = 0.0 {
+    @IBInspectable var threshold: CGFloat = 0.0 {
         didSet {
             setNeedsDisplay()
         }
