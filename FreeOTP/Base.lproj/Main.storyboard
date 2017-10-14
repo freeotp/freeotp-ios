@@ -103,7 +103,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-M9-jNR" customClass="TokenButton" customModule="FreeOTP__dev_" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="63" width="30" height="29"/>
+                                            <rect key="frame" x="8" y="52" width="60" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Edit"/>
                                             <connections>
@@ -111,7 +111,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-5Q-RhV" customClass="TokenButton" customModule="FreeOTP__dev_" customModuleProvider="target">
-                                            <rect key="frame" x="46" y="63" width="38" height="29"/>
+                                            <rect key="frame" x="86" y="52" width="60" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Share"/>
                                             <connections>
@@ -225,7 +225,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aiw-oo-lZq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-211" y="-741"/>
+            <point key="canvasLocation" x="-212" y="-741.67916041979015"/>
         </scene>
         <!--Share Code-->
         <scene sceneID="PTS-3e-qXg">
@@ -993,9 +993,6 @@
                                                 <exclude reference="xMv-Xn-mAf"/>
                                             </mask>
                                         </variation>
-                                        <connections>
-                                            <outlet property="delegate" destination="Kag-Fb-gnf" id="dLM-Vn-qPI"/>
-                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uFU-Tg-Nfr">
                                         <rect key="frame" x="0.0" y="54" width="239" height="30"/>
@@ -1167,7 +1164,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="image" destination="vOL-Cd-Hdq" id="Wao-jo-vDB"/>
-                        <outlet property="issuer" destination="w73-Se-upU" id="5C6-yF-mEw"/>
+                        <outlet property="issuer" destination="w73-Se-upU" id="lWq-He-sfW"/>
                         <outlet property="label" destination="uFU-Tg-Nfr" id="RTz-yv-w0Z"/>
                         <outlet property="lockLabel" destination="TB9-S9-eyv" id="BCI-AS-BhT"/>
                         <outlet property="lockSwitch" destination="8Z6-XV-Pjy" id="RAX-EJ-HUy"/>
