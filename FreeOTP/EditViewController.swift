@@ -158,7 +158,8 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
             })
         })
 
-        textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
+        // Why does this cause a runtime error, and what is this even for?
+//        textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
     }
 
     fileprivate func def(_ name: String) -> AnyObject? {
