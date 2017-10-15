@@ -166,6 +166,6 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         token.setValue(nil, forKey: name)
         let dflt = token.value(forKey: name)
         token.setValue(prop, forKey: name)
-        return dflt as AnyObject
+        return dflt as AnyObject?
     }
 }
