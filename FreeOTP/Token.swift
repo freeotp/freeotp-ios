@@ -90,19 +90,19 @@ public final class Token : NSObject, KeychainStorable {
         return []
     }
 
-    public var issuer: String! = nil {
+    @objc public var issuer: String! = nil {
         didSet {
             if issuer == nil { issuer = issuerOrig }
         }
     }
 
-    public var label: String! = nil {
+    @objc public var label: String! = nil {
         didSet {
             if label == nil { label = labelOrig }
         }
     }
 
-    public var image: String? = nil {
+    @objc public var image: String? = nil {
         didSet {
             if image == nil { image = imageOrig }
         }

@@ -70,7 +70,7 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         }, completion: {
             (animated: Bool) -> Void in
             self.navigationItem.title = self.titleBackup
-            self.textField(self.issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
+//          self.textField(self.issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
         })
     }
 
@@ -121,8 +121,11 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         if let sender = sender as? UIBarButtonItem, sender === yes {
             TokenStore().erase(token: token)
             token = nil
-        } else if let sender = sender as? UIBarButtonItem, sender === image {
+        } else if let sender = sender as? UIButton, sender === image {
+            print("Should have set token here....")
             (segue.destination as! ImageViewController).token = token
+        } else {
+            print("Huh?")
         }
     }
 
@@ -158,8 +161,7 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
             })
         })
 
-        // Why does this cause a runtime error, and what is this even for?
-//        textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
+        textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
     }
 
     fileprivate func def(_ name: String) -> AnyObject? {

@@ -215,7 +215,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
             central.scanForPeripherals(withServices: [SERVICE], options: nil)
 
         default:
-            central.stopScan()
+            break
         }
     }
 
