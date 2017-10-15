@@ -122,10 +122,7 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
             TokenStore().erase(token: token)
             token = nil
         } else if let sender = sender as? UIButton, sender === image {
-            print("Should have set token here....")
             (segue.destination as! ImageViewController).token = token
-        } else {
-            print("Huh?")
         }
     }
 
