@@ -23,20 +23,20 @@ import Photos
 import UIKit
 
 class ImageViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    private var sections: PHFetchResult! = nil
-    private var items: PHFetchResult! = nil
+    fileprivate var sections: PHFetchResult<PHAsset>! = nil
+    fileprivate var items: PHFetchResult<PHAsset>! = nil
 
     var token: Token!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         collectionView?.performBatchUpdates(nil, completion: nil)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var numCols: CGFloat = 4
 
         if collectionView.frame.size.width > collectionView.frame.size.height {
@@ -44,21 +44,21 @@ class ImageViewController : UICollectionViewController, UICollectionViewDelegate
         }
 
         let width = (collectionViewLayout as! UICollectionViewFlowLayout).columnWidth(collectionView, numCols: numCols)
-        return CGSizeMake(width, width);
+        return CGSize(width: width, height: width);
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        items = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        items = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
         return items.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let a = items[indexPath.row] as! PHAsset
-        let c = collectionView.dequeueReusableCellWithReuseIdentifier("image", forIndexPath: indexPath)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let a = items[indexPath.row]
+        let c = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath)
         let i = c.viewWithTag(1) as! UIImageView
 
-        PHImageManager.defaultManager().requestImageForAsset(a, targetSize: i.bounds.size, contentMode: .AspectFill, options: nil, resultHandler: {
-            (image: UIImage?, objects: [NSObject : AnyObject]?) -> Void in
+        PHImageManager.default().requestImage(for: a, targetSize: i.bounds.size, contentMode: .aspectFill, options: nil, resultHandler: {
+            (image: UIImage?, objects: [AnyHashable: Any]?) -> Void in
             if image != nil {
                 i.image = image!
             }
@@ -67,11 +67,11 @@ class ImageViewController : UICollectionViewController, UICollectionViewDelegate
         return c
     }
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
 
-        let a = items[indexPath.row] as! PHAsset
+        let a = items[indexPath.row]
         token.image = "phasset:" + a.localIdentifier
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
 }

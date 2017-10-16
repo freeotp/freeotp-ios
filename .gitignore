@@ -1,2 +1,4 @@
 *.xcuserstate
 xcuserdata
+.DS_Store
+Carthage/*

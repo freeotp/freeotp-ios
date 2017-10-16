@@ -26,48 +26,48 @@ public protocol KeychainStorable : NSCoding {
     var account: String { get }
 }
 
-public class KeychainStore<T: KeychainStorable> {
-    private let service: String
+open class KeychainStore<T: KeychainStorable> {
+    fileprivate let service: String
 
 
-    private func query(account: String) -> [String: AnyObject] {
+    fileprivate func query(_ account: String) -> [String: AnyObject] {
         return [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: account,
-            kSecAttrService as String: service
+            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrService as String: service as AnyObject
         ]
     }
 
-    private func add(account: String, _ data: NSData, _ locked: Bool = false) -> Bool {
-        let date = NSDate()
+    fileprivate func add(_ account: String, _ data: Data, _ locked: Bool = false) -> Bool {
+        let date = Date()
         var add: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrCreationDate as String: date,
-            kSecAttrModificationDate as String: date,
-            kSecAttrAccount as String: account,
-            kSecAttrService as String: service,
-            kSecValueData as String: data,
+            kSecAttrCreationDate as String: date as AnyObject,
+            kSecAttrModificationDate as String: date as AnyObject,
+            kSecAttrAccount as String: account as AnyObject,
+            kSecAttrService as String: service as AnyObject,
+            kSecValueData as String: data as AnyObject,
         ]
 
         if locked {
             let sac = SecAccessControlCreateWithFlags(
                 kCFAllocatorDefault,
                 kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
-                .UserPresence,
+                .userPresence,
                 nil
             )
 
-            add[kSecAttrAccessControl as String] = sac.takeUnretainedValue()
+            add[kSecAttrAccessControl as String] = sac
         } else {
             add[kSecAttrAccessible as String] = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
         }
 
-        return SecItemAdd(add, nil) == errSecSuccess
+        return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
     }
 
-    public var lockingSupported: Bool {
-        let id = NSUUID().UUIDString
-        if add(id, NSData(), true) {
+    open var lockingSupported: Bool {
+        let id = UUID().uuidString
+        if add(id, Data(), true) {
             return erase(id)
         }
 
@@ -78,44 +78,44 @@ public class KeychainStore<T: KeychainStorable> {
         service = NSStringFromClass(T.self)
     }
 
-    public func add(storable: T, locked: Bool = false) -> Bool {
+    @discardableResult open func add(_ storable: T, locked: Bool = false) -> Bool {
         return add(
             storable.account,
-            NSKeyedArchiver.archivedDataWithRootObject(storable),
+            NSKeyedArchiver.archivedData(withRootObject: storable),
             locked && lockingSupported
         )
     }
 
-    public func save(storable: T) -> Bool {
+    @discardableResult open func save(_ storable: T) -> Bool {
         let update: [String: AnyObject] = [
-            kSecValueData as String: NSKeyedArchiver.archivedDataWithRootObject(storable),
-            kSecAttrModificationDate as String: NSDate(),
+            kSecValueData as String: NSKeyedArchiver.archivedData(withRootObject: storable) as AnyObject,
+            kSecAttrModificationDate as String: Date() as AnyObject,
         ]
 
-        return SecItemUpdate(query(storable.account), update) == errSecSuccess
+        return SecItemUpdate(query(storable.account) as CFDictionary, update as CFDictionary) == errSecSuccess
     }
 
-    public func load(account: String) -> T? {
+    open func load(_ account: String) -> T? {
         var dict = query(account)
-        dict[kSecReturnData as String] = true
+        dict[kSecReturnData as String] = true as AnyObject
 
-        var output: Unmanaged<AnyObject>?
-        let status = SecItemCopyMatching(dict, &output)
+        var output: AnyObject?
+        let status = SecItemCopyMatching(dict as CFDictionary, &output)
         if status == errSecSuccess {
             if let o = output {
-                let data = o.takeUnretainedValue() as! NSData
-                return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? T
+                let data = o as! Data
+                return NSKeyedUnarchiver.unarchiveObject(with: data) as? T
             }
         }
 
         return nil
     }
 
-    public func erase(storable: T) -> Bool {
+    @discardableResult open func erase(_ storable: T) -> Bool {
         return erase(storable.account)
     }
 
-    public func erase(account: String) -> Bool {
-        return SecItemDelete(query(account)) == errSecSuccess
+    @discardableResult open func erase(_ account: String) -> Bool {
+        return SecItemDelete(query(account) as CFDictionary) == errSecSuccess
     }
 }

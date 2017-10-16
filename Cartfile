@@ -1,2 +1,2 @@
-github "yageek/Base32"
-github "evgenyneu/moa" ~> 2.0
+github "norio-nomura/Base32"
+github "evgenyneu/moa" ~> 9.0
