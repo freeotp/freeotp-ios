@@ -69,9 +69,10 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
  
 
         do {
-            let device = AVCaptureDevice.default(for: AVMediaType.video)
-            let input = try AVCaptureDeviceInput(device: device!)
-            preview.session!.addInput(input)
+            if let device = AVCaptureDevice.default(for: AVMediaType.video) {
+                let input = try AVCaptureDeviceInput(device: device)
+                preview.session!.addInput(input)
+            }
         } catch {
             dismiss(animated: true, completion: nil)
             return
@@ -80,8 +81,14 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         let output = AVCaptureMetadataOutput()
         preview.session!.addOutput(output)
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-
+        if output.availableMetadataObjectTypes.contains(.qr) {
+            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+        } else {
+            showError("Device does not support scanning")
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
         preview.session!.startRunning()
         orient(UIApplication.shared.statusBarOrientation)
     }
