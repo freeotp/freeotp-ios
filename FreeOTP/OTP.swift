@@ -25,20 +25,20 @@ public final class OTP : NSObject, KeychainStorable {
     public static let store = KeychainStore<OTP>()
     public let account: String
 
-    private var algo: Int = Int(kCCHmacAlgSHA1)
-    private var size: Int = Int(CC_SHA1_DIGEST_LENGTH)
-    private var secret: NSData = NSData()
-    private var digits: Int = 6
+    fileprivate var algo: Int = Int(kCCHmacAlgSHA1)
+    fileprivate var size: Int = Int(CC_SHA1_DIGEST_LENGTH)
+    fileprivate var secret: Data = Data()
+    fileprivate var digits: Int = 6
 
-    public init?(urlc: NSURLComponents) {
-        account = NSUUID().UUIDString
+    public init?(urlc: URLComponents) {
+        account = UUID().uuidString
         super.init()
 
         if let query = urlc.queryItems {
-            for item: NSURLQueryItem in query {
+            for item: URLQueryItem in query {
                 if item.value == nil { continue }
 
-                switch item.name.lowercaseString {
+                switch item.name.lowercased() {
                 case "secret":
                     if let s = item.value!.base32DecodedData {
                         secret = s
@@ -47,7 +47,7 @@ public final class OTP : NSObject, KeychainStorable {
                     }
 
                 case "algorithm":
-                    switch item.value!.lowercaseString {
+                    switch item.value!.lowercased() {
                     case "md5":
                         algo = Int(kCCHmacAlgMD5)
                         size = Int(CC_MD5_DIGEST_LENGTH)
@@ -86,40 +86,41 @@ public final class OTP : NSObject, KeychainStorable {
             }
         }
 
-        if secret.length == 0 {
+        if secret.count == 0 {
             return nil
         }
     }
 
     @objc required public init?(coder aDecoder: NSCoder) {
-        account = aDecoder.decodeObjectForKey("account") as! String
-        secret = aDecoder.decodeObjectOfClass(NSData.self, forKey: "secret") as! NSData
-        algo = aDecoder.decodeIntegerForKey("algo")
-        size = aDecoder.decodeIntegerForKey("size")
-        digits = aDecoder.decodeIntegerForKey("digits")
+        account = aDecoder.decodeObject(forKey: "account") as! String
+        secret = aDecoder.decodeObject(forKey: "secret") as! Data
+        algo = aDecoder.decodeInteger(forKey: "algo")
+        size = aDecoder.decodeInteger(forKey: "size")
+        digits = aDecoder.decodeInteger(forKey: "digits")
         super.init()
     }
 
-    @objc public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(account, forKey: "account")
-        aCoder.encodeObject(secret, forKey: "secret")
-        aCoder.encodeInteger(algo, forKey: "algo")
-        aCoder.encodeInteger(size, forKey: "size")
-        aCoder.encodeInteger(digits, forKey: "digits")
+    @objc public func encode(with aCoder: NSCoder) {
+        aCoder.encode(account, forKey: "account")
+        aCoder.encode(secret, forKey: "secret")
+        aCoder.encode(algo, forKey: "algo")
+        aCoder.encode(size, forKey: "size")
+        aCoder.encode(digits, forKey: "digits")
     }
 
-    public func code(counter: Int64) -> String {
+    public func code(_ counter: Int64) -> String {
         // Network byte order
         var cnt = counter.bigEndian
 
         // Do the HMAC
-        var buf = [UInt8](count: size, repeatedValue: 0)
-        CCHmac(UInt32(algo), secret.bytes, secret.length, &cnt, sizeofValue(cnt), &buf)
+        var buf = [UInt8](repeating: 0, count: size)
+        CCHmac(UInt32(algo), (secret as NSData).bytes, secret.count, &cnt, MemoryLayout.size(ofValue: cnt), &buf)
 
         // Unparse UInt32
         let off = Int(buf[buf.count - 1]) & 0x0f;
-        let arr = UnsafePointer<UInt32>(UnsafePointer<UInt8>(buf).advancedBy(off))
-        let msk = arr[0].bigEndian & 0x7fffffff
+        let msk = UnsafePointer<UInt8>(buf).advanced(by: off).withMemoryRebound(to: UInt32.self, capacity: size/4) {
+            $0[0].bigEndian & 0x7fffffff
+        }
 
         // Create digits divisor
         var div: UInt32 = 1

@@ -24,48 +24,46 @@ import Photos
 import UIKit
 
 class ImageDownloader : NSObject {
-    private let DEFAULT = UIImage(contentsOfFile: NSBundle.mainBundle().pathForResource("default", ofType: "png")!)!
-    private let size: CGSize
+    fileprivate let DEFAULT = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)!
+    fileprivate let size: CGSize
 
     init(_ size: CGSize) {
         self.size = size
         super.init()
     }
 
-    func fromPHAsset(asset: PHAsset, completion: (UIImage) -> Void) {
+    func fromPHAsset(_ asset: PHAsset, completion: @escaping (UIImage) -> Void) {
         let opts: PHImageRequestOptions = PHImageRequestOptions()
-        opts.synchronous = true
+        opts.isSynchronous = true
 
-        PHImageManager.defaultManager().requestImageForAsset(
-            asset,
+        PHImageManager.default().requestImage(
+            for: asset,
             targetSize: size,
-            contentMode: PHImageContentMode.AspectFill,
+            contentMode: PHImageContentMode.aspectFill,
             options: opts,
             resultHandler: {
-                (image: UIImage?, objects: [NSObject: AnyObject]?) -> Void in
+                (image: UIImage?, objects: [AnyHashable: Any]?) -> Void in
                 completion(image == nil ? self.DEFAULT : image!)
             }
         )
     }
 
-    func fromALAsset(asset: NSURL, completion: (UIImage) -> Void) {
+    func fromALAsset(_ asset: URL, completion: @escaping (UIImage) -> Void) {
         if asset.scheme == "assets-library" {
-            let rslt = PHAsset.fetchAssetsWithALAssetURLs([asset], options: nil)
+            let rslt = PHAsset.fetchAssets(withALAssetURLs: [asset], options: nil)
             if rslt.count > 0 {
-                return fromPHAsset(rslt[0] as! PHAsset, completion: completion)
+                return fromPHAsset(rslt[0] , completion: completion)
             }
         }
 
         return completion(DEFAULT)
     }
 
-    func fromURL(url: NSURL, completion: (UIImage) -> Void) {
-        switch url.scheme {
+    func fromURL(_ url: URL, completion: @escaping (UIImage) -> Void) {
+        switch url.scheme! {
         case "file":
-            if let p = url.path {
-                if let img = UIImage(contentsOfFile: p) {
-                    return completion(img)
-                }
+            if let img = UIImage(contentsOfFile: url.path) {
+                return completion(img)
             }
 
         case "assets-library":
@@ -77,7 +75,7 @@ class ImageDownloader : NSObject {
             let moa = Moa()
 
             moa.onError = {
-                (e: NSError?, r: NSHTTPURLResponse?) -> () in
+                (e, r) -> () in
                 moa.errorImage = nil // Keep a strong reference to moa
                 completion(self.DEFAULT)
             }
@@ -99,16 +97,26 @@ class ImageDownloader : NSObject {
         return completion(DEFAULT)
     }
 
-    func fromURI(uri: String?, completion: (UIImage) -> Void) {
+    func fromURI(_ uri: String?, completion: @escaping (UIImage) -> Void) {
         if uri == nil { return completion(DEFAULT) }
-
-        if uri!.hasPrefix("phasset:") {
-            let id = uri!.substringFromIndex(advance(uri!.startIndex, "phasset:".characters.count))
-            let rslt = PHAsset.fetchAssetsWithLocalIdentifiers([id], options: nil)
+        var uri = uri!
+        
+        if uri.hasPrefix("phasset:") {
+            let id = String(uri[uri.index(uri.startIndex, offsetBy: "phasset:".characters.count)...])
+            let rslt = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil)
             if rslt.count > 0 {
-                return fromPHAsset(rslt[0] as! PHAsset, completion: completion)
+                return fromPHAsset(rslt[0], completion: completion)
             }
-        } else if let url = NSURL(string: uri!) {
+            return completion(DEFAULT)
+        }
+        
+        // App Transport Security doesn't allow arbitrary loading of HTTP resources any longer.
+        // Most desired images can be retrieved via HTTPS, so just promote URIs to HTTPS.
+        if uri.hasPrefix("http:") {
+            uri.insert("s", at: uri.index(uri.startIndex, offsetBy: 4))
+        }
+        
+        if let url = URL(string: uri) {
             return fromURL(url, completion: completion)
         }
 

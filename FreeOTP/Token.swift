@@ -25,29 +25,29 @@ public final class Token : NSObject, KeychainStorable {
     public let account: String
 
     public enum Kind: Int {
-        case HOTP = 0
-        case TOTP = 1
+        case hotp = 0
+        case totp = 1
     }
 
-    public class Code {
-        private(set) public var value: String
-        private(set) public var from: NSDate
-        private(set) public var to: NSDate
+    open class Code {
+        fileprivate(set) open var value: String
+        fileprivate(set) open var from: Date
+        fileprivate(set) open var to: Date
 
-        private init(_ value: String, _ from: NSDate, _ period: Int64) {
+        fileprivate init(_ value: String, _ from: Date, _ period: Int64) {
             self.value = value
             self.from = from
-            self.to = from.dateByAddingTimeInterval(NSTimeInterval(period))
+            self.to = from.addingTimeInterval(TimeInterval(period))
         }
     }
 
-    private var issuerOrig: String = ""
-    private var labelOrig: String = ""
-    private var imageOrig: String?
-    private var counter: Int64 = 0
-    private var period: Int64 = 30
+    fileprivate var issuerOrig: String = ""
+    fileprivate var labelOrig: String = ""
+    fileprivate var imageOrig: String?
+    fileprivate var counter: Int64 = 0
+    fileprivate var period: Int64 = 30
 
-    private (set) public var kind: Kind = .HOTP
+    fileprivate (set) public var kind: Kind = .hotp
 
     public var locked: Bool = false {
         didSet {
@@ -65,23 +65,24 @@ public final class Token : NSObject, KeychainStorable {
 
     public var codes: [Code] {
         if let otp = OTP.store.load(account) {
-            let now = NSDate()
+            let now = Date()
 
             switch kind {
-            case .HOTP:
-                let code = Code(otp.code(counter++), now, period)
+            case .hotp:
+                let code = Code(otp.code(counter), now, period)
+                counter += 1
                 if Token.store.save(self) {
                     return [code]
                 }
 
-            case .TOTP:
-                func totp(otp: OTP, now: NSDate) -> Code {
+            case .totp:
+                func totp(_ otp: OTP, now: Date) -> Code {
                     let c = Int64(now.timeIntervalSince1970) / period
-                    let i = NSDate(timeIntervalSince1970: NSTimeInterval(c * period))
+                    let i = Date(timeIntervalSince1970: TimeInterval(c * period))
                     return Code(otp.code(c), i, period)
                 }
 
-                let next = now.dateByAddingTimeInterval(NSTimeInterval(period))
+                let next = now.addingTimeInterval(TimeInterval(period))
                 return [totp(otp, now: now), totp(otp, now: next)]
             }
         }
@@ -89,25 +90,25 @@ public final class Token : NSObject, KeychainStorable {
         return []
     }
 
-    public var issuer: String! = nil {
+    @objc public var issuer: String! = nil {
         didSet {
             if issuer == nil { issuer = issuerOrig }
         }
     }
 
-    public var label: String! = nil {
+    @objc public var label: String! = nil {
         didSet {
             if label == nil { label = labelOrig }
         }
     }
 
-    public var image: String? = nil {
+    @objc public var image: String? = nil {
         didSet {
             if image == nil { image = imageOrig }
         }
     }
 
-    public init?(otp: OTP, urlc: NSURLComponents, load: Bool = false) {
+    public init?(otp: OTP, urlc: URLComponents, load: Bool = false) {
         self.account = otp.account
         super.init()
 
@@ -116,37 +117,37 @@ public final class Token : NSObject, KeychainStorable {
         }
 
         // Get kind
-        switch urlc.host!.lowercaseString {
+        switch urlc.host!.lowercased() {
         case "totp":
-            kind = .TOTP
+            kind = .totp
 
         case "hotp":
-            kind = .HOTP
+            kind = .hotp
 
         default:
             return nil
         }
 
         // Normalize path
-        var path = urlc.path == nil ? "" : urlc.path!
+        var path = urlc.path
         while path.hasPrefix("/") {
-            path = path.substringFromIndex(advance(path.startIndex, 1))
+            path = String(path[path.index(path.startIndex, offsetBy: 1)...])
         }
         if path == "" {
             return nil
         }
 
         // Get issuer and label
-        let comps = path.componentsSeparatedByString(":")
+        let comps = path.components(separatedBy: ":")
         issuer = comps[0]
         label = comps.count > 1 ? comps[1] : ""
 
         let query = urlc.queryItems
         if (query == nil) { return nil }
-        for item: NSURLQueryItem in query! {
+        for item: URLQueryItem in query! {
             if item.value == nil { continue }
 
-            switch item.name.lowercaseString {
+            switch item.name.lowercased() {
             case "period":
                 if let tmp = Int64(item.value!) {
                     if tmp < 5 {
@@ -166,7 +167,7 @@ public final class Token : NSObject, KeychainStorable {
                 }
 
             case "lock":
-                switch item.value!.lowercaseString {
+                switch item.value!.lowercased() {
                 case "": fallthrough
                 case "0": fallthrough
                 case "off": fallthrough
@@ -212,32 +213,32 @@ public final class Token : NSObject, KeychainStorable {
     }
 
     @objc required public init?(coder aDecoder: NSCoder) {
-        locked = aDecoder.decodeBoolForKey("locked")
-        account = aDecoder.decodeObjectForKey("account") as! String
-        counter = aDecoder.decodeInt64ForKey("counter")
-        image = aDecoder.decodeObjectForKey("image") as? String
-        imageOrig = aDecoder.decodeObjectForKey("imageOrig") as? String
-        issuer = aDecoder.decodeObjectForKey("issuer") as! String
-        issuerOrig = aDecoder.decodeObjectForKey("issuerOrig") as! String
-        kind = Kind(rawValue: aDecoder.decodeIntegerForKey("kind"))!
-        label = aDecoder.decodeObjectForKey("label") as! String
-        labelOrig = aDecoder.decodeObjectForKey("labelOrig") as! String
-        period = aDecoder.decodeInt64ForKey("period")
+        locked = aDecoder.decodeBool(forKey: "locked")
+        account = aDecoder.decodeObject(forKey: "account") as! String
+        counter = aDecoder.decodeInt64(forKey: "counter")
+        image = aDecoder.decodeObject(forKey: "image") as? String
+        imageOrig = aDecoder.decodeObject(forKey: "imageOrig") as? String
+        issuer = aDecoder.decodeObject(forKey: "issuer") as! String
+        issuerOrig = aDecoder.decodeObject(forKey: "issuerOrig") as! String
+        kind = Kind(rawValue: aDecoder.decodeInteger(forKey: "kind"))!
+        label = aDecoder.decodeObject(forKey: "label") as! String
+        labelOrig = aDecoder.decodeObject(forKey: "labelOrig") as! String
+        period = aDecoder.decodeInt64(forKey: "period")
 
         super.init()
     }
 
-    @objc public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeBool(locked, forKey: "locked")
-        aCoder.encodeObject(account, forKey: "account")
-        aCoder.encodeInt64(counter, forKey: "counter")
-        aCoder.encodeObject(image, forKey: "image")
-        aCoder.encodeObject(imageOrig, forKey: "imageOrig")
-        aCoder.encodeObject(issuer, forKey: "issuer")
-        aCoder.encodeObject(issuerOrig, forKey: "issuerOrig")
-        aCoder.encodeInteger(kind.rawValue, forKey: "kind")
-        aCoder.encodeObject(label, forKey: "label")
-        aCoder.encodeObject(labelOrig, forKey: "labelOrig")
-        aCoder.encodeInt64(period, forKey: "period")
+    @objc public func encode(with aCoder: NSCoder) {
+        aCoder.encode(locked, forKey: "locked")
+        aCoder.encode(account, forKey: "account")
+        aCoder.encode(counter, forKey: "counter")
+        aCoder.encode(image, forKey: "image")
+        aCoder.encode(imageOrig, forKey: "imageOrig")
+        aCoder.encode(issuer, forKey: "issuer")
+        aCoder.encode(issuerOrig, forKey: "issuerOrig")
+        aCoder.encode(kind.rawValue, forKey: "kind")
+        aCoder.encode(label, forKey: "label")
+        aCoder.encode(labelOrig, forKey: "labelOrig")
+        aCoder.encode(period, forKey: "period")
     }
 }

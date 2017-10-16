@@ -22,8 +22,8 @@ import FreeOTP
 import XCTest
 
 class URI: XCTestCase {
-    func valid(string: String, load: Bool = false) -> Token? {
-        if let urlc = NSURLComponents(string: string) {
+    func valid(_ string: String, load: Bool = false) -> Token? {
+        if let urlc = URLComponents(string: string) {
             if let otp = OTP(urlc: urlc) {
                 if let token = Token(otp: otp, urlc: urlc, load: load) {
                     return token
@@ -48,7 +48,7 @@ class URI: XCTestCase {
         XCTAssertNil(valid("otpauth://hotp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP&digits=10"))
 
         // Test the basic test case
-        let urlc = NSURLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar")
+        let urlc = URLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar")
         XCTAssertNotNil(urlc)
         var token = TokenStore().add(urlc!)
         XCTAssertNotNil(token)

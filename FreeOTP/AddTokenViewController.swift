@@ -38,31 +38,31 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var counterTitle: UILabel!
     @IBOutlet weak var counterStepper: UIStepper!
 
-    @IBAction func typeChanged(sender: UISegmentedControl) {
-        self.counter.enabled = sender.selectedSegmentIndex == 0
-        self.counterTitle.enabled = sender.selectedSegmentIndex == 0
-        self.counterStepper.enabled = sender.selectedSegmentIndex == 0
+    @IBAction func typeChanged(_ sender: UISegmentedControl) {
+        self.counter.isEnabled = sender.selectedSegmentIndex == 0
+        self.counterTitle.isEnabled = sender.selectedSegmentIndex == 0
+        self.counterStepper.isEnabled = sender.selectedSegmentIndex == 0
     }
 
-    @IBAction func intervalChanged(sender: UIStepper) {
+    @IBAction func intervalChanged(_ sender: UIStepper) {
         interval.text = String(UInt(sender.value))
     }
 
-    @IBAction func counterChanged(sender: UIStepper) {
+    @IBAction func counterChanged(_ sender: UIStepper) {
         counter.text = String(UInt(sender.value))
     }
 
-    func enable(issuer: String, label: String, secret: String) {
+    func enable(_ issuer: String, label: String, secret: String) {
         let s = secret.characters.count
-        self.navigationItem.rightBarButtonItem!.enabled = issuer != "" && label != "" && s > 0 && s % 8 == 0
+        self.navigationItem.rightBarButtonItem!.isEnabled = issuer != "" && label != "" && s > 0 && s % 8 == 0
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let str: String = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let str: String = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 
         if textField === secret {
             var unpadded = false
-            for chr in str.characters.reverse() {
+            for chr in str.characters.reversed() {
                 if !unpadded {
                     if chr == "=" {
                         continue
@@ -86,25 +86,25 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
         return true
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         let supported = Token.store.lockingSupported
-        lockedTitle.enabled = supported
-        lockedSwitch.enabled = supported
+        lockedTitle.isEnabled = supported
+        lockedSwitch.isEnabled = supported
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (sender !== self.navigationItem.rightBarButtonItem) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sender = sender as? UIBarButtonItem, (sender !== self.navigationItem.rightBarButtonItem) {
             return
         }
 
         // Built URI
-        let urlc = NSURLComponents()
+        var urlc = URLComponents()
         urlc.scheme = "otpauth"
         urlc.path = String(format: "/%@:%@", issuer.text!, label.text!)
         urlc.query = String(format: "algorithm=%@&digits=%@&secret=%@&period=%u&lock=%d",
-            "SHA" + algo.titleForSegmentAtIndex(algo.selectedSegmentIndex)!,
-            digits.titleForSegmentAtIndex(digits.selectedSegmentIndex)!,
-            secret.text!, UInt(interval.text!)!, lockedSwitch.on ? 1 : 0)
+            "SHA" + algo.titleForSegment(at: algo.selectedSegmentIndex)!,
+            digits.titleForSegment(at: digits.selectedSegmentIndex)!,
+            secret.text!, UInt(interval.text!)!, lockedSwitch.isOn ? 1 : 0)
 
         if (type.selectedSegmentIndex == 0) {
             urlc.query = urlc.query! + String(format: "&counter=%u", UInt(counter.text!)!)
