@@ -121,7 +121,7 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         if let sender = sender as? UIBarButtonItem, sender === yes {
             TokenStore().erase(token: token)
             token = nil
-        } else if let sender = sender as? UIBarButtonItem, sender === image {
+        } else if let sender = sender as? UIButton, sender === image {
             (segue.destination as! ImageViewController).token = token
         }
     }
