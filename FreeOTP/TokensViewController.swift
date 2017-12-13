@@ -119,7 +119,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-
         if let cell = collectionView.cellForItem(at: indexPath) as! TokenCell? {
             if let token = store.load(indexPath.row) {
                 cell.state = token.codes

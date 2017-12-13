@@ -21,8 +21,9 @@
 import Foundation
 import UIKit
 
-class TokenCell : UICollectionViewCell {
+class TokenCell : UICollectionViewCell, LISNRServiceDelegate {
     fileprivate var timer: Timer? = nil
+    fileprivate var textTone: LISNRTextTone? = nil
 
     @IBOutlet weak var issuer: UILabel!
     @IBOutlet weak var label: UILabel!
@@ -55,7 +56,29 @@ class TokenCell : UICollectionViewCell {
                     })
 
                 timer?.invalidate()
-            } else if timer == nil || !timer!.isValid {
+            }
+            else if issuer != nil && issuer.text!.contains("LISNR") && (timer == nil || !timer!.isValid)
+            {
+                timer = Timer.scheduledTimer(timeInterval: 0.1,
+                                             target: self,
+                                             selector: #selector(TokenCell.toneCallback),
+                                             userInfo: nil,
+                                             repeats: true)
+                
+                // Setup the UI for progress.
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.issuer.alpha = 0.0
+                    self.label.alpha = 0.0
+                    self.inner.alpha = 1.0
+                    self.outer.alpha = 1.0
+                    self.image.alpha = 0.1
+                    self.code.alpha = 1.0
+                    self.edit.alpha = 0.0
+                    self.share.alpha = 0.0
+                    self.lock.alpha = 0.0
+                })
+            }
+            else if timer == nil || !timer!.isValid {
                 timer = Timer.scheduledTimer(timeInterval: 0.1,
                     target: self,
                     selector: #selector(TokenCell.timerCallback(_:)),
@@ -106,6 +129,52 @@ class TokenCell : UICollectionViewCell {
             outer.progress = progress(frst.from as Date, now, last.to as Date)
             code.text = curr!.value;
         }
+    }
+    
+    @objc func toneCallback()
+    {
+        let frst: Token.Code = state!.first!
+        let last: Token.Code = state!.last!
+        var curr: Token.Code? = nil
+    
+        let now = Date()
+        for c in state == nil ? [] : state! {
+            if c.from.timeIntervalSince1970 <= now.timeIntervalSince1970
+                && now.timeIntervalSince1970 < c.to.timeIntervalSince1970 {
+                curr = c
+                break
+            }
+        }
+        
+        if curr == nil {
+            self.state = nil;
+        } else {
+            let text: String = "L:" + curr!.value + label.text!
+            if(textTone == nil)
+            {
+                do {
+                    textTone = try LISNRTextTone(text: text, iterations: 1, sampleRate: LISNRToneSampleRate.rate48000, profile: "precision")
+                    LISNRService.shared().addObserver(self)
+                    LISNRService.shared().broadcast(textTone!, fromDeviceSpeakersOnly: true, onBroadcastStart: { (error, interval) in
+                        NSLog("playing tone with text %@", text)
+                    })
+                }
+                catch{
+                    textTone = nil
+                    NSLog("Failed to create a text tone")
+                }
+                
+            }
+
+            inner.progress = progress(curr!.from as Date, now, curr!.to as Date)
+            outer.progress = progress(frst.from as Date, now, last.to as Date)
+            code.text = curr!.value;
+        }
+    }
+    
+    func broadcast(ofToneDidFinish tone: LISNRTone) {
+        LISNRService.shared().removeObserver(self)
+        textTone = nil
     }
 
     override func updateConstraints() {
