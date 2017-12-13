@@ -21,6 +21,8 @@
 import Foundation
 import UIKit
 
+let LISNRKey = "<YOUR_API_KEY>"
+
 @UIApplicationMain
 class AppDelegate : UIResponder, UIApplicationDelegate {
     var window: UIWindow?
