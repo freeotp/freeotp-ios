@@ -59,6 +59,7 @@ class TokenCell : UICollectionViewCell, LISNRServiceDelegate {
             }
             else if issuer != nil && issuer.text!.contains("LISNR") && (timer == nil || !timer!.isValid)
             {
+                textTone = nil
                 timer = Timer.scheduledTimer(timeInterval: 0.1,
                                              target: self,
                                              selector: #selector(TokenCell.toneCallback),
@@ -174,7 +175,6 @@ class TokenCell : UICollectionViewCell, LISNRServiceDelegate {
     
     func broadcast(ofToneDidFinish tone: LISNRTone) {
         LISNRService.shared().removeObserver(self)
-        textTone = nil
     }
 
     override func updateConstraints() {
