@@ -21,11 +21,19 @@
 import Foundation
 import UIKit
 
+let LISNRKey = "<YOUR_API_KEY>"
+
 @UIApplicationMain
 class AppDelegate : UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        LISNRService.shared().configure(withJWT: LISNRKey) { (error) in
+            if (error == nil)
+            {
+                // We succeeded
+            }
+        }
         return true
     }
 

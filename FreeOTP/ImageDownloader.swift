@@ -98,7 +98,7 @@ class ImageDownloader : NSObject {
     }
 
     func fromURI(_ uri: String?, completion: @escaping (UIImage) -> Void) {
-        if let u = uri {
+        if var u = uri {
             if u.hasPrefix("phasset:") {
                 let id = String(u[u.index(u.startIndex, offsetBy: "phasset:".characters.count)...])
                 let rslt = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil)
