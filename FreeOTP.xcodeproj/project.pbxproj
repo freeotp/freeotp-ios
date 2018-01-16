@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42016F04200EA48D0041F6F4 /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42016F03200EA48D0041F6F4 /* WatchSessionDelegate.swift */; };
+		42817D33200D4403008A80A2 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42817D31200D4403008A80A2 /* Interface.storyboard */; };
+		42817D35200D4403008A80A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42817D34200D4403008A80A2 /* Assets.xcassets */; };
+		42817D3C200D4403008A80A2 /* FreeOTPWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 42817D3B200D4403008A80A2 /* FreeOTPWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		42817D43200D4403008A80A2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42817D42200D4403008A80A2 /* ExtensionDelegate.swift */; };
+		42817D47200D4403008A80A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42817D46200D4403008A80A2 /* Assets.xcassets */; };
+		42817D4B200D4403008A80A2 /* FreeOTPWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 42817D2F200D4403008A80A2 /* FreeOTPWatch.app */; };
+		42817D54200D4530008A80A2 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42817D31200D4403008A80A2 /* Interface.storyboard */; };
+		42B27CE1200D46D700510BBE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B27CE0200D46D700510BBE /* InterfaceController.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -31,8 +40,8 @@
 		F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA53D1B571E5D00B1CEAD /* Foundation.framework */; };
 		F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA53F1B57339F00B1CEAD /* Storage.swift */; };
 		F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA5431B58D30800B1CEAD /* KeychainStore.swift */; };
-		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
 		F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56D1B5C832600A54DDC /* Launch.storyboard */; };
+		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
 		F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C61B56AA0000828B8B /* HOTP.swift */; };
 		F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C71B56AA0000828B8B /* TOTP.swift */; };
 		F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C81B56AA0000828B8B /* URI.swift */; };
@@ -43,6 +52,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		42817D3D200D4403008A80A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42817D3A200D4403008A80A2;
+			remoteInfo = "FreeOTPWatch Extension";
+		};
+		42817D49200D4403008A80A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42817D2E200D4403008A80A2;
+			remoteInfo = FreeOTPWatch;
+		};
 		F10D88D51B56A3C400482D15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
@@ -52,8 +75,43 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		42817D51200D4403008A80A2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				42817D3C200D4403008A80A2 /* FreeOTPWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42817D53200D4403008A80A2 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				42817D4B200D4403008A80A2 /* FreeOTPWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FreeOTP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42016F03200EA48D0041F6F4 /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
+		42817D2F200D4403008A80A2 /* FreeOTPWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTPWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42817D32200D4403008A80A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		42817D34200D4403008A80A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42817D36200D4403008A80A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42817D3B200D4403008A80A2 /* FreeOTPWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FreeOTPWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42817D42200D4403008A80A2 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		42817D46200D4403008A80A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42817D48200D4403008A80A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42B27CE0200D46D700510BBE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InterfaceController.swift; path = "freeotpwatch Extension/InterfaceController.swift"; sourceTree = SOURCE_ROOT; };
+		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F10D88CA1B56A3C400482D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,8 +140,8 @@
 		F18FA53D1B571E5D00B1CEAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18FA53F1B57339F00B1CEAD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F18FA5431B58D30800B1CEAD /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
-		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		F19DA56D1B5C832600A54DDC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTPTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		F1CA93C61B56AA0000828B8B /* HOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		F1CA93C71B56AA0000828B8B /* TOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
@@ -98,6 +156,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		42817D38200D4403008A80A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BD1B56A3C400482D15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,6 +185,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42817D30200D4403008A80A2 /* FreeOTPWatch */ = {
+			isa = PBXGroup;
+			children = (
+				42817D31200D4403008A80A2 /* Interface.storyboard */,
+				42817D34200D4403008A80A2 /* Assets.xcassets */,
+				42817D36200D4403008A80A2 /* Info.plist */,
+			);
+			path = FreeOTPWatch;
+			sourceTree = "<group>";
+		};
+		42817D3F200D4403008A80A2 /* FreeOTPWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				42B27CE0200D46D700510BBE /* InterfaceController.swift */,
+				42817D42200D4403008A80A2 /* ExtensionDelegate.swift */,
+				42817D46200D4403008A80A2 /* Assets.xcassets */,
+				42817D48200D4403008A80A2 /* Info.plist */,
+			);
+			path = "FreeOTPWatch Extension";
+			sourceTree = "<group>";
+		};
 		F10D88B71B56A3C400482D15 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +219,8 @@
 				F10D88C21B56A3C400482D15 /* FreeOTP */,
 				F10D88D71B56A3C400482D15 /* FreeOTPTests */,
 				F10D88E21B56A3C500482D15 /* FreeOTPUITests */,
+				42817D30200D4403008A80A2 /* FreeOTPWatch */,
+				42817D3F200D4403008A80A2 /* FreeOTPWatch Extension */,
 				F10D88C11B56A3C400482D15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,6 +230,8 @@
 			children = (
 				F10D88C01B56A3C400482D15 /* FreeOTP.app */,
 				F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */,
+				42817D2F200D4403008A80A2 /* FreeOTPWatch.app */,
+				42817D3B200D4403008A80A2 /* FreeOTPWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +255,7 @@
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
 				F10D88CF1B56A3C400482D15 /* Info.plist */,
+				42016F03200EA48D0041F6F4 /* WatchSessionDelegate.swift */,
 			);
 			path = FreeOTP;
 			sourceTree = "<group>";
@@ -227,6 +318,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		42817D2E200D4403008A80A2 /* FreeOTPWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42817D52200D4403008A80A2 /* Build configuration list for PBXNativeTarget "FreeOTPWatch" */;
+			buildPhases = (
+				42817D2D200D4403008A80A2 /* Resources */,
+				42817D51200D4403008A80A2 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42817D3E200D4403008A80A2 /* PBXTargetDependency */,
+			);
+			name = FreeOTPWatch;
+			productName = FreeOTPWatch;
+			productReference = 42817D2F200D4403008A80A2 /* FreeOTPWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		42817D3A200D4403008A80A2 /* FreeOTPWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42817D50200D4403008A80A2 /* Build configuration list for PBXNativeTarget "FreeOTPWatch Extension" */;
+			buildPhases = (
+				42817D37200D4403008A80A2 /* Sources */,
+				42817D38200D4403008A80A2 /* Frameworks */,
+				42817D39200D4403008A80A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FreeOTPWatch Extension";
+			productName = "FreeOTPWatch Extension";
+			productReference = 42817D3B200D4403008A80A2 /* FreeOTPWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		F10D88BF1B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F10D88E81B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTP" */;
@@ -235,10 +360,12 @@
 				F10D88BD1B56A3C400482D15 /* Frameworks */,
 				F10D88BE1B56A3C400482D15 /* Resources */,
 				FF1CDE331F915AAD002A8E06 /* ShellScript */,
+				42817D53200D4403008A80A2 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				42817D4A200D4403008A80A2 /* PBXTargetDependency */,
 			);
 			name = FreeOTP;
 			productName = FreeOTP;
@@ -269,10 +396,18 @@
 		F10D88B81B56A3C400482D15 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Fedora Project";
 				TargetAttributes = {
+					42817D2E200D4403008A80A2 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					42817D3A200D4403008A80A2 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					F10D88BF1B56A3C400482D15 = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 0900;
@@ -301,11 +436,31 @@
 			targets = (
 				F10D88BF1B56A3C400482D15 /* FreeOTP */,
 				F10D88D31B56A3C400482D15 /* FreeOTPTests */,
+				42817D2E200D4403008A80A2 /* FreeOTPWatch */,
+				42817D3A200D4403008A80A2 /* FreeOTPWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		42817D2D200D4403008A80A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42817D35200D4403008A80A2 /* Assets.xcassets in Resources */,
+				42817D33200D4403008A80A2 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42817D39200D4403008A80A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42817D54200D4530008A80A2 /* Interface.storyboard in Resources */,
+				42817D47200D4403008A80A2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BE1B56A3C400482D15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,10 +506,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		42817D37200D4403008A80A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42B27CE1200D46D700510BBE /* InterfaceController.swift in Sources */,
+				42817D43200D4403008A80A2 /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BC1B56A3C400482D15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42016F04200EA48D0041F6F4 /* WatchSessionDelegate.swift in Sources */,
 				F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */,
 				F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */,
 				F10D89011B56A54B00482D15 /* AddTokenViewController.swift in Sources */,
@@ -388,6 +553,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		42817D3E200D4403008A80A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42817D3A200D4403008A80A2 /* FreeOTPWatch Extension */;
+			targetProxy = 42817D3D200D4403008A80A2 /* PBXContainerItemProxy */;
+		};
+		42817D4A200D4403008A80A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42817D2E200D4403008A80A2 /* FreeOTPWatch */;
+			targetProxy = 42817D49200D4403008A80A2 /* PBXContainerItemProxy */;
+		};
 		F10D88D61B56A3C400482D15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F10D88BF1B56A3C400482D15 /* FreeOTP */;
@@ -396,6 +571,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		42817D31200D4403008A80A2 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42817D32200D4403008A80A2 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		F10D88C71B56A3C400482D15 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -407,6 +590,102 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		42817D4C200D4403008A80A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = FreeOTPWatch_Extension;
+				INFOPLIST_FILE = FreeOTPWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		42817D4D200D4403008A80A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = FreeOTPWatch_Extension;
+				INFOPLIST_FILE = FreeOTPWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		42817D4E200D4403008A80A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "FreeOTPWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		42817D4F200D4403008A80A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "FreeOTPWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
 		F10D88E61B56A3C500482D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -520,6 +799,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FreeOTP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -535,6 +815,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FreeOTP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -579,6 +860,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		42817D50200D4403008A80A2 /* Build configuration list for PBXNativeTarget "FreeOTPWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42817D4E200D4403008A80A2 /* Debug */,
+				42817D4F200D4403008A80A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42817D52200D4403008A80A2 /* Build configuration list for PBXNativeTarget "FreeOTPWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42817D4C200D4403008A80A2 /* Debug */,
+				42817D4D200D4403008A80A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F10D88BB1B56A3C400482D15 /* Build configuration list for PBXProject "FreeOTP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
