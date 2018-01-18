@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="FreeOTPWatch" customModuleProvider="target">
+                    <items>
+                        <group width="132" height="150" alignment="center" verticalAlignment="center" animationDuration="1" layout="vertical" id="2XK-Zg-lK8">
+                            <items>
+                                <label height="26" alignment="left" accessibilityLabel="account" id="6Hs-eT-5FA" userLabel="account">
+                                    <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                                <label alignment="center" verticalAlignment="center" text="Connecting.." id="N9G-lW-Mfq" userLabel="token">
+                                    <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES" updatesFrequently="YES"/>
+                                </label>
+                            </items>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="90e-DD-n7f">
+                                    <connections>
+                                        <action selector="update" destination="AgC-eL-Hgc" id="iLb-Xt-bd9"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="account" destination="6Hs-eT-5FA" id="L8J-SB-Jdq"/>
+                        <outlet property="token" destination="N9G-lW-Mfq" id="GcZ-d3-S1n"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="34" y="35"/>
+        </scene>
+    </scenes>
+</document>

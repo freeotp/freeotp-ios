@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -40,8 +40,8 @@
         <!--FreeOTP-->
         <scene sceneID="Yiw-Ee-UQh">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" title="FreeOTP" id="mGg-KB-Kzc" customClass="TokensViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="OKL-u6-vWf">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" title="FreeOTP" id="mGg-KB-Kzc" customClass="TokensViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="OKL-u6-vWf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,7 +52,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="token" id="rrC-uH-aWK" customClass="TokenCell" customModule="FreeOTP__dev_" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="token" id="rrC-uH-aWK" customClass="TokenCell" customModule="FreeOTP" customModuleProvider="target">
                                 <rect key="frame" x="23.5" y="10" width="328" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -65,14 +65,14 @@
                                                 <constraint firstAttribute="width" secondItem="s09-9o-0kG" secondAttribute="height" multiplier="1:1" id="p1f-Y5-ie9"/>
                                             </constraints>
                                         </imageView>
-                                        <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dum-l3-Jph" customClass="CircleProgressView" customModule="FreeOTP__dev_" customModuleProvider="target">
+                                        <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dum-l3-Jph" customClass="CircleProgressView" customModule="FreeOTP" customModuleProvider="target">
                                             <rect key="frame" x="256" y="24" width="48" height="48"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Dum-l3-Jph" secondAttribute="height" multiplier="1:1" id="lVV-OX-E8r"/>
                                             </constraints>
                                         </view>
-                                        <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1f3-Wo-TWe" customClass="CircleProgressView" customModule="FreeOTP__dev_" customModuleProvider="target">
+                                        <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1f3-Wo-TWe" customClass="CircleProgressView" customModule="FreeOTP" customModuleProvider="target">
                                             <rect key="frame" x="260" y="28" width="40" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -102,7 +102,7 @@
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-M9-jNR" customClass="TokenButton" customModule="FreeOTP__dev_" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-M9-jNR" customClass="TokenButton" customModule="FreeOTP" customModuleProvider="target">
                                             <rect key="frame" x="8" y="63" width="30" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Edit"/>
@@ -110,7 +110,7 @@
                                                 <action selector="editClicked:" destination="mGg-KB-Kzc" eventType="touchUpInside" id="DK2-vu-4Rn"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-5Q-RhV" customClass="TokenButton" customModule="FreeOTP__dev_" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-5Q-RhV" customClass="TokenButton" customModule="FreeOTP" customModuleProvider="target">
                                             <rect key="frame" x="46" y="63" width="38" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Share"/>
@@ -230,7 +230,7 @@
         <!--Share Code-->
         <scene sceneID="PTS-3e-qXg">
             <objects>
-                <tableViewController storyboardIdentifier="share" title="Share Code" id="kIc-US-32O" customClass="ShareViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="share" title="Share Code" id="kIc-US-32O" customClass="ShareViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8gO-Ml-R9v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -244,13 +244,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb2-Yx-gnX">
-                                            <rect key="frame" x="8" y="8" width="331" height="27.5"/>
+                                            <rect key="frame" x="16" y="11" width="315" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <activityIndicatorView opaque="NO" alpha="0.0" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nv8-Ba-fyL">
-                                            <rect key="frame" x="347" y="8" width="20" height="27.5"/>
+                                            <rect key="frame" x="339" y="11" width="20" height="22"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
@@ -285,7 +285,7 @@
         <!--Select Image-->
         <scene sceneID="jAB-BM-mZQ">
             <objects>
-                <collectionViewController storyboardIdentifier="image" title="Select Image" id="Mi7-1d-G1i" customClass="ImageViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="image" title="Select Image" id="Mi7-1d-G1i" customClass="ImageViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="q9y-D8-rwh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -304,7 +304,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="default.png" translatesAutoresizingMaskIntoConstraints="NO" id="gOR-Ls-3R4">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default.png" translatesAutoresizingMaskIntoConstraints="NO" id="gOR-Ls-3R4">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         </imageView>
                                     </subviews>
@@ -332,7 +332,7 @@
         <!--Add Token-->
         <scene sceneID="Svl-gA-DKm">
             <objects>
-                <tableViewController storyboardIdentifier="add" id="gth-fI-j10" customClass="AddTokenViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="add" id="gth-fI-j10" customClass="AddTokenViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="46" sectionHeaderHeight="1" sectionFooterHeight="20" id="ZzG-r4-rGn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -348,7 +348,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbH-wj-SXm">
-                                                    <rect key="frame" x="8" y="8" width="37.5" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="37.5" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="dqN-iD-Slb"/>
                                                     </constraints>
@@ -361,7 +361,7 @@
                                                     </variation>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bUW-4K-PiY">
-                                                    <rect key="frame" x="238" y="8" width="129" height="30.5"/>
+                                                    <rect key="frame" x="230" y="11" width="129" height="25"/>
                                                     <segments>
                                                         <segment title="Counter" width="64"/>
                                                         <segment title="Time" width="64"/>
@@ -400,7 +400,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARP-g1-tip">
-                                                    <rect key="frame" x="8" y="8" width="44" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="44" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="fwB-lZ-mzE"/>
                                                     </constraints>
@@ -413,7 +413,7 @@
                                                     </variation>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JpZ-zA-8jL">
-                                                    <rect key="frame" x="238" y="8" width="129" height="30.5"/>
+                                                    <rect key="frame" x="230" y="11" width="129" height="25"/>
                                                     <segments>
                                                         <segment title="6" width="64"/>
                                                         <segment title="8" width="64"/>
@@ -445,7 +445,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issuer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDu-eU-5DT">
-                                                    <rect key="frame" x="8" y="8" width="46" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="46" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="E16-Yu-G7b"/>
                                                     </constraints>
@@ -458,7 +458,7 @@
                                                     </variation>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="jdoe@example.com" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWv-K5-WAM">
-                                                    <rect key="frame" x="62" y="8" width="305" height="29.5"/>
+                                                    <rect key="frame" x="70" y="11" width="289" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -485,7 +485,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifier" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wio-wG-5kE">
-                                                    <rect key="frame" x="8" y="8" width="68" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="68" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="ism-Oe-EVr"/>
                                                     </constraints>
@@ -498,7 +498,7 @@
                                                     </variation>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="18c5d06cfcbd4927" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M6b-ul-1sY">
-                                                    <rect key="frame" x="84" y="8" width="283" height="29.5"/>
+                                                    <rect key="frame" x="92" y="11" width="267" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -525,7 +525,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aY2-bq-aPD">
-                                                    <rect key="frame" x="8" y="8" width="50" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="50" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="fZS-Wy-Yws"/>
                                                     </constraints>
@@ -538,7 +538,7 @@
                                                     </variation>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Base32 (ex. 'GEZDGNBV')" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2QW-x1-Goj">
-                                                    <rect key="frame" x="66" y="8" width="301" height="29.5"/>
+                                                    <rect key="frame" x="74" y="11" width="285" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -579,7 +579,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locked" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-4P-ZLP">
-                                                    <rect key="frame" x="8" y="8" width="302" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="286" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="FH2-LE-buD"/>
                                                     </constraints>
@@ -592,7 +592,7 @@
                                                     </variation>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mvi-jY-cdw">
-                                                    <rect key="frame" x="318" y="8" width="51" height="31"/>
+                                                    <rect key="frame" x="310" y="8.5" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -621,13 +621,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCs-sp-SYD">
-                                                    <rect key="frame" x="81" y="8" width="184" height="29.5"/>
+                                                    <rect key="frame" x="89" y="11" width="168" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lifespan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYo-wX-qJn">
-                                                    <rect key="frame" x="8" y="8" width="65" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="65" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="iFZ-A4-yVV"/>
                                                     </constraints>
@@ -640,7 +640,7 @@
                                                     </variation>
                                                 </label>
                                                 <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minimumValue="5" maximumValue="300" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="Nf1-Wq-1FR">
-                                                    <rect key="frame" x="273" y="8" width="94" height="29"/>
+                                                    <rect key="frame" x="265" y="11" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="intervalChanged:" destination="gth-fI-j10" eventType="valueChanged" id="aNQ-cf-zE3"/>
                                                     </connections>
@@ -688,13 +688,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ck-AR-s7u">
-                                                    <rect key="frame" x="78" y="8" width="186.5" height="29.5"/>
+                                                    <rect key="frame" x="86" y="11" width="170.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Counter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-6y-F9B">
-                                                    <rect key="frame" x="8" y="8" width="62" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="62" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="hJJ-T0-rgQ"/>
                                                     </constraints>
@@ -707,7 +707,7 @@
                                                     </variation>
                                                 </label>
                                                 <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="99999" translatesAutoresizingMaskIntoConstraints="NO" id="h7w-or-J7b">
-                                                    <rect key="frame" x="273" y="8" width="94" height="29"/>
+                                                    <rect key="frame" x="265" y="11" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="counterChanged:" destination="gth-fI-j10" eventType="valueChanged" id="E0X-Lk-y20"/>
                                                     </connections>
@@ -755,7 +755,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISl-Az-YHw">
-                                                    <rect key="frame" x="8" y="8" width="34" height="29.5"/>
+                                                    <rect key="frame" x="16" y="11" width="34" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="g3C-gK-rle"/>
                                                     </constraints>
@@ -768,7 +768,7 @@
                                                     </variation>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wg0-RB-Fzu">
-                                                    <rect key="frame" x="168" y="8" width="199" height="30.5"/>
+                                                    <rect key="frame" x="160" y="11" width="199" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="2Mo-dl-q4C"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="384" id="xDY-mj-8wV"/>
@@ -845,7 +845,7 @@
         <!--Scan QR Code-->
         <scene sceneID="Pdh-Uw-n9X">
             <objects>
-                <viewController storyboardIdentifier="scan" id="00Q-un-TmX" customClass="ScanViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scan" id="00Q-un-TmX" customClass="ScanViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BMJ-WB-uuq"/>
                         <viewControllerLayoutGuide type="bottom" id="P05-jw-m8a"/>
@@ -968,7 +968,7 @@
         <!--Edit Token-->
         <scene sceneID="nOl-Nl-OE5">
             <objects>
-                <viewController storyboardIdentifier="edit" title="Edit Token" id="Kag-Fb-gnf" customClass="EditViewController" customModule="FreeOTP__dev_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="edit" title="Edit Token" id="Kag-Fb-gnf" customClass="EditViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pXP-X3-k10"/>
                         <viewControllerLayoutGuide type="bottom" id="5jL-vs-v7N"/>
