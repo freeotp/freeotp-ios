@@ -28,7 +28,6 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var error: UILabel!
 
     fileprivate func orient(_ toInterfaceOrientation: UIInterfaceOrientation) {
@@ -152,7 +151,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                                 self.activity.stopAnimating()
                             }, completion: {
                                 (_: Bool) -> Void in
-                                self.dismiss(animated: true, completion: nil)
+                                self.navigationController?.popViewController(animated: true)
                             }
                         )
                     })
