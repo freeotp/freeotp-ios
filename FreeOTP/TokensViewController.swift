@@ -91,14 +91,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
 
-    @IBAction func addClicked(_ sender: UIBarButtonItem) {
-        let vc: UIViewController = self.next("add", sender: sender, dir: [.up, .down])
-        vc.preferredContentSize = CGSize(
-            width: UIScreen.main.bounds.width / 2,
-            height: vc.preferredContentSize.height
-        )
-    }
-
     @IBAction func scanClicked(_ sender: UIBarButtonItem) {
         let vc: UIViewController = self.next("scan", sender: sender, dir: [.up, .down])
         vc.preferredContentSize = CGSize(

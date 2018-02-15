@@ -10,7 +10,6 @@
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
-		F10D89011B56A54B00482D15 /* AddTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */; };
 		F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F21B56A54B00482D15 /* CircleProgressView.swift */; };
 		F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F31B56A54B00482D15 /* EditViewController.swift */; };
 		F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F51B56A54B00482D15 /* ImageDownloader.swift */; };
@@ -31,8 +30,8 @@
 		F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18FA53D1B571E5D00B1CEAD /* Foundation.framework */; };
 		F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA53F1B57339F00B1CEAD /* Storage.swift */; };
 		F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FA5431B58D30800B1CEAD /* KeychainStore.swift */; };
-		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
 		F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56D1B5C832600A54DDC /* Launch.storyboard */; };
+		F19DA5701B5EE73E00A54DDC /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = F19DA56F1B5EE73E00A54DDC /* lock.png */; };
 		F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C61B56AA0000828B8B /* HOTP.swift */; };
 		F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C71B56AA0000828B8B /* TOTP.swift */; };
 		F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA93C81B56AA0000828B8B /* URI.swift */; };
@@ -53,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FreeOTP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F10D88CA1B56A3C400482D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,7 +60,6 @@
 		F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88DA1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10D88E51B56A3C500482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTokenViewController.swift; sourceTree = "<group>"; };
 		F10D88F21B56A54B00482D15 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		F10D88F31B56A54B00482D15 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		F10D88F51B56A54B00482D15 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
@@ -82,8 +80,8 @@
 		F18FA53D1B571E5D00B1CEAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18FA53F1B57339F00B1CEAD /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F18FA5431B58D30800B1CEAD /* KeychainStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
-		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		F19DA56D1B5C832600A54DDC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		F19DA56F1B5EE73E00A54DDC /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FreeOTPTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		F1CA93C61B56AA0000828B8B /* HOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		F1CA93C71B56AA0000828B8B /* TOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		F10D89111B56A56600482D15 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F10D88F11B56A54B00482D15 /* AddTokenViewController.swift */,
 				F10D88F31B56A54B00482D15 /* EditViewController.swift */,
 				F10D88F61B56A54B00482D15 /* ImageViewController.swift */,
 				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
@@ -357,7 +354,6 @@
 			files = (
 				F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */,
 				F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */,
-				F10D89011B56A54B00482D15 /* AddTokenViewController.swift in Sources */,
 				F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */,
 				F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */,
 				F10D89071B56A54B00482D15 /* OTP.swift in Sources */,
