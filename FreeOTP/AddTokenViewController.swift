@@ -53,7 +53,7 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
     }
 
     func enable(_ issuer: String, label: String, secret: String) {
-        let s = secret.characters.count
+        let s = secret.count
         self.navigationItem.rightBarButtonItem!.isEnabled = issuer != "" && label != "" && s > 0 && s % 8 == 0
     }
 
@@ -62,7 +62,7 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
 
         if textField === secret {
             var unpadded = false
-            for chr in str.characters.reversed() {
+            for chr in str.reversed() {
                 if !unpadded {
                     if chr == "=" {
                         continue
@@ -71,7 +71,7 @@ class AddTokenViewController : UITableViewController, UITextFieldDelegate {
                     }
                 }
 
-                if !"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567".characters.contains(chr) {
+                if !"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567".contains(chr) {
                     return false
                 }
             }
