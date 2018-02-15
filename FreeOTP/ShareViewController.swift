@@ -66,7 +66,9 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         }
     }
 
-    fileprivate func register(_ peripheral: CBPeripheral) {
+    fileprivate func register(_ peripheral: CBPeripheral) -> Bool {
+        if peripherals.contains(peripheral) { return false }
+        if peripheral.name == nil { return false }
         peripherals.append(peripheral)
 
         // Add the device to the UI
@@ -74,6 +76,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         if tableView.numberOfSections == 1 { tableView.insertSections(IndexSet(integer: 1), with: .fade) }
         tableView.insertRows(at: [IndexPath(row: peripherals.count - 1, section: 1)], with: UITableViewRowAnimation.fade)
         tableView.endUpdates()
+        return true
     }
 
     fileprivate func unregister(_ peripheral: CBPeripheral) {
@@ -208,8 +211,9 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         switch central.state {
         case .poweredOn:
             for p in central.retrieveConnectedPeripherals(withServices: [SERVICE]) {
-                register(p)
-                connect(p)
+                if register(p) {
+                    connect(p)
+                }
             }
 
             central.scanForPeripherals(withServices: [SERVICE], options: nil)
@@ -220,8 +224,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if peripheral.name != nil {
-            register(peripheral)
+        if register(peripheral) {
             connect(peripheral)
         }
     }
