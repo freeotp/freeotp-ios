@@ -20,3 +20,11 @@ that implements these standards.
 ## Contributing
 
 Pull requests on GitHub are welcome under the Apache 2.0 license, see [COPYING](COPYING).
+
+### Setup local dev env
+
+You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps
+
+    brew install carthage
+    carthage update
+
