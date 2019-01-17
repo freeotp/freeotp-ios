@@ -51,10 +51,26 @@
 {
     /* NOTE: We start output processing in viewDidAppear() to avoid a
      * race condition when the QR code is scanned before the view appears. */
-    AVCaptureMetadataOutput* output = [[AVCaptureMetadataOutput alloc] init];
-    [self.session addOutput:output];
-    [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-    [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    __block bool cameraAuth = false;
+
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    if(authStatus == AVAuthorizationStatusAuthorized) {
+        cameraAuth = true;
+    } else if(authStatus == AVAuthorizationStatusDenied || authStatus == AVAuthorizationStatusNotDetermined){
+        [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+            if(granted){
+                cameraAuth = true;
+            }
+        }];
+    }
+
+    if (cameraAuth == true) {
+        AVCaptureMetadataOutput* output = [[AVCaptureMetadataOutput alloc] init];
+        [self.session addOutput:output];
+        [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+        [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    }
 }
 
 - (void)captureOutput:(AVCaptureOutput*)captureOutput didOutputMetadataObjects:(NSArray*)metadataObjects fromConnection:(AVCaptureConnection*) connection
