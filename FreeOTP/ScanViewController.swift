@@ -44,6 +44,8 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             preview.connection?.videoOrientation = .landscapeRight
         case .unknown:
             break
+        @unknown default:
+            break
         }
     }
 
