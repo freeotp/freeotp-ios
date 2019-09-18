@@ -74,13 +74,13 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
         // Add the device to the UI
         tableView.beginUpdates()
         if tableView.numberOfSections == 1 { tableView.insertSections(IndexSet(integer: 1), with: .fade) }
-        tableView.insertRows(at: [IndexPath(row: peripherals.count - 1, section: 1)], with: UITableViewRowAnimation.fade)
+        tableView.insertRows(at: [IndexPath(row: peripherals.count - 1, section: 1)], with: UITableView.RowAnimation.fade)
         tableView.endUpdates()
         return true
     }
 
     fileprivate func unregister(_ peripheral: CBPeripheral) {
-        if let i = peripherals.index(of: peripheral) {
+        if let i = peripherals.firstIndex(of: peripheral) {
             manager.cancelPeripheralConnection(peripherals.remove(at: i))
 
             tableView.beginUpdates()
@@ -101,7 +101,10 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
                 self.centralManager(manager, didConnect: peripheral)
 
             case .connecting:
-                return
+                return;
+
+            @unknown default:
+                break
             }
 
             Timer.scheduledTimer(
@@ -263,7 +266,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let _ = service.findCharacteristic(CHARACT) {
-            let i = peripherals.index(of: peripheral)!
+            let i = peripherals.firstIndex(of: peripheral)!
             let c = tableView.cellForRow(at: IndexPath(row: i, section: 1))
 
             UIView.animate(withDuration: 0.3, animations: {

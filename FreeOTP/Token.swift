@@ -218,10 +218,10 @@ public final class Token : NSObject, KeychainStorable {
         counter = aDecoder.decodeInt64(forKey: "counter")
         image = aDecoder.decodeObject(forKey: "image") as? String
         imageOrig = aDecoder.decodeObject(forKey: "imageOrig") as? String
-        issuer = aDecoder.decodeObject(forKey: "issuer") as! String
+        issuer = aDecoder.decodeObject(forKey: "issuer") as? String
         issuerOrig = aDecoder.decodeObject(forKey: "issuerOrig") as! String
         kind = Kind(rawValue: aDecoder.decodeInteger(forKey: "kind"))!
-        label = aDecoder.decodeObject(forKey: "label") as! String
+        label = aDecoder.decodeObject(forKey: "label") as? String
         labelOrig = aDecoder.decodeObject(forKey: "labelOrig") as! String
         period = aDecoder.decodeInt64(forKey: "period")
 

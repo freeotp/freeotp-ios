@@ -153,7 +153,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 // Animate to the "lifted" state.
                 UIView.animate(withDuration: 0.3, animations: {
                     cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                    self.collectionView?.bringSubview(toFront: cell)
+                    self.collectionView?.bringSubviewToFront(cell)
                 })
             }
 
@@ -182,7 +182,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
                 // Reset state.
                 cell!.transform = CGAffineTransform(scaleX: 1.1, y: 1.1); // Moving the token resets the size...
-                collectionView?.bringSubview(toFront: cell!) // ... and Z index.
+                collectionView?.bringSubviewToFront(cell!) // ... and Z index.
                 lastPath = currPath!;
             }
 

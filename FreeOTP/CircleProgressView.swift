@@ -57,8 +57,8 @@ import UIKit
         let radians = max(min(Double(prog) * 2 * Double.pi, 2 * Double.pi), 0)
 
         var color = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
-        if (threshold < 0 && progress < fabs(threshold)) {
-            color = UIColor(red: 1.0, green: progress * (1 / fabs(threshold)), blue: 0.0, alpha: 1.0)
+        if (threshold < 0 && progress < abs(threshold)) {
+            color = UIColor(red: 1.0, green: progress * (1 / abs(threshold)), blue: 0.0, alpha: 1.0)
         } else if (threshold > 0 && progress > threshold) {
             color = UIColor(red: 1.0, green: (1 - progress) * (1 / (1 - threshold)), blue: 0.0, alpha: 1.0)
         }
