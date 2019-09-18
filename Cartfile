@@ -1,2 +1,2 @@
 github "norio-nomura/Base32"
-github "evgenyneu/moa" ~> 9.0
+github "evgenyneu/moa" ~> 11.0
