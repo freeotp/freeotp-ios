@@ -52,14 +52,14 @@ open class KeychainStore<T: KeychainStorable> {
         if locked {
             let sac = SecAccessControlCreateWithFlags(
                 kCFAllocatorDefault,
-                kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+                kSecAttrAccessibleWhenUnlocked,
                 .userPresence,
                 nil
             )
 
             add[kSecAttrAccessControl as String] = sac
         } else {
-            add[kSecAttrAccessible as String] = kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+            add[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
         }
 
         return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
