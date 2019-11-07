@@ -1,2 +1,3 @@
 github "norio-nomura/Base32"
 github "evgenyneu/moa" ~> 11.0
+github "thii/FontAwesome.swift"
