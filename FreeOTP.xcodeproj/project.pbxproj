@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		283608E123746312005FB8D3 /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283608E023746312005FB8D3 /* FontAwesome.framework */; };
+		283608E323746695005FB8D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283608E223746695005FB8D3 /* Extensions.swift */; };
 		287FCF08233279A4001A9ABE /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
 		287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		283608E023746312005FB8D3 /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
+		283608E223746695005FB8D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
 				F10D88CF1B56A3C400482D15 /* Info.plist */,
+				283608E223746695005FB8D3 /* Extensions.swift */,
 			);
 			path = FreeOTP;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
 				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
 				F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */,
+				283608E323746695005FB8D3 /* Extensions.swift in Sources */,
 				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
 				F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */,
 				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,

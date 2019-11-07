@@ -108,6 +108,8 @@ public final class Token : NSObject, KeychainStorable {
         }
     }
 
+    var color: String?
+
     public init?(otp: OTP, urlc: URLComponents, load: Bool = false) {
         self.account = otp.account
         super.init()
@@ -185,6 +187,9 @@ public final class Token : NSObject, KeychainStorable {
             case "issuerorig":
                 if !load { issuerOrig = item.value! }
 
+            case "color":
+                color = item.value!
+
             case "nameorig":
                 if !load { labelOrig = item.value! }
 
@@ -220,6 +225,7 @@ public final class Token : NSObject, KeychainStorable {
         imageOrig = aDecoder.decodeObject(forKey: "imageOrig") as? String
         issuer = aDecoder.decodeObject(forKey: "issuer") as? String
         issuerOrig = aDecoder.decodeObject(forKey: "issuerOrig") as! String
+        color = aDecoder.decodeObject(forKey: "color") as? String
         kind = Kind(rawValue: aDecoder.decodeInteger(forKey: "kind"))!
         label = aDecoder.decodeObject(forKey: "label") as? String
         labelOrig = aDecoder.decodeObject(forKey: "labelOrig") as! String
@@ -236,6 +242,7 @@ public final class Token : NSObject, KeychainStorable {
         aCoder.encode(imageOrig, forKey: "imageOrig")
         aCoder.encode(issuer, forKey: "issuer")
         aCoder.encode(issuerOrig, forKey: "issuerOrig")
+        aCoder.encode(color, forKey: "color")
         aCoder.encode(kind.rawValue, forKey: "kind")
         aCoder.encode(label, forKey: "label")
         aCoder.encode(labelOrig, forKey: "labelOrig")

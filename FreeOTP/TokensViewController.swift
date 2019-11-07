@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import FontAwesome
 
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     fileprivate var lastPath: IndexPath? = nil
@@ -45,6 +46,21 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                     cell.image.image = image
                 })
             })
+
+            if token.image == nil {
+                let faIconName = "fa-" + token.issuer.lowercased()
+
+                if let iconName = FontAwesome(rawValue: faIconName) {
+                    cell.image.image = UIImage.fontAwesomeIcon(name: iconName, style: .brands,
+                                                               textColor: .white, size: cell.image.bounds.size)
+                }
+            }
+
+            if let color = token.color {
+                cell.image.backgroundColor = UIColor(hexString: color)
+            } else {
+                cell.image.backgroundColor = UIColor.systemGray
+            }
 
             cell.lock.isHidden = !token.locked
             cell.outer.isHidden = token.kind != .totp

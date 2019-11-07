@@ -21,6 +21,7 @@
 import Foundation
 import Photos
 import UIKit
+import FontAwesome
 
 class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var image: UIButton!
@@ -157,6 +158,22 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
                 self.image.setImage(image, for: UIControl.State())
             })
         })
+
+        if token.image == nil {
+            let faIconName = "fa-" + token.issuer.lowercased()
+
+            if let iconName = FontAwesome(rawValue: faIconName) {
+                let faImage = UIImage.fontAwesomeIcon(name: iconName, style: .brands,
+                                                      textColor: .white, size: image.bounds.size)
+                self.image.setImage(faImage, for: UIControl.State())
+            }
+        }
+
+        if let color = token.color {
+            self.image.backgroundColor = UIColor(hexString: color)
+        } else {
+            self.image.backgroundColor = UIColor.systemGray
+        }
 
         textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
     }
