@@ -10,6 +10,7 @@
 		2833CEAC237B99610033F599 /* TokenIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833CEAB237B99610033F599 /* TokenIcon.swift */; };
 		283608E123746312005FB8D3 /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283608E023746312005FB8D3 /* FontAwesome.framework */; };
 		283608E323746695005FB8D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283608E223746695005FB8D3 /* Extensions.swift */; };
+		285F0C98238463E9003DEE90 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285F0C97238463E9003DEE90 /* Icon.swift */; };
 		287FCF08233279A4001A9ABE /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
 		287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
 		28E70303237B1DFD00BD34EE /* IconMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E70302237B1DFD00BD34EE /* IconMappingViewController.swift */; };
@@ -61,6 +62,7 @@
 		2833CEAB237B99610033F599 /* TokenIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIcon.swift; sourceTree = "<group>"; };
 		283608E023746312005FB8D3 /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		283608E223746695005FB8D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		285F0C97238463E9003DEE90 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		28E70302237B1DFD00BD34EE /* IconMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMappingViewController.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				F18FA53F1B57339F00B1CEAD /* Storage.swift */,
 				F10D88DA1B56A3C400482D15 /* Info.plist */,
 				F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */,
+				285F0C97238463E9003DEE90 /* Icon.swift */,
 			);
 			path = FreeOTPTests;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */,
 				F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */,
 				F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */,
+				285F0C98238463E9003DEE90 /* Icon.swift in Sources */,
 				F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
