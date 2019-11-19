@@ -25,6 +25,7 @@ import FontAwesome
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
     fileprivate var lastPath: IndexPath? = nil
     fileprivate var store = TokenStore()
+    var tokenIcon = TokenIcon()
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -48,18 +49,14 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             })
 
             if token.image == nil {
-                let faIconName = "fa-" + token.issuer.lowercased()
-
-                if let iconName = FontAwesome(rawValue: faIconName) {
-                    cell.image.image = UIImage.fontAwesomeIcon(name: iconName, style: .brands,
-                                                               textColor: .white, size: cell.image.bounds.size)
-                }
+                cell.image.image = tokenIcon.getIcon(issuer: token.issuer.lowercased(), imageSize: cell.image.bounds.size)
+                cell.image.backgroundColor = UIColor.systemRed
             }
 
             if let color = token.color {
                 cell.image.backgroundColor = UIColor(hexString: color)
             } else {
-                cell.image.backgroundColor = UIColor.systemGray
+                cell.image.backgroundColor = tokenIcon.getColor(issuer: token.issuer.lowercased())
             }
 
             cell.lock.isHidden = !token.locked

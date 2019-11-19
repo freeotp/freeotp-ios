@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2833CEAC237B99610033F599 /* TokenIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2833CEAB237B99610033F599 /* TokenIcon.swift */; };
 		283608E123746312005FB8D3 /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283608E023746312005FB8D3 /* FontAwesome.framework */; };
 		283608E323746695005FB8D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283608E223746695005FB8D3 /* Extensions.swift */; };
 		287FCF08233279A4001A9ABE /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
 		287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
+		28E70303237B1DFD00BD34EE /* IconMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E70302237B1DFD00BD34EE /* IconMappingViewController.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -56,8 +58,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2833CEAB237B99610033F599 /* TokenIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIcon.swift; sourceTree = "<group>"; };
 		283608E023746312005FB8D3 /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		283608E223746695005FB8D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		28E70302237B1DFD00BD34EE /* IconMappingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMappingViewController.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
 				F10D88FA1B56A54B00482D15 /* ShareViewController.swift */,
 				F10D88FF1B56A54B00482D15 /* TokensViewController.swift */,
+				28E70302237B1DFD00BD34EE /* IconMappingViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				F10D88FB1B56A54B00482D15 /* Token.swift */,
 				F10D88FE1B56A54B00482D15 /* TokenStore.swift */,
 				F18FA5431B58D30800B1CEAD /* KeychainStore.swift */,
+				2833CEAB237B99610033F599 /* TokenIcon.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -374,12 +380,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */,
+				28E70303237B1DFD00BD34EE /* IconMappingViewController.swift in Sources */,
 				F10D89031B56A54B00482D15 /* EditViewController.swift in Sources */,
 				F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */,
 				F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */,
 				F10D89071B56A54B00482D15 /* OTP.swift in Sources */,
 				F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */,
 				F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */,
+				2833CEAC237B99610033F599 /* TokenIcon.swift in Sources */,
 				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
 				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,

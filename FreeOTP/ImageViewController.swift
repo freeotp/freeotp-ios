@@ -21,10 +21,12 @@
 import Foundation
 import Photos
 import UIKit
+import FontAwesome
 
 class ImageViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     fileprivate var sections: PHFetchResult<PHAsset>! = nil
     fileprivate var items: PHFetchResult<PHAsset>! = nil
+    @IBOutlet weak var iconMapButton: UIBarButtonItem!
 
     var token: Token!
 
@@ -34,6 +36,13 @@ class ImageViewController : UICollectionViewController, UICollectionViewDelegate
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         collectionView?.performBatchUpdates(nil, completion: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapIcon" {
+            let vc = segue.destination as? IconMappingViewController
+            vc?.tokenIssuer = token.issuer
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

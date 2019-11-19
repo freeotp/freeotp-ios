@@ -42,6 +42,7 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     }
 
     var token: Token!
+    let tokenIcon = TokenIcon()
     fileprivate var titleBackup: String?
 
     @IBAction func trashClicked(_ sender: UIBarButtonItem) {
@@ -76,6 +77,8 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
     }
 
     @IBAction func resetClicked(_ sender: UIBarButtonItem) {
+        tokenIcon.removeMapping(issuer: token.issuer.lowercased())
+
         token.issuer = nil
         token.label = nil
         token.image = nil
@@ -112,6 +115,9 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         token2UI()
     }
 
+    @IBAction func unwindToEditView(sender: UIStoryboardSegue) {
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         if let t = token {
             Token.store.save(t)
@@ -134,17 +140,24 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         let dlab = def("label") as! String?
         let dimg = def("image") as! String?
 
+        let mappedIconExists = tokenIcon.loadMapping(issuer: token.issuer.lowercased())
+
         switch textField {
         case self.issuer:
             token.issuer = str
-            reset.isEnabled = diss != str || dlab != label.text || dimg != token.image
+            reset.isEnabled = diss != str || dlab != label.text || dimg != token.image || mappedIconExists != nil
         case self.label:
             token.label = str
-            reset.isEnabled = diss != issuer.text || dlab != str || dimg != token.image
+            reset.isEnabled = diss != issuer.text || dlab != str || dimg != token.image || mappedIconExists != nil
         default:
             return false
         }
 
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 
@@ -160,19 +173,14 @@ class EditViewController : UIViewController, UITextFieldDelegate, UIImagePickerC
         })
 
         if token.image == nil {
-            let faIconName = "fa-" + token.issuer.lowercased()
-
-            if let iconName = FontAwesome(rawValue: faIconName) {
-                let faImage = UIImage.fontAwesomeIcon(name: iconName, style: .brands,
-                                                      textColor: .white, size: image.bounds.size)
-                self.image.setImage(faImage, for: UIControl.State())
-            }
+            let icon = tokenIcon.getIcon(issuer: token.issuer.lowercased(), imageSize: image.bounds.size)
+            self.image.setImage(icon, for: UIControl.State())
         }
 
         if let color = token.color {
             self.image.backgroundColor = UIColor(hexString: color)
         } else {
-            self.image.backgroundColor = UIColor.systemGray
+            self.image.backgroundColor = tokenIcon.getColor(issuer: token.issuer.lowercased())
         }
 
         textField(issuer, shouldChangeCharactersIn: NSRange(), replacementString: "")
