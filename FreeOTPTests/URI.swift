@@ -70,4 +70,34 @@ class URI: XCTestCase {
         XCTAssertEqual(token!.label, "alice@google.com")
         XCTAssertNil(token!.image)
     }
+
+    func testUnicodeChars() {
+        let example_one = "otpauth://hotp/Example:firstname.lastname%40example.com%20(foobar)%20-%20TESTING?secret=qfwpwaf2d5korpye6x5ldftjcitb2dvk5ozbvvizslayv2ezdt3mgf5o&algorithm=SHA256&digits=6&period=30&counter=0"
+
+        let urlc = URLComponents(string: example_one)
+        XCTAssertNotNil(urlc)
+
+        let token = TokenStore().add(urlc!)
+        XCTAssertNotNil(token)
+        XCTAssertEqual(token!.issuer, "Example")
+        XCTAssertEqual(token!.label, "firstname.lastname@example.com (foobar) - TESTING")
+
+        let exampleChinese = "otpauth://hotp/%E7%81%AB%E5%B0%B8%E6%9C%A8%E7%81%AB1%E5%8D%81%E5%AF%A5%E6%97%A5%E7%83%A4:%E7%81%AB%E6%97%A5%E8%82%96%E3%80%80%E4%BD%A0%EF%BC%9B%E7%81%AB?secret=qfwpwaf2d5korpye6x5ldftjcitb2dvk5ozbvvizslayv2ezdt3mgf5o&algorithm=SHA256&digits=6&period=30&counter=0"
+
+        let urlcChinese = URLComponents(string: exampleChinese)
+          XCTAssertNotNil(urlcChinese)
+
+        let tokenChinese = TokenStore().add(urlcChinese!)
+        XCTAssertEqual(tokenChinese!.issuer, "火尸木火1十寥日烤")
+        XCTAssertEqual(tokenChinese!.label, "火日肖　你；火")
+
+        let exampleUnicode = "otpauth://hotp/Robert%E2%80%99s%E2%80%9D!!%40%23%24%25%5E:slkdjfkj%22%22%C3%A9!%22'%C3%A8(%C3%A0%C3%A9%C3%A9!%C3%A9?secret=qfwpwaf2d5korpye6x5ldftjcitb2dvk5ozbvvizslayv2ezdt3mgf5o&algorithm=SHA256&digits=6&period=30&counter=0"
+
+        let urlcUnicode = URLComponents(string: exampleUnicode)
+          XCTAssertNotNil(urlcUnicode)
+
+        let tokenUnicode = TokenStore().add(urlcUnicode!)
+        XCTAssertEqual(tokenUnicode!.issuer, "Robert’s”!!@#$%^")
+        XCTAssertEqual(tokenUnicode!.label, "slkdjfkj\"\"é!\"'è(àéé!é")
+    }
 }
