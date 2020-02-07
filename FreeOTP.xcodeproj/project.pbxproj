@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2800418823FC56E500256D27 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800418723FC56E500256D27 /* SectionHeader.swift */; };
+		2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820C85923EE53CB002D3695 /* URILockViewController.swift */; };
+		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
+		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
+		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
+		2867173123F43F490009410C /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2867173023F43F490009410C /* FontAwesome.framework */; };
+		2867173323F442FE0009410C /* TokenIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173223F442FE0009410C /* TokenIcon.swift */; };
+		2867173523F4954F0009410C /* FontAwesomeIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173423F4954F0009410C /* FontAwesomeIconCell.swift */; };
 		287FCF08233279A4001A9ABE /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
 		287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
+		2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887CDD724585E03004891D3 /* URIMainIconViewController.swift */; };
+		28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090223EDCC0B0034A321 /* URILabelViewController.swift */; };
+		28C0090523EDE4840034A321 /* URIParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090423EDE4840034A321 /* URIParameters.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -54,6 +65,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2800418723FC56E500256D27 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		2820C85923EE53CB002D3695 /* URILockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILockViewController.swift; sourceTree = "<group>"; };
+		282341B3245A13D000025167 /* RecommendedIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedIconCell.swift; sourceTree = "<group>"; };
+		2832BFF6246C7F810079B2D7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		283FC22223F19EB600491B5E /* URIIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIIconViewController.swift; sourceTree = "<group>"; };
+		2867173023F43F490009410C /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
+		2867173223F442FE0009410C /* TokenIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIcon.swift; sourceTree = "<group>"; };
+		2867173423F4954F0009410C /* FontAwesomeIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesomeIconCell.swift; sourceTree = "<group>"; };
+		2887CDD724585E03004891D3 /* URIMainIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIMainIconViewController.swift; sourceTree = "<group>"; };
+		28C0090223EDCC0B0034A321 /* URILabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILabelViewController.swift; sourceTree = "<group>"; };
+		28C0090423EDE4840034A321 /* URIParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIParameters.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2867173123F43F490009410C /* FontAwesome.framework in Frameworks */,
 				F18FA5361B571E2200B1CEAD /* CoreBluetooth.framework in Frameworks */,
 				F18FA53A1B571E4800B1CEAD /* CoreGraphics.framework in Frameworks */,
 				287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */,
@@ -122,6 +145,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2867172F23F43F480009410C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2867173023F43F490009410C /* FontAwesome.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F10D88B71B56A3C400482D15 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +167,7 @@
 				F10D88D71B56A3C400482D15 /* FreeOTPTests */,
 				F10D88E21B56A3C500482D15 /* FreeOTPUITests */,
 				F10D88C11B56A3C400482D15 /* Products */,
+				2867172F23F43F480009410C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +210,7 @@
 				F1CA93C71B56AA0000828B8B /* TOTP.swift */,
 				F1CA93C81B56AA0000828B8B /* URI.swift */,
 				F18FA53F1B57339F00B1CEAD /* Storage.swift */,
+				2832BFF6246C7F810079B2D7 /* Icon.swift */,
 				F10D88DA1B56A3C400482D15 /* Info.plist */,
 				F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */,
 			);
@@ -200,6 +233,10 @@
 				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
 				F10D88FA1B56A54B00482D15 /* ShareViewController.swift */,
 				F10D88FF1B56A54B00482D15 /* TokensViewController.swift */,
+				28C0090223EDCC0B0034A321 /* URILabelViewController.swift */,
+				2887CDD724585E03004891D3 /* URIMainIconViewController.swift */,
+				283FC22223F19EB600491B5E /* URIIconViewController.swift */,
+				2820C85923EE53CB002D3695 /* URILockViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +244,9 @@
 		F10D89121B56A59500482D15 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2800418723FC56E500256D27 /* SectionHeader.swift */,
+				2867173423F4954F0009410C /* FontAwesomeIconCell.swift */,
+				282341B3245A13D000025167 /* RecommendedIconCell.swift */,
 				F10D88F21B56A54B00482D15 /* CircleProgressView.swift */,
 				F10D88FC1B56A54B00482D15 /* TokenButton.swift */,
 				F10D88FD1B56A54B00482D15 /* TokenCell.swift */,
@@ -221,6 +261,8 @@
 				F10D88FB1B56A54B00482D15 /* Token.swift */,
 				F10D88FE1B56A54B00482D15 /* TokenStore.swift */,
 				F18FA5431B58D30800B1CEAD /* KeychainStore.swift */,
+				28C0090423EDE4840034A321 /* URIParameters.swift */,
+				2867173223F442FE0009410C /* TokenIcon.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -340,14 +382,16 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/moa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Base32.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/moa.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FontAwesome.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -361,15 +405,24 @@
 				F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */,
 				F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */,
 				F10D89071B56A54B00482D15 /* OTP.swift in Sources */,
+				2867173523F4954F0009410C /* FontAwesomeIconCell.swift in Sources */,
 				F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */,
+				283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */,
+				2800418823FC56E500256D27 /* SectionHeader.swift in Sources */,
+				28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */,
 				F10D89021B56A54B00482D15 /* CircleProgressView.swift in Sources */,
+				2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */,
 				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
 				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
 				F10D89061B56A54B00482D15 /* ImageViewController.swift in Sources */,
+				282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */,
 				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
 				F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */,
 				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,
+				28C0090523EDE4840034A321 /* URIParameters.swift in Sources */,
+				2867173323F442FE0009410C /* TokenIcon.swift in Sources */,
+				2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */,
 				F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +434,7 @@
 				F1CA93CA1B56AA0000828B8B /* TOTP.swift in Sources */,
 				F18FA5401B57339F00B1CEAD /* Storage.swift in Sources */,
 				F1CA93C91B56AA0000828B8B /* HOTP.swift in Sources */,
+				2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */,
 				F1CA93CB1B56AA0000828B8B /* URI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

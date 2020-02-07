@@ -35,8 +35,11 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         if let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true) {
-            if TokenStore().add(urlc) != nil {
-                window?.rootViewController?.loadView()
+            let navigationController = app.windows[0].rootViewController as! UINavigationController
+            if let scanvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "scan") as? ScanViewController {
+                scanvc.urlc = urlc
+                scanvc.urlSent = true
+                navigationController.pushViewController(scanvc, animated: true)
                 return true
             }
         }
