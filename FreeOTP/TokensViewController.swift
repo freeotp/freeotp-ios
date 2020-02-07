@@ -22,8 +22,10 @@ import Foundation
 import UIKit
 
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
+    let defaultIcon = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)
     fileprivate var lastPath: IndexPath? = nil
     fileprivate var store = TokenStore()
+    var icon = TokenIcon()
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -38,13 +40,33 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         if let token = store.load(indexPath.row) {
             cell.state = nil
+            var iconName = ""
 
-            ImageDownloader(cell.image.bounds.size).fromURI(token.image, completion: {
-                (image: UIImage) -> Void in
-                UIView.animate(withDuration: 0.3, animations: {
-                    cell.image.image = image
-                })
-            })
+            if let image = token.image {
+                if image.hasSuffix("/FreeOTP.app/default.png") {
+                    cell.image.image = defaultIcon
+                } else {
+                    ImageDownloader(cell.image.bounds.size).fromURI(token.image, completion: {
+                        (image: UIImage) -> Void in
+                        UIView.animate(withDuration: 0.3, animations: {
+                            cell.image.image = image.addImagePadding(x: 30, y: 30)
+                        })
+                    })
+                }
+            } else {
+                // Retrieve and use saved issuer -> icon mapping in User Defaults
+                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: cell.image.bounds.size) {
+                    cell.image.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
+                    iconName = custIcon.name
+                    // Issuer matches an icon name brand
+                } else if let faIcon = icon.getfaIconName(for: token.issuer) {
+                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: cell.image.bounds.size)
+                    cell.image.image = image?.addImagePadding(x: 30, y: 30)
+                    iconName = faIcon
+                }
+            }
+
+            cell.image.backgroundColor = icon.getBackgroundColor(name: iconName)
 
             cell.lock.isHidden = !token.locked
             cell.outer.isHidden = token.kind != .totp

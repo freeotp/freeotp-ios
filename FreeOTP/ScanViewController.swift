@@ -25,6 +25,10 @@ import AVFoundation
 class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var preview: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: AVCaptureSession())
     var enabled: Bool = false
+    var urlc = URLComponents()
+    var URI = URIParameters()
+    var icon = TokenIcon()
+    var urlSent = false
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -89,7 +93,20 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             return
         }
 
-        preview.session!.startRunning()
+        if urlSent {
+            if !pushNextViewController(urlc) {
+                TokenStore().add(urlc)
+                switch UIDevice.current.userInterfaceIdiom {
+                case .pad:
+                    dismiss(animated: true, completion: nil)
+                    popoverPresentationController?.delegate?.popoverPresentationControllerDidDismissPopover?(popoverPresentationController!)
+                default:
+                    navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        } else {
+            preview.session!.startRunning()
+        }
         orient(UIApplication.shared.statusBarOrientation)
     }
 
@@ -99,6 +116,44 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
 
     override func viewDidDisappear(_ animated: Bool) {
         enabled = false
+    }
+
+    // Due to conditional navigation logic, we manage the navigation stack ourselves to avoid
+    // a storyboard with too many segues
+    func pushNextViewController(_ urlc: URLComponents) -> Bool {
+        var issuer = ""
+
+        if let label = URI.getLabel(from: urlc) {
+            issuer = label.issuer
+        }
+
+        if URI.accountUnset(urlc) {
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "URILabelViewController") as? URILabelViewController {
+                viewController.inputUrlc = urlc
+                if let navigator = navigationController {
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        } else if URI.paramUnset(urlc, "image", "") &&
+            icon.getFontAwesomeIcon(issuer: issuer) == nil && icon.issuerBrandMapping[issuer] == nil {
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "URIMainIconViewController") as? URIMainIconViewController {
+                viewController.inputUrlc = urlc
+                if let navigator = navigationController {
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        } else if URI.paramUnset(urlc, "lock", false) {
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "URILockViewController") as? URILockViewController {
+                viewController.inputUrlc = urlc
+                if let navigator = navigationController {
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        } else {
+            return false
+        }
+
+        return true
     }
 
     fileprivate func showError(_ err: String) {
@@ -136,29 +191,24 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                 continue
             }
 
-            if let urlc = URLComponents(string: obj.stringValue!) {
-                if let token = TokenStore().add(urlc) {
+            if var urlc = URLComponents(string: obj.stringValue!) {
+                if URI.validateURI(uri: urlc) {
+                    self.urlc = urlc
+
                     preview.session?.stopRunning()
 
-                    ImageDownloader(image.bounds.size).fromURI(token.image, completion: {
-                        (image: UIImage) -> Void in
-
-                        UIView.transition(
-                            with: self.image,
-                            duration: 2,
-                            options: .transitionCrossDissolve,
-                            animations: {
-                                self.image.image = image
-                                self.activity.alpha = 0.0
-                                self.activity.stopAnimating()
-                            }, completion: {
-                                (_: Bool) -> Void in
-                                self.navigationController?.popViewController(animated: true)
-                            }
-                        )
-                    })
+                    if !pushNextViewController(urlc) {
+                        TokenStore().add(urlc)
+                        switch UIDevice.current.userInterfaceIdiom {
+                        case .pad:
+                            dismiss(animated: true, completion: nil)
+                            popoverPresentationController?.delegate?.popoverPresentationControllerDidDismissPopover?(popoverPresentationController!)
+                        default:
+                            navigationController?.popToRootViewController(animated: true)
+                        }
+                    }
                 } else {
-                    showError("Invalid token URI!")
+                    showError("Invalid URI!")
                 }
             } else {
                 showError("Invalid URI!")

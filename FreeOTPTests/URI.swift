@@ -100,4 +100,45 @@ class URI: XCTestCase {
         XCTAssertEqual(tokenUnicode!.issuer, "Robert’s”!!@#$%^")
         XCTAssertEqual(tokenUnicode!.label, "slkdjfkj\"\"é!\"'è(àéé!é")
     }
+
+    func testUnsetParams() {
+        let params = URIParameters()
+        let urlc = URLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar&lock=true")
+        let urlcUnset = URLComponents(string: "otpauth://hotp/Example?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2")
+        XCTAssertNotNil(urlcUnset)
+        XCTAssertTrue(params.accountUnset(urlcUnset!))
+
+        XCTAssertFalse(params.paramUnset(urlc!, "image", ""))
+        XCTAssertTrue(params.paramUnset(urlcUnset!, "image", ""))
+
+        XCTAssertFalse(params.paramUnset(urlc!, "lock", ""))
+        XCTAssertTrue(params.paramUnset(urlcUnset!, "lock", ""))
+    }
+
+    func testGetParams() {
+        let params = URIParameters()
+        let urlc = URLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar")
+        let urlcAcctOnly = URLComponents(string: "otpauth://hotp/Example?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&image=http%3A%2F%2Ffoo%2Fbar")
+
+        let label = params.getLabel(from: urlc!)
+        XCTAssert(label != nil)
+        XCTAssert(label!.issuer == "Example")
+        XCTAssert(label!.account == "alice@google.com")
+
+        let label2 = params.getLabel(from: urlcAcctOnly!)
+        XCTAssert(label2 != nil)
+        XCTAssert(label2!.account == "Example")
+        XCTAssert(label2!.issuer == "")
+    }
+
+    func testValidateURI() {
+        let params = URIParameters()
+
+        XCTAssertFalse(params.validateURI(uri: URLComponents(string: "xxxxxxx://hotp/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP")!))
+        XCTAssertFalse(params.validateURI(uri: URLComponents(string: "otpauth://xxxx/Example:alice@google.com?secret=JBSWY3DPEHPK3PXP")!))
+        XCTAssertFalse(params.validateURI(uri: URLComponents(string: "otpauth://hotp/Example:alice@google.com")!))
+        XCTAssertFalse(params.validateURI(uri: URLComponents(string: "otpauth://hotp/?secret=by6p223gcdxtmxakeaqapld6um3k6x2gos5lcgvlaznjxcgw5cudwr5y&algorithm=SHA256&digits=6&period=30&counter=0")!))
+
+        XCTAssert(params.validateURI(uri: URLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar")!))
+    }
 }
