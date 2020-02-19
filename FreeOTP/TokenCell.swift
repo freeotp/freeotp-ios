@@ -30,7 +30,6 @@ class TokenCell : UICollectionViewCell {
     @IBOutlet weak var outer: CircleProgressView!
     @IBOutlet weak var inner: CircleProgressView!
     @IBOutlet weak var code: UILabel!
-    @IBOutlet weak var edit: TokenButton!
     @IBOutlet weak var share: TokenButton!
     @IBOutlet weak var lock: UIImageView!
 
@@ -45,7 +44,6 @@ class TokenCell : UICollectionViewCell {
                         self.outer.alpha = 0.0
                         self.image.alpha = 1.0
                         self.code.alpha = 0.0
-                        self.edit.alpha = 1.0
                         self.share.alpha = 1.0
                         self.lock.alpha = 0.5
                     }, completion: {(Bool) -> Void in
@@ -70,7 +68,6 @@ class TokenCell : UICollectionViewCell {
                     self.outer.alpha = 1.0
                     self.image.alpha = 0.1
                     self.code.alpha = 1.0
-                    self.edit.alpha = 0.0
                     self.share.alpha = 0.0
                     self.lock.alpha = 0.0
                 })
@@ -112,7 +109,6 @@ class TokenCell : UICollectionViewCell {
         let base: CGFloat = frame.size.height / 8 * 1.5
         issuer.font = issuer.font.withSize(base * 0.85)
         label.font = label.font.withSize(base * 0.80)
-        edit.titleLabel?.font = edit.titleLabel?.font.withSize(base * 0.80)
         share.titleLabel?.font = share.titleLabel?.font.withSize(base * 0.80)
         super.updateConstraints()
     }
