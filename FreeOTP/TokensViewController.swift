@@ -72,7 +72,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             cell.outer.isHidden = token.kind != .totp
             cell.issuer.text = token.issuer
             cell.label.text = token.label
-            cell.edit.token = token
             cell.share.token = token
         }
 
@@ -119,11 +118,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             width: UIScreen.main.bounds.width / 2,
             height: vc.preferredContentSize.height
         )
-    }
-
-    @IBAction func editClicked(_ sender: TokenButton) {
-        let evc: EditViewController = self.next("edit", sender: sender, dir: [.left, .right])
-        evc.token = sender.token
     }
 
     @IBAction func shareClicked(_ sender: TokenButton) {
