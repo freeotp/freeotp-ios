@@ -161,6 +161,49 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: width, height: width / 3.25);
     }
 
+    @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        if gestureRecognizer.state == .ended {
+            let p = gestureRecognizer.location(in: collectionView)
+            if let currPath = collectionView?.indexPathForItem(at: p) {
+                if let cell = collectionView?.cellForItem(at: currPath) {
+                    if let token = store.load(currPath.row) {
+                        UIView.animate(withDuration: 0.5, animations: {
+                            cell.transform = CGAffineTransform(translationX: 1200, y: 0)
+                        }, completion: { (Bool) -> Void in
+                            let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+                            let removeAction: UIAlertAction = UIAlertAction(title: "Remove token", style: .destructive) { action -> Void in
+                                TokenStore().erase(token: token)
+                                var array = [IndexPath]()
+                                array.append(currPath)
+                                self.collectionView.deleteItems(at: array)
+                            }
+
+                            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                                UIView.animate(withDuration: 0.3, animations: {
+                                    cell.transform = .identity
+                                })
+                                self.collectionView?.reloadData()
+                            }
+
+                            actionSheetController.addAction(removeAction)
+                            actionSheetController.addAction(cancelAction)
+
+                            /* Handle iPad popover */
+                            if let popoverController = actionSheetController.popoverPresentationController {
+                                popoverController.sourceView = self.view
+                                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.maxY, width: 0, height: 0)
+
+                            }
+
+                            self.present(actionSheetController, animated: true)
+                        })
+                    }
+                }
+            }
+        }
+    }
+
     @objc func handleLongPress(_ gestureRecognizer:UIGestureRecognizer) {
         // Get the current index path.
         let p = gestureRecognizer.location(in: collectionView)
@@ -247,6 +290,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
         lpg.minimumPressDuration = 0.5
         collectionView?.addGestureRecognizer(lpg)
+
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
+        collectionView?.addGestureRecognizer(swipeGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {
