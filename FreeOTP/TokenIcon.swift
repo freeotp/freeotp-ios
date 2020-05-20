@@ -215,6 +215,7 @@ public class TokenIcon {
                 if let iconName = FontAwesome(rawValue: iconMapping["Name"]!) {
                     icon.iconImg = UIImage.fontAwesomeIcon(name: iconName, style: .solid, textColor: .white, size: size)
                     icon.bgColor = iconMapping["Color"] ?? "#6F7171"
+                    icon.name = iconMapping["Name"]!
 
                     return icon
                 }
