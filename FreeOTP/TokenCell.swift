@@ -33,6 +33,8 @@ class TokenCell : UICollectionViewCell {
     @IBOutlet weak var share: TokenButton!
     @IBOutlet weak var lock: UIImageView!
 
+    let defaultIcon = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)
+
     var state: [Token.Code]? {
         didSet {
             if state == nil || state?.count == 0 {
@@ -103,6 +105,12 @@ class TokenCell : UICollectionViewCell {
             outer.progress = progress(frst.from as Date, now, last.to as Date)
             code.text = curr!.value;
         }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        image.image = defaultIcon
     }
 
     override func updateConstraints() {
