@@ -131,6 +131,16 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         if let cell = collectionView.cellForItem(at: indexPath) as! TokenCell? {
             if let token = store.load(indexPath.row) {
                 cell.state = token.codes
+
+                // Copy Token code to clipboard
+                let now = Date()
+                for c in cell.state == nil ? [] : cell.state! {
+                    if c.from.timeIntervalSince1970 <= now.timeIntervalSince1970
+                        && now.timeIntervalSince1970 < c.to.timeIntervalSince1970 {
+                            UIPasteboard.general.string = c.value;
+                            break
+                    }
+                }
             }
         }
     }
