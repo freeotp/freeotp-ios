@@ -93,7 +93,13 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
             return
         }
 
+        orient(UIApplication.shared.statusBarOrientation)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        enabled = true
         if urlSent {
+            urlSent = false
             if !pushNextViewController(urlc) {
                 TokenStore().add(urlc)
                 switch UIDevice.current.userInterfaceIdiom {
@@ -107,11 +113,6 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         } else {
             preview.session!.startRunning()
         }
-        orient(UIApplication.shared.statusBarOrientation)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        enabled = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
