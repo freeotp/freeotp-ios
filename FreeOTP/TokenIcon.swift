@@ -133,7 +133,7 @@ public class TokenIcon {
             return color
         }
         // Fallback to predictable hash-based color
-        return getBackgroundColorHash(name)
+        return name == "" ? UIColor.systemGray : getBackgroundColorHash(name)
     }
 
     func sha256(data : Data) -> Data {
