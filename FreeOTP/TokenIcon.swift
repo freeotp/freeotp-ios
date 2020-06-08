@@ -10,7 +10,7 @@ import Foundation
 import FontAwesome
 
 public extension UIColor {
-    public convenience init(hexString: String, alpha: CGFloat = 1.0) {
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
         let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexString)
 
