@@ -38,7 +38,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "token", for: indexPath) as! TokenCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TokenCell.identifier, for: indexPath) as! TokenCell
 
         if let token = store.load(indexPath.row) {
             cell.state = nil
@@ -46,35 +46,32 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
             if let image = token.image {
                 if image.hasSuffix("/FreeOTP.app/default.png") {
-                    cell.image.image = defaultIcon
+                    cell.imageView.image = defaultIcon
                 } else {
-                    ImageDownloader(cell.image.bounds.size).fromURI(token.image, completion: {
+                    ImageDownloader(cell.imageView.bounds.size).fromURI(token.image, completion: {
                         (image: UIImage) -> Void in
                         UIView.animate(withDuration: 0.3, animations: {
-                            cell.image.image = image.addImagePadding(x: 30, y: 30)
+                            cell.imageView.image = image.addImagePadding(x: 30, y: 30)
                         })
                     })
                 }
             } else {
                 // Retrieve and use saved issuer -> icon mapping in User Defaults
-                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: cell.image.bounds.size) {
-                    cell.image.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
+                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: cell.imageView.bounds.size) {
+                    cell.imageView.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
                     iconName = custIcon.name
                     // Issuer matches an icon name brand
                 } else if let faIcon = icon.getfaIconName(for: token.issuer) {
-                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: cell.image.bounds.size)
-                    cell.image.image = image?.addImagePadding(x: 30, y: 30)
+                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: cell.imageView.bounds.size)
+                    cell.imageView.image = image?.addImagePadding(x: 30, y: 30)
                     iconName = faIcon
                 }
             }
 
-            cell.image.backgroundColor = icon.getBackgroundColor(name: iconName)
+            cell.imageView.backgroundColor = icon.getBackgroundColor(name: iconName)
 
-            cell.lock.isHidden = !token.locked
-            cell.outer.isHidden = token.kind != .totp
-            cell.issuer.text = token.issuer
-            cell.label.text = token.label
-            cell.share.token = token
+            cell.token = token
+            cell.delegate = self
         }
 
         return cell
@@ -285,8 +282,10 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
 
         // Setup collection view.
-        collectionView?.allowsSelection = true;
-        collectionView?.allowsMultipleSelection = false;
+        collectionView?.backgroundColor = UIColor.app.background
+        collectionView?.allowsSelection = true
+        collectionView?.allowsMultipleSelection = false
+        collectionView?.register(TokenCell.self, forCellWithReuseIdentifier: TokenCell.identifier)
 
         // Setup gesture.
         let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
@@ -300,5 +299,12 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView?.reloadData()
+    }
+}
+
+extension TokensViewController: TokenCellDelegate {
+    func share(token: Token, sender: UIView) {
+        let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
+        svc.token = token
     }
 }

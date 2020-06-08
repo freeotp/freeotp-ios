@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24AF9AEC248F01F900B4BF06 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9AEB248F01F900B4BF06 /* Colors.swift */; };
+		24AF9AEE248F35D400B4BF06 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */; };
 		2800418823FC56E500256D27 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800418723FC56E500256D27 /* SectionHeader.swift */; };
 		2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820C85923EE53CB002D3695 /* URILockViewController.swift */; };
 		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
@@ -64,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24AF9AEB248F01F900B4BF06 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		2800418723FC56E500256D27 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		2820C85923EE53CB002D3695 /* URILockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILockViewController.swift; sourceTree = "<group>"; };
 		282341B3245A13D000025167 /* RecommendedIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedIconCell.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */,
 				287FCF08233279A4001A9ABE /* moa.framework in Frameworks */,
 				F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */,
+				24AF9AEE248F35D400B4BF06 /* TinyConstraints.framework in Frameworks */,
 				F18FA5381B571E3B00B1CEAD /* Photos.framework in Frameworks */,
 				F18FA53C1B571E5500B1CEAD /* UIKit.framework in Frameworks */,
 			);
@@ -146,6 +151,7 @@
 		2867172F23F43F480009410C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */,
 				2867173023F43F490009410C /* FontAwesome.framework */,
 			);
 			name = Frameworks;
@@ -193,6 +199,7 @@
 				F10D88F51B56A54B00482D15 /* ImageDownloader.swift */,
 				F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */,
 				F10D88C31B56A3C400482D15 /* AppDelegate.swift */,
+				24AF9AEB248F01F900B4BF06 /* Colors.swift */,
 				F19DA56D1B5C832600A54DDC /* Launch.storyboard */,
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
@@ -274,7 +281,7 @@
 				F10D88BC1B56A3C400482D15 /* Sources */,
 				F10D88BD1B56A3C400482D15 /* Frameworks */,
 				F10D88BE1B56A3C400482D15 /* Resources */,
-				FF1CDE331F915AAD002A8E06 /* ShellScript */,
+				FF1CDE331F915AAD002A8E06 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -371,7 +378,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FF1CDE331F915AAD002A8E06 /* ShellScript */ = {
+		FF1CDE331F915AAD002A8E06 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -380,11 +387,14 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/moa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TinyConstraints.framework",
 			);
+			name = Carthage;
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Base32.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/moa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FontAwesome.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TinyConstraints.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -410,6 +420,7 @@
 				2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */,
 				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
+				24AF9AEC248F01F900B4BF06 /* Colors.swift in Sources */,
 				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
 				282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */,
 				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
