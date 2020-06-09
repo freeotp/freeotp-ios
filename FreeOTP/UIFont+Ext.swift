@@ -18,9 +18,15 @@
 // limitations under the License.
 //
 
-import Foundation
 import UIKit
 
-class TokenButton : UIButton {
-    var token: Token?
+extension UIFont {
+    static func dynamicSystemFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+        if Screen.size == .large {
+            return .systemFont(ofSize: fontSize + 4, weight: weight)
+        } else if Screen.size == .medium {
+            return .systemFont(ofSize: fontSize + 2, weight: weight)
+        }
+        return .systemFont(ofSize: fontSize, weight: weight)
+    }
 }

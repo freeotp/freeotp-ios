@@ -11,7 +11,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fRA-rQ-fKw">
             <objects>
-                <navigationController definesPresentationContext="YES" id="1u3-cr-3fz" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="1u3-cr-3fz" customClass="FRNavigationController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1as-Cr-LV1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

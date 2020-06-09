@@ -21,13 +21,26 @@
 import UIKit
 
 enum AppColors {
-    static let background = UIColor(hexString: "#F2F2F6")
-    static let accent = UIColor(hexString: "#007AFF")
-    static let cardBackground = UIColor(hexString: "#FFFFFF")
-    static let primaryText = UIColor(hexString: "#1A1A1A")
-    static let secondaryText = UIColor(hexString: "#8E8E92")
+    static let background = UIColor.theme(darkHex: "#000000", lightHex: "#F2F2F6")
+    static let cardBackground = UIColor.theme(darkHex: "#1C1C1E", lightHex: "#FFFFFF")
+    static let navigationBackground = UIColor.theme(darkHex: "#171717", lightHex: "#FEFEFE")
+    static let navigationHairline = UIColor.theme(darkHex: "#262626", lightHex: "#BEBEC1")
+    static let accent = UIColor.theme(darkHex: "#2D8FFF", lightHex: "#007AFF")
+    static let primaryText = UIColor.theme(darkHex: "#FFFFFF", lightHex: "#1A1A1A")
+    static let secondaryText = UIColor.theme(darkHex: "#8E8E92", lightHex: "#8E8E92")
 }
 
 extension UIColor {
     static var app = AppColors.self
+
+    fileprivate static func theme(darkHex: String, lightHex: String) -> UIColor {
+        let darkColor = UIColor(hexString: darkHex)
+        let lightColor = UIColor(hexString: lightHex)
+
+        if #available(iOS 13.0, *) {
+            return UIColor { $0.userInterfaceStyle == .dark ? darkColor : lightColor }
+        } else {
+            return lightColor
+        }
+    }
 }

@@ -22,7 +22,7 @@ import TinyConstraints
 import UIKit
 
 protocol TokenCellDelegate: AnyObject {
-    func share(token: Token, sender: UIView)
+    func share(token: Token, sender: UIView?)
 }
 
 class TokenCell: UICollectionViewCell {
@@ -64,7 +64,7 @@ class TokenCell: UICollectionViewCell {
 
     private(set) lazy var issuerLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 16, weight: .regular)
+        view.font = .dynamicSystemFont(ofSize: 16, weight: .regular)
         view.textColor = UIColor.app.primaryText
         view.setCompressionResistance(.init(751), for: .vertical)
         return view
@@ -72,7 +72,7 @@ class TokenCell: UICollectionViewCell {
 
     private(set) lazy var subtitleLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 14, weight: .regular)
+        view.font = .dynamicSystemFont(ofSize: 14, weight: .regular)
         view.textColor = UIColor.app.secondaryText
         return view
     }()
@@ -86,9 +86,12 @@ class TokenCell: UICollectionViewCell {
 
     private(set) lazy var codeLabel: UILabel = {
         let view = UILabel()
-        view.font = .monospacedDigitSystemFont(ofSize: 30, weight: .regular)
-        view.textColor = UIColor.app.primaryText
+        view.adjustsFontSizeToFitWidth = true
+        view.baselineAdjustment = .alignCenters
+        view.font = .monospacedDigitSystemFont(ofSize: 100, weight: .regular)
+        view.minimumScaleFactor = 0.2
         view.textAlignment = .center
+        view.textColor = UIColor.app.primaryText
         return view
     }()
 
@@ -136,7 +139,7 @@ class TokenCell: UICollectionViewCell {
         stackView.addArrangedSubview(subtitleLabel)
 
         imageView.topToSuperview()
-        imageView.leftToSuperview()
+        imageView.rtlLeftToSuperview()
         imageView.bottomToSuperview()
         imageView.widthToHeight(of: imageView)
 
@@ -146,21 +149,21 @@ class TokenCell: UICollectionViewCell {
         innerProgressView.center(in: imageView)
         innerProgressView.size(to: imageView, multiplier: 5 / 12)
 
-        lockImagView.leftToSuperview(offset: 4)
+        lockImagView.rtlLeftToSuperview(offset: 4)
         lockImagView.bottomToSuperview(offset: -4)
         lockImagView.size(CGSize(width: 14, height: 14))
 
-        stackView.leftToRight(of: imageView, offset: 12)
-        stackView.rightToLeft(of: shareButton, offset: -12)
+        stackView.rtlLeftToRight(of: imageView, offset: 12)
+        stackView.rtlRightToLeft(of: shareButton, offset: -12)
         stackView.centerYToSuperview()
 
-        shareButton.rightToSuperview(offset: -12)
+        shareButton.rtlRightToSuperview(offset: -12)
         shareButton.centerYToSuperview()
         shareButton.size(CGSize(width: 24, height: 24))
 
         codeLabel.topToSuperview()
-        codeLabel.leftToRight(of: imageView)
-        codeLabel.rightToSuperview()
+        codeLabel.rtlLeftToRight(of: imageView, offset: 12)
+        codeLabel.rtlRightToSuperview(offset: -12)
         codeLabel.bottomToSuperview()
 
         shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
@@ -256,5 +259,12 @@ class TokenCell: UICollectionViewCell {
         } else {
             self.state = nil
         }
+    }
+
+    override func updateConstraints() {
+        let base: CGFloat = frame.size.height / 8 * 1.5
+        issuerLabel.font = issuerLabel.font.withSize(base * 0.85)
+        subtitleLabel.font = subtitleLabel.font.withSize(base * 0.80)
+        super.updateConstraints()
     }
 }
