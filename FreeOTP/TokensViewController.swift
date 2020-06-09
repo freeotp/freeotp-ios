@@ -29,6 +29,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     @IBOutlet weak var aboutButton: UIBarButtonItem!
 
+    private lazy var emptyStateView = EmptyStateView()
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -40,6 +42,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TokenCell.identifier, for: indexPath) as! TokenCell
 
+        let size = self.collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
+        let imageSize = CGSize(width: size.height, height: size.height)
+
         if let token = store.load(indexPath.row) {
             cell.state = nil
             var iconName = ""
@@ -48,7 +53,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 if image.hasSuffix("/FreeOTP.app/default.png") {
                     cell.imageView.image = defaultIcon
                 } else {
-                    ImageDownloader(cell.imageView.bounds.size).fromURI(token.image, completion: {
+                    ImageDownloader(imageSize).fromURI(token.image, completion: {
                         (image: UIImage) -> Void in
                         UIView.animate(withDuration: 0.3, animations: {
                             cell.imageView.image = image.addImagePadding(x: 30, y: 30)
@@ -57,12 +62,12 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 }
             } else {
                 // Retrieve and use saved issuer -> icon mapping in User Defaults
-                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: cell.imageView.bounds.size) {
+                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: imageSize) {
                     cell.imageView.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
                     iconName = custIcon.name
                     // Issuer matches an icon name brand
                 } else if let faIcon = icon.getfaIconName(for: token.issuer) {
-                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: cell.imageView.bounds.size)
+                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: imageSize)
                     cell.imageView.image = image?.addImagePadding(x: 30, y: 30)
                     iconName = faIcon
                 }
@@ -77,11 +82,36 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         return cell
     }
 
-    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        collectionView?.reloadData()
+    @available(iOS 13.0, *)
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let token = self.store.load(indexPath.row) else { return nil }
+
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { actions -> UIMenu? in
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
+                self.share(token: token, sender: nil)
+            }
+
+            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                TokenStore().erase(token: token)
+                self.collectionView.deleteItems(at: [indexPath])
+            }
+
+            return UIMenu(
+                title: token.issuer ?? "",
+                image: nil,
+                identifier: nil,
+                options: .destructive,
+                children: [shareAction, deleteAction]
+            )
+        }
+        return configuration
     }
 
-    fileprivate func next<T: UIViewController>(_ name: String, sender: AnyObject, dir: UIPopoverArrowDirection) -> T {
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        reloadData()
+    }
+
+    fileprivate func next<T: UIViewController>(_ name: String, sender: AnyObject?, dir: UIPopoverArrowDirection) -> T {
         switch UI_USER_INTERFACE_IDIOM() {
         case .pad:
             let vc = storyboard!.instantiateViewController(withIdentifier: name + "Nav") as! UINavigationController
@@ -112,16 +142,15 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     }
 
     @IBAction func scanClicked(_ sender: UIBarButtonItem) {
+        showScanScreen(sender)
+    }
+
+    private func showScanScreen(_ sender: AnyObject) {
         let vc: UIViewController = self.next("scan", sender: sender, dir: [.up, .down])
         vc.preferredContentSize = CGSize(
             width: UIScreen.main.bounds.width / 2,
             height: vc.preferredContentSize.height
         )
-    }
-
-    @IBAction func shareClicked(_ sender: TokenButton) {
-        let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
-        svc.token = sender.token
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -176,7 +205,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                                 UIView.animate(withDuration: 0.3, animations: {
                                     cell.transform = .identity
                                 })
-                                self.collectionView?.reloadData()
+                                self.reloadData()
                             }
 
                             actionSheetController.addAction(removeAction)
@@ -261,15 +290,15 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 })
             }
 
-            collectionView?.reloadData()
+            reloadData()
 
         default:
-            collectionView?.reloadData()
+            reloadData()
         }
     }
 
     @IBAction func unwindToTokens(_ sender: UIStoryboardSegue) {
-        collectionView?.reloadData()
+        reloadData()
     }
 
     override func viewDidLoad() {
@@ -283,27 +312,53 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         // Setup collection view.
         collectionView?.backgroundColor = UIColor.app.background
+        collectionView?.alwaysBounceVertical = true
         collectionView?.allowsSelection = true
         collectionView?.allowsMultipleSelection = false
         collectionView?.register(TokenCell.self, forCellWithReuseIdentifier: TokenCell.identifier)
 
-        // Setup gesture.
-        let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
-        lpg.minimumPressDuration = 0.5
-        collectionView?.addGestureRecognizer(lpg)
+        if #available(iOS 11.0, *) {
+            collectionView?.contentInsetAdjustmentBehavior = .always
+        }
 
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
-        collectionView?.addGestureRecognizer(swipeGesture)
+        // EmptyState
+        emptyStateView.alpha = 0
+        emptyStateView.addToken = { self.showScanScreen(self.emptyStateView.addTokenButton) }
+        view.addSubview(emptyStateView)
+        emptyStateView.topToSuperview()
+        emptyStateView.rtlLeftToSuperview()
+        emptyStateView.rtlRightToSuperview()
+        emptyStateView.bottomToSuperview()
+
+        // Gestures
+        if #available(iOS 13.0, *) {
+            // iOS 13 uses context menus
+        } else {
+            let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
+            lpg.minimumPressDuration = 0.5
+            collectionView?.addGestureRecognizer(lpg)
+
+            let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
+            collectionView?.addGestureRecognizer(swipeGesture)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reloadData()
+    }
+
+    func reloadData() {
         collectionView?.reloadData()
+
+        UIView.animate(withDuration: 0.25) {
+            self.emptyStateView.alpha = self.store.count == 0 ? 1 : 0
+        }
     }
 }
 
 extension TokensViewController: TokenCellDelegate {
-    func share(token: Token, sender: UIView) {
+    func share(token: Token, sender: UIView?) {
         let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
         svc.token = token
     }

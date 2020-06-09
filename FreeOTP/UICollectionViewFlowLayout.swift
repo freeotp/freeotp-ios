@@ -22,9 +22,22 @@ import Foundation
 import UIKit
 
 extension UICollectionViewFlowLayout {
+    private var isLandscace: Bool {
+        let orientation = UIApplication.shared.statusBarOrientation
+        return orientation == .landscapeLeft || orientation == .landscapeRight
+    }
+
     func columnWidth(_ collectionView: UICollectionView, numCols: CGFloat) -> CGFloat {
+        var width = collectionView.frame.size.width
+
+        if #available(iOS 11.0, *), isLandscace {
+            let window = UIApplication.shared.keyWindow
+            width -= window?.safeAreaInsets.left ?? 0
+            width -= window?.safeAreaInsets.right ?? 0
+        }
+
         let ispace = minimumInteritemSpacing * (numCols - 1)
         let ospace = sectionInset.left + sectionInset.right
-        return (collectionView.frame.size.width - ispace - ospace) / numCols
+        return (width - ispace - ospace) / numCols
     }
 }

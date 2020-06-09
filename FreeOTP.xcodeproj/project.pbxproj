@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2442F8142493B39000678697 /* FRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442F8132493B39000678697 /* FRNavigationController.swift */; };
+		2489072124910C89001C75A9 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489072024910C89001C75A9 /* UIFont+Ext.swift */; };
+		2489072324910D3B001C75A9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489072224910D3A001C75A9 /* Screen.swift */; };
+		248B998D24901AAC001235F5 /* RTLSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B998C24901AAC001235F5 /* RTLSupport.swift */; };
 		24AF9AEC248F01F900B4BF06 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF9AEB248F01F900B4BF06 /* Colors.swift */; };
 		24AF9AEE248F35D400B4BF06 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */; };
+		24C83EFB248FF4F600E8D935 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */; };
 		2800418823FC56E500256D27 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800418723FC56E500256D27 /* SectionHeader.swift */; };
 		2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820C85923EE53CB002D3695 /* URILockViewController.swift */; };
 		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
@@ -32,7 +37,6 @@
 		F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88F91B56A54B00482D15 /* ScanViewController.swift */; };
 		F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FA1B56A54B00482D15 /* ShareViewController.swift */; };
 		F10D890B1B56A54B00482D15 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FB1B56A54B00482D15 /* Token.swift */; };
-		F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FC1B56A54B00482D15 /* TokenButton.swift */; };
 		F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FD1B56A54B00482D15 /* TokenCell.swift */; };
 		F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FE1B56A54B00482D15 /* TokenStore.swift */; };
 		F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88FF1B56A54B00482D15 /* TokensViewController.swift */; };
@@ -66,8 +70,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2442F8132493B39000678697 /* FRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRNavigationController.swift; sourceTree = "<group>"; };
+		2489072024910C89001C75A9 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		2489072224910D3A001C75A9 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		248B998C24901AAC001235F5 /* RTLSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLSupport.swift; sourceTree = "<group>"; };
 		24AF9AEB248F01F900B4BF06 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
+		24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		2800418723FC56E500256D27 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		2820C85923EE53CB002D3695 /* URILockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILockViewController.swift; sourceTree = "<group>"; };
 		282341B3245A13D000025167 /* RecommendedIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedIconCell.swift; sourceTree = "<group>"; };
@@ -94,7 +103,6 @@
 		F10D88F91B56A54B00482D15 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		F10D88FA1B56A54B00482D15 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		F10D88FB1B56A54B00482D15 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		F10D88FC1B56A54B00482D15 /* TokenButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenButton.swift; sourceTree = "<group>"; };
 		F10D88FD1B56A54B00482D15 /* TokenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		F10D88FE1B56A54B00482D15 /* TokenStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		F10D88FF1B56A54B00482D15 /* TokensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2489071F24910C7B001C75A9 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				2489072024910C89001C75A9 /* UIFont+Ext.swift */,
+			);
+			name = Ext;
+			sourceTree = "<group>";
+		};
 		2867172F23F43F480009410C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +212,7 @@
 				F10D89111B56A56600482D15 /* Controllers */,
 				F18FA5341B56AE1B00B1CEAD /* Core */,
 				F10D89121B56A59500482D15 /* Views */,
+				2489071F24910C7B001C75A9 /* Ext */,
 				F10D88F51B56A54B00482D15 /* ImageDownloader.swift */,
 				F10D89001B56A54B00482D15 /* UICollectionViewFlowLayout.swift */,
 				F10D88C31B56A3C400482D15 /* AppDelegate.swift */,
@@ -204,6 +221,8 @@
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
 				F10D88CF1B56A3C400482D15 /* Info.plist */,
+				248B998C24901AAC001235F5 /* RTLSupport.swift */,
+				2489072224910D3A001C75A9 /* Screen.swift */,
 			);
 			path = FreeOTP;
 			sourceTree = "<group>";
@@ -241,6 +260,7 @@
 				2887CDD724585E03004891D3 /* URIMainIconViewController.swift */,
 				283FC22223F19EB600491B5E /* URIIconViewController.swift */,
 				2820C85923EE53CB002D3695 /* URILockViewController.swift */,
+				2442F8132493B39000678697 /* FRNavigationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,8 +272,8 @@
 				2867173423F4954F0009410C /* FontAwesomeIconCell.swift */,
 				282341B3245A13D000025167 /* RecommendedIconCell.swift */,
 				F10D88F21B56A54B00482D15 /* CircleProgressView.swift */,
-				F10D88FC1B56A54B00482D15 /* TokenButton.swift */,
 				F10D88FD1B56A54B00482D15 /* TokenCell.swift */,
+				24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -410,7 +430,9 @@
 				F10D890D1B56A54B00482D15 /* TokenCell.swift in Sources */,
 				F10D89051B56A54B00482D15 /* ImageDownloader.swift in Sources */,
 				F10D89091B56A54B00482D15 /* ScanViewController.swift in Sources */,
+				2489072324910D3B001C75A9 /* Screen.swift in Sources */,
 				F10D89071B56A54B00482D15 /* OTP.swift in Sources */,
+				2442F8142493B39000678697 /* FRNavigationController.swift in Sources */,
 				2867173523F4954F0009410C /* FontAwesomeIconCell.swift in Sources */,
 				F10D890A1B56A54B00482D15 /* ShareViewController.swift in Sources */,
 				283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */,
@@ -421,10 +443,12 @@
 				F10D890E1B56A54B00482D15 /* TokenStore.swift in Sources */,
 				F10D890F1B56A54B00482D15 /* TokensViewController.swift in Sources */,
 				24AF9AEC248F01F900B4BF06 /* Colors.swift in Sources */,
-				F10D890C1B56A54B00482D15 /* TokenButton.swift in Sources */,
 				282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */,
 				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
 				F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */,
+				24C83EFB248FF4F600E8D935 /* EmptyStateView.swift in Sources */,
+				248B998D24901AAC001235F5 /* RTLSupport.swift in Sources */,
+				2489072124910C89001C75A9 /* UIFont+Ext.swift in Sources */,
 				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,
 				28C0090523EDE4840034A321 /* URIParameters.swift in Sources */,
 				2867173323F442FE0009410C /* TokenIcon.swift in Sources */,
