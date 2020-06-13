@@ -82,31 +82,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         return cell
     }
 
-    @available(iOS 13.0, *)
-    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        guard let token = self.store.load(indexPath.row) else { return nil }
-
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { actions -> UIMenu? in
-            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
-                self.share(token: token, sender: nil)
-            }
-
-            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-                TokenStore().erase(token: token)
-                self.collectionView.deleteItems(at: [indexPath])
-            }
-
-            return UIMenu(
-                title: token.issuer ?? "",
-                image: nil,
-                identifier: nil,
-                options: .destructive,
-                children: [shareAction, deleteAction]
-            )
-        }
-        return configuration
-    }
-
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
         reloadData()
     }
@@ -330,17 +305,12 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         emptyStateView.rtlRightToSuperview()
         emptyStateView.bottomToSuperview()
 
-        // Gestures
-        if #available(iOS 13.0, *) {
-            // iOS 13 uses context menus
-        } else {
-            let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
-            lpg.minimumPressDuration = 0.5
-            collectionView?.addGestureRecognizer(lpg)
+        let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
+        lpg.minimumPressDuration = 0.5
+        collectionView?.addGestureRecognizer(lpg)
 
-            let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
-            collectionView?.addGestureRecognizer(swipeGesture)
-        }
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
+        collectionView?.addGestureRecognizer(swipeGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {

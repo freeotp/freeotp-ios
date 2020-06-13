@@ -19,32 +19,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdW-kS-kew">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="44"/>
-                                <items>
-                                    <navigationItem title="FreeOTP" id="m0B-s9-mCI"/>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VV4-0F-aRU">
-                                <rect key="frame" x="-4" y="44" width="383" height="623"/>
-                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5qP-Jw-c5C">
+                                <rect key="frame" x="123.5" y="269.5" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="FTl-6X-58f"/>
+                                    <constraint firstAttribute="height" constant="128" id="Ogl-vN-ntV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="VV4-0F-aRU" secondAttribute="trailing" constant="-20" id="1Ua-9S-K9j"/>
-                            <constraint firstItem="VV4-0F-aRU" firstAttribute="leading" secondItem="kcT-Q6-Z2r" secondAttribute="leadingMargin" constant="-20" id="LrU-S5-50d"/>
-                            <constraint firstItem="HdW-kS-kew" firstAttribute="leading" secondItem="kcT-Q6-Z2r" secondAttribute="leadingMargin" constant="-20" id="Urc-6N-AF4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HdW-kS-kew" secondAttribute="trailing" constant="-20" id="cqh-Yf-9dL"/>
-                            <constraint firstAttribute="bottom" secondItem="VV4-0F-aRU" secondAttribute="bottom" id="koT-T9-4Qs"/>
-                            <constraint firstItem="VV4-0F-aRU" firstAttribute="top" secondItem="HdW-kS-kew" secondAttribute="bottom" id="xAc-jL-7Qp"/>
-                            <constraint firstItem="HdW-kS-kew" firstAttribute="top" secondItem="dui-bO-tR1" secondAttribute="bottom" id="xZS-2P-gdJ"/>
+                            <constraint firstItem="5qP-Jw-c5C" firstAttribute="centerX" secondItem="kcT-Q6-Z2r" secondAttribute="centerX" id="5oA-QS-Biw"/>
+                            <constraint firstItem="5qP-Jw-c5C" firstAttribute="centerY" secondItem="kcT-Q6-Z2r" secondAttribute="centerY" id="amO-mz-8dD"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEw-k5-4M7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="583" y="381"/>
+            <point key="canvasLocation" x="581.60000000000002" y="380.95952023988008"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SplashIcon" width="514" height="514"/>
+    </resources>
 </document>
