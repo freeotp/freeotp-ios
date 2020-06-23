@@ -12,6 +12,7 @@
 		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
 		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
 		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
+		28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28431EC424A257CB00D6E1CF /* AboutViewController.swift */; };
 		2867173123F43F490009410C /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2867173023F43F490009410C /* FontAwesome.framework */; };
 		2867173323F442FE0009410C /* TokenIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173223F442FE0009410C /* TokenIcon.swift */; };
 		2867173523F4954F0009410C /* FontAwesomeIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173423F4954F0009410C /* FontAwesomeIconCell.swift */; };
@@ -68,6 +69,7 @@
 		282341B3245A13D000025167 /* RecommendedIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedIconCell.swift; sourceTree = "<group>"; };
 		2832BFF6246C7F810079B2D7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		283FC22223F19EB600491B5E /* URIIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIIconViewController.swift; sourceTree = "<group>"; };
+		28431EC424A257CB00D6E1CF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2867173023F43F490009410C /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		2867173223F442FE0009410C /* TokenIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIcon.swift; sourceTree = "<group>"; };
 		2867173423F4954F0009410C /* FontAwesomeIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesomeIconCell.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		F10D89111B56A56600482D15 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				28431EC424A257CB00D6E1CF /* AboutViewController.swift */,
 				F10D88F91B56A54B00482D15 /* ScanViewController.swift */,
 				F10D88FA1B56A54B00482D15 /* ShareViewController.swift */,
 				F10D88FF1B56A54B00482D15 /* TokensViewController.swift */,
@@ -416,6 +419,7 @@
 				2867173323F442FE0009410C /* TokenIcon.swift in Sources */,
 				2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */,
 				F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */,
+				28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
