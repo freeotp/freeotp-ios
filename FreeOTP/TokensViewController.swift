@@ -27,6 +27,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     fileprivate var store = TokenStore()
     var icon = TokenIcon()
 
+    @IBOutlet weak var aboutButton: UIBarButtonItem!
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -275,6 +277,12 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOS 13.0, *) {
+            aboutButton.image = UIImage(systemName: "info.circle")
+        } else {
+            aboutButton.image = icon.getFontAwesomeIcon(faName: "fa-info-circle", faType: .solid)
+        }
 
         // Setup collection view.
         collectionView?.allowsSelection = true;
