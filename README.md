@@ -19,9 +19,10 @@ that implements these standards.
 
 ## Contributing
 
-Pull requests on GitHub are welcome under the Apache 2.0 license, see [COPYING](COPYING).
+Pull requests on GitHub are welcome under the Apache 2.0 license, see
+[CONTRIBUTING](CONTRIBUTING.md) for more details.
 
-### Setup local dev env
+### Install Build dependencies
 
 You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps
 
