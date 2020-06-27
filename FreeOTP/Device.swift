@@ -1,5 +1,5 @@
 //
-//  Screen.swift
+//  Device.swift
 //  FreeOTP
 //
 //  Created by Vinícius Soares on 10/06/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class Screen {
+final class Device {
     enum Size { case small, medium, large }
 
     static var size: Size {
