@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Main Navigation Controller-->
         <scene sceneID="fRA-rQ-fKw">
             <objects>
-                <navigationController definesPresentationContext="YES" id="1u3-cr-3fz" customClass="FRNavigationController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="1u3-cr-3fz" customClass="MainNavigationController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="1as-Cr-LV1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -632,9 +632,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="default.png" width="768" height="768"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
-        <image name="lock.png" width="144" height="144"/>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
         <image name="qrcode.png" width="20" height="20"/>
     </resources>
 </document>

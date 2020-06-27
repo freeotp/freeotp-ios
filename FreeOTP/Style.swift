@@ -44,3 +44,15 @@ extension UIColor {
         }
     }
 }
+
+extension UIFont {
+    static func dynamicSystemFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont {
+        if Device.size == .large {
+            return .systemFont(ofSize: fontSize + 4, weight: weight)
+        } else if Device.size == .medium {
+            return .systemFont(ofSize: fontSize + 2, weight: weight)
+        }
+        return .systemFont(ofSize: fontSize, weight: weight)
+    }
+}
+

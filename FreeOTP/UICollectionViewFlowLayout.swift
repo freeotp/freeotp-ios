@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 
 extension UICollectionViewFlowLayout {
-    private var isLandscace: Bool {
+    private var isLandscape: Bool {
         let orientation = UIApplication.shared.statusBarOrientation
         return orientation == .landscapeLeft || orientation == .landscapeRight
     }
@@ -30,7 +30,7 @@ extension UICollectionViewFlowLayout {
     func columnWidth(_ collectionView: UICollectionView, numCols: CGFloat) -> CGFloat {
         var width = collectionView.frame.size.width
 
-        if #available(iOS 11.0, *), isLandscace {
+        if #available(iOS 11.0, *), isLandscape {
             let window = UIApplication.shared.keyWindow
             width -= window?.safeAreaInsets.left ?? 0
             width -= window?.safeAreaInsets.right ?? 0

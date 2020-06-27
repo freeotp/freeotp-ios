@@ -1,5 +1,5 @@
 //
-//  FRNavigationController.swift
+//  MainNavigationController.swift
 //  FreeOTP
 //
 //  Created by Vinícius Soares on 12/06/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FRNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.barTintColor = UIColor.app.navigationBackground
