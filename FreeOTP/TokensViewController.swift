@@ -138,8 +138,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
 
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        collectionView?.performBatchUpdates(nil, completion: nil)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
