@@ -19,14 +19,31 @@
 //
 
 import Foundation
+import MobileCoreServices
 
-public final class Token : NSObject, KeychainStorable {
+public final class Token : NSObject, KeychainStorable, Codable, NSItemProviderReading, NSItemProviderWriting {
     public static let store = KeychainStore<Token>()
     public let account: String
 
-    public enum Kind: Int {
+    public enum Kind: Int, Codable {
         case hotp = 0
         case totp = 1
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case locked
+        case account
+        case counter
+        case image
+        case imageOrig
+        case issuer
+        case issuerOrig
+        case color
+        case icon
+        case kind
+        case label
+        case labelOrig
+        case period
     }
 
     open class Code {
@@ -222,6 +239,43 @@ public final class Token : NSObject, KeychainStorable {
             labelOrig = label
         }
     }
+
+    // Conform to NSItemProvider Protocols
+    public static var writableTypeIdentifiersForItemProvider: [String] {
+         return [(kUTTypeData) as String]
+     }
+
+     public func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
+
+         let progress = Progress(totalUnitCount: 100)
+
+         do {
+             let encoder = JSONEncoder()
+             encoder.outputFormatting = .prettyPrinted
+             let data = try encoder.encode(self)
+            _ = String(data: data, encoding: String.Encoding.utf8)
+             progress.completedUnitCount = 100
+             completionHandler(data, nil)
+         } catch {
+             completionHandler(nil, error)
+         }
+
+         return progress
+     }
+
+     public static var readableTypeIdentifiersForItemProvider: [String] {
+         return [(kUTTypeData) as String]
+     }
+
+     public static func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Token {
+         let decoder = JSONDecoder()
+         do {
+             let tokenjson = try decoder.decode(Token.self, from: data)
+             return tokenjson
+         } catch {
+             fatalError("Error decoding token object")
+         }
+     }
 
     @objc required public init?(coder aDecoder: NSCoder) {
         locked = aDecoder.decodeBool(forKey: "locked")

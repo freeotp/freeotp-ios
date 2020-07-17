@@ -21,7 +21,8 @@
 import Foundation
 import UIKit
 
-class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate {
+class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate,
+                             UICollectionViewDragDelegate, UICollectionViewDropDelegate {
     let defaultIcon = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)
     fileprivate var lastPath: IndexPath? = nil
     fileprivate var store = TokenStore()
@@ -159,6 +160,37 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: width, height: width / 3.25);
     }
 
+    // Drag and drop delegate methods
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if let token = store.load(indexPath.row) {
+            let itemProvider = NSItemProvider(object: token)
+
+            let dragItem = UIDragItem(itemProvider: itemProvider)
+            return [dragItem]
+        } else {
+            return []
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        guard let dstIndex = coordinator.destinationIndexPath else { return }
+
+        for item in coordinator.items {
+            // Drag item originated in the collection view
+            if let srcIndex = item.sourceIndexPath {
+                store.move(srcIndex.row, to: dstIndex.row)
+                collectionView.moveItem(at: srcIndex, to: dstIndex)
+                coordinator.drop(item.dragItem, toItemAt: dstIndex)
+            } else {
+                // Drag and drop from other apps not implemented
+            }
+        }
+    }
+
     @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             let p = gestureRecognizer.location(in: collectionView)
@@ -202,77 +234,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
 
-    @objc func handleLongPress(_ gestureRecognizer:UIGestureRecognizer) {
-        // Get the current index path.
-        let p = gestureRecognizer.location(in: collectionView)
-        let currPath = collectionView?.indexPathForItem(at: p)
-
-        switch gestureRecognizer.state {
-        case .began:
-            if currPath == nil { return }
-
-            lastPath = currPath
-            if let cell = collectionView?.cellForItem(at: currPath!) {
-                // Animate to the "lifted" state.
-                UIView.animate(withDuration: 0.3, animations: {
-                    cell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                    self.collectionView?.bringSubviewToFront(cell)
-                })
-            }
-
-            return
-
-        case .changed:
-            if currPath == nil { return }
-            if lastPath == nil { return }
-
-            let cell = collectionView?.cellForItem(at: lastPath!)
-            if cell == nil { return }
-
-            if lastPath!.row != currPath!.row {
-                // Move the display.
-                collectionView?.moveItem(at: lastPath!, to: currPath!)
-
-                // Scroll the display to handle moving tokens up or down.
-                if lastPath!.row < currPath!.row {
-                    collectionView?.scrollToItem(at: currPath!, at: .top, animated: true)
-                } else {
-                    collectionView?.scrollToItem(at: currPath!, at: .bottom, animated: true)
-                }
-
-                // Write changes.
-                store.move(lastPath!.row, to: currPath!.row)
-
-                // Reset state.
-                cell!.transform = CGAffineTransform(scaleX: 1.1, y: 1.1); // Moving the token resets the size...
-                collectionView?.bringSubviewToFront(cell!) // ... and Z index.
-                lastPath = currPath!;
-            }
-
-            cell!.center = gestureRecognizer.location(in: collectionView)
-            return
-
-        case .ended:
-            if lastPath == nil { break }
-
-            // Animate back to the original state, but in the new location.
-            if let cell = collectionView?.cellForItem(at: lastPath!) {
-                UIView.animate(withDuration: 0.3, animations: {
-                    let l = self.collectionView?.collectionViewLayout
-                    cell.center = l!.layoutAttributesForItem(at: self.lastPath!)!.center
-                    cell.transform = CGAffineTransform(scaleX: 1.0, y: 1.0);
-                }, completion: { (Bool) -> Void in
-                    self.lastPath = nil
-                })
-            }
-
-            reloadData()
-
-        default:
-            reloadData()
-        }
-    }
-
     @IBAction func unwindToTokens(_ sender: UIStoryboardSegue) {
         reloadData()
     }
@@ -292,6 +253,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         collectionView?.allowsSelection = true
         collectionView?.allowsMultipleSelection = false
         collectionView?.register(TokenCell.self, forCellWithReuseIdentifier: TokenCell.identifier)
+        collectionView?.dragDelegate = self
+        collectionView?.dropDelegate = self
+        collectionView.dragInteractionEnabled = true
 
         if #available(iOS 11.0, *) {
             collectionView?.contentInsetAdjustmentBehavior = .always
@@ -305,10 +269,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         emptyStateView.rtlLeftToSuperview()
         emptyStateView.rtlRightToSuperview()
         emptyStateView.bottomToSuperview()
-
-        let lpg = UILongPressGestureRecognizer(target: self, action: #selector(TokensViewController.handleLongPress(_:)))
-        lpg.minimumPressDuration = 0.5
-        collectionView?.addGestureRecognizer(lpg)
 
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
         collectionView?.addGestureRecognizer(swipeGesture)
