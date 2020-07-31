@@ -118,14 +118,15 @@ public final class OTP : NSObject, KeychainStorable {
 
         // Unparse UInt32
         let off = Int(buf[buf.count - 1]) & 0x0f;
-        let msk = UnsafePointer<UInt8>(buf).advanced(by: off).withMemoryRebound(to: UInt32.self, capacity: size/4) {
-            $0[0].bigEndian & 0x7fffffff
+        let bin_code = Array(buf[off...off + 3])
+        var msk = bin_code.withUnsafeBytes {
+            $0.load(as: UInt32.self).bigEndian
         }
+        msk &= 0x7fffffff
 
         // Create digits divisor
         var div: UInt32 = 1
         for _ in 0..<digits { div *= 10 }
-
         return String(format: String(format: "%%0%hhulu", digits), msk % div)
     }
 }
