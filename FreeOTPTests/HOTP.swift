@@ -23,6 +23,28 @@ import Foundation
 import XCTest
 
 class HOTP: XCTestCase {
+    func validateOTPs(uri: String, expectedotps: [String]) {
+        let urlc = URLComponents(string: uri)
+        XCTAssertNotNil(urlc)
+
+        var otp = OTP(urlc: urlc!)
+        XCTAssertNotNil(otp)
+
+        let data = NSKeyedArchiver.archivedData(withRootObject: otp!)
+
+        for i in 0..<expectedotps.count {
+            XCTAssertEqual(otp!.code(Int64(i)), expectedotps[i])
+        }
+
+        otp = NSKeyedUnarchiver.unarchiveObject(with: data) as? OTP
+        XCTAssertNotNil(otp)
+
+        for i in 0..<expectedotps.count {
+            let code = otp!.code(Int64(i))
+            XCTAssertEqual(code, expectedotps[i])
+        }
+    }
+
     func test() {
         let tests: [String] = [
             "755224",
@@ -36,25 +58,31 @@ class HOTP: XCTestCase {
             "399871",
             "520489"
         ]
+        let uri = "otpauth://hotp/foo?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&algorithm=SHA1&digits=6"
 
-        let urlc = URLComponents(string: "otpauth://hotp/foo?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&algorithm=SHA1&digits=6")
-        XCTAssertNotNil(urlc)
+        validateOTPs(uri: uri, expectedotps: tests)
+    }
 
-        var otp = OTP(urlc: urlc!)
-        XCTAssertNotNil(otp)
+    func testDigits() {
+        let tests: [String] = [
+            "356072009",
+            "318978277",
+            "663605382",
+            "976886461",
+            "607466828",
+            "091964552",
+            "150788607",
+            "729059761",
+            "690070028",
+            "906336243",
+        ]
 
-        let data = NSKeyedArchiver.archivedData(withRootObject: otp!)
+        let uri7 = "otpauth://hotp/foo?secret=akn3jgzz6d3p4c5r4fokaz2uvxjeltjbdzgyuv4ufscxumc7fjxl5vjh&algorithm=SHA1&digits=7"
+        let uri9 = "otpauth://hotp/foo?secret=akn3jgzz6d3p4c5r4fokaz2uvxjeltjbdzgyuv4ufscxumc7fjxl5vjh&algorithm=SHA1&digits=9"
 
-        for i in 0..<tests.count {
-            XCTAssertEqual(otp!.code(Int64(i)), tests[i])
-        }
-
-        otp = NSKeyedUnarchiver.unarchiveObject(with: data) as? OTP
-        XCTAssertNotNil(otp)
-
-        for i in 0..<tests.count {
-            let code = otp!.code(Int64(i))
-            XCTAssertEqual(code, tests[i])
-        }
+        validateOTPs(uri: uri7, expectedotps: tests.map {
+            String($0.dropFirst(2))
+        })
+        validateOTPs(uri: uri9, expectedotps: tests)
     }
 }

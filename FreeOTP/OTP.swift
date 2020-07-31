@@ -74,8 +74,12 @@ public final class OTP : NSObject, KeychainStorable {
                     switch item.value! {
                     case "6":
                         digits = 6
+                    case "7":
+                        digits = 7
                     case "8":
                         digits = 8
+                    case "9":
+                        digits = 9
                     default:
                         return nil
                     }
