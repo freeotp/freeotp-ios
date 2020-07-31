@@ -192,7 +192,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                 continue
             }
 
-            if var urlc = URLComponents(string: obj.stringValue!) {
+            if let urlc = URLComponents(string: obj.stringValue!) {
                 if URI.validateURI(uri: urlc) {
                     self.urlc = urlc
 
