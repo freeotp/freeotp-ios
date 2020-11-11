@@ -1,4 +1,4 @@
-github "norio-nomura/Base32"
+github "norio-nomura/Base32" "0.9.0"
 github "evgenyneu/moa" ~> 12.0
 github "thii/FontAwesome.swift"
 github "roberthein/TinyConstraints" ~> 4.0
