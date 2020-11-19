@@ -78,6 +78,11 @@ open class TokenStore : NSObject {
             }
         }
     }
+    
+    func getAllTokens() -> [Token] {
+        let orderedTokens = TokenOrder.store.load(TokenOrder.ACCOUNT)
+        return orderedTokens != nil ? orderedTokens!.array.map { Token.store.load($0 as! String)! } : []
+     }
 
     @discardableResult open func add(_ urlc: URLComponents) -> Token? {
         var ord: TokenOrder

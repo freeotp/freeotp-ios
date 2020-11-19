@@ -66,6 +66,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="aboutButton" destination="08x-7R-jHE" id="2Jk-2P-gmW"/>
+                        <outlet property="scanButton" destination="C1q-Am-S3f" id="RBV-jd-hZM"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aiw-oo-lZq" userLabel="First Responder" sceneMemberID="firstResponder"/>

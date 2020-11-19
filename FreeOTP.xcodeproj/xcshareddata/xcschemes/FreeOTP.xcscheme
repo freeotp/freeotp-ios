@@ -38,6 +38,16 @@
                ReferencedContainer = "container:FreeOTP.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "89F8EFD5256BA81F00460AA9"
+               BuildableName = "FreeOTPUITests.xctest"
+               BlueprintName = "FreeOTPUITests"
+               ReferencedContainer = "container:FreeOTP.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

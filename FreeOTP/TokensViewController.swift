@@ -29,15 +29,32 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     var icon = TokenIcon()
 
     @IBOutlet weak var aboutButton: UIBarButtonItem!
+    @IBOutlet weak var scanButton: UIBarButtonItem!
 
     private lazy var emptyStateView = EmptyStateView()
+    
+    // the search bar
+    let searchBar = UISearchBar()
+    
+    // bar buttons
+    private var scanQrCodeButton = UIBarButtonItem()
+    private var appInfoButton = UIBarButtonItem()
+    
+    // the tokens array
+    private var tokensArray: [Token]! = [] // contains all the tokens as loaded from the store
+    private var searchedTokensArray: [Token]! = [] // contains the filtered tokens
+    
+    // search params
+    private var searchingTokens = false
+    
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return store.count
+        
+        return searchingTokens ? searchedTokensArray.count : store.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,8 +62,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         let size = self.collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
         let imageSize = CGSize(width: size.height, height: size.height)
-
-        if let token = store.load(indexPath.row) {
+        
+        if let token = searchingTokens ? searchedTokensArray[indexPath.row] : store.load(indexPath.row) {
+        
             cell.state = nil
             var iconName = ""
 
@@ -190,13 +208,14 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             }
         }
     }
+    
 
     @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
         if gestureRecognizer.state == .ended {
             let p = gestureRecognizer.location(in: collectionView)
             if let currPath = collectionView?.indexPathForItem(at: p) {
                 if let cell = collectionView?.cellForItem(at: currPath) {
-                    if let token = store.load(currPath.row) {
+                    if let token = searchingTokens ? searchedTokensArray[currPath.row] : store.load(currPath.row) {
                         UIView.animate(withDuration: 0.5, animations: {
                             cell.transform = CGAffineTransform(translationX: 1200, y: 0)
                         }, completion: { (Bool) -> Void in
@@ -206,7 +225,20 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                                 TokenStore().erase(token: token)
                                 var array = [IndexPath]()
                                 array.append(currPath)
-                                self.collectionView.deleteItems(at: array)
+                                
+                                if self.searchingTokens {
+                                    self.searchedTokensArray.remove(at: currPath.row)
+                                    self.collectionView.deleteItems(at: array)
+                                   
+                                } else {
+                                    self.collectionView.deleteItems(at: array)
+                                }
+                                
+                                // reload the search button
+                                self.showSearchButton()
+                                
+                                // also reload the tokens array
+                                self.tokensArray = self.store.getAllTokens()
                             }
 
                             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
@@ -272,6 +304,21 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
         collectionView?.addGestureRecognizer(swipeGesture)
+        
+        // show the search bar only if there are items to be searched
+        showSearchButton()
+        
+    }
+    
+    func showSearchButton() {
+        
+        let tokenCount = searchingTokens ? searchedTokensArray.count : store.count
+        
+        if  tokenCount > 0 {
+            configureSearchBar()
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -286,6 +333,57 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             self.emptyStateView.alpha = self.store.count == 0 ? 1 : 0
         }
     }
+    
+    func configureSearchBar() {
+        // init search bar
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        searchBar.tintColor = UIColor.app.accent
+        searchBar.isAccessibilityElement = false
+        searchBar.accessibilityIdentifier = "search-bar"
+        searchBar.placeholder = "Search Tokens"
+        
+        // style the search bar
+        navigationController?.navigationBar.isTranslucent = false
+        //navigationController?.navigationBar.barStyle = .black
+        
+        // set the button refs for later
+        self.scanQrCodeButton = self.scanButton
+        self.appInfoButton = self.aboutButton
+        
+        // add the search button
+        setSearchButton()
+        
+    }
+    
+    private func setSearchButton(){
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleShowSearchBar))
+        barButtonItem.accessibilityIdentifier = "navbarSearchItem"
+        navigationItem.leftBarButtonItem = barButtonItem
+    }
+    
+    @objc func handleShowSearchBar() {
+        search(shouldShow: true)
+        searchBar.becomeFirstResponder()
+    }
+    
+    func showBarButtons(shouldShow: Bool){
+        
+        if shouldShow {
+            setSearchButton()
+            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton]
+        } else {
+            navigationItem.rightBarButtonItems = nil
+            navigationItem.leftBarButtonItem = nil
+        }
+        
+    }
+    func search(shouldShow: Bool){
+        showBarButtons(shouldShow: !shouldShow)
+        searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchBar : nil
+    }
+
 }
 
 extension TokensViewController: TokenCellDelegate {
@@ -293,4 +391,39 @@ extension TokensViewController: TokenCellDelegate {
         let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
         svc.token = token
     }
+}
+
+extension TokensViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        tokensArray = store.getAllTokens()
+    }
+    
+   
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        search(shouldShow: false)
+        searchingTokens = false
+        tokensArray.removeAll()
+        searchedTokensArray.removeAll()
+        reloadData()
+        
+        searchBar.text = ""
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.isEmpty {
+            searchedTokensArray = tokensArray
+        } else {
+            searchingTokens = true
+            searchedTokensArray = tokensArray.filter {
+                $0.issuer.lowercased().contains(searchText.lowercased()) == true
+                    || $0.label.lowercased().contains(searchText.lowercased()) == true
+                        || $0.account.lowercased().contains(searchText.lowercased()) == true
+            }
+        }
+
+        reloadData()
+    }
+    
 }

@@ -27,6 +27,7 @@
 		2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887CDD724585E03004891D3 /* URIMainIconViewController.swift */; };
 		28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090223EDCC0B0034A321 /* URILabelViewController.swift */; };
 		28C0090523EDE4840034A321 /* URIParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090423EDE4840034A321 /* URIParameters.swift */; };
+		89F8EFFB256BA8CB00460AA9 /* FreeOTPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -59,6 +60,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		89F8EFFD256BA8CB00460AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F10D88BF1B56A3C400482D15;
+			remoteInfo = FreeOTP;
+		};
 		F10D88D51B56A3C400482D15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F10D88B81B56A3C400482D15 /* Project object */;
@@ -87,6 +95,9 @@
 		2887CDD724585E03004891D3 /* URIMainIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIMainIconViewController.swift; sourceTree = "<group>"; };
 		28C0090223EDCC0B0034A321 /* URILabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILabelViewController.swift; sourceTree = "<group>"; };
 		28C0090423EDE4840034A321 /* URIParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIParameters.swift; sourceTree = "<group>"; };
+		89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeOTPUITests.swift; sourceTree = "<group>"; };
+		89F8EFFC256BA8CB00460AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,7 +105,6 @@
 		F10D88CF1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88DA1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F10D88E51B56A3C500482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10D88F21B56A54B00482D15 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		F10D88F51B56A54B00482D15 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		F10D88F71B56A54B00482D15 /* OTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTP.swift; sourceTree = "<group>"; };
@@ -128,6 +138,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		89F8EFF5256BA8CB00460AA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BD1B56A3C400482D15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +180,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		89F8EFF9256BA8CB00460AA9 /* FreeOTPUITests */ = {
+			isa = PBXGroup;
+			children = (
+				89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */,
+				89F8EFFC256BA8CB00460AA9 /* Info.plist */,
+			);
+			path = FreeOTPUITests;
+			sourceTree = "<group>";
+		};
 		F10D88B71B56A3C400482D15 = {
 			isa = PBXGroup;
 			children = (
@@ -175,7 +201,7 @@
 				F1CA93CD1B56AA8400828B8B /* Base32.framework */,
 				F10D88C21B56A3C400482D15 /* FreeOTP */,
 				F10D88D71B56A3C400482D15 /* FreeOTPTests */,
-				F10D88E21B56A3C500482D15 /* FreeOTPUITests */,
+				89F8EFF9256BA8CB00460AA9 /* FreeOTPUITests */,
 				F10D88C11B56A3C400482D15 /* Products */,
 				2867172F23F43F480009410C /* Frameworks */,
 			);
@@ -186,6 +212,7 @@
 			children = (
 				F10D88C01B56A3C400482D15 /* FreeOTP.app */,
 				F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */,
+				89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,14 +255,6 @@
 				F1CA93C51B56AA0000828B8B /* FreeOTPTests-Bridging-Header.h */,
 			);
 			path = FreeOTPTests;
-			sourceTree = "<group>";
-		};
-		F10D88E21B56A3C500482D15 /* FreeOTPUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F10D88E51B56A3C500482D15 /* Info.plist */,
-			);
-			path = FreeOTPUITests;
 			sourceTree = "<group>";
 		};
 		F10D89111B56A56600482D15 /* Controllers */ = {
@@ -283,6 +302,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		89F8EFF7256BA8CB00460AA9 /* FreeOTPUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89F8EFFF256BA8CB00460AA9 /* Build configuration list for PBXNativeTarget "FreeOTPUITests" */;
+			buildPhases = (
+				89F8EFF4256BA8CB00460AA9 /* Sources */,
+				89F8EFF5256BA8CB00460AA9 /* Frameworks */,
+				89F8EFF6256BA8CB00460AA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89F8EFFE256BA8CB00460AA9 /* PBXTargetDependency */,
+			);
+			name = FreeOTPUITests;
+			productName = FreeOTPUITests;
+			productReference = 89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F10D88BF1B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F10D88E81B56A3C500482D15 /* Build configuration list for PBXNativeTarget "FreeOTP" */;
@@ -325,10 +362,15 @@
 		F10D88B81B56A3C400482D15 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Fedora Project";
 				TargetAttributes = {
+					89F8EFF7256BA8CB00460AA9 = {
+						CreatedOnToolsVersion = 12.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F10D88BF1B56A3C400482D15;
+					};
 					F10D88BF1B56A3C400482D15 = {
 						CreatedOnToolsVersion = 7.0;
 						LastSwiftMigration = 1020;
@@ -357,11 +399,19 @@
 			targets = (
 				F10D88BF1B56A3C400482D15 /* FreeOTP */,
 				F10D88D31B56A3C400482D15 /* FreeOTPTests */,
+				89F8EFF7256BA8CB00460AA9 /* FreeOTPUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		89F8EFF6256BA8CB00460AA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BE1B56A3C400482D15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +462,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		89F8EFF4256BA8CB00460AA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89F8EFFB256BA8CB00460AA9 /* FreeOTPUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F10D88BC1B56A3C400482D15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +519,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		89F8EFFE256BA8CB00460AA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F10D88BF1B56A3C400482D15 /* FreeOTP */;
+			targetProxy = 89F8EFFD256BA8CB00460AA9 /* PBXContainerItemProxy */;
+		};
 		F10D88D61B56A3C400482D15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F10D88BF1B56A3C400482D15 /* FreeOTP */;
@@ -480,6 +543,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		89F8F000256BA8CB00460AA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FreeOTP;
+			};
+			name = Debug;
+		};
+		89F8F001256BA8CB00460AA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FreeOTP;
+			};
+			name = Release;
+		};
 		F10D88E61B56A3C500482D15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -668,6 +781,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		89F8EFFF256BA8CB00460AA9 /* Build configuration list for PBXNativeTarget "FreeOTPUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89F8F000256BA8CB00460AA9 /* Debug */,
+				89F8F001256BA8CB00460AA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F10D88BB1B56A3C400482D15 /* Build configuration list for PBXProject "FreeOTP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
