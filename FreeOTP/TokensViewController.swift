@@ -23,11 +23,12 @@ import UIKit
 import LocalAuthentication
 
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate,
-                             UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+                             UICollectionViewDragDelegate, UICollectionViewDropDelegate, UISearchBarDelegate {
     let defaultIcon = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)
     fileprivate var lastPath: IndexPath? = nil
     fileprivate var store = TokenStore()
     var icon = TokenIcon()
+    var tokens: [Token] = []
 
     @IBOutlet weak var aboutButton: UIBarButtonItem!
 
@@ -38,7 +39,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return store.count
+        return tokens.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,41 +48,47 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         let size = self.collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
         let imageSize = CGSize(width: size.height, height: size.height)
 
-        if let token = store.load(indexPath.row) {
-            cell.state = nil
-            var iconName = ""
+        let token = tokens[indexPath.row]
 
-            if let image = token.image {
-                if image.hasSuffix("/FreeOTP.app/default.png") {
-                    cell.imageView.image = defaultIcon
-                } else {
-                    ImageDownloader(imageSize).fromURI(token.image, completion: {
-                        (image: UIImage) -> Void in
-                        UIView.animate(withDuration: 0.3, animations: {
-                            cell.imageView.image = image.addImagePadding(x: 30, y: 30)
-                        })
-                    })
-                }
+        cell.state = nil
+        var iconName = ""
+
+        if let image = token.image {
+            if image.hasSuffix("/FreeOTP.app/default.png") {
+                cell.imageView.image = defaultIcon
             } else {
-                // Retrieve and use saved issuer -> icon mapping in User Defaults
-                if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: imageSize) {
-                    cell.imageView.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
-                    iconName = custIcon.name
-                    // Issuer matches an icon name brand
-                } else if let faIcon = icon.getfaIconName(for: token.issuer) {
-                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: imageSize)
-                    cell.imageView.image = image?.addImagePadding(x: 30, y: 30)
-                    iconName = faIcon
-                }
+                ImageDownloader(imageSize).fromURI(token.image, completion: {
+                    (image: UIImage) -> Void in
+                    UIView.animate(withDuration: 0.3, animations: {
+                        cell.imageView.image = image.addImagePadding(x: 30, y: 30)
+                    })
+                })
             }
-
-            cell.imageView.backgroundColor = icon.getBackgroundColor(name: iconName)
-
-            cell.token = token
-            cell.delegate = self
+        } else {
+            // Retrieve and use saved issuer -> icon mapping in User Defaults
+            if let custIcon = icon.getCustomIcon(issuer: token.issuer, size: imageSize) {
+                cell.imageView.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
+                iconName = custIcon.name
+                // Issuer matches an icon name brand
+            } else if let faIcon = icon.getfaIconName(for: token.issuer) {
+                let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: imageSize)
+                cell.imageView.image = image?.addImagePadding(x: 30, y: 30)
+                iconName = faIcon
+            }
         }
 
+        cell.imageView.backgroundColor = icon.getBackgroundColor(name: iconName)
+
+        cell.token = token
+        cell.delegate = self
+
         return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+     
+        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TokensCollection", for: indexPath)
+        return searchView
     }
 
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
@@ -288,6 +295,9 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
         collectionView?.addGestureRecognizer(swipeGesture)
+        
+        // Load all tokens and store them in local state
+        tokens = store.loadAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -301,6 +311,33 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         UIView.animate(withDuration: 0.25) {
             self.emptyStateView.alpha = self.store.count == 0 ? 1 : 0
         }
+    }
+    
+    // MARK: - Search Bar
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        if searchBar.text != nil && searchBar.text != "" {
+            tokens = store.loadAll().filter {
+                var result: Bool = false
+
+                if let issuer = $0.issuer {
+                    result = issuer.lowercased().contains(searchBar.text!.lowercased())
+                    if !result {
+                        if let label = $0.label {
+                            result = label.lowercased().contains(searchBar.text!.lowercased())
+                        }
+                    }
+                }
+                
+                return result
+            }
+        } else {
+            tokens = store.loadAll()
+        }
+
+        reloadData()
+
+        searchBar.endEditing(true)
     }
 }
 

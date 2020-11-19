@@ -27,6 +27,7 @@
 		2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887CDD724585E03004891D3 /* URIMainIconViewController.swift */; };
 		28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090223EDCC0B0034A321 /* URILabelViewController.swift */; };
 		28C0090523EDE4840034A321 /* URIParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090423EDE4840034A321 /* URIParameters.swift */; };
+		DEF042492565EE29008AB856 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF042482565EE29008AB856 /* SearchBarView.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		2887CDD724585E03004891D3 /* URIMainIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIMainIconViewController.swift; sourceTree = "<group>"; };
 		28C0090223EDCC0B0034A321 /* URILabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILabelViewController.swift; sourceTree = "<group>"; };
 		28C0090423EDE4840034A321 /* URIParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIParameters.swift; sourceTree = "<group>"; };
+		DEF042482565EE29008AB856 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				F10D88F21B56A54B00482D15 /* CircleProgressView.swift */,
 				F10D88FD1B56A54B00482D15 /* TokenCell.swift */,
 				24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */,
+				DEF042482565EE29008AB856 /* SearchBarView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -326,11 +329,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Fedora Project";
 				TargetAttributes = {
 					F10D88BF1B56A3C400482D15 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = TDWCSKGW4D;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
@@ -437,6 +441,7 @@
 				24C83EFB248FF4F600E8D935 /* EmptyStateView.swift in Sources */,
 				248B998D24901AAC001235F5 /* RTLSupport.swift in Sources */,
 				24B71E3724A7A6D00084694D /* Style.swift in Sources */,
+				DEF042492565EE29008AB856 /* SearchBarView.swift in Sources */,
 				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,
 				28C0090523EDE4840034A321 /* URIParameters.swift in Sources */,
 				2867173323F442FE0009410C /* TokenIcon.swift in Sources */,
@@ -503,6 +508,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -529,7 +535,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -562,6 +568,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -582,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP/FreeOTP-Bridging-Header.h";
@@ -598,15 +605,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TDWCSKGW4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = FreeOTP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.alpha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -618,15 +626,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TDWCSKGW4D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = FreeOTP/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.alpha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -638,7 +647,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -655,7 +664,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

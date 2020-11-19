@@ -143,6 +143,14 @@ open class TokenStore : NSObject {
 
         return nil
     }
+    
+    open func loadAll() -> [Token] {
+        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            return ord.array.map { Token.store.load($0 as! String)! }
+        }
+        
+        return []
+    }
 
     @discardableResult open func move(_ from: Int, to: Int) -> Bool {
         if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
