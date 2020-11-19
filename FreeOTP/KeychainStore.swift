@@ -29,21 +29,6 @@ public protocol KeychainStorable : NSCoding {
 open class KeychainStore<T: KeychainStorable> {
     fileprivate let service: String
 
-    fileprivate func queryAccessControl(_ account: String) -> [String: AnyObject] {
-        let sac = SecAccessControlCreateWithFlags(
-            kCFAllocatorDefault,
-            kSecAttrAccessibleWhenUnlocked,
-            .userPresence,
-            nil
-        )
-
-        return [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: account as AnyObject,
-            kSecAttrService as String: service as AnyObject,
-            kSecAttrAccessControl as String: sac as AnyObject
-        ]
-    }
 
     fileprivate func query(_ account: String) -> [String: AnyObject] {
         return [
@@ -64,7 +49,18 @@ open class KeychainStore<T: KeychainStorable> {
             kSecValueData as String: data as AnyObject,
         ]
 
-        add[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
+        if locked {
+            let sac = SecAccessControlCreateWithFlags(
+                kCFAllocatorDefault,
+                kSecAttrAccessibleWhenUnlocked,
+                .userPresence,
+                nil
+            )
+
+            add[kSecAttrAccessControl as String] = sac
+        } else {
+            add[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
+        }
 
         return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
     }
@@ -100,21 +96,11 @@ open class KeychainStore<T: KeychainStorable> {
     }
 
     open func load(_ account: String) -> T? {
-        var status: OSStatus
         var dict = query(account)
         dict[kSecReturnData as String] = true as AnyObject
 
         var output: AnyObject?
-
-        /* Add kSecAttrAccessible, Setting keychain item kSecAttrAccessControl with access control object
-         * does NOT include item in encrypted backup + restore */
-        let update: [String: AnyObject] = [
-            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
-        ]
-        status = SecItemCopyMatching(queryAccessControl(account) as CFDictionary, &output)
-        status = SecItemUpdate(queryAccessControl(account) as CFDictionary, update as CFDictionary)
-
-        status = SecItemCopyMatching(dict as CFDictionary, &output)
+        let status = SecItemCopyMatching(dict as CFDictionary, &output)
         if status == errSecSuccess {
             if let o = output {
                 let data = o as! Data
