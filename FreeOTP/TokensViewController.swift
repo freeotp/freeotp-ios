@@ -63,7 +63,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         let size = self.collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
         let imageSize = CGSize(width: size.height, height: size.height)
         
-        if let token = searchingTokens ? searchedTokensArray[indexPath.row] : store.load(indexPath.row) {
+        if let token = getTokenAtIndex(tokenIndex: indexPath.row) {
         
             cell.state = nil
             var iconName = ""
@@ -151,7 +151,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         collectionView.deselectItem(at: indexPath, animated: true)
 
         if let cell = collectionView.cellForItem(at: indexPath) as! TokenCell? {
-            if let token = store.load(indexPath.row) {
+            if let token = getTokenAtIndex(tokenIndex: indexPath.row)  {
                 cell.state = token.codes
             }
         }
@@ -180,7 +180,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     // Drag and drop delegate methods
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        if let token = store.load(indexPath.row) {
+        if let token = getTokenAtIndex(tokenIndex: indexPath.row) {
             let itemProvider = NSItemProvider(object: token)
 
             let dragItem = UIDragItem(itemProvider: itemProvider)
@@ -215,7 +215,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             let p = gestureRecognizer.location(in: collectionView)
             if let currPath = collectionView?.indexPathForItem(at: p) {
                 if let cell = collectionView?.cellForItem(at: currPath) {
-                    if let token = searchingTokens ? searchedTokensArray[currPath.row] : store.load(currPath.row) {
+                    if let token = getTokenAtIndex(tokenIndex: currPath.row) {
                         UIView.animate(withDuration: 0.5, animations: {
                             cell.transform = CGAffineTransform(translationX: 1200, y: 0)
                         }, completion: { (Bool) -> Void in
@@ -360,6 +360,11 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleShowSearchBar))
         barButtonItem.accessibilityIdentifier = "navbarSearchItem"
         navigationItem.leftBarButtonItem = barButtonItem
+    }
+    
+    // helper func to return token at a certain position depending on the state of the UICollectionView
+    private func getTokenAtIndex(tokenIndex: Int) -> Token? {
+        return searchingTokens ? searchedTokensArray[tokenIndex] : store.load(tokenIndex)
     }
     
     @objc func handleShowSearchBar() {
