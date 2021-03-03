@@ -180,14 +180,20 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     // Drag and drop delegate methods
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        if let token = getTokenAtIndex(tokenIndex: indexPath.row) {
-            let itemProvider = NSItemProvider(object: token)
+        // no need for drag and drop when searching
+        if searchingTokens == false {
+            if let token = store.load(indexPath.row) {
+                let itemProvider = NSItemProvider(object: token)
 
-            let dragItem = UIDragItem(itemProvider: itemProvider)
-            return [dragItem]
+                let dragItem = UIDragItem(itemProvider: itemProvider)
+                return [dragItem]
+            } else {
+                return []
+            }
         } else {
             return []
         }
+      
     }
 
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
