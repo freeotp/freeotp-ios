@@ -271,6 +271,18 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             }
         }
     }
+    
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        // Neccessary to prevent gesture recognizer from overriding default behavior,
+        // such as UICollectionView's `didSelectItemAt` delegate method.
+        gestureRecognizer.cancelsTouchesInView = false
+
+        // Deselect tokens when empty space in collection view is tapped.
+        let tapLocation = gestureRecognizer.location(in: view)
+        if collectionView.indexPathForItem(at: tapLocation) == nil {
+            reloadData()
+        }
+    }
 
     @IBAction func unwindToTokens(_ sender: UIStoryboardSegue) {
         reloadData()
@@ -310,6 +322,10 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
         collectionView?.addGestureRecognizer(swipeGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        tapGesture.numberOfTapsRequired = 1
+        collectionView?.addGestureRecognizer(tapGesture)
         
         // show the search bar only if there are items to be searched
         showSearchButton()
