@@ -24,10 +24,7 @@ Pull requests on GitHub are welcome under the Apache 2.0 license, see
 
 ### Install Build dependencies
 
-You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps
+You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps:
 
     brew install carthage
-    carthage update
-
-A shell script workaround is needed to build Base32 framework for Xcode 12+
-[Carthage failure workaround](https://github.com/Carthage/Carthage/issues/3019#issuecomment-665136323)
+    carthage update --use-xcframeworks --platform iOS
