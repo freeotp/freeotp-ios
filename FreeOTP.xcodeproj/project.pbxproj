@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2442F8142493B39000678697 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442F8132493B39000678697 /* MainNavigationController.swift */; };
 		2489072324910D3B001C75A9 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489072224910D3A001C75A9 /* Device.swift */; };
 		248B998D24901AAC001235F5 /* RTLSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B998C24901AAC001235F5 /* RTLSupport.swift */; };
-		24AF9AEE248F35D400B4BF06 /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */; };
 		24B71E3724A7A6D00084694D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B71E3624A7A6D00084694D /* Style.swift */; };
 		24C83EFB248FF4F600E8D935 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */; };
 		2800418823FC56E500256D27 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800418723FC56E500256D27 /* SectionHeader.swift */; };
@@ -19,11 +18,8 @@
 		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
 		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
 		28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28431EC424A257CB00D6E1CF /* AboutViewController.swift */; };
-		2867173123F43F490009410C /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2867173023F43F490009410C /* FontAwesome.framework */; };
 		2867173323F442FE0009410C /* TokenIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173223F442FE0009410C /* TokenIcon.swift */; };
 		2867173523F4954F0009410C /* FontAwesomeIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867173423F4954F0009410C /* FontAwesomeIconCell.swift */; };
-		287FCF08233279A4001A9ABE /* moa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CC1B56AA8400828B8B /* moa.framework */; };
-		287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CA93CD1B56AA8400828B8B /* Base32.framework */; };
 		2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887CDD724585E03004891D3 /* URIMainIconViewController.swift */; };
 		28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090223EDCC0B0034A321 /* URILabelViewController.swift */; };
 		28C0090523EDE4840034A321 /* URIParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090423EDE4840034A321 /* URIParameters.swift */; };
@@ -57,6 +53,14 @@
 		F1CA93D81B56AB9500828B8B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D41B56AB9500828B8B /* default.png */; };
 		F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D51B56AB9500828B8B /* qrcode.png */; };
 		F1CA93DA1B56AB9500828B8B /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D61B56AB9500828B8B /* token.png */; };
+		FC81F0CD278751A90094DEAC /* Base32.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; };
+		FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC81F0D0278751AB0094DEAC /* FontAwesome.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895C270B749C00A25825 /* FontAwesome.xcframework */; };
+		FC81F0D1278751AB0094DEAC /* FontAwesome.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895C270B749C00A25825 /* FontAwesome.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC81F0D2278751AD0094DEAC /* moa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895A270B749C00A25825 /* moa.xcframework */; };
+		FC81F0D3278751AD0094DEAC /* moa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895A270B749C00A25825 /* moa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC81F0D4278751AF0094DEAC /* TinyConstraints.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */; };
+		FC81F0D5278751AF0094DEAC /* TinyConstraints.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,11 +80,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FC81F0CF278751A90094DEAC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FC81F0D3278751AD0094DEAC /* moa.xcframework in Embed Frameworks */,
+				FC81F0D1278751AB0094DEAC /* FontAwesome.xcframework in Embed Frameworks */,
+				FC81F0D5278751AF0094DEAC /* TinyConstraints.xcframework in Embed Frameworks */,
+				FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2442F8132493B39000678697 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		2489072224910D3A001C75A9 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		248B998C24901AAC001235F5 /* RTLSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTLSupport.swift; sourceTree = "<group>"; };
-		24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		24B71E3624A7A6D00084694D /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		24C83EFA248FF4F600E8D935 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		2800418723FC56E500256D27 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
@@ -89,7 +109,6 @@
 		2832BFF6246C7F810079B2D7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		283FC22223F19EB600491B5E /* URIIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIIconViewController.swift; sourceTree = "<group>"; };
 		28431EC424A257CB00D6E1CF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		2867173023F43F490009410C /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		2867173223F442FE0009410C /* TokenIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIcon.swift; sourceTree = "<group>"; };
 		2867173423F4954F0009410C /* FontAwesomeIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesomeIconCell.swift; sourceTree = "<group>"; };
 		2887CDD724585E03004891D3 /* URIMainIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIMainIconViewController.swift; sourceTree = "<group>"; };
@@ -128,13 +147,15 @@
 		F1CA93C61B56AA0000828B8B /* HOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HOTP.swift; sourceTree = "<group>"; };
 		F1CA93C71B56AA0000828B8B /* TOTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		F1CA93C81B56AA0000828B8B /* URI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URI.swift; sourceTree = "<group>"; };
-		F1CA93CC1B56AA8400828B8B /* moa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = moa.framework; path = Carthage/Build/iOS/moa.framework; sourceTree = "<group>"; };
-		F1CA93CD1B56AA8400828B8B /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		F1CA93D41B56AB9500828B8B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		F1CA93D51B56AB9500828B8B /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
 		F1CA93D61B56AB9500828B8B /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
 		F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
+		FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TinyConstraints.xcframework; path = Carthage/Build/TinyConstraints.xcframework; sourceTree = SOURCE_ROOT; };
+		FC9C895A270B749C00A25825 /* moa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = moa.xcframework; path = Carthage/Build/moa.xcframework; sourceTree = SOURCE_ROOT; };
+		FC9C895B270B749C00A25825 /* Base32.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Base32.xcframework; path = Carthage/Build/Base32.xcframework; sourceTree = SOURCE_ROOT; };
+		FC9C895C270B749C00A25825 /* FontAwesome.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FontAwesome.xcframework; path = Carthage/Build/FontAwesome.xcframework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,15 +170,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2867173123F43F490009410C /* FontAwesome.framework in Frameworks */,
+				FC81F0D0278751AB0094DEAC /* FontAwesome.xcframework in Frameworks */,
 				F18FA5361B571E2200B1CEAD /* CoreBluetooth.framework in Frameworks */,
 				F18FA53A1B571E4800B1CEAD /* CoreGraphics.framework in Frameworks */,
-				287FCF09233279A7001A9ABE /* Base32.framework in Frameworks */,
-				287FCF08233279A4001A9ABE /* moa.framework in Frameworks */,
 				F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */,
-				24AF9AEE248F35D400B4BF06 /* TinyConstraints.framework in Frameworks */,
 				F18FA5381B571E3B00B1CEAD /* Photos.framework in Frameworks */,
+				FC81F0D2278751AD0094DEAC /* moa.xcframework in Frameworks */,
 				F18FA53C1B571E5500B1CEAD /* UIKit.framework in Frameworks */,
+				FC81F0CD278751A90094DEAC /* Base32.xcframework in Frameworks */,
+				FC81F0D4278751AF0094DEAC /* TinyConstraints.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,15 +192,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2867172F23F43F480009410C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				24AF9AED248F35D400B4BF06 /* TinyConstraints.framework */,
-				2867173023F43F490009410C /* FontAwesome.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		89F8EFF9256BA8CB00460AA9 /* FreeOTPUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,13 +209,11 @@
 				F18FA5391B571E4800B1CEAD /* CoreGraphics.framework */,
 				F18FA5371B571E3B00B1CEAD /* Photos.framework */,
 				F18FA5351B571E2200B1CEAD /* CoreBluetooth.framework */,
-				F1CA93CC1B56AA8400828B8B /* moa.framework */,
-				F1CA93CD1B56AA8400828B8B /* Base32.framework */,
 				F10D88C21B56A3C400482D15 /* FreeOTP */,
 				F10D88D71B56A3C400482D15 /* FreeOTPTests */,
 				89F8EFF9256BA8CB00460AA9 /* FreeOTPUITests */,
 				F10D88C11B56A3C400482D15 /* Products */,
-				2867172F23F43F480009410C /* Frameworks */,
+				FC9C8958270B749C00A25825 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,6 +309,17 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		FC9C8958270B749C00A25825 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC9C895B270B749C00A25825 /* Base32.xcframework */,
+				FC9C895C270B749C00A25825 /* FontAwesome.xcframework */,
+				FC9C895A270B749C00A25825 /* moa.xcframework */,
+				FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,7 +348,7 @@
 				F10D88BC1B56A3C400482D15 /* Sources */,
 				F10D88BD1B56A3C400482D15 /* Frameworks */,
 				F10D88BE1B56A3C400482D15 /* Resources */,
-				FF1CDE331F915AAD002A8E06 /* Carthage */,
+				FC81F0CF278751A90094DEAC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -436,31 +457,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		FF1CDE331F915AAD002A8E06 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/moa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/TinyConstraints.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Base32.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/moa.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FontAwesome.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/TinyConstraints.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		89F8EFF4256BA8CB00460AA9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -557,7 +553,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
@@ -583,7 +583,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -627,7 +631,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = Carthage/Build/iOS;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -686,7 +690,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = Carthage/Build/iOS;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -698,8 +702,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTP/FreeOTP-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -711,13 +716,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FreeOTP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -731,13 +736,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FreeOTP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -752,7 +757,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
@@ -769,7 +778,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
