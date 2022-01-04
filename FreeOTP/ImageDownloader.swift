@@ -32,6 +32,19 @@ class ImageDownloader : NSObject {
         super.init()
     }
 
+    func isPHAssetAuthorized(_ status: PHAuthorizationStatus) -> Bool! {
+        switch status {
+        case .denied, .restricted:
+            return false
+        case .notDetermined:
+            return nil
+        case .authorized, .limited:
+            return true
+        @unknown default:
+            return false
+        }
+    }
+
     func fromPHAsset(_ asset: PHAsset, completion: @escaping (UIImage) -> Void) {
         let opts: PHImageRequestOptions = PHImageRequestOptions()
         opts.isSynchronous = true
@@ -49,13 +62,28 @@ class ImageDownloader : NSObject {
     }
 
     func fromALAsset(_ asset: URL, completion: @escaping (UIImage) -> Void) {
-        if asset.scheme == "assets-library" {
-            let rslt = PHAsset.fetchAssets(withALAssetURLs: [asset], options: nil)
-            if rslt.count > 0 {
-                return fromPHAsset(rslt[0] , completion: completion)
+        let status = PHPhotoLibrary.authorizationStatus()
+        let authorized = isPHAssetAuthorized(status)
+        var access_granted = false
+
+        if (authorized == false) {
+            // shortcut completion
+        } else if (authorized == nil) {
+            PHPhotoLibrary.requestAuthorization { (status) -> Void in
+                if (self.isPHAssetAuthorized(status) == true) {
+                    access_granted = true
+                }
             }
         }
 
+        if (authorized == true || access_granted == true) {
+            if asset.scheme == "assets-library" {
+                let rslt = PHAsset.fetchAssets(withALAssetURLs: [asset], options: nil)
+                if rslt.count > 0 {
+                    return fromPHAsset(rslt[0] , completion: completion)
+                }
+            }
+        }
         return completion(DEFAULT)
     }
 
