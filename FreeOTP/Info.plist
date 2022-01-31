@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -43,14 +43,14 @@
 	<string>$(PRODUCT_NAME) requests access to Bluetooth to share token codes</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires access to the camera to scan a QR code for token import</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Biometric support for locked tokens</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) requests access to the Photo Library to select token key image</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Biometric support for locked tokens</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
