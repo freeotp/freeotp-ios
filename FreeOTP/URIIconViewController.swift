@@ -137,7 +137,7 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
                 var headerText = ""
                 switch indexPath.section {
                 case 0:
-                    headerText = "Brands"
+                    headerText = "Choose an icon"
                 case 1:
                     headerText = "Other"
                 default:
