@@ -74,6 +74,7 @@ class TokenCell: UICollectionViewCell {
         let view = UILabel()
         view.font = .dynamicSystemFont(ofSize: 14, weight: .regular)
         view.textColor = UIColor.app.secondaryText
+        view.numberOfLines = 0
         return view
     }()
 
