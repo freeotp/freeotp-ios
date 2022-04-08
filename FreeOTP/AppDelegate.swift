@@ -26,6 +26,9 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if let window = UIApplication.shared.windows.first as UIWindow? {
+            window.backgroundColor = UIColor.app.background
+        }
         return true
     }
 
