@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1u3-cr-3fz">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -52,7 +52,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="FreeOTP" id="L5z-P6-1cO">
                         <rightBarButtonItems>
-                            <barButtonItem title="About" id="08x-7R-jHE">
+                            <barButtonItem title="About" image="info.circle" catalog="system" id="08x-7R-jHE">
                                 <connections>
                                     <segue destination="YSu-du-Vr6" kind="presentation" id="bYu-33-wCR"/>
                                 </connections>
@@ -62,10 +62,16 @@
                                     <action selector="scanClicked:" destination="mGg-KB-Kzc" id="DMH-L2-ywH"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="New Button" image="plus" catalog="system" id="8iQ-Fw-K4R">
+                                <connections>
+                                    <action selector="addClicked:" destination="mGg-KB-Kzc" id="nAX-gU-ndQ"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="aboutButton" destination="08x-7R-jHE" id="2Jk-2P-gmW"/>
+                        <outlet property="newButton" destination="8iQ-Fw-K4R" id="uKr-9e-eo0"/>
                         <outlet property="scanButton" destination="C1q-Am-S3f" id="RBV-jd-hZM"/>
                     </connections>
                 </collectionViewController>
@@ -190,6 +196,72 @@
             </objects>
             <point key="canvasLocation" x="517.60000000000002" y="379.16041979010498"/>
         </scene>
+        <!--Enter OTP (alpha)-->
+        <scene sceneID="iOl-ty-8zE">
+            <objects>
+                <viewController storyboardIdentifier="new" id="r2L-NF-ZcI" customClass="ManualAddViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DbB-ip-3UB"/>
+                        <viewControllerLayoutGuide type="bottom" id="aYu-Xj-4zK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sa7-9p-yho">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Issuer" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8km-DI-kmb">
+                                <rect key="frame" x="75" y="84" width="225" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2p-Bs-aav">
+                                <rect key="frame" x="75" y="138" width="225" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Secret code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-Na-Cpr">
+                                <rect key="frame" x="75" y="192" width="225" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efC-fw-9jH">
+                                <rect key="frame" x="19" y="230" width="337.5" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UQb-Na-Cpr" firstAttribute="top" secondItem="g2p-Bs-aav" secondAttribute="bottom" constant="20" id="1Dw-Ay-Yae"/>
+                            <constraint firstItem="efC-fw-9jH" firstAttribute="top" secondItem="UQb-Na-Cpr" secondAttribute="bottom" constant="4" id="2Sv-Yb-1t0"/>
+                            <constraint firstItem="8km-DI-kmb" firstAttribute="width" secondItem="sa7-9p-yho" secondAttribute="width" multiplier="0.6" id="44u-Uu-cBL"/>
+                            <constraint firstItem="g2p-Bs-aav" firstAttribute="width" secondItem="sa7-9p-yho" secondAttribute="width" multiplier="0.6" id="4xh-Ab-NHR"/>
+                            <constraint firstItem="UQb-Na-Cpr" firstAttribute="width" secondItem="sa7-9p-yho" secondAttribute="width" multiplier="0.6" id="HfW-7i-Ma2"/>
+                            <constraint firstItem="UQb-Na-Cpr" firstAttribute="centerX" secondItem="sa7-9p-yho" secondAttribute="centerX" id="TVC-Fm-VzF"/>
+                            <constraint firstItem="efC-fw-9jH" firstAttribute="centerX" secondItem="sa7-9p-yho" secondAttribute="centerX" id="ZZI-RT-bWb"/>
+                            <constraint firstItem="efC-fw-9jH" firstAttribute="width" secondItem="sa7-9p-yho" secondAttribute="width" multiplier="0.9" id="ah7-fL-5cg"/>
+                            <constraint firstItem="g2p-Bs-aav" firstAttribute="centerX" secondItem="sa7-9p-yho" secondAttribute="centerX" id="elH-5A-LT2"/>
+                            <constraint firstItem="8km-DI-kmb" firstAttribute="centerX" secondItem="sa7-9p-yho" secondAttribute="centerX" id="gmK-1p-3Jx"/>
+                            <constraint firstItem="8km-DI-kmb" firstAttribute="top" secondItem="DbB-ip-3UB" secondAttribute="bottom" constant="40" id="jfY-KF-8Vd"/>
+                            <constraint firstItem="g2p-Bs-aav" firstAttribute="top" secondItem="8km-DI-kmb" secondAttribute="bottom" constant="20" id="yg6-UC-S9z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Enter OTP (alpha)" id="Dea-K9-0Tn">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Nay-kQ-eR7">
+                            <connections>
+                                <action selector="nextTapped:" destination="r2L-NF-ZcI" id="vvb-kh-PPg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="565"/>
+                    <connections>
+                        <outlet property="descriptionField" destination="g2p-Bs-aav" id="V4y-T6-EtV"/>
+                        <outlet property="issuerField" destination="8km-DI-kmb" id="x07-EW-tuU"/>
+                        <outlet property="secretField" destination="UQb-Na-Cpr" id="zx9-9i-mNB"/>
+                        <outlet property="settings" destination="efC-fw-9jH" id="Khg-ne-Kmy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5N-FH-Mso" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2661.5999999999999" y="377.36131934032989"/>
+        </scene>
         <!--Scan QR Code-->
         <scene sceneID="Pdh-Uw-n9X">
             <objects>
@@ -280,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97M-kh-txV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="-414"/>
+            <point key="canvasLocation" x="2662" y="-415"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Gd-N1-mCh">
@@ -298,7 +370,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkf-1J-FoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="537" y="-415"/>
+            <point key="canvasLocation" x="1926" y="-416"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cTz-Fm-jUN">
@@ -375,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmj-U6-kW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2112.8000000000002" y="-414.24287856071965"/>
+            <point key="canvasLocation" x="3502" y="-415"/>
         </scene>
         <!--Lock View Controller-->
         <scene sceneID="W2Y-ON-zCo">
@@ -437,7 +509,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="31S-d1-dcY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3524" y="-414.24287856071965"/>
+            <point key="canvasLocation" x="4913" y="-415"/>
         </scene>
         <!--Icon View Controller-->
         <scene sceneID="imn-sp-nYD">
@@ -579,7 +651,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mn-xw-Gka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="e2A-Bj-6rN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="-1074.5127436281859"/>
+            <point key="canvasLocation" x="4217" y="-1075"/>
         </scene>
         <!--Main Icon View Controller-->
         <scene sceneID="IGS-Pi-T59">
@@ -646,10 +718,30 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Rk-8r-34c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="-414.24287856071965"/>
+            <point key="canvasLocation" x="4217" y="-415"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="png-mv-E8V">
+            <objects>
+                <navigationController storyboardIdentifier="newNav" automaticallyAdjustsScrollViewInsets="NO" id="Pb8-KR-nIx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EUe-ev-vVp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="r2L-NF-ZcI" kind="relationship" relationship="rootViewController" id="rRi-wD-0uE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nba-ic-DYe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="378"/>
         </scene>
     </scenes>
     <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode.png" width="20" height="20"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

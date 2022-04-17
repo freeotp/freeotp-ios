@@ -43,11 +43,9 @@ open class TokenStore : NSObject {
     }
 
     open var count: Int {
-        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            return ord.array.count
-        }
-
-        return 0
+        guard let ord = TokenOrder.store.load(TokenOrder.ACCOUNT)
+        else { return 0 }
+        return ord.array.count
     }
 
     public override init() {
@@ -57,15 +55,12 @@ open class TokenStore : NSObject {
         let def = UserDefaults.standard
         if var keys = def.stringArray(forKey: "tokenOrder") {
             var remove = [String]()
-
             for key in keys.reversed() {
-                if let url = def.string(forKey: key) {
-                    if let urlc = URLComponents(string: url) {
-                        if add(urlc) != nil {
-                            def.removeObject(forKey: key)
-                            remove.append(key)
-                        }
-                    }
+                if let url = def.string(forKey: key),
+                   let urlc = URLComponents(string: url),
+                   add(urlc) != nil {
+                    def.removeObject(forKey: key)
+                    remove.append(key)
                 }
             }
 
@@ -90,75 +85,91 @@ open class TokenStore : NSObject {
             ord = a
         } else {
             ord = TokenOrder()
-            if !TokenOrder.store.add(ord) {
-                return nil
-            }
+            guard TokenOrder.store.add(ord) else { return nil }
         }
 
-        if let otp = OTP(urlc: urlc) {
-            if let token = Token(otp: otp, urlc: urlc) {
-                ord.array.insert(otp.account, at: 0)
-                if OTP.store.add(otp, locked: token.locked) {
-                    if Token.store.add(token) {
-                        if TokenOrder.store.save(ord) {
-                            return token
-                        } else {
-                            Token.store.erase(token)
-                            OTP.store.erase(otp)
-                        }
-                    } else {
-                        OTP.store.erase(otp)
-                    }
-                }
-            }
+        guard let otp = OTP(urlc: urlc),
+              let token = Token(otp: otp, urlc: urlc)
+        else { return nil }
+        
+        ord.array.insert(otp.account, at: 0)
+        
+        guard OTP.store.add(otp, locked: token.locked) else { return nil }
+        guard Token.store.add(token) else {
+            OTP.store.erase(otp)
+            return nil
         }
-
-        return nil
+        
+        guard TokenOrder.store.save(ord) else {
+            Token.store.erase(token)
+            OTP.store.erase(otp)
+            return nil
+        }
+        return token
     }
+    
+    @discardableResult
+    func add(manualData: ManualInputTokenData) -> Token? {
+        var ord: TokenOrder
+        if let a = TokenOrder.store.load(TokenOrder.ACCOUNT) {
+            ord = a
+        } else {
+            ord = TokenOrder()
+            guard TokenOrder.store.add(ord) else { return nil }
+        }
 
+        guard let otp = OTP(manualData: manualData),
+              let token = Token(otp: otp, manualData: manualData)
+        else { return nil }
+        
+        ord.array.insert(otp.account, at: 0)
+        
+        guard OTP.store.add(otp, locked: token.locked) else { return nil }
+        guard Token.store.add(token) else {
+            OTP.store.erase(otp)
+            return nil
+        }
+        
+        guard TokenOrder.store.save(ord) else {
+            Token.store.erase(token)
+            OTP.store.erase(otp)
+            return nil
+        }
+        return token
+    }
+    
     @discardableResult open func erase(index: Int) -> Bool {
-        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let account = ord.array.object(at: index) as? String {
-                ord.array.removeObject(at: index)
-                if TokenOrder.store.save(ord) {
-                    Token.store.erase(account)
-                    OTP.store.erase(account)
-                    return true
-                }
-            }
-        }
-
-        return false
+        guard let ord = TokenOrder.store.load(TokenOrder.ACCOUNT),
+              let account = ord.array.object(at: index) as? String
+        else { return false }
+        
+        ord .array.removeObject(at: index)
+        guard TokenOrder.store.save(ord)else { return false }
+        
+        Token.store.erase(account)
+        OTP.store.erase(account)
+        return true
     }
-
+    
     @discardableResult open func erase(token: Token) -> Bool {
-        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            return erase(index: ord.array.index(of: token.account))
-        }
-
-        return false
+        guard let ord = TokenOrder.store.load(TokenOrder.ACCOUNT)
+        else { return false }
+        return erase(index: ord.array.index(of: token.account))
     }
-
+    
     open func load(_ index: Int) -> Token? {
-        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let account = ord.array.object(at: index) as? String {
-                return Token.store.load(account)
-            }
-        }
-
-        return nil
+        guard let ord = TokenOrder.store.load(TokenOrder.ACCOUNT),
+              let account = ord.array.object(at: index) as? String
+        else { return nil }
+        return Token.store.load(account)
     }
-
+    
     @discardableResult open func move(_ from: Int, to: Int) -> Bool {
-        if let ord = TokenOrder.store.load(TokenOrder.ACCOUNT) {
-            if let id = ord.array.object(at: from) as? String {
-                ord.array.removeObject(at: from)
-                ord.array.insert(id, at: to)
-
-                return TokenOrder.store.save(ord)
-            }
-        }
-
-        return false
+        guard let ord = TokenOrder.store.load(TokenOrder.ACCOUNT),
+              let id = ord.array.object(at: from) as? String
+        else { return false }
+        ord.array.removeObject(at: from)
+        ord.array.insert(id, at: to)
+        return TokenOrder.store.save(ord)
     }
 }

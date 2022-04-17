@@ -30,7 +30,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     @IBOutlet weak var aboutButton: UIBarButtonItem!
     @IBOutlet weak var scanButton: UIBarButtonItem!
-
+    @IBOutlet weak var newButton: UIBarButtonItem!
+    
     private lazy var emptyStateView = EmptyStateView()
     
     // the search bar
@@ -38,6 +39,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     
     // bar buttons
     private var scanQrCodeButton = UIBarButtonItem()
+    private var manualAddButton = UIBarButtonItem()
     private var appInfoButton = UIBarButtonItem()
     
     // the tokens array
@@ -138,9 +140,21 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     @IBAction func scanClicked(_ sender: UIBarButtonItem) {
         showScanScreen(sender)
     }
-
+    
+    @IBAction func addClicked(_ sender: UIBarButtonItem) {
+        showAddScreen(sender)
+    }
+    
     private func showScanScreen(_ sender: AnyObject) {
         let vc: UIViewController = self.next("scan", sender: sender, dir: [.up, .down])
+        vc.preferredContentSize = CGSize(
+            width: UIScreen.main.bounds.width / 2,
+            height: vc.preferredContentSize.height
+        )
+    }
+    
+    private func showAddScreen(_ sender: AnyObject) {
+        let vc: UIViewController = self.next("new", sender: sender, dir: [.up, .down])
         vc.preferredContentSize = CGSize(
             width: UIScreen.main.bounds.width / 2,
             height: vc.preferredContentSize.height
@@ -355,6 +369,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         
         // set the button refs for later
         self.scanQrCodeButton = self.scanButton
+        self.manualAddButton = self.newButton
         self.appInfoButton = self.aboutButton
         
         // add the search button
