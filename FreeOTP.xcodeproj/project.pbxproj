@@ -772,7 +772,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				DEVELOPMENT_TEAM = LKF6A6MC84;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -781,7 +781,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.igor2890.freeotp;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -796,7 +796,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				DEVELOPMENT_TEAM = LKF6A6MC84;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -805,7 +805,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.igor2890.freeotp;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
