@@ -182,7 +182,7 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.accessibilityIdentifier = "uriIconView"
         outputUrlc = inputUrlc
 
         iconCollectionView.layer.borderColor = UIColor.darkGray.cgColor

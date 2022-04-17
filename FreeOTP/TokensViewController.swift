@@ -30,7 +30,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
     @IBOutlet weak var aboutButton: UIBarButtonItem!
     @IBOutlet weak var scanButton: UIBarButtonItem!
-
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     private lazy var emptyStateView = EmptyStateView()
     
     // the search bar
@@ -38,6 +39,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     
     // bar buttons
     private var scanQrCodeButton = UIBarButtonItem()
+    private var manualAddButton = UIBarButtonItem()
     private var appInfoButton = UIBarButtonItem()
     
     // the tokens array
@@ -138,9 +140,21 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     @IBAction func scanClicked(_ sender: UIBarButtonItem) {
         showScanScreen(sender)
     }
-
+    
+    @IBAction func addClicked(_ sender: UIBarButtonItem) {
+        showAddScreen(sender)
+    }
+    
     private func showScanScreen(_ sender: AnyObject) {
         let vc: UIViewController = self.next("scan", sender: sender, dir: [.up, .down])
+        vc.preferredContentSize = CGSize(
+            width: UIScreen.main.bounds.width / 2,
+            height: vc.preferredContentSize.height
+        )
+    }
+    
+    private func showAddScreen(_ sender: AnyObject) {
+        let vc: UIViewController = self.next("new", sender: sender, dir: [.up, .down])
         vc.preferredContentSize = CGSize(
             width: UIScreen.main.bounds.width / 2,
             height: vc.preferredContentSize.height
@@ -284,6 +298,14 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         } else {
             aboutButton.image = icon.getFontAwesomeIcon(faName: "fa-info-circle", faType: .solid)
         }
+        
+        if #available(iOS 13.0, *) {
+            addButton.image = UIImage(systemName: "plus")
+        } else {
+            addButton.image = icon.getFontAwesomeIcon(faName: "fa-plus", faType: .solid)
+        }
+        
+        addButton.accessibilityIdentifier = "manualAddButton"
 
         // Setup collection view.
         collectionView?.backgroundColor = UIColor.app.background
@@ -355,6 +377,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         
         // set the button refs for later
         self.scanQrCodeButton = self.scanButton
+        self.manualAddButton = self.addButton
         self.appInfoButton = self.aboutButton
         
         // add the search button
@@ -382,7 +405,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         
         if shouldShow {
             setSearchButton()
-            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton]
+            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton, self.manualAddButton]
         } else {
             navigationItem.rightBarButtonItems = nil
             navigationItem.leftBarButtonItem = nil

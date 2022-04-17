@@ -23,6 +23,9 @@
 		2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887CDD724585E03004891D3 /* URIMainIconViewController.swift */; };
 		28C0090323EDCC0B0034A321 /* URILabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090223EDCC0B0034A321 /* URILabelViewController.swift */; };
 		28C0090523EDE4840034A321 /* URIParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C0090423EDE4840034A321 /* URIParameters.swift */; };
+		402FF7CF280C28E0009BC905 /* ManualInputTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FF7CE280C28E0009BC905 /* ManualInputTokenData.swift */; };
+		40CB768B280225B100E7EF8F /* ManualAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB768A280225B100E7EF8F /* ManualAddViewController.swift */; };
+		40DA3B6A281DE1CC00FCDE08 /* ManualToUrlcModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA3B69281DE1CC00FCDE08 /* ManualToUrlcModule.swift */; };
 		89F8EFFB256BA8CB00460AA9 /* FreeOTPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
@@ -114,6 +117,9 @@
 		2887CDD724585E03004891D3 /* URIMainIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIMainIconViewController.swift; sourceTree = "<group>"; };
 		28C0090223EDCC0B0034A321 /* URILabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILabelViewController.swift; sourceTree = "<group>"; };
 		28C0090423EDE4840034A321 /* URIParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIParameters.swift; sourceTree = "<group>"; };
+		402FF7CE280C28E0009BC905 /* ManualInputTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualInputTokenData.swift; sourceTree = "<group>"; };
+		40CB768A280225B100E7EF8F /* ManualAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddViewController.swift; sourceTree = "<group>"; };
+		40DA3B69281DE1CC00FCDE08 /* ManualToUrlcModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualToUrlcModule.swift; sourceTree = "<group>"; };
 		89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeOTPUITests.swift; sourceTree = "<group>"; };
 		89F8EFFC256BA8CB00460AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 				283FC22223F19EB600491B5E /* URIIconViewController.swift */,
 				2820C85923EE53CB002D3695 /* URILockViewController.swift */,
 				2442F8132493B39000678697 /* MainNavigationController.swift */,
+				40CB768A280225B100E7EF8F /* ManualAddViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -305,6 +312,8 @@
 				F18FA5431B58D30800B1CEAD /* KeychainStore.swift */,
 				28C0090423EDE4840034A321 /* URIParameters.swift */,
 				2867173223F442FE0009410C /* TokenIcon.swift */,
+				402FF7CE280C28E0009BC905 /* ManualInputTokenData.swift */,
+				40DA3B69281DE1CC00FCDE08 /* ManualToUrlcModule.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -488,11 +497,14 @@
 				282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */,
 				F10D890B1B56A54B00482D15 /* Token.swift in Sources */,
 				F10D89101B56A54B00482D15 /* UICollectionViewFlowLayout.swift in Sources */,
+				40CB768B280225B100E7EF8F /* ManualAddViewController.swift in Sources */,
 				24C83EFB248FF4F600E8D935 /* EmptyStateView.swift in Sources */,
 				248B998D24901AAC001235F5 /* RTLSupport.swift in Sources */,
 				24B71E3724A7A6D00084694D /* Style.swift in Sources */,
+				40DA3B6A281DE1CC00FCDE08 /* ManualToUrlcModule.swift in Sources */,
 				F18FA5441B58D30800B1CEAD /* KeychainStore.swift in Sources */,
 				28C0090523EDE4840034A321 /* URIParameters.swift in Sources */,
+				402FF7CF280C28E0009BC905 /* ManualInputTokenData.swift in Sources */,
 				2867173323F442FE0009410C /* TokenIcon.swift in Sources */,
 				2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */,
 				F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */,
