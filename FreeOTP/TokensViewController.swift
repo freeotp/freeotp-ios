@@ -397,7 +397,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         
         if shouldShow {
             setSearchButton()
-            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton]
+            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton, self.manualAddButton]
         } else {
             navigationItem.rightBarButtonItems = nil
             navigationItem.leftBarButtonItem = nil
