@@ -557,9 +557,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LKF6A6MC84;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -571,7 +569,6 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.igor2890.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -590,9 +587,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LKF6A6MC84;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = FreeOTPUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
@@ -603,7 +598,6 @@
 				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp.FreeOTPUITests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = com.igor2890.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -730,7 +724,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LKF6A6MC84;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FreeOTP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -739,7 +732,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igor2890.freeotp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -751,7 +744,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LKF6A6MC84;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = FreeOTP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -760,7 +752,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igor2890.freeotp;
+				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -771,8 +763,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -781,7 +771,6 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -795,8 +784,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FreeOTPTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -805,7 +792,6 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.FreeOTPTests;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FreeOTPTests/FreeOTPTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
