@@ -225,7 +225,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                         UIView.animate(withDuration: 0.5, animations: {
                             cell.transform = CGAffineTransform(translationX: 1200, y: 0)
                         }, completion: { (Bool) -> Void in
-                            let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                            let actionSheetController: UIAlertController = UIAlertController(title: token.issuer, message: token.label, preferredStyle: .actionSheet)
 
                             let removeAction: UIAlertAction = UIAlertAction(title: "Remove token", style: .destructive) { action -> Void in
                                 TokenStore().erase(token: token)
