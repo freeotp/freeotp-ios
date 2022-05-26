@@ -20,26 +20,27 @@ class FreeOTPUITests: XCTestCase {
     
         app.launch()
         
-        // check the search icon is set
-        let leftNavBarSearchButton = app.navigationBars.buttons["navbarSearchItem"]
-        XCTAssert(leftNavBarSearchButton.exists)
-        leftNavBarSearchButton.tap()
+        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
+        XCTAssert(collectionView.exists)
+        collectionView.swipeDown()
         
         // check if the search bar exists
-        let searchBarElement = app.descendants(matching: .any).matching(identifier: "search-bar").firstMatch
+        let searchBarElement = app.searchFields.firstMatch
         XCTAssert(searchBarElement.exists)
         searchBarElement.tap()
         
         // check if the filtering works as expected
         app.typeText("test")
-        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
-        XCTAssert(collectionView.exists)
+        
         XCTAssert(collectionView.cells.count > 0)
         
         // filtering should fail for a random strting
         app.typeText("blah " + String(arc4random()) + " blah")
         XCTAssertFalse(collectionView.cells.count > 0)
     
+        let cancelButton = app.buttons["Cancel"].firstMatch
+        XCTAssert(cancelButton.exists)
+        cancelButton.tap()
     }
 
     func testManualAdd() throws {
@@ -55,17 +56,15 @@ class FreeOTPUITests: XCTestCase {
         app.launch()
         
         //search for the number of old tokens with the issuer name under test
-        let searchButton = app.navigationBars.buttons["navbarSearchItem"]
-        XCTAssert(searchButton.exists)
-        searchButton.tap()
+        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
+        XCTAssert(collectionView.exists)
+        collectionView.swipeDown()
         
-        let searchBarElement = app.descendants(matching: .any).matching(identifier: "search-bar").firstMatch
+        let searchBarElement = app.searchFields.firstMatch
         XCTAssert(searchBarElement.exists)
         searchBarElement.tap()
         
         app.typeText(testedIssuerName)
-        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
-        XCTAssert(collectionView.exists)
         testedIssuerTokensCount = collectionView.cells.count
         
         let cancelButton = app.buttons["Cancel"].firstMatch
@@ -180,19 +179,16 @@ class FreeOTPUITests: XCTestCase {
         sleep(1)
         
         //detecting an increase in the number of cells with the issuer name under test
-        let secSearchButton = app.navigationBars.buttons["navbarSearchItem"]
-        XCTAssert(secSearchButton.exists)
-        secSearchButton.tap()
-        
-        let secSearchBarElement = app.descendants(matching: .any).matching(identifier: "search-bar").firstMatch
-        XCTAssert(secSearchBarElement.exists)
-        secSearchBarElement.tap()
+        XCTAssert(collectionView.exists)
+        collectionView.swipeDown()
+        XCTAssert(searchBarElement.exists)
+        searchBarElement.tap()
         
         app.typeText(testedIssuerName)
         let secCollectionView = app.otherElements.collectionViews.element(boundBy: 0)
         XCTAssert(secCollectionView.exists)
-        XCTAssert(secCollectionView.cells.count == testedIssuerTokensCount + 1)
         
+        //if error - try to remove all "blah123" tokens first
+        XCTAssert(secCollectionView.cells.count == testedIssuerTokensCount + 1)
     }
-    
 }
