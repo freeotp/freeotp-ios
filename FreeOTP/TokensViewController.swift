@@ -23,6 +23,7 @@ import UIKit
 
 class TokensViewController : UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPopoverPresentationControllerDelegate,
                              UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+    
     let defaultIcon = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)
     fileprivate var lastPath: IndexPath? = nil
     fileprivate var store = TokenStore()
@@ -33,15 +34,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     private lazy var emptyStateView = EmptyStateView()
-    
-    // the search bar
-    let searchBar = UISearchBar()
-    
-    // bar buttons
-    private var scanQrCodeButton = UIBarButtonItem()
-    private var manualAddButton = UIBarButtonItem()
-    private var appInfoButton = UIBarButtonItem()
-    
+    var searchController: UISearchController!
+
     // the tokens array
     private var tokensArray: [Token]! = [] // contains all the tokens as loaded from the store
     private var searchedTokensArray: [Token]! = [] // contains the filtered tokens
@@ -49,13 +43,11 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     // search params
     private var searchingTokens = false
     
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return searchingTokens ? searchedTokensArray.count : store.count
     }
 
@@ -191,14 +183,13 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         let width = (collectionViewLayout as! UICollectionViewFlowLayout).columnWidth(collectionView, numCols: numCols)
         return CGSize(width: width, height: width / 3.25);
     }
-
+    
     // Drag and drop delegate methods
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         // no need for drag and drop when searching
         if searchingTokens == false {
             if let token = store.load(indexPath.row) {
                 let itemProvider = NSItemProvider(object: token)
-
                 let dragItem = UIDragItem(itemProvider: itemProvider)
                 return [dragItem]
             } else {
@@ -207,7 +198,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         } else {
             return []
         }
-      
     }
 
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
@@ -228,7 +218,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             }
         }
     }
-    
 
     @objc func handleSwipe(_ gestureRecognizer: UISwipeGestureRecognizer) {
         if gestureRecognizer.state == .ended {
@@ -254,9 +243,6 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                                     self.collectionView.deleteItems(at: array)
                                 }
                                 
-                                // reload the search button
-                                self.showSearchButton()
-                                
                                 // also reload the tokens array
                                 self.tokensArray = self.store.getAllTokens()
                             }
@@ -275,9 +261,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                             if let popoverController = actionSheetController.popoverPresentationController {
                                 popoverController.sourceView = self.view
                                 popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.maxY, width: 0, height: 0)
-
                             }
-
                             self.present(actionSheetController, animated: true)
                         })
                     }
@@ -298,6 +282,8 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         } else {
             aboutButton.image = icon.getFontAwesomeIcon(faName: "fa-info-circle", faType: .solid)
         }
+        
+        scanButton.accessibilityIdentifier = "scanButton"
         
         if #available(iOS 13.0, *) {
             addButton.image = UIImage(systemName: "plus")
@@ -332,25 +318,11 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
         collectionView?.addGestureRecognizer(swipeGesture)
-        
-        // show the search bar only if there are items to be searched
-        showSearchButton()
-        
-    }
-    
-    func showSearchButton() {
-        
-        let tokenCount = searchingTokens ? searchedTokensArray.count : store.count
-        
-        if  tokenCount > 0 {
-            configureSearchBar()
-        } else {
-            navigationItem.leftBarButtonItem = nil
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureSearchBar()
         reloadData()
     }
 
@@ -362,62 +334,26 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
     
-    func configureSearchBar() {
-        // init search bar
-        searchBar.sizeToFit()
-        searchBar.delegate = self
-        searchBar.tintColor = UIColor.app.accent
-        searchBar.isAccessibilityElement = false
-        searchBar.accessibilityIdentifier = "search-bar"
-        searchBar.placeholder = "Search Tokens"
+    private func configureSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.hidesNavigationBarDuringPresentation = true
         
-        // style the search bar
-        navigationController?.navigationBar.isTranslucent = false
-        //navigationController?.navigationBar.barStyle = .black
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.tintColor = UIColor.app.accent
+        searchController.searchBar.isAccessibilityElement = false
+        searchController.searchBar.placeholder = "Search Tokens"
         
-        // set the button refs for later
-        self.scanQrCodeButton = self.scanButton
-        self.manualAddButton = self.addButton
-        self.appInfoButton = self.aboutButton
-        
-        // add the search button
-        setSearchButton()
-        
-    }
-    
-    private func setSearchButton(){
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleShowSearchBar))
-        barButtonItem.accessibilityIdentifier = "navbarSearchItem"
-        navigationItem.leftBarButtonItem = barButtonItem
+        navigationItem.searchController = searchController
     }
     
     // helper func to return token at a certain position depending on the state of the UICollectionView
     private func getTokenAtIndex(tokenIndex: Int) -> Token? {
         return searchingTokens ? searchedTokensArray[tokenIndex] : store.load(tokenIndex)
     }
-    
-    @objc func handleShowSearchBar() {
-        search(shouldShow: true)
-        searchBar.becomeFirstResponder()
-    }
-    
-    func showBarButtons(shouldShow: Bool){
-        
-        if shouldShow {
-            setSearchButton()
-            navigationItem.rightBarButtonItems = [self.appInfoButton, self.scanQrCodeButton, self.manualAddButton]
-        } else {
-            navigationItem.rightBarButtonItems = nil
-            navigationItem.leftBarButtonItem = nil
-        }
-        
-    }
-    func search(shouldShow: Bool){
-        showBarButtons(shouldShow: !shouldShow)
-        searchBar.showsCancelButton = shouldShow
-        navigationItem.titleView = shouldShow ? searchBar : nil
-    }
-
 }
 
 extension TokensViewController: TokenCellDelegate {
@@ -427,37 +363,27 @@ extension TokensViewController: TokenCellDelegate {
     }
 }
 
-extension TokensViewController: UISearchBarDelegate {
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        tokensArray = store.getAllTokens()
-    }
-    
-   
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        search(shouldShow: false)
-        searchingTokens = false
-        tokensArray.removeAll()
-        searchedTokensArray.removeAll()
-        reloadData()
-        
-        searchBar.text = ""
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+extension TokensViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text!
         if searchText.isEmpty {
+            tokensArray = store.getAllTokens()
             searchedTokensArray = tokensArray
         } else {
             searchingTokens = true
             searchedTokensArray = tokensArray.filter {
-                $0.issuer.lowercased().contains(searchText.lowercased()) == true
-                    || $0.label.lowercased().contains(searchText.lowercased()) == true
-                        || $0.account.lowercased().contains(searchText.lowercased()) == true
+                $0.issuer.lowercased().contains(searchText.lowercased())
+                || $0.label.lowercased().contains(searchText.lowercased())
             }
         }
-
         reloadData()
     }
-    
+}
+
+extension TokensViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchingTokens = false
+        tokensArray.removeAll()
+        searchedTokensArray.removeAll()
+    }
 }
