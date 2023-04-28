@@ -7,15 +7,15 @@ utilizing one-time password protocols. Tokens can be added easily by scanning a 
 
 FreeOTP implements open standards:
 
-* HOTP (HMAC-Based One-Time Password Algorithm) [RFC 4226](http://www.ietf.org/rfc/rfc4226.txt)
-* TOTP (Time-Based One-Time Password Algorithm) [RFC 6238](http://www.ietf.org/rfc/rfc6238.txt)
+* HOTP (HMAC-Based One-Time Password Algorithm) [RFC 4226](https://www.ietf.org/rfc/rfc4226.txt)
+* TOTP (Time-Based One-Time Password Algorithm) [RFC 6238](https://www.ietf.org/rfc/rfc6238.txt)
 
 This means that no proprietary server-side component is necessary: use any server-side component
 that implements these standards.
 
 ## Download FreeOTP for iOS
 
-* [App Store](https://itunes.apple.com/us/app/freeotp-authenticator/id872559395?mt=8)
+* [App Store](https://apps.apple.com/app/freeotp-authenticator/id872559395)
 
 ## Contributing
 
