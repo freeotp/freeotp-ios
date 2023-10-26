@@ -118,7 +118,6 @@ class ManualAddViewController: UIViewController {
         
         if URI.paramUnset(urlc, "image", ""),
            let issuer = issuerField.text,
-           icon.getFontAwesomeIcon(issuer: issuer) == nil,
            icon.issuerBrandMapping[issuer] == nil {
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "URIMainIconViewController") as? URIMainIconViewController {
                 viewController.inputUrlc = urlc

@@ -43,7 +43,7 @@ class URILabelViewController: UIViewController, UITextFieldDelegate {
         }
 
         if URI.paramUnset(urlc, "image", "") &&
-            icon.getFontAwesomeIcon(issuer: issuer) == nil && icon.issuerBrandMapping[issuer] == nil {
+            icon.issuerBrandMapping[issuer] == nil {
             // Icon feature will not work, just save token
             if issuer == "" {
                 return false

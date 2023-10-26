@@ -25,8 +25,8 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
     var suggestedIcons = [IconMatch]()
     var selection = selectedIcon()
     var uriColor = ""
-    var brandIcons = [(name: String, value: String)]()
-    var solidIcons = [(name: String, value: String)]()
+    var brandIcons = [String]()
+    var solidIcons = [String]()
 
     // MARK: - Outlets
     @IBOutlet weak var iconCollectionView: UICollectionView! {
@@ -51,8 +51,8 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
             brandIcons = icon.iconsBrand
             solidIcons = icon.iconsSolid
         } else {
-            brandIcons = icon.iconsBrand.filter { $0.name.contains(searchText.lowercased()) }
-            solidIcons = icon.iconsSolid.filter { $0.name.contains(searchText.lowercased()) }
+            brandIcons = icon.iconsBrand.filter { $0.contains(searchText.lowercased()) }
+            solidIcons = icon.iconsSolid.filter { $0.contains(searchText.lowercased()) }
         }
         iconCollectionView.reloadData()
     }
@@ -74,7 +74,7 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.recommendedIconCollectionView {
             return suggestedIcons.count
-         } else {
+        } else {
             switch section {
             case 0:
                 return brandIcons.count
@@ -83,7 +83,7 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
             default:
                 break
             }
-         }
+        }
 
         return 0
     }
@@ -96,11 +96,10 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendedIconCell", for:  indexPath)
 
             if let iconCell = cell as? RecommendedIconCell {
-                if let image = icon.getFontAwesomeIcon(faName: suggestedIcons[indexPath.item].name, faType: .brands, size: size) {
-                    iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
+                let image = UIImage.fontAwesomeIcon(faName: suggestedIcons[indexPath.item].name, faType: .brands, size: size)
+                iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
 
-                    iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: suggestedIcons[indexPath.item].name, uriColor: uriColor)
-                }
+                iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: suggestedIcons[indexPath.item].name, uriColor: uriColor)
             }
         } else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FontAwesomeIconCell", for:  indexPath)
@@ -108,19 +107,15 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
             switch indexPath.section {
             case 0:
                 if let iconCell = cell as? FontAwesomeIconCell {
-                    if let image = icon.getFontAwesomeIcon(faName: brandIcons[indexPath.item].value, faType: .brands, size: size) {
-                        iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
-
-                        iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: brandIcons[indexPath.item].value, uriColor: uriColor)
-                    }
+                    let image = UIImage.fontAwesomeIcon(faName: brandIcons[indexPath.item], faType: .brands, size: size)
+                    iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
+                    iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: brandIcons[indexPath.item], uriColor: uriColor)
                 }
             case 1:
                 if let iconCell = cell as? FontAwesomeIconCell {
-                    if let image = icon.getFontAwesomeIcon(faName: solidIcons[indexPath.item].value, faType: .solid, size: size) {
-                        iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
-                    }
-
-                    iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: solidIcons[indexPath.item].value, uriColor: uriColor)
+                    let image = UIImage.fontAwesomeIcon(faName: solidIcons[indexPath.item], faType: .solid, size: size)
+                    iconCell.iconImage.image = image.addImagePadding(x: 30, y: 30)
+                    iconCell.iconImage.backgroundColor = icon.getBackgroundColor(name: solidIcons[indexPath.item], uriColor: uriColor)
                 }
             default:
                 break
@@ -163,9 +158,9 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
         } else {
             switch indexPath.section {
             case 0:
-                selection = .init(name: brandIcons[indexPath.item].name, faName: brandIcons[indexPath.item].value, type: .brands)
+                selection = .init(name: brandIcons[indexPath.item], faName: brandIcons[indexPath.item], type: .brands)
             case 1:
-                selection = .init(name: solidIcons[indexPath.item].name, faName: solidIcons[indexPath.item].value, type: .solid)
+                selection = .init(name: solidIcons[indexPath.item], faName: solidIcons[indexPath.item], type: .solid)
             default:
                 break
             }

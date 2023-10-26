@@ -79,10 +79,10 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                     cell.imageView.image = custIcon.iconImg.addImagePadding(x: 30, y: 30)
                     iconName = custIcon.name
                     // Issuer matches an icon name brand
-                } else if let faIcon = icon.getfaIconName(for: token.issuer) {
-                    let image = icon.getFontAwesomeIcon(faName: faIcon, faType: .brands, size: imageSize)
-                    cell.imageView.image = image?.addImagePadding(x: 30, y: 30)
-                    iconName = faIcon
+                } else if let faIcon = icon.faIconExists(for: token.issuer) {
+                    let image = UIImage.fontAwesomeIcon(faName: faIcon.name, faType: faIcon.type, textColor: .white, size: imageSize)
+                    cell.imageView.image = image.addImagePadding(x: 30, y: 30)
+                    iconName = faIcon.name
                 }
             }
 
@@ -280,7 +280,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         if #available(iOS 13.0, *) {
             aboutButton.image = UIImage(systemName: "info.circle")
         } else {
-            aboutButton.image = icon.getFontAwesomeIcon(faName: "fa-info-circle", faType: .solid)
+            aboutButton.image = UIImage.fontAwesomeIcon(faName: "fa-info-circle", faType: .solid, textColor: .white)
         }
         
         scanButton.accessibilityIdentifier = "scanButton"
@@ -288,7 +288,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         if #available(iOS 13.0, *) {
             addButton.image = UIImage(systemName: "plus")
         } else {
-            addButton.image = icon.getFontAwesomeIcon(faName: "fa-plus", faType: .solid)
+            addButton.image = UIImage.fontAwesomeIcon(faName: "fa-plus", faType: .solid, textColor: .white)
         }
         
         addButton.accessibilityIdentifier = "manualAddButton"
