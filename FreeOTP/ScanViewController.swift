@@ -136,7 +136,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                 }
             }
         } else if URI.paramUnset(urlc, "image", "") &&
-            icon.getFontAwesomeIcon(issuer: issuer) == nil && icon.issuerBrandMapping[issuer] == nil {
+            icon.issuerBrandMapping[issuer] == nil {
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "URIMainIconViewController") as? URIMainIconViewController {
                 viewController.inputUrlc = urlc
                 if let navigator = navigationController {

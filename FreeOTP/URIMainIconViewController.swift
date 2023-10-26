@@ -52,13 +52,13 @@ class URIMainIconViewController: UIViewController {
             switch selection.type {
             case .recommended: fallthrough
             case .brands:
-                let image = icon.getFontAwesomeIcon(faName: selection.faName, faType: .brands, size: size)
-                bestIcon.image = image?.addImagePadding(x: 30, y: 30)
+                let image = UIImage.fontAwesomeIcon(faName: selection.faName, faType: .brands, size: size)
+                bestIcon.image = image.addImagePadding(x: 30, y: 30)
                 bestIcon.backgroundColor = icon.getBackgroundColor(name: selection.faName, uriColor: uriColor)
 
             case .solid:
-                let image = icon.getFontAwesomeIcon(faName: selection.faName, faType: .solid, size: size)
-                bestIcon.image = image?.addImagePadding(x: 30, y: 30)
+                let image = UIImage.fontAwesomeIcon(faName: selection.faName, faType: .solid, size: size)
+                bestIcon.image = image.addImagePadding(x: 30, y: 30)
                 bestIcon.backgroundColor = icon.getBackgroundColor(name: selection.faName, uriColor: uriColor)
             }
 
@@ -107,8 +107,8 @@ class URIMainIconViewController: UIViewController {
         foundIconLabel.isHidden = false
         moreIconsButton.isHidden = false
         let size = CGSize(width: 96, height: 96)
-        let image = icon.getFontAwesomeIcon(faName: iconChoice, faType: .brands, size: size)
-        bestIcon.image = image?.addImagePadding(x: 30, y: 30)
+        let image = UIImage.fontAwesomeIcon(faName: iconChoice, faType: .brands, size: size)
+        bestIcon.image = image.addImagePadding(x: 30, y: 30)
 
         bestIcon.backgroundColor = icon.getBackgroundColor(name: iconChoice, uriColor: uriColor)
     }

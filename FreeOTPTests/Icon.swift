@@ -32,15 +32,6 @@ class Icon: XCTestCase {
     func testBrand() {
         let icon = TokenIcon()
 
-        XCTAssert(icon.getfaIconName(for: "redhat") == "fa-redhat")
-        XCTAssert(icon.getfaIconName(for: "github") == "fa-github")
-        XCTAssert(icon.getfaIconName(for: "amazon") == "fa-amazon")
-        XCTAssert(icon.getfaIconName(for: "google") == "fa-google")
-        XCTAssert(icon.getfaIconName(for: "SkyPe") == "fa-skype")
-        XCTAssert(icon.getfaIconName(for: "Red Hat") == "fa-redhat")
-
-        XCTAssertNil(icon.getfaIconName(for: "fa-github"))
-
         XCTAssert(icon.getBrandColorHex("redhat") == "#FF0000")
         XCTAssert(icon.getBrandColorHex("gitlab") == "#292961")
         XCTAssert(icon.getBrandColorHex("steam") == "#242424")
@@ -65,7 +56,7 @@ class Icon: XCTestCase {
         let URI = URIParameters()
         let icon = TokenIcon()
         let urlc = URLComponents(string: "otpauth://hotp/Example:alice@google.com?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=Example2&image=http%3A%2F%2Ffoo%2Fbar")
-        let iconChoice = "fa-slack"
+        let iconChoice = "slack"
         let color = "#74DFDF"
         let label = URI.getLabel(from: urlc!)
         icon.saveMapping(issuer: label!.issuer, iconName: iconChoice, iconColor: color)
@@ -75,16 +66,13 @@ class Icon: XCTestCase {
         XCTAssert(iconChoice == custIcon!.name)
 
         // Test an exact match issuer -> icon lookup
-        let faIconGithub = icon.getfaIconName(for: "github")
-        let faIconSlack = icon.getfaIconName(for: "slack")
-        let faIconMicrosoft = icon.getfaIconName(for: "microsoft")
-        XCTAssertNotNil(icon.getFontAwesomeIcon(faName: faIconGithub!, faType: .brands))
-        XCTAssertNotNil(icon.getFontAwesomeIcon(faName: faIconSlack!, faType: .brands))
-        XCTAssertNotNil(icon.getFontAwesomeIcon(faName: faIconMicrosoft!, faType: .brands))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "github", faType: .brands))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "slack", faType: .brands))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "microsoft", faType: .brands))
 
         // Test solids
-        XCTAssertNotNil(icon.getFontAwesomeIcon(faName: "fa-snowman", faType: .solid))
-        XCTAssertNotNil(icon.getFontAwesomeIcon(faName: "fa-archive", faType: .solid))
-        XCTAssertNil(icon.getFontAwesomeIcon(faName: "redhat", faType: .solid))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "fa-snowman", faType: .solid))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "fa-archive", faType: .solid))
+        XCTAssertNotNil(UIImage.fontAwesomeIcon(faName: "redhat", faType: .solid))
     }
 }

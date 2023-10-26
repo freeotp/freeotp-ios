@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		2800418823FC56E500256D27 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800418723FC56E500256D27 /* SectionHeader.swift */; };
 		2820C85A23EE53CB002D3695 /* URILockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820C85923EE53CB002D3695 /* URILockViewController.swift */; };
 		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
+		282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614A2AD49328008A22F6 /* fa-solid-900.ttf */; };
+		282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614B2AD49328008A22F6 /* fa-brands-400.ttf */; };
+		282F614F2AD49328008A22F6 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614C2AD49328008A22F6 /* fa-regular-400.ttf */; };
 		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
 		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
 		28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28431EC424A257CB00D6E1CF /* AboutViewController.swift */; };
@@ -109,6 +112,9 @@
 		2800418723FC56E500256D27 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		2820C85923EE53CB002D3695 /* URILockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URILockViewController.swift; sourceTree = "<group>"; };
 		282341B3245A13D000025167 /* RecommendedIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedIconCell.swift; sourceTree = "<group>"; };
+		282F614A2AD49328008A22F6 /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-solid-900.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-solid-900.ttf"; sourceTree = "<group>"; };
+		282F614B2AD49328008A22F6 /* fa-brands-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-brands-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-brands-400.ttf"; sourceTree = "<group>"; };
+		282F614C2AD49328008A22F6 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-regular-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-regular-400.ttf"; sourceTree = "<group>"; };
 		2832BFF6246C7F810079B2D7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		283FC22223F19EB600491B5E /* URIIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIIconViewController.swift; sourceTree = "<group>"; };
 		28431EC424A257CB00D6E1CF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +242,9 @@
 		F10D88C21B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXGroup;
 			children = (
+				282F614B2AD49328008A22F6 /* fa-brands-400.ttf */,
+				282F614C2AD49328008A22F6 /* fa-regular-400.ttf */,
+				282F614A2AD49328008A22F6 /* fa-solid-900.ttf */,
 				F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */,
 				F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */,
 				F1CA93D41B56AB9500828B8B /* default.png */,
@@ -450,10 +459,13 @@
 				F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */,
 				F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */,
 				F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */,
+				282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */,
 				F19DA5701B5EE73E00A54DDC /* lock.png in Resources */,
 				F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */,
+				282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */,
 				F1CA93D81B56AB9500828B8B /* default.png in Resources */,
 				F1CA93DA1B56AB9500828B8B /* token.png in Resources */,
+				282F614F2AD49328008A22F6 /* fa-regular-400.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
