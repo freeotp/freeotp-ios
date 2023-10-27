@@ -61,8 +61,6 @@
 		F1CA93DA1B56AB9500828B8B /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D61B56AB9500828B8B /* token.png */; };
 		FC81F0CD278751A90094DEAC /* Base32.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; };
 		FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FC81F0D0278751AB0094DEAC /* FontAwesome.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895C270B749C00A25825 /* FontAwesome.xcframework */; };
-		FC81F0D1278751AB0094DEAC /* FontAwesome.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895C270B749C00A25825 /* FontAwesome.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC81F0D2278751AD0094DEAC /* moa.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895A270B749C00A25825 /* moa.xcframework */; };
 		FC81F0D3278751AD0094DEAC /* moa.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895A270B749C00A25825 /* moa.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC81F0D4278751AF0094DEAC /* TinyConstraints.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */; };
@@ -94,7 +92,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FC81F0D3278751AD0094DEAC /* moa.xcframework in Embed Frameworks */,
-				FC81F0D1278751AB0094DEAC /* FontAwesome.xcframework in Embed Frameworks */,
 				FC81F0D5278751AF0094DEAC /* TinyConstraints.xcframework in Embed Frameworks */,
 				FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */,
 			);
@@ -182,7 +179,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC81F0D0278751AB0094DEAC /* FontAwesome.xcframework in Frameworks */,
 				F18FA5361B571E2200B1CEAD /* CoreBluetooth.framework in Frameworks */,
 				F18FA53A1B571E4800B1CEAD /* CoreGraphics.framework in Frameworks */,
 				F18FA53E1B571E5D00B1CEAD /* Foundation.framework in Frameworks */,
