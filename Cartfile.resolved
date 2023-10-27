@@ -1,4 +1,3 @@
 github "evgenyneu/moa" "12.0.0"
 github "norio-nomura/Base32" "0.9.0"
 github "roberthein/TinyConstraints" "4.0.2"
-github "thii/FontAwesome.swift" "1.9.1"
