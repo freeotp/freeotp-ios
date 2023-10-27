@@ -18,10 +18,10 @@
 // limitations under the License.
 //
 
-import moa
 import Foundation
 import Photos
 import UIKit
+import SDWebImage
 
 class ImageDownloader : NSObject {
     fileprivate let DEFAULT = UIImage(contentsOfFile: Bundle.main.path(forResource: "default", ofType: "png")!)!
@@ -87,7 +87,7 @@ class ImageDownloader : NSObject {
         return completion(DEFAULT)
     }
 
-    func fromURL(_ url: URL, completion: @escaping (UIImage) -> Void) {
+    func fromURL(_ url: URL, _ iv: UIImageView, completion: @escaping (UIImage) -> Void) {
         switch url.scheme! {
         case "file":
             if let img = UIImage(contentsOfFile: url.path) {
@@ -100,24 +100,13 @@ class ImageDownloader : NSObject {
         case "http":
             fallthrough
         case "https":
-            let moa = Moa()
-
-            moa.onError = {
-                (e, r) -> () in
-                moa.errorImage = nil // Keep a strong reference to moa
-                completion(self.DEFAULT)
-            }
-
-            moa.onSuccess = {
-                (i: MoaImage) -> MoaImage? in
-                moa.errorImage = nil // Keep a strong reference to moa
-                completion(i)
-                return nil
-            }
-
-            moa.url = url.absoluteString
+            iv.sd_setImage(with: url, placeholderImage: self.DEFAULT,
+                           completed: { (image, error, cacheType, url) in
+                if let image {
+                    completion(image)
+                }
+            })
             return
-
         default:
             break
         }
@@ -125,7 +114,7 @@ class ImageDownloader : NSObject {
         return completion(DEFAULT)
     }
 
-    func fromURI(_ uri: String?, completion: @escaping (UIImage) -> Void) {
+    func fromURI(_ uri: String?, _ iv: UIImageView, completion: @escaping (UIImage) -> Void) {
         if var u = uri {
             if u.hasPrefix("phasset:") {
                 let id = String(u[u.index(u.startIndex, offsetBy: "phasset:".count)...])
@@ -142,7 +131,7 @@ class ImageDownloader : NSObject {
                 }
 
                 if let remote = URL(string: u) {
-                    return fromURL(remote, completion: completion)
+                    return fromURL(remote, iv, completion: completion)
                 }
             }
         }

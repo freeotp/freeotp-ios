@@ -39,10 +39,10 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     // the tokens array
     private var tokensArray: [Token]! = [] // contains all the tokens as loaded from the store
     private var searchedTokensArray: [Token]! = [] // contains the filtered tokens
-    
+
     // search params
     private var searchingTokens = false
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -66,7 +66,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                 if image.hasSuffix("/FreeOTP.app/default.png") {
                     cell.imageView.image = defaultIcon
                 } else {
-                    ImageDownloader(imageSize).fromURI(token.image, completion: {
+                    ImageDownloader(imageSize).fromURI(token.image, cell.imageView, completion: {
                         (image: UIImage) -> Void in
                         UIView.animate(withDuration: 0.3, animations: {
                             cell.imageView.image = image.addImagePadding(x: 30, y: 30)
