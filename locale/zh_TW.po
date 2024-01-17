@@ -111,56 +111,56 @@ msgstr ""
 # 這段文字(57)出現在關於頁的版權和授權資訊部分。
 #: FreeOTP/AboutViewController.swift:57
 msgid "2013-2020 - Red Hat, Inc., et al."
-msgstr "2013-2020 - Red Hat, Inc., et al."
+msgstr ""
 
 # 這段文字(59)出現在關於頁的版權和授權資訊部分。
 # 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:70」，以符合程式碼中的超連結設定。
 #: FreeOTP/AboutViewController.swift:59
 msgid "FreeOTP is licensed under Apache 2.0"
-msgstr "FreeOTP 已取得 Apache 2.0 授權"
+msgstr ""
 
 # 這段文字(61)出現在關於頁的版權和授權資訊部分。
 # 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:71」，以符合程式碼中的超連結設定。
 #: FreeOTP/AboutViewController.swift:61
 msgid "For more information, see our website"
-msgstr "有關更多資訊，請訪問我們的網站"
+msgstr ""
 
 # 這段文字(63)出現在關於頁的版權和授權資訊部分。
 #: FreeOTP/AboutViewController.swift:63
 msgid "We welcome your feedback"
-msgstr "我們歡迎您的反饋"
+msgstr ""
 
 # 這段文字(64)出現在關於頁的版權和授權資訊部分。
 # 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:72」，以符合程式碼中的超連結設定。
 #: FreeOTP/AboutViewController.swift:64
 msgid "- Report a Problem"
-msgstr "- 回報問題"
+msgstr ""
 
 # 這段文字(65)出現在關於頁的版權和授權資訊部分。
 # 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:73」，以符合程式碼中的超連結設定。
 #: FreeOTP/AboutViewController.swift:65
 msgid "- Ask for Help"
-msgstr "- 尋求幫助"
+msgstr ""
 
 # 這段文字(70)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:59的文本。
 #: FreeOTP/AboutViewController.swift:70
 msgid "Apache 2.0"
-msgstr "Apache 2.0"
+msgstr ""
 
 # 這段文字(71)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:61的文本。
 #: FreeOTP/AboutViewController.swift:71
 msgid "website"
-msgstr "網站"
+msgstr ""
 
 # 這段文字(72)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:64的文本。
 #: FreeOTP/AboutViewController.swift:72
 msgid "Report a Problem"
-msgstr "回報問題"
+msgstr ""
 
 # 這段文字(73)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:65的文本。
 #: FreeOTP/AboutViewController.swift:73
 msgid "Ask for Help"
-msgstr "尋求幫助"
+msgstr ""
 
 #: FreeOTP/EmptyStateView.swift:36
 msgid "No tokens have been added yet."
@@ -277,4 +277,4 @@ msgstr ""
 
 #: FreeOTP/URILockViewController.swift:27
 msgid "Ok"
-msgstr "好的"
+msgstr ""
