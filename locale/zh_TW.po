@@ -294,4 +294,4 @@ msgstr ""
 
 #: FreeOTP/URILockViewController.swift:27
 msgid "Ok"
-msgstr "確認"
+msgstr ""
