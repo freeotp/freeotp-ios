@@ -88,30 +88,32 @@ class ImageDownloader : NSObject {
     }
 
     func fromURL(_ url: URL, _ iv: UIImageView, completion: @escaping (UIImage) -> Void) {
-        switch url.scheme! {
-        case "file":
-            if let img = UIImage(contentsOfFile: url.path) {
-                return completion(img)
+        if let scheme = url.scheme {
+            switch scheme {
+            case "file":
+                if let img = UIImage(contentsOfFile: url.path) {
+                    return completion(img)
+                }
+
+            case "assets-library":
+                return fromALAsset(url, completion: completion)
+
+            case "http":
+                fallthrough
+            case "https":
+                iv.sd_setImage(with: url, placeholderImage: self.DEFAULT,
+                               completed: { (image, error, cacheType, url) in
+                    if let image {
+                        completion(image)
+                    }
+                })
+                return
+            default:
+                break
             }
 
-        case "assets-library":
-            return fromALAsset(url, completion: completion)
-
-        case "http":
-            fallthrough
-        case "https":
-            iv.sd_setImage(with: url, placeholderImage: self.DEFAULT,
-                           completed: { (image, error, cacheType, url) in
-                if let image {
-                    completion(image)
-                }
-            })
-            return
-        default:
-            break
+            return completion(DEFAULT)
         }
-
-        return completion(DEFAULT)
     }
 
     func fromURI(_ uri: String?, _ iv: UIImageView, completion: @escaping (UIImage) -> Void) {
