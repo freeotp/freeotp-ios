@@ -45,16 +45,17 @@ class AboutViewController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var aboutTextView: UITextView!
 
     let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    let currentyear = Calendar.current.component(.year, from: Date())
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         versionLabel.text = "FreeOTP \(appVersion)"
         versionLabel.font = UIFont.boldSystemFont(ofSize: 28.0)
-
+        
         aboutTextView.delegate = self
-        aboutTextView.text = """
-        2013-2020 - Red Hat, Inc., et al.
+        aboutTextView.text =  """
+        2013-\(currentyear) - Red Hat, Inc., et al.
 
         FreeOTP is licensed under Apache 2.0
 
