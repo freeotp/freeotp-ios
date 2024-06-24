@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: FreeOTP\n"
 "Report-Msgid-Bugs-To: https://github.com/redhat-freeotp/freeotp/issues\n"
 "POT-Creation-Date: 2024-01-17 01:13+0800\n"
-"PO-Revision-Date: 2024-06-18 13:57+0000\n"
+"PO-Revision-Date: 2024-06-25 09:44+0000\n"
 "Last-Translator: peterhsu <hi@peterhsu.tw>\n"
 "Language-Team: Chinese (Traditional) <http://weblate.steps.tw/projects/"
 "freeotp/ios/zh_Hant/>\n"
@@ -34,7 +34,7 @@ msgstr "新增按鈕"
 #: FreeOTP/Base.lproj/Main.storyboard:85
 #: FreeOTP/Base.lproj/Main.storyboard:131
 msgid "Share Code"
-msgstr "分享代碼"
+msgstr "分享動態密碼"
 
 #: FreeOTP/Base.lproj/Main.storyboard:98
 msgid "Label"
@@ -99,15 +99,15 @@ msgstr "範例：Red Hat, GitHub, Google"
 
 #: FreeOTP/Base.lproj/Main.storyboard:566
 msgid "FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token"
-msgstr "FreeOTP 可以透過要求您解鎖手機來啟用動態密碼，以為您提供額外的安全性"
+msgstr "FreeOTP 可以透過在產生動態密碼前要求您解鎖手機來為您提供更高的安全性"
 
 #: FreeOTP/Base.lproj/Main.storyboard:574
 msgid "Do you want to require a phone unlock in order to activate this token?"
-msgstr "您是否希望要求解鎖手機以啟用此動態密碼？"
+msgstr "您是否希望每次在產生這組動態密碼前要求進行手機解鎖？"
 
 #: FreeOTP/Base.lproj/Main.storyboard:576
 msgid "WARNING: Locked tokens are *not* included in backups for security reasons"
-msgstr "警告：基於安全考量，鎖定的動態密碼*不*包含在備份中"
+msgstr "警告：基於安全性因素，受保護的動態密碼將*不會*被保存在備份中"
 
 #: FreeOTP/Base.lproj/Main.storyboard:657
 msgid "Section Header"
@@ -239,7 +239,7 @@ msgstr "確定"
 
 #: FreeOTP/ScanViewController.swift:91
 msgid "Device does not support scanning"
-msgstr "裝置不支援掃描"
+msgstr "此裝置不支援掃描功能"
 
 #: FreeOTP/ScanViewController.swift:212
 #: FreeOTP/ScanViewController.swift:215
