@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/freeotp/freeotp-ios.svg?branch=master)](https://travis-ci.org/freeotp/freeotp-ios)
-
 # FreeOTP
 
 [FreeOTP](https://freeotp.github.io/) is a two-factor authentication application for systems
