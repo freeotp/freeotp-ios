@@ -54,22 +54,22 @@ class AboutViewController : UIViewController, UITextViewDelegate {
 
         aboutTextView.delegate = self
         aboutTextView.text = """
-        2013-2020 - Red Hat, Inc., et al.
+        2013-2020 - Red Hat, Inc. 等。
 
-        FreeOTP is licensed under Apache 2.0
+        FreeOTP 採用 Apache 2.0 授權
 
-        For more information, see our website
+        更多資訊，請參閱我們的網站
 
-        We welcome your feedback
-        - Report a Problem
-        - Ask for Help
+        我們歡迎您的意見回饋
+        - 回報問題
+        - 尋求支援
         """
 
         aboutTextView.addHyperLinksToText(originalText: aboutTextView.text,
                                           hyperLinks:
             ["Apache 2.0": "https://www.apache.org/licenses/LICENSE-2.0.html",
-             "website": "https://freeotp.github.io",
-             "Report a Problem": "https://github.com/freeotp/freeotp-ios/issues",
-             "Ask for Help": "https://lists.fedorahosted.org/mailman/listinfo/freeotp-devel"])
+             "網站": "https://freeotp.github.io",
+             "回報問題": "https://github.com/freeotp/freeotp-ios/issues",
+             "尋求幫助": "https://lists.fedorahosted.org/mailman/listinfo/freeotp-devel"])
     }
 }

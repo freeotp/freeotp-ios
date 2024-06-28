@@ -33,7 +33,7 @@ class EmptyStateView: UIView {
     private(set) lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .dynamicSystemFont(ofSize: 14, weight: .regular)
-        view.text = "No tokens have been added yet."
+        view.text = "尚未新增任何動態密碼。"
         view.textAlignment = .center
         view.textColor = UIColor.app.secondaryText
         return view
@@ -41,7 +41,7 @@ class EmptyStateView: UIView {
 
     private(set) lazy var addTokenButton: UIButton = {
         let view = UIButton(type: .system)
-        view.setTitle("Add a token", for: .normal)
+        view.setTitle("新增動態密碼", for: .normal)
         view.setTitleColor(UIColor.app.accent, for: .normal)
         return view
     }()

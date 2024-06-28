@@ -230,7 +230,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                         }, completion: { (Bool) -> Void in
                             let actionSheetController: UIAlertController = UIAlertController(title: token.issuer, message: token.label, preferredStyle: .actionSheet)
 
-                            let removeAction: UIAlertAction = UIAlertAction(title: "Remove token", style: .destructive) { action -> Void in
+                            let removeAction: UIAlertAction = UIAlertAction(title: "移除動態密碼", style: .destructive) { action -> Void in
                                 TokenStore().erase(token: token)
                                 var array = [IndexPath]()
                                 array.append(currPath)
@@ -247,7 +247,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                                 self.tokensArray = self.store.getAllTokens()
                             }
 
-                            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                            let cancelAction: UIAlertAction = UIAlertAction(title: "取消", style: .cancel) { action -> Void in
                                 UIView.animate(withDuration: 0.3, animations: {
                                     cell.transform = .identity
                                 })
@@ -345,7 +345,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         searchController.searchBar.sizeToFit()
         searchController.searchBar.tintColor = UIColor.app.accent
         searchController.searchBar.isAccessibilityElement = false
-        searchController.searchBar.placeholder = "Search Tokens"
+        searchController.searchBar.placeholder = "搜尋動態密碼"
         
         navigationItem.searchController = searchController
     }

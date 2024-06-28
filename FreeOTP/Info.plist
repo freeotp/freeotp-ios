@@ -46,15 +46,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) requests access to Bluetooth to share token codes</string>
+	<string>$(PRODUCT_NAME) 請求存取藍牙以分享動態密碼</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>$(PRODUCT_NAME) requests access to Bluetooth to share token codes</string>
+	<string>$(PRODUCT_NAME) 請求存取藍牙以分享動態密碼</string>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) requires access to the camera to scan a QR code for token import</string>
+	<string>$(PRODUCT_NAME) 需要存取相機以掃描 QR Code 來匯入動態密碼</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Biometric support for locked tokens</string>
+	<string>支援鎖定動態密碼的生物辨識功能</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) requests access to the Photo Library to select token key image</string>
+	<string>$(PRODUCT_NAME) 請求存取相簿以選擇動態密碼金鑰圖像</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>

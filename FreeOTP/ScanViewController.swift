@@ -88,7 +88,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         if output.availableMetadataObjectTypes.contains(.qr) {
             output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
-            showError("Device does not support scanning")
+            showError("此裝置不支援掃描功能")
             dismiss(animated: true, completion: nil)
             return
         }
@@ -209,10 +209,10 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                         }
                     }
                 } else {
-                    showError("Invalid URI!")
+                    showError("URI 無效！")
                 }
             } else {
-                showError("Invalid URI!")
+                showError("URI 無效！")
             }
 
             break

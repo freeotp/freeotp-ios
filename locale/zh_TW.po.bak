@@ -1,0 +1,300 @@
+#  Translators:
+#  Gettext PO file for FreeOTP
+#  Copyright (C) 2024 Red Hat, Inc.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: FreeOTP\n"
+"Report-Msgid-Bugs-To: https://github.com/redhat-freeotp/freeotp/issues\n"
+"POT-Creation-Date: 2024-01-17 01:13+0800\n"
+"PO-Revision-Date: 2024-06-25 09:44+0000\n"
+"Last-Translator: peterhsu <hi@peterhsu.tw>\n"
+"Language-Team: Chinese (Traditional) <http://weblate.steps.tw/projects/"
+"freeotp/ios/zh_Hant/>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.18.2\n"
+
+#: FreeOTP/Base.lproj/Main.storyboard:34
+#: FreeOTP/Base.lproj/Main.storyboard:53
+msgid "FreeOTP"
+msgstr "FreeOTP"
+
+#: FreeOTP/Base.lproj/Main.storyboard:55
+msgid "About"
+msgstr "關於"
+
+#: FreeOTP/Base.lproj/Main.storyboard:65
+msgid "New Button"
+msgstr "新增按鈕"
+
+#: FreeOTP/Base.lproj/Main.storyboard:85
+#: FreeOTP/Base.lproj/Main.storyboard:131
+msgid "Share Code"
+msgstr "分享動態密碼"
+
+#: FreeOTP/Base.lproj/Main.storyboard:98
+msgid "Label"
+msgstr "標籤"
+
+#: FreeOTP/Base.lproj/Main.storyboard:173
+msgid "Close"
+msgstr "關閉"
+
+#: FreeOTP/Base.lproj/Main.storyboard:227
+msgid "Secret"
+msgstr "金鑰"
+
+#: FreeOTP/Base.lproj/Main.storyboard:243
+msgid "Type"
+msgstr "類型"
+
+#: FreeOTP/Base.lproj/Main.storyboard:261
+msgid "Digits"
+msgstr "密碼長度"
+
+#: FreeOTP/Base.lproj/Main.storyboard:279
+msgid "Algorithm"
+msgstr "演算法"
+
+#: FreeOTP/Base.lproj/Main.storyboard:287
+#: FreeOTP/Base.lproj/Main.storyboard:305
+#: FreeOTP/Base.lproj/Main.storyboard:306
+msgid "Button"
+msgstr "按鈕"
+
+#: FreeOTP/Base.lproj/Main.storyboard:297
+msgid "Interval"
+msgstr "時間間隔（秒）"
+
+#: FreeOTP/Base.lproj/Main.storyboard:341
+msgid "Manual Add"
+msgstr "手動新增"
+
+#: FreeOTP/Base.lproj/Main.storyboard:342
+#: FreeOTP/Base.lproj/Main.storyboard:537
+#: FreeOTP/Base.lproj/Main.storyboard:599
+#: FreeOTP/Base.lproj/Main.storyboard:806
+msgid "Next"
+msgstr "下一步"
+
+#: FreeOTP/Base.lproj/Main.storyboard:382
+msgid "Invalid token!"
+msgstr "動態密碼無效！"
+
+#: FreeOTP/Base.lproj/Main.storyboard:443
+msgid "Scan QR Code"
+msgstr "掃描 QR Code"
+
+#: FreeOTP/Base.lproj/Main.storyboard:507
+msgid "Your token provider has  not configured the issuer  field, please enter the name  of the issuer"
+msgstr "您的動態密碼提供者尚未設定發行者欄位，請輸入發行者名稱"
+
+#: FreeOTP/Base.lproj/Main.storyboard:513
+msgid "Example: Red Hat, Github, Google"
+msgstr "範例：Red Hat, GitHub, Google"
+
+#: FreeOTP/Base.lproj/Main.storyboard:566
+msgid "FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token"
+msgstr "FreeOTP 可以透過在產生動態密碼前要求您解鎖手機來為您提供更高的安全性"
+
+#: FreeOTP/Base.lproj/Main.storyboard:574
+msgid "Do you want to require a phone unlock in order to activate this token?"
+msgstr "您是否希望每次在產生這組動態密碼前要求進行手機解鎖？"
+
+#: FreeOTP/Base.lproj/Main.storyboard:576
+msgid "WARNING: Locked tokens are *not* included in backups for security reasons"
+msgstr "警告：基於安全性因素，受保護的動態密碼將*不會*被保存在備份中"
+
+#: FreeOTP/Base.lproj/Main.storyboard:657
+msgid "Section Header"
+msgstr "區段標題"
+
+#: FreeOTP/Base.lproj/Main.storyboard:710
+msgid "Recommended"
+msgstr "推薦"
+
+#: FreeOTP/Base.lproj/Main.storyboard:770
+msgid "We found an icon for you!"
+msgstr "我們為您找到了圖示！"
+
+#: FreeOTP/Base.lproj/Main.storyboard:741
+msgid "Title"
+msgstr "標題"
+
+#: FreeOTP/Base.lproj/Main.storyboard:784
+msgid "More Icons"
+msgstr "更多圖示"
+
+# 這段文字(57)出現在關於頁的版權和授權資訊部分。
+#: FreeOTP/AboutViewController.swift:57
+msgid "2013-2020 - Red Hat, Inc., et al."
+msgstr "2013-2020 - Red Hat, Inc. 等。"
+
+# 這段文字(59)出現在關於頁的版權和授權資訊部分。
+# 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:70」，以符合程式碼中的超連結設定。
+#: FreeOTP/AboutViewController.swift:59
+msgid "FreeOTP is licensed under Apache 2.0"
+msgstr "FreeOTP 採用 Apache 2.0 授權"
+
+# 這段文字(61)出現在關於頁的版權和授權資訊部分。
+# 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:71」，以符合程式碼中的超連結設定。
+#: FreeOTP/AboutViewController.swift:61
+msgid "For more information, see our website"
+msgstr "更多資訊，請參閱我們的網站"
+
+# 這段文字(63)出現在關於頁的版權和授權資訊部分。
+#: FreeOTP/AboutViewController.swift:63
+msgid "We welcome your feedback"
+msgstr "我們歡迎您的意見回饋"
+
+# 這段文字(64)出現在關於頁的版權和授權資訊部分。
+# 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:72」，以符合程式碼中的超連結設定。
+#: FreeOTP/AboutViewController.swift:64
+msgid "- Report a Problem"
+msgstr "- 回報問題"
+
+# 這段文字(65)出現在關於頁的版權和授權資訊部分。
+# 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:73」，以符合程式碼中的超連結設定。
+#: FreeOTP/AboutViewController.swift:65
+msgid "- Ask for Help"
+msgstr "- 尋求支援"
+
+# 這段文字(70)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:59的文本。
+#: FreeOTP/AboutViewController.swift:70
+msgid "Apache 2.0"
+msgstr "Apache 2.0"
+
+# 這段文字(71)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:61的文本。
+#: FreeOTP/AboutViewController.swift:71
+msgid "website"
+msgstr "網站"
+
+# 這段文字(72)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:64的文本。
+#: FreeOTP/AboutViewController.swift:72
+msgid "Report a Problem"
+msgstr "回報問題"
+
+# 這段文字(73)用於建立關於頁的超連結，需一致於FreeOTP/AboutViewController.swift:65的文本。
+#: FreeOTP/AboutViewController.swift:73
+msgid "Ask for Help"
+msgstr "尋求幫助"
+
+#: FreeOTP/EmptyStateView.swift:36
+msgid "No tokens have been added yet."
+msgstr "尚未新增任何動態密碼。"
+
+#: FreeOTP/EmptyStateView.swift:44
+msgid "Add a token"
+msgstr "新增動態密碼"
+
+# 請在翻譯時保留 $(PRODUCT_NAME)
+#: FreeOTP/Info.plist:49
+#: FreeOTP/Info.plist:51
+msgid "$(PRODUCT_NAME) requests access to Bluetooth to share token codes"
+msgstr "$(PRODUCT_NAME) 請求存取藍牙以分享動態密碼"
+
+# 請在翻譯時保留 $(PRODUCT_NAME)
+#: FreeOTP/Info.plist:53
+msgid "$(PRODUCT_NAME) requires access to the camera to scan a QR code for token import"
+msgstr "$(PRODUCT_NAME) 需要存取相機以掃描 QR Code 來匯入動態密碼"
+
+#: FreeOTP/Info.plist:55
+msgid "Biometric support for locked tokens"
+msgstr "支援鎖定動態密碼的生物辨識功能"
+
+# 請在翻譯時保留 $(PRODUCT_NAME)
+#: FreeOTP/Info.plist:57
+msgid "$(PRODUCT_NAME) requests access to the Photo Library to select token key image"
+msgstr "$(PRODUCT_NAME) 請求存取相簿以選擇動態密碼金鑰圖像"
+
+#: FreeOTP/ManualAddViewController.swift:84
+msgid "Some fields are empty!"
+msgstr "有些欄位尚未填寫！"
+
+#: FreeOTP/ManualAddViewController.swift:84
+msgid "Please fill in all fields"
+msgstr "請填寫所有欄位"
+
+#: FreeOTP/ManualAddViewController.swift:89
+msgid "Token is invalid!"
+msgstr "動態密碼無效！"
+
+#: FreeOTP/ManualAddViewController.swift:90
+msgid "The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format"
+msgstr "您嘗試新增的動態密碼無效。請檢查每個欄位是否符合 OTP 金鑰 URI 格式"
+
+#: FreeOTP/ManualAddViewController.swift:156
+#: FreeOTP/TokensViewController.swift:250
+#: FreeOTP/URILabelViewController.swift:25
+msgid "Cancel"
+msgstr "取消"
+
+#: FreeOTP/ManualAddViewController.swift:162
+msgid "OK"
+msgstr "確定"
+
+#: FreeOTP/ScanViewController.swift:91
+msgid "Device does not support scanning"
+msgstr "此裝置不支援掃描功能"
+
+#: FreeOTP/ScanViewController.swift:212
+#: FreeOTP/ScanViewController.swift:215
+msgid "Invalid URI!"
+msgstr "URI 無效！"
+
+#: FreeOTP/ShareViewController.swift:141
+msgid "Local"
+msgstr "本機"
+
+#: FreeOTP/ShareViewController.swift:144
+msgid "Bluetooth"
+msgstr "藍牙"
+
+#: FreeOTP/ShareViewController.swift:171
+msgid "Copy to Clipboard"
+msgstr "複製到剪貼簿"
+
+#: FreeOTP/TokensViewController.swift:233
+msgid "Remove token"
+msgstr "移除動態密碼"
+
+#: FreeOTP/TokensViewController.swift:348
+msgid "Search Tokens"
+msgstr "搜尋動態密碼"
+
+#: FreeOTP/URIIconViewController.swift:135
+msgid "Choose an icon"
+msgstr "選擇圖示"
+
+#: FreeOTP/URIIconViewController.swift:137
+msgid "Other"
+msgstr "其他"
+
+#: FreeOTP/URILabelViewController.swift:25
+msgid "Issuer missing"
+msgstr "遺失發行者資訊"
+
+#: FreeOTP/URILabelViewController.swift:25
+msgid "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?"
+msgstr "建議提供發行者欄位的值以善用 FreeOTP "
+"的圖示功能。您確定要使用空的發行者資訊嗎？"
+
+#: FreeOTP/URILabelViewController.swift:25
+msgid "Use empty issuer"
+msgstr "使用空的發行者"
+
+#: FreeOTP/URILockViewController.swift:26
+msgid "Lock"
+msgstr "鎖定"
+
+#: FreeOTP/URILockViewController.swift:26
+msgid "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device."
+msgstr "鎖定參數是一個布林值，確保動態密碼金鑰只能透過最近的裝置驗證來存取。"
+
+#: FreeOTP/URILockViewController.swift:27
+msgid "Ok"
+msgstr "確定"

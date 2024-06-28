@@ -23,8 +23,8 @@ class URILockViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func helpClicked(_ sender: UIButton) {
-        presentAlert(title: "Lock", message: "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.",
-        actionTitle: "Ok")
+        presentAlert(title: "鎖定", message: "鎖定參數是一個布林值，確保動態密碼金鑰只能透過最近的裝置驗證來存取。",
+        actionTitle: "確定")
     }
 
     @IBAction func doneClicked(_ sender: UIBarButtonItem) {

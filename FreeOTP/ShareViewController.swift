@@ -138,10 +138,10 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Local"
+            return "本機"
 
         case 1:
-            return "Bluetooth"
+            return "藍牙"
 
         default:
             return nil
@@ -168,7 +168,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
 
         switch indexPath.section {
         case 0:
-            lbl.text = "Copy to Clipboard"
+            lbl.text = "複製到剪貼簿"
             cell.isUserInteractionEnabled = true
             lbl.isEnabled = true
 

@@ -22,7 +22,7 @@ class URILabelViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     @IBAction func nextClicked(_ sender: UIBarButtonItem) {
         if issuerTextField.text == "" {
-            presentAlert(title: "Issuer missing", message: "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?", actionTitleAccept: "Use empty issuer", actionTitleCancel: "Cancel")
+            presentAlert(title: "遺失發行者資訊", message: "建議提供發行者欄位的值以善用 FreeOTP ", actionTitleAccept: "使用空的發行者", actionTitleCancel: "取消")
         }
 
         submitForm()

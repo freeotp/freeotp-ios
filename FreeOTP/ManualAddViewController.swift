@@ -81,13 +81,13 @@ class ManualAddViewController: UIViewController {
               let secret = secretField.text,
               secret.count > 0
         else {
-            showOkAlert(title: "Some fields are empty!", message: "Please fill in all fields")
+            showOkAlert(title: "有些欄位尚未填寫！", message: "請填寫所有欄位")
             return
         }
         guard let _ = secret.base32DecodedData else {
             showOkAlert(
-                title: "Token is invalid!",
-                message: "The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format")
+                title: "動態密碼無效！",
+                message: "您嘗試新增的動態密碼無效。請檢查每個欄位是否符合 OTP 金鑰 URI 格式")
             secretField.text = ""
             return
         }
@@ -153,13 +153,13 @@ class ManualAddViewController: UIViewController {
                 button.setTitle(title, for: [])
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in })
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel) { _ in })
         present(alert, animated: true, completion: nil)
     }
     
     private func showOkAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
+        let action = UIAlertAction(title: "確定", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true)
     }

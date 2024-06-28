@@ -52,7 +52,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="FreeOTP" id="L5z-P6-1cO">
                         <rightBarButtonItems>
-                            <barButtonItem title="About" image="info.circle" catalog="system" id="08x-7R-jHE">
+                            <barButtonItem title="關於" image="info.circle" catalog="system" id="08x-7R-jHE">
                                 <connections>
                                     <segue destination="YSu-du-Vr6" kind="presentation" id="bYu-33-wCR"/>
                                 </connections>
@@ -62,7 +62,7 @@
                                     <action selector="scanClicked:" destination="mGg-KB-Kzc" id="DMH-L2-ywH"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="New Button" image="plus" catalog="system" id="8iQ-Fw-K4R">
+                            <barButtonItem title="新增按鈕" image="plus" catalog="system" id="8iQ-Fw-K4R">
                                 <connections>
                                     <action selector="addClicked:" destination="mGg-KB-Kzc" id="nAX-gU-ndQ"/>
                                 </connections>
@@ -82,7 +82,7 @@
         <!--Share Code-->
         <scene sceneID="PTS-3e-qXg">
             <objects>
-                <tableViewController storyboardIdentifier="share" title="Share Code" id="kIc-US-32O" customClass="ShareViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="share" title="分享動態密碼" id="kIc-US-32O" customClass="ShareViewController" customModule="FreeOTP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="8gO-Ml-R9v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb2-Yx-gnX">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="標籤" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb2-Yx-gnX">
                                             <rect key="frame" x="16" y="11" width="315" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -128,7 +128,7 @@
                             <outlet property="delegate" destination="kIc-US-32O" id="GFx-KA-q9B"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Share Code" id="pDi-fP-bo7"/>
+                    <navigationItem key="navigationItem" title="分享動態密碼" id="pDi-fP-bo7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLp-uv-0Pk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,7 +170,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="kMP-iw-eAD"/>
                                 </constraints>
-                                <state key="normal" title="Close"/>
+                                <state key="normal" title="關閉"/>
                                 <connections>
                                     <segue destination="9Pi-UR-R9Z" kind="unwind" unwindAction="unwindToTokens:" id="7WF-8G-4jf"/>
                                 </connections>
@@ -224,7 +224,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QeB-Z5-ZNL">
                                         <rect key="frame" x="0.0" y="92" width="300" height="34"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secret" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zX-gj-6JN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金鑰" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zX-gj-6JN">
                                                 <rect key="frame" x="0.0" y="7" width="74" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -240,7 +240,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YcT-Ee-fUM">
                                         <rect key="frame" x="0.0" y="138" width="300" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvW-jJ-YtW">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="類型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvW-jJ-YtW">
                                                 <rect key="frame" x="0.0" y="5.5" width="74" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -258,7 +258,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B5r-Xb-73w">
                                         <rect key="frame" x="0.0" y="181" width="300" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Digits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiu-dK-1NZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼長度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qiu-dK-1NZ">
                                                 <rect key="frame" x="0.0" y="5.5" width="74" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -276,7 +276,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="53J-Un-NcJ">
                                         <rect key="frame" x="0.0" y="224" width="300" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Algorithm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMa-wL-TvX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="演算法" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMa-wL-TvX">
                                                 <rect key="frame" x="0.0" y="5.5" width="74" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -284,7 +284,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-lT-5na">
                                                 <rect key="frame" x="94" y="0.0" width="206" height="31"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="按鈕"/>
                                                 <connections>
                                                     <action selector="algorithmTapped:" destination="r2L-NF-ZcI" eventType="touchUpInside" id="z91-DU-MQk"/>
                                                 </connections>
@@ -294,7 +294,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-Ao-5nd">
                                         <rect key="frame" x="0.0" y="267" width="300" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPe-mF-g48">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="時間間隔（秒）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPe-mF-g48">
                                                 <rect key="frame" x="0.0" y="5.5" width="74" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -302,8 +302,8 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tq9-2D-pvV">
                                                 <rect key="frame" x="94" y="0.0" width="206" height="31"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <state key="normal" title="按鈕"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="按鈕"/>
                                                 <connections>
                                                     <action selector="intervalTapped:" destination="r2L-NF-ZcI" eventType="touchUpInside" id="frE-Va-5Hg"/>
                                                 </connections>
@@ -338,8 +338,8 @@
                             <constraint firstItem="Fo9-5C-s8b" firstAttribute="centerX" secondItem="sa7-9p-yho" secondAttribute="centerX" id="VhD-WC-Oh7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Manual Add" id="Dea-K9-0Tn">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="Nay-kQ-eR7">
+                    <navigationItem key="navigationItem" title="手動新增" id="Dea-K9-0Tn">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="Nay-kQ-eR7">
                             <connections>
                                 <action selector="nextTapped:" destination="r2L-NF-ZcI" id="vvb-kh-PPg"/>
                             </connections>
@@ -379,7 +379,7 @@
                                     <constraint firstAttribute="width" secondItem="yh4-V8-vh6" secondAttribute="height" multiplier="1:1" id="yK3-lq-4nZ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid token!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-XG-W6J">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="動態密碼無效！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-XG-W6J">
                                 <rect key="frame" x="137" y="447" width="101" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="4r9-iZ-3ZU"/>
@@ -440,7 +440,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan QR Code" id="NlQ-ih-McR"/>
+                    <navigationItem key="navigationItem" title="掃描 QR Code" id="NlQ-ih-McR"/>
                     <value key="contentSizeForViewInPopover" type="size" width="400" height="565"/>
                     <connections>
                         <outlet property="activity" destination="LOj-V1-w8g" id="QKI-eg-plA"/>
@@ -504,13 +504,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pQa-Lk-vD0">
                                 <rect key="frame" x="64" y="111" width="246.5" height="209"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your token provider has  not configured the issuer  field, please enter the name  of the issuer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-rR-33m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的動態密碼提供者尚未設定發行者欄位，請輸入發行者名稱" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk9-rR-33m">
                                         <rect key="frame" x="0.0" y="0.0" width="246.5" height="95.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example: Red Hat, Github, Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHJ-WT-OxS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="範例：Red Hat, GitHub, Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHJ-WT-OxS">
                                         <rect key="frame" x="0.0" y="125.5" width="246.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -534,7 +534,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FcM-fb-xWq">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="5hC-hA-l4V">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="5hC-hA-l4V">
                             <connections>
                                 <action selector="nextClicked:" destination="HKi-TN-uDk" id="f5q-ag-c96"/>
                             </connections>
@@ -563,7 +563,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="9MZ-2k-z7H">
                                 <rect key="frame" x="15.5" y="63" width="338.5" height="336"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-4L-fxI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FreeOTP 可以透過在產生動態密碼前要求您解鎖手機來為您提供更高的安全性" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-4L-fxI">
                                         <rect key="frame" x="3" y="0.0" width="332.5" height="75.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
@@ -571,9 +571,9 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmH-2l-lgf">
                                         <rect key="frame" x="3" y="102.5" width="332.5" height="175.5"/>
-                                        <string key="text">Do you want to require a phone unlock in order to activate this token?
+                                        <string key="text">您是否希望每次在產生這組動態密碼前要求進行手機解鎖？
 
-WARNING: Locked tokens are *not* included in backups for security reasons</string>
+警告：基於安全性因素，受保護的動態密碼將*不會*被保存在備份中</string>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -596,7 +596,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rRj-bd-Nbi">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="jQd-J4-VbU">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="jQd-J4-VbU">
                             <connections>
                                 <action selector="doneClicked:" destination="hmB-1C-2rx" id="EtC-xF-huo"/>
                             </connections>
@@ -654,7 +654,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhg-ll-iDf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="區段標題" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhg-ll-iDf">
                                             <rect key="frame" x="91.5" y="5" width="160" height="20.5"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -707,7 +707,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6F-H6-PEC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6F-H6-PEC">
                                 <rect key="frame" x="28" y="25" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" systemColor="linkColor"/>
@@ -738,7 +738,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                             <constraint firstItem="ylg-xM-sVC" firstAttribute="leading" secondItem="s6F-H6-PEC" secondAttribute="leading" id="zev-6S-6V5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="u8c-gc-S4n"/>
+                    <navigationItem key="navigationItem" title="標題" id="u8c-gc-S4n"/>
                     <connections>
                         <outlet property="iconCollectionView" destination="dt8-fR-Vul" id="BiJ-jB-gRf"/>
                         <outlet property="iconSearchBar" destination="N8X-iy-3RI" id="UG0-Ao-a5x"/>
@@ -767,7 +767,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aaa-ql-u9i">
                                 <rect key="frame" x="70" y="50" width="235" height="517"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="We found an icon for you!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbG-qQ-0km">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="我們為您找到了圖示！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbG-qQ-0km">
                                         <rect key="frame" x="0.0" y="0.0" width="235" height="501"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
@@ -781,7 +781,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                                         <color key="backgroundColor" systemColor="linkColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="More Icons">
+                                        <state key="normal" title="更多圖示">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
                                         </state>
                                         <connections>
@@ -803,7 +803,7 @@ WARNING: Locked tokens are *not* included in backups for security reasons</strin
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FXP-Nl-aiN">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="YtI-IF-U1D">
+                        <barButtonItem key="rightBarButtonItem" title="下一步" id="YtI-IF-U1D">
                             <connections>
                                 <action selector="nextClicked:" destination="iHZ-rZ-2mD" id="cna-yV-ePD"/>
                             </connections>
