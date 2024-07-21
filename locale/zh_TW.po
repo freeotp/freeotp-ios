@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: FreeOTP\n"
 "Report-Msgid-Bugs-To: https://github.com/redhat-freeotp/freeotp/issues\n"
 "POT-Creation-Date: 2024-01-17 01:13+0800\n"
-"PO-Revision-Date: 2024-06-25 09:44+0000\n"
-"Last-Translator: peterhsu <hi@peterhsu.tw>\n"
+"PO-Revision-Date: 2024-07-22 21:29+0000\n"
+"Last-Translator: Wilt <interpreter.wilt@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <http://weblate.steps.tw/projects/"
 "freeotp/ios/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -99,15 +99,15 @@ msgstr "範例：Red Hat, GitHub, Google"
 
 #: FreeOTP/Base.lproj/Main.storyboard:566
 msgid "FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token"
-msgstr "FreeOTP 可以透過在產生動態密碼前要求您解鎖手機來為您提供更高的安全性"
+msgstr "FreeOTP 可以在產生動態密碼前要求您先解鎖手機，藉此提供您更高的安全性"
 
 #: FreeOTP/Base.lproj/Main.storyboard:574
 msgid "Do you want to require a phone unlock in order to activate this token?"
-msgstr "您是否希望每次在產生這組動態密碼前要求進行手機解鎖？"
+msgstr "您是否希望每次在產生動態密碼前要求解鎖手機？"
 
 #: FreeOTP/Base.lproj/Main.storyboard:576
 msgid "WARNING: Locked tokens are *not* included in backups for security reasons"
-msgstr "警告：基於安全性因素，受保護的動態密碼將*不會*被保存在備份中"
+msgstr "警告：基於安全因素，受保護的動態密碼將*不會*被保存在備份中"
 
 #: FreeOTP/Base.lproj/Main.storyboard:657
 msgid "Section Header"
@@ -144,7 +144,7 @@ msgstr "FreeOTP 採用 Apache 2.0 授權"
 # 如需翻譯，則文字需一併調整「FreeOTP/AboutViewController.swift:71」，以符合程式碼中的超連結設定。
 #: FreeOTP/AboutViewController.swift:61
 msgid "For more information, see our website"
-msgstr "更多資訊，請參閱我們的網站"
+msgstr "如需更多資訊，請參閱我們的網站"
 
 # 這段文字(63)出現在關於頁的版權和授權資訊部分。
 #: FreeOTP/AboutViewController.swift:63
@@ -280,12 +280,12 @@ msgstr "遺失發行者資訊"
 
 #: FreeOTP/URILabelViewController.swift:25
 msgid "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?"
-msgstr "建議提供發行者欄位的值以善用 FreeOTP "
+msgstr "建議提供發行者欄位的值以利用 FreeOTP "
 "的圖示功能。您確定要使用空的發行者資訊嗎？"
 
 #: FreeOTP/URILabelViewController.swift:25
 msgid "Use empty issuer"
-msgstr "使用空的發行者"
+msgstr "使用空的發行者資訊"
 
 #: FreeOTP/URILockViewController.swift:26
 msgid "Lock"
@@ -293,7 +293,7 @@ msgstr "鎖定"
 
 #: FreeOTP/URILockViewController.swift:26
 msgid "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device."
-msgstr "鎖定參數是一個布林值，確保動態密碼金鑰只能透過最近的裝置驗證來存取。"
+msgstr "鎖定參數是一個布林值，能確保動態密碼金鑰只能透過最近期的裝置驗證來存取。"
 
 #: FreeOTP/URILockViewController.swift:27
 msgid "Ok"
