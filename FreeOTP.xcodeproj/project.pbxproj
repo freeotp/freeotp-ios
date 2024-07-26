@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,9 +17,6 @@
 		282341B4245A13D000025167 /* RecommendedIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282341B3245A13D000025167 /* RecommendedIconCell.swift */; };
 		282D9E492AEC102C000C6699 /* SDWebImage.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282D9E482AEC102C000C6699 /* SDWebImage.xcframework */; };
 		282D9E4A2AEC102C000C6699 /* SDWebImage.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 282D9E482AEC102C000C6699 /* SDWebImage.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614A2AD49328008A22F6 /* fa-solid-900.ttf */; };
-		282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614B2AD49328008A22F6 /* fa-brands-400.ttf */; };
-		282F614F2AD49328008A22F6 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614C2AD49328008A22F6 /* fa-regular-400.ttf */; };
 		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
 		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
 		28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28431EC424A257CB00D6E1CF /* AboutViewController.swift */; };
@@ -151,10 +148,7 @@
 		282D9E432AEC0BDE000C6699 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		282D9E442AEC0BDE000C6699 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		282D9E452AEC0C94000C6699 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Carthage/Build/SDWebImage.xcframework/ios-arm64_x86_64-simulator/SDWebImage.framework"; sourceTree = "<group>"; };
-		282D9E482AEC102C000C6699 /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
-		282F614A2AD49328008A22F6 /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-solid-900.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-solid-900.ttf"; sourceTree = "<group>"; };
-		282F614B2AD49328008A22F6 /* fa-brands-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-brands-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-brands-400.ttf"; sourceTree = "<group>"; };
-		282F614C2AD49328008A22F6 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-regular-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-regular-400.ttf"; sourceTree = "<group>"; };
+		282D9E482AEC102C000C6699 /* SDWebImage.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:FC3B101386344C50DB702A9AD1016FB51A3ECC8B9DA9B7AE47A048D4D0633983"; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 		2832BFF6246C7F810079B2D7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		283FC22223F19EB600491B5E /* URIIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIIconViewController.swift; sourceTree = "<group>"; };
 		28431EC424A257CB00D6E1CF /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +163,9 @@
 		89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeOTPUITests.swift; sourceTree = "<group>"; };
 		89F8EFFC256BA8CB00460AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7FC59C02C53763C00D946E6 /* fa-brands-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-brands-400.ttf"; sourceTree = "<group>"; };
+		A7FC59C12C53763C00D946E6 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
+		A7FC59C22C53763C00D946E6 /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-solid-900.ttf"; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -329,9 +326,9 @@
 		F10D88C21B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXGroup;
 			children = (
-				282F614B2AD49328008A22F6 /* fa-brands-400.ttf */,
-				282F614C2AD49328008A22F6 /* fa-regular-400.ttf */,
-				282F614A2AD49328008A22F6 /* fa-solid-900.ttf */,
+				A7FC59C02C53763C00D946E6 /* fa-brands-400.ttf */,
+				A7FC59C12C53763C00D946E6 /* fa-regular-400.ttf */,
+				A7FC59C22C53763C00D946E6 /* fa-solid-900.ttf */,
 				F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */,
 				F1CA93D31B56AB9500828B8B /* iTunesArtwork@2x */,
 				F1CA93D41B56AB9500828B8B /* default.png */,
@@ -549,13 +546,10 @@
 				F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */,
 				F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */,
 				F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */,
-				282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */,
 				F19DA5701B5EE73E00A54DDC /* lock.png in Resources */,
 				F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */,
-				282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */,
 				F1CA93D81B56AB9500828B8B /* default.png in Resources */,
 				F1CA93DA1B56AB9500828B8B /* token.png in Resources */,
-				282F614F2AD49328008A22F6 /* fa-regular-400.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,7 +851,12 @@
 				MARKETING_VERSION = 2.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -878,7 +877,12 @@
 				MARKETING_VERSION = 2.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = org.fedorahosted.freeotp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
