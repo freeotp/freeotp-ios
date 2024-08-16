@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: FreeOTP\n"
 "Report-Msgid-Bugs-To: https://github.com/redhat-freeotp/freeotp/issues\n"
 "POT-Creation-Date: 2024-01-17 01:13+0800\n"
-"PO-Revision-Date: 2024-08-15 00:29+0000\n"
-"Last-Translator: Yucheng Lin <yuchenglinedu@gmail.com>\n"
+"PO-Revision-Date: 2024-08-17 23:29+0000\n"
+"Last-Translator: Ian Liu <ian@ocf.tw>\n"
 "Language-Team: Chinese (Traditional) <http://weblate.steps.tw/projects/"
 "freeotp/ios/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -235,7 +235,7 @@ msgstr "取消"
 
 #: FreeOTP/ManualAddViewController.swift:162
 msgid "OK"
-msgstr "確定"
+msgstr "確認"
 
 #: FreeOTP/ScanViewController.swift:91
 msgid "Device does not support scanning"
