@@ -23,9 +23,9 @@ class URILabelViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextClicked(_ sender: UIBarButtonItem) {
         if issuerTextField.text == "" {
             presentAlert(title: "Issuer missing", message: "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?", actionTitleAccept: "Use empty issuer", actionTitleCancel: "Cancel")
+        } else {
+            submitForm()
         }
-
-        submitForm()
     }
 
     // MARK: - UITextFieldDelegate
