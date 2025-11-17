@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -151,7 +151,7 @@
 		282D9E432AEC0BDE000C6699 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		282D9E442AEC0BDE000C6699 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		282D9E452AEC0C94000C6699 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Carthage/Build/SDWebImage.xcframework/ios-arm64_x86_64-simulator/SDWebImage.framework"; sourceTree = "<group>"; };
-		282D9E482AEC102C000C6699 /* SDWebImage.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
+		282D9E482AEC102C000C6699 /* SDWebImage.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:B588ABD0A0B36E8D36A3056DC74DE7462F75E49E1D8303D013A994AF35C2D26F"; lastKnownFileType = wrapper.xcframework; name = SDWebImage.xcframework; path = Carthage/Build/SDWebImage.xcframework; sourceTree = "<group>"; };
 		282F614A2AD49328008A22F6 /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-solid-900.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-solid-900.ttf"; sourceTree = "<group>"; };
 		282F614B2AD49328008A22F6 /* fa-brands-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-brands-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-brands-400.ttf"; sourceTree = "<group>"; };
 		282F614C2AD49328008A22F6 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fa-regular-400.ttf"; path = "../../../Downloads/fontawesome-free-6.4.2-web/webfonts/fa-regular-400.ttf"; sourceTree = "<group>"; };
