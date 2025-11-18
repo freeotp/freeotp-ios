@@ -32,6 +32,13 @@
 		40CB768B280225B100E7EF8F /* ManualAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CB768A280225B100E7EF8F /* ManualAddViewController.swift */; };
 		40DA3B6A281DE1CC00FCDE08 /* ManualToUrlcModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DA3B69281DE1CC00FCDE08 /* ManualToUrlcModule.swift */; };
 		89F8EFFB256BA8CB00460AA9 /* FreeOTPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */; };
+		922B2FB42ECCAD3600E7A8C2 /* Abstraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FAD2ECCAD3600E7A8C2 /* Abstraction.swift */; };
+		922B2FB52ECCAD3600E7A8C2 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FAE2ECCAD3600E7A8C2 /* Constrainable.swift */; };
+		922B2FB62ECCAD3600E7A8C2 /* TinyConstraints+superview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FB22ECCAD3600E7A8C2 /* TinyConstraints+superview.swift */; };
+		922B2FB72ECCAD3600E7A8C2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FB02ECCAD3600E7A8C2 /* Stack.swift */; };
+		922B2FB82ECCAD3600E7A8C2 /* TinyConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FB12ECCAD3600E7A8C2 /* TinyConstraints.swift */; };
+		922B2FB92ECCAD3600E7A8C2 /* TinyEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FB32ECCAD3600E7A8C2 /* TinyEdgeInsets.swift */; };
+		922B2FBA2ECCAD3600E7A8C2 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B2FAF2ECCAD3600E7A8C2 /* Constraints.swift */; };
 		F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10D88C31B56A3C400482D15 /* AppDelegate.swift */; };
 		F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10D88C71B56A3C400482D15 /* Main.storyboard */; };
 		F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10D88CA1B56A3C400482D15 /* Assets.xcassets */; };
@@ -63,8 +70,6 @@
 		F1CA93DA1B56AB9500828B8B /* token.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CA93D61B56AB9500828B8B /* token.png */; };
 		FC81F0CD278751A90094DEAC /* Base32.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; };
 		FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C895B270B749C00A25825 /* Base32.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FC81F0D4278751AF0094DEAC /* TinyConstraints.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */; };
-		FC81F0D5278751AF0094DEAC /* TinyConstraints.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +96,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FC81F0D5278751AF0094DEAC /* TinyConstraints.xcframework in Embed Frameworks */,
 				282D9E4A2AEC102C000C6699 /* SDWebImage.xcframework in Embed Frameworks */,
 				FC81F0CE278751A90094DEAC /* Base32.xcframework in Embed Frameworks */,
 			);
@@ -169,6 +173,13 @@
 		89F8EFF8256BA8CB00460AA9 /* FreeOTPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F8EFFA256BA8CB00460AA9 /* FreeOTPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeOTPUITests.swift; sourceTree = "<group>"; };
 		89F8EFFC256BA8CB00460AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		922B2FAD2ECCAD3600E7A8C2 /* Abstraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abstraction.swift; sourceTree = "<group>"; };
+		922B2FAE2ECCAD3600E7A8C2 /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
+		922B2FAF2ECCAD3600E7A8C2 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		922B2FB02ECCAD3600E7A8C2 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		922B2FB12ECCAD3600E7A8C2 /* TinyConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyConstraints.swift; sourceTree = "<group>"; };
+		922B2FB22ECCAD3600E7A8C2 /* TinyConstraints+superview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TinyConstraints+superview.swift"; sourceTree = "<group>"; };
+		922B2FB32ECCAD3600E7A8C2 /* TinyEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyEdgeInsets.swift; sourceTree = "<group>"; };
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,7 +215,6 @@
 		F1CA93D51B56AB9500828B8B /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
 		F1CA93D61B56AB9500828B8B /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
 		F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
-		FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TinyConstraints.xcframework; path = Carthage/Build/TinyConstraints.xcframework; sourceTree = SOURCE_ROOT; };
 		FC9C895A270B749C00A25825 /* moa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = moa.xcframework; path = Carthage/Build/moa.xcframework; sourceTree = SOURCE_ROOT; };
 		FC9C895B270B749C00A25825 /* Base32.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Base32.xcframework; path = Carthage/Build/Base32.xcframework; sourceTree = SOURCE_ROOT; };
 		FC9C895C270B749C00A25825 /* FontAwesome.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FontAwesome.xcframework; path = Carthage/Build/FontAwesome.xcframework; sourceTree = SOURCE_ROOT; };
@@ -229,7 +239,6 @@
 				F18FA53C1B571E5500B1CEAD /* UIKit.framework in Frameworks */,
 				282D9E492AEC102C000C6699 /* SDWebImage.xcframework in Frameworks */,
 				FC81F0CD278751A90094DEAC /* Base32.xcframework in Frameworks */,
-				FC81F0D4278751AF0094DEAC /* TinyConstraints.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +309,20 @@
 			path = FreeOTPUITests;
 			sourceTree = "<group>";
 		};
+		922B2FAC2ECCAB1000E7A8C2 /* Constraints */ = {
+			isa = PBXGroup;
+			children = (
+				922B2FAD2ECCAD3600E7A8C2 /* Abstraction.swift */,
+				922B2FAE2ECCAD3600E7A8C2 /* Constrainable.swift */,
+				922B2FAF2ECCAD3600E7A8C2 /* Constraints.swift */,
+				922B2FB02ECCAD3600E7A8C2 /* Stack.swift */,
+				922B2FB12ECCAD3600E7A8C2 /* TinyConstraints.swift */,
+				922B2FB22ECCAD3600E7A8C2 /* TinyConstraints+superview.swift */,
+				922B2FB32ECCAD3600E7A8C2 /* TinyEdgeInsets.swift */,
+			);
+			path = Constraints;
+			sourceTree = "<group>";
+		};
 		F10D88B71B56A3C400482D15 = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +352,7 @@
 		F10D88C21B56A3C400482D15 /* FreeOTP */ = {
 			isa = PBXGroup;
 			children = (
+				922B2FAC2ECCAB1000E7A8C2 /* Constraints */,
 				282F614B2AD49328008A22F6 /* fa-brands-400.ttf */,
 				282F614C2AD49328008A22F6 /* fa-regular-400.ttf */,
 				282F614A2AD49328008A22F6 /* fa-solid-900.ttf */,
@@ -423,7 +447,6 @@
 				FC9C895B270B749C00A25825 /* Base32.xcframework */,
 				FC9C895C270B749C00A25825 /* FontAwesome.xcframework */,
 				FC9C895A270B749C00A25825 /* moa.xcframework */,
-				FC9C8959270B749C00A25825 /* TinyConstraints.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -611,6 +634,13 @@
 				2887CDD824585E03004891D3 /* URIMainIconViewController.swift in Sources */,
 				F10D88C41B56A3C400482D15 /* AppDelegate.swift in Sources */,
 				28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */,
+				922B2FB42ECCAD3600E7A8C2 /* Abstraction.swift in Sources */,
+				922B2FB52ECCAD3600E7A8C2 /* Constrainable.swift in Sources */,
+				922B2FB62ECCAD3600E7A8C2 /* TinyConstraints+superview.swift in Sources */,
+				922B2FB72ECCAD3600E7A8C2 /* Stack.swift in Sources */,
+				922B2FB82ECCAD3600E7A8C2 /* TinyConstraints.swift in Sources */,
+				922B2FB92ECCAD3600E7A8C2 /* TinyEdgeInsets.swift in Sources */,
+				922B2FBA2ECCAD3600E7A8C2 /* Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
