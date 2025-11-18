@@ -215,9 +215,7 @@
 		F1CA93D51B56AB9500828B8B /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
 		F1CA93D61B56AB9500828B8B /* token.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = token.png; sourceTree = "<group>"; };
 		F1CA93DB1B56ABB900828B8B /* FreeOTP-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FreeOTP-Bridging-Header.h"; sourceTree = "<group>"; };
-		FC9C895A270B749C00A25825 /* moa.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = moa.xcframework; path = Carthage/Build/moa.xcframework; sourceTree = SOURCE_ROOT; };
 		FC9C895B270B749C00A25825 /* Base32.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Base32.xcframework; path = Carthage/Build/Base32.xcframework; sourceTree = SOURCE_ROOT; };
-		FC9C895C270B749C00A25825 /* FontAwesome.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FontAwesome.xcframework; path = Carthage/Build/FontAwesome.xcframework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,8 +443,6 @@
 				282D9E452AEC0C94000C6699 /* SDWebImage.framework */,
 				282D9E192AEC0BDE000C6699 /* FreeOTP */,
 				FC9C895B270B749C00A25825 /* Base32.xcframework */,
-				FC9C895C270B749C00A25825 /* FontAwesome.xcframework */,
-				FC9C895A270B749C00A25825 /* moa.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
