@@ -18,7 +18,6 @@
 // limitations under the License.
 //
 
-import TinyConstraints
 import UIKit
 
 protocol TokenCellDelegate: AnyObject {

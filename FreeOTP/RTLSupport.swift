@@ -19,7 +19,6 @@
 //
 
 import UIKit
-import TinyConstraints
 
 extension UIView {
     private var usingDefaultLayoutDirection: Bool {
