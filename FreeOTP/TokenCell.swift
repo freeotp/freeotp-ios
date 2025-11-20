@@ -94,6 +94,19 @@ class TokenCell: UICollectionViewCell {
         view.textColor = UIColor.app.primaryText
         return view
     }()
+    
+    private(set) lazy var copiedLabel: UILabel = {
+        let view = UILabel()
+        view.adjustsFontSizeToFitWidth = true
+        view.baselineAdjustment = .alignCenters
+        view.font = .monospacedDigitSystemFont(ofSize: 40, weight: .regular)
+        view.minimumScaleFactor = 0.2
+        view.textAlignment = .center
+        view.textColor = UIColor.app.accent
+        view.text = "Copied!"
+        view.alpha = 0
+        return view
+    }()
 
     var timer: Timer?
     var state: [Token.Code]? {
@@ -134,6 +147,7 @@ class TokenCell: UICollectionViewCell {
         contentView.addSubview(stackView)
         contentView.addSubview(shareButton)
         contentView.addSubview(codeLabel)
+        contentView.addSubview(copiedLabel)
 
         stackView.addArrangedSubview(issuerLabel)
         stackView.addArrangedSubview(subtitleLabel)
@@ -165,8 +179,17 @@ class TokenCell: UICollectionViewCell {
         codeLabel.rtlLeftToRight(of: imageView, offset: 12)
         codeLabel.rtlRightToSuperview(offset: -12)
         codeLabel.bottomToSuperview()
+        
+        copiedLabel.topToSuperview()
+        copiedLabel.rtlLeftToRight(of: imageView, offset: 12)
+        copiedLabel.rtlRightToSuperview(offset: -12)
+        copiedLabel.bottomToSuperview()
 
         shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(copyToClipboard))
+        codeLabel.isUserInteractionEnabled = true
+        codeLabel.addGestureRecognizer(tap)
     }
 
     @objc private func share() {
@@ -174,6 +197,36 @@ class TokenCell: UICollectionViewCell {
             delegate?.share(token: token, sender: shareButton)
         }
     }
+    
+    @objc private func copyToClipboard() {
+        if let token = token {
+            let codes = token.codes
+
+            if codes.count > 0 {
+                UIPasteboard.general.string = codes[0].value
+
+                UIView.animate(
+                    withDuration: 0.2,
+                    animations: {
+                        self.codeLabel.alpha = 0
+                        self.copiedLabel.alpha = 1
+                    },
+                    completion: { _ in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            UIView.animate(
+                                withDuration: 0.2,
+                                animations: {
+                                    self.codeLabel.alpha = 1
+                                    self.copiedLabel.alpha = 0
+                                }
+                            )
+                        }
+                    }
+                )
+            }
+        }
+    }
+
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -209,6 +262,7 @@ class TokenCell: UICollectionViewCell {
                 self.outerProgressView.alpha = showToken ? 1 : 0
                 self.imageView.alpha = showToken ? 0.4 : 1
                 self.codeLabel.alpha = showToken ? 1 : 0
+                self.copiedLabel.alpha = 0
                 self.shareButton.alpha = showToken ? 0 : 1
                 self.lockImagView.alpha = showToken ? 0 : 1
             },
