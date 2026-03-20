@@ -20,6 +20,14 @@ that implements these standards.
 Pull requests on GitHub are welcome under the Apache 2.0 license, see
 [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
+### Prerequisites
+
+Building FreeOTP for iOS requires a full **Xcode** installation (not only the standalone Command Line Tools). Install Xcode from the [Mac App Store](https://apps.apple.com/app/xcode/id497799835) or [Apple’s developer site](https://developer.apple.com/xcode/). Open Xcode once after installing to accept the license and finish any component setup prompts.
+
+Carthage runs `xcodebuild` under the hood. If builds fail because the wrong toolchain is selected, point the active developer directory at your Xcode app:
+
+    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
 ### Install Build dependencies
 
 You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps:
