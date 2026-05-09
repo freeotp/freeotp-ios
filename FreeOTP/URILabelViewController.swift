@@ -22,7 +22,12 @@ class URILabelViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     @IBAction func nextClicked(_ sender: UIBarButtonItem) {
         if issuerTextField.text == "" {
-            presentAlert(title: "Issuer missing", message: "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?", actionTitleAccept: "Use empty issuer", actionTitleCancel: "Cancel")
+            presentAlert(
+                title: NSLocalizedString("Issuer missing", comment: "Alert title shown when the token issuer is missing"),
+                message: NSLocalizedString("It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?", comment: "Alert message explaining why a token issuer is recommended"),
+                actionTitleAccept: NSLocalizedString("Use empty issuer", comment: "Accept button title to proceed without a token issuer"),
+                actionTitleCancel: NSLocalizedString("Cancel", comment: "Cancel button title for the missing issuer alert")
+            )
         } else {
             submitForm()
         }

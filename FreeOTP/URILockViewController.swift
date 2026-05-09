@@ -23,8 +23,11 @@ class URILockViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func helpClicked(_ sender: UIButton) {
-        presentAlert(title: "Lock", message: "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.",
-        actionTitle: "Ok")
+        presentAlert(
+            title: NSLocalizedString("Lock", comment: "Alert title for lock parameter help"),
+            message: NSLocalizedString("The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.", comment: "Help message explaining the lock parameter for OTP token secrets"),
+            actionTitle: NSLocalizedString("Ok", comment: "Ok button for lock help alert")
+        )
     }
 
     @IBAction func doneClicked(_ sender: UIBarButtonItem) {

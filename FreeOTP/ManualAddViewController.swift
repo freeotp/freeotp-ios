@@ -81,13 +81,16 @@ class ManualAddViewController: UIViewController {
               let secret = secretField.text,
               secret.count > 0
         else {
-            showOkAlert(title: "Some fields are empty!", message: "Please fill in all fields")
+            showOkAlert(
+                title: NSLocalizedString("Some fields are empty!", comment: "Alert title shown when required manual token fields are empty"),
+                message: NSLocalizedString("Please fill in all fields", comment: "Alert message asking the user to complete all manual token fields")
+            )
             return
         }
         guard let _ = secret.base32DecodedData else {
             showOkAlert(
-                title: "Token is invalid!",
-                message: "The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format")
+                title: NSLocalizedString("Token is invalid!", comment: "Alert title shown when manual token validation fails"),
+                message: NSLocalizedString("The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format", comment: "Alert message for invalid manual token data; OTP Key Uri Format is a technical specification"))
             secretField.text = ""
             return
         }
@@ -153,13 +156,13 @@ class ManualAddViewController: UIViewController {
                 button.setTitle(title, for: [])
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in })
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button in algorithm and interval selection popups"), style: .cancel) { _ in })
         present(alert, animated: true, completion: nil)
     }
     
     private func showOkAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK button for manual token validation alerts"), style: .default)
         alert.addAction(action)
         self.present(alert, animated: true)
     }

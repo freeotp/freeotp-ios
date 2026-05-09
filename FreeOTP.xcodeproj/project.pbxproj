@@ -20,6 +20,8 @@
 		282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614A2AD49328008A22F6 /* fa-solid-900.ttf */; };
 		282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614B2AD49328008A22F6 /* fa-brands-400.ttf */; };
 		282F614F2AD49328008A22F6 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 282F614C2AD49328008A22F6 /* fa-regular-400.ttf */; };
+		AB0000052F00000000000005 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB0000032F00000000000003 /* Localizable.strings */; };
+		AB0000062F00000000000006 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 282D9E1B2AEC0BDE000C6699 /* InfoPlist.strings */; };
 		2832BFF7246C7F810079B2D7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832BFF6246C7F810079B2D7 /* Icon.swift */; };
 		283FC22323F19EB600491B5E /* URIIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FC22223F19EB600491B5E /* URIIconViewController.swift */; };
 		28431EC524A257CB00D6E1CF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28431EC424A257CB00D6E1CF /* AboutViewController.swift */; };
@@ -183,6 +185,8 @@
 		F10D88C01B56A3C400482D15 /* FreeOTP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeOTP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F10D88C31B56A3C400482D15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F10D88C81B56A3C400482D15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB0000072F00000000000007 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AB0000082F00000000000008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		F10D88CA1B56A3C400482D15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F10D88CF1B56A3C400482D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10D88D41B56A3C400482D15 /* FreeOTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreeOTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +372,7 @@
 				F10D88C31B56A3C400482D15 /* AppDelegate.swift */,
 				F19DA56D1B5C832600A54DDC /* Launch.storyboard */,
 				F10D88C71B56A3C400482D15 /* Main.storyboard */,
+				AB0000032F00000000000003 /* Localizable.strings */,
 				F10D88CA1B56A3C400482D15 /* Assets.xcassets */,
 				F10D88CF1B56A3C400482D15 /* Info.plist */,
 				248B998C24901AAC001235F5 /* RTLSupport.swift */,
@@ -568,8 +573,10 @@
 				F10D88CB1B56A3C400482D15 /* Assets.xcassets in Resources */,
 				F1CA93D91B56AB9500828B8B /* qrcode.png in Resources */,
 				F10D88C91B56A3C400482D15 /* Main.storyboard in Resources */,
+				AB0000062F00000000000006 /* InfoPlist.strings in Resources */,
 				282F614E2AD49328008A22F6 /* fa-brands-400.ttf in Resources */,
 				F19DA5701B5EE73E00A54DDC /* lock.png in Resources */,
+				AB0000052F00000000000005 /* Localizable.strings in Resources */,
 				F19DA56E1B5C832600A54DDC /* Launch.storyboard in Resources */,
 				282F614D2AD49328008A22F6 /* fa-solid-900.ttf in Resources */,
 				F1CA93D81B56AB9500828B8B /* default.png in Resources */,
@@ -676,6 +683,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		AB0000032F00000000000003 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB0000072F00000000000007 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		282D9E282AEC0BDE000C6699 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -688,6 +703,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F10D88C81B56A3C400482D15 /* Base */,
+				AB0000082F00000000000008 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

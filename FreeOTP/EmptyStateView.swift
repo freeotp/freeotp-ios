@@ -32,7 +32,7 @@ class EmptyStateView: UIView {
     private(set) lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = .dynamicSystemFont(ofSize: 14, weight: .regular)
-        view.text = "No tokens have been added yet."
+        view.text = NSLocalizedString("No tokens have been added yet.", comment: "Empty state message shown when no OTP tokens exist")
         view.textAlignment = .center
         view.textColor = UIColor.app.secondaryText
         return view
@@ -40,7 +40,7 @@ class EmptyStateView: UIView {
 
     private(set) lazy var addTokenButton: UIButton = {
         let view = UIButton(type: .system)
-        view.setTitle("Add a token", for: .normal)
+        view.setTitle(NSLocalizedString("Add a token", comment: "Button title shown in the empty token list"), for: .normal)
         view.setTitleColor(UIColor.app.accent, for: .normal)
         return view
     }()

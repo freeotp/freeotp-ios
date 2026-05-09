@@ -138,10 +138,10 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Local"
+            return NSLocalizedString("Local", comment: "Section header for local token sharing options")
 
         case 1:
-            return "Bluetooth"
+            return NSLocalizedString("Bluetooth", comment: "Section header for Bluetooth token sharing options")
 
         default:
             return nil
@@ -168,7 +168,7 @@ class ShareViewController : UITableViewController, CBCentralManagerDelegate, CBP
 
         switch indexPath.section {
         case 0:
-            lbl.text = "Copy to Clipboard"
+            lbl.text = NSLocalizedString("Copy to Clipboard", comment: "Row title for copying the current token code")
             cell.isUserInteractionEnabled = true
             lbl.isEnabled = true
 
