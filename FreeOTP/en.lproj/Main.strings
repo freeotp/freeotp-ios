@@ -1,0 +1,86 @@
+/* Class = "UICollectionViewController"; title = "FreeOTP"; ObjectID = "mGg-KB-Kzc"; */
+"mGg-KB-Kzc.title" = "FreeOTP";
+
+/* Class = "UINavigationItem"; title = "FreeOTP"; ObjectID = "L5z-P6-1cO"; */
+"L5z-P6-1cO.title" = "FreeOTP";
+
+/* Class = "UIBarButtonItem"; title = "About"; ObjectID = "08x-7R-jHE"; */
+"08x-7R-jHE.title" = "About";
+
+/* Class = "UITableViewController"; title = "Share Code"; ObjectID = "kIc-US-32O"; */
+"kIc-US-32O.title" = "Share Code";
+
+/* Class = "UINavigationItem"; title = "Share Code"; ObjectID = "pDi-fP-bo7"; */
+"pDi-fP-bo7.title" = "Share Code";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "81w-vT-ZSH"; */
+"81w-vT-ZSH.normalTitle" = "Close";
+
+/* Class = "UITextField"; placeholder = "jdoe@example.com"; ObjectID = "g2p-Bs-aav"; */
+"g2p-Bs-aav.placeholder" = "jdoe@example.com";
+
+/* Class = "UITextField"; placeholder = "Example Inc"; ObjectID = "8km-DI-kmb"; */
+"8km-DI-kmb.placeholder" = "Example Inc";
+
+/* Class = "UILabel"; text = "Secret"; ObjectID = "9zX-gj-6JN"; */
+"9zX-gj-6JN.text" = "Secret";
+
+/* Class = "UITextField"; placeholder = "(Base32)"; ObjectID = "UQb-Na-Cpr"; */
+"UQb-Na-Cpr.placeholder" = "(Base32)";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "YvW-jJ-YtW"; */
+"YvW-jJ-YtW.text" = "Type";
+
+/* Class = "UILabel"; text = "Digits"; ObjectID = "Qiu-dK-1NZ"; */
+"Qiu-dK-1NZ.text" = "Digits";
+
+/* Class = "UILabel"; text = "Algorithm"; ObjectID = "RMa-wL-TvX"; */
+"RMa-wL-TvX.text" = "Algorithm";
+
+/* Class = "UILabel"; text = "Interval"; ObjectID = "lPe-mF-g48"; */
+"lPe-mF-g48.text" = "Interval";
+
+/* Class = "UINavigationItem"; title = "Manual Add"; ObjectID = "Dea-K9-0Tn"; */
+"Dea-K9-0Tn.title" = "Manual Add";
+
+/* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "Nay-kQ-eR7"; */
+"Nay-kQ-eR7.title" = "Next";
+
+/* Class = "UINavigationItem"; title = "Scan QR Code"; ObjectID = "NlQ-ih-McR"; */
+"NlQ-ih-McR.title" = "Scan QR Code";
+
+/* Class = "UILabel"; text = "Your token provider has not configured the issuer field, please enter the name of the issuer"; ObjectID = "rk9-rR-33m"; */
+"rk9-rR-33m.text" = "Your token provider has not configured the issuer field, please enter the name of the issuer";
+
+/* Class = "UILabel"; text = "Example: Red Hat, GitHub, Google"; ObjectID = "GHJ-WT-OxS"; */
+"GHJ-WT-OxS.text" = "Example: Red Hat, GitHub, Google";
+
+/* Class = "UITextField"; placeholder = "Example: Red Hat"; ObjectID = "H5D-Ix-7Nb"; */
+"H5D-Ix-7Nb.placeholder" = "Example: Red Hat";
+
+/* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "5hC-hA-l4V"; */
+"5hC-hA-l4V.title" = "Next";
+
+/* Class = "UILabel"; text = "FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token"; ObjectID = "HHf-4L-fxI"; */
+"HHf-4L-fxI.text" = "FreeOTP can give you extra security by requiring you to unlock your phone in order to activate the token";
+
+/* Class = "UILabel"; text = "Do you want to require a phone unlock in order to activate this token?\n\nWARNING: Locked tokens are *not* included in backups for security reasons"; ObjectID = "NmH-2l-lgf"; */
+"NmH-2l-lgf.text" = "Do you want to require a phone unlock in order to activate this token?\n\nWARNING: Locked tokens are *not* included in backups for security reasons";
+
+/* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "jQd-J4-VbU"; */
+"jQd-J4-VbU.title" = "Next";
+
+/* Class = "UILabel"; text = "Recommended"; ObjectID = "s6F-H6-PEC"; */
+"s6F-H6-PEC.text" = "Recommended";
+
+/* Class = "UISearchBar"; placeholder = "Search Icons"; ObjectID = "N8X-iy-3RI"; */
+"N8X-iy-3RI.placeholder" = "Search Icons";
+
+/* Class = "UILabel"; text = "We found an icon for you!"; ObjectID = "KbG-qQ-0km"; */
+"KbG-qQ-0km.text" = "We found an icon for you!";
+
+/* Class = "UIButton"; normalTitle = "More Icons"; ObjectID = "mip-GR-fQN"; */
+"mip-GR-fQN.normalTitle" = "More Icons";
+
+/* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "YtI-IF-U1D"; */
+"YtI-IF-U1D.title" = "Next";

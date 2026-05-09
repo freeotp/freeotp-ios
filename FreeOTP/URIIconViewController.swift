@@ -132,9 +132,9 @@ class URIIconViewController: UIViewController, UICollectionViewDelegate, UIColle
                 var headerText = ""
                 switch indexPath.section {
                 case 0:
-                    headerText = "Choose an icon"
+                    headerText = NSLocalizedString("Choose an icon", comment: "Section header for icon selection during token setup")
                 case 1:
-                    headerText = "Other"
+                    headerText = NSLocalizedString("Other", comment: "Section header for other icon options during token setup")
                 default:
                     break
                 }

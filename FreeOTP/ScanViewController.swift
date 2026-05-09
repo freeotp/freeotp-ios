@@ -88,7 +88,7 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
         if output.availableMetadataObjectTypes.contains(.qr) {
             output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
         } else {
-            showError("Device does not support scanning")
+            showError(NSLocalizedString("Device does not support scanning", comment: "Error shown when the device camera cannot scan QR codes"))
             dismiss(animated: true, completion: nil)
             return
         }
@@ -209,10 +209,10 @@ class ScanViewController : UIViewController, AVCaptureMetadataOutputObjectsDeleg
                         }
                     }
                 } else {
-                    showError("Invalid URI!")
+                    showError(NSLocalizedString("Invalid URI!", comment: "Error shown when a scanned QR code is not a valid otpauth URI"))
                 }
             } else {
-                showError("Invalid URI!")
+                showError(NSLocalizedString("Invalid URI!", comment: "Error shown when a scanned QR code is not a valid otpauth URI"))
             }
 
             break

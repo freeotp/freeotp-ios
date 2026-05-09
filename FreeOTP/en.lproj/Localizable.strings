@@ -1,0 +1,48 @@
+/* About */
+"2013-2020 - Red Hat, Inc., et al." = "2013-2020 - Red Hat, Inc., et al.";
+"FreeOTP is licensed under %@" = "FreeOTP is licensed under %@";
+"For more information, see our %@" = "For more information, see our %@";
+"We welcome your feedback" = "We welcome your feedback";
+"Apache 2.0" = "Apache 2.0";
+"website" = "website";
+"Report a Problem" = "Report a Problem";
+"Ask for Help" = "Ask for Help";
+
+/* Empty state */
+"No tokens have been added yet." = "No tokens have been added yet.";
+"Add a token" = "Add a token";
+
+/* Manual add */
+"Some fields are empty!" = "Some fields are empty!";
+"Please fill in all fields" = "Please fill in all fields";
+"Token is invalid!" = "Token is invalid!";
+"The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format" = "The token you are attempting to add is invalid. Please check that each field is valid following the OTP Key Uri Format";
+"Cancel" = "Cancel";
+"OK" = "OK";
+
+/* Scanner */
+"Device does not support scanning" = "Device does not support scanning";
+"Invalid URI!" = "Invalid URI!";
+
+/* Sharing */
+"Local" = "Local";
+"Bluetooth" = "Bluetooth";
+"Copy to Clipboard" = "Copy to Clipboard";
+
+/* Tokens */
+"Remove token" = "Remove token";
+"Search Tokens" = "Search Tokens";
+
+/* Icon picker */
+"Choose an icon" = "Choose an icon";
+"Other" = "Other";
+
+/* Issuer */
+"Issuer missing" = "Issuer missing";
+"It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?" = "It is recommended to provide a value for the Issuer field to take advantage of FreeOTP Icon features. Do you really want to use an empty issuer value?";
+"Use empty issuer" = "Use empty issuer";
+
+/* Lock */
+"Lock" = "Lock";
+"The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device." = "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.";
+"Ok" = "Ok";
