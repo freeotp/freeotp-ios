@@ -54,7 +54,7 @@ class AboutViewController : UIViewController, UITextViewDelegate {
 
         aboutTextView.delegate = self
         aboutTextView.text = """
-        2013-2020 - Red Hat, Inc., et al.
+        Copyright Red Hat
 
         FreeOTP is licensed under Apache 2.0
 
