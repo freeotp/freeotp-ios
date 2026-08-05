@@ -191,4 +191,65 @@ class FreeOTPUITests: XCTestCase {
         //if error - try to remove all "blah123" tokens first
         XCTAssert(secCollectionView.cells.count == testedIssuerTokensCount + 1)
     }
+
+    func testLongPressCopyMenu() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
+        XCTAssert(collectionView.exists)
+
+        // Add a token if none exist.
+        if collectionView.cells.count == 0 {
+            let manualAddButton = app.buttons["manualAddButton"].firstMatch
+            XCTAssert(manualAddButton.exists)
+            manualAddButton.tap()
+
+            let manualAddView = app.otherElements["manualAddView"].firstMatch
+            XCTAssert(manualAddView.waitForExistence(timeout: 2.0))
+
+            let issuerField = manualAddView.textFields["issuerField"].firstMatch
+            issuerField.tap()
+            issuerField.typeText("CopyTest")
+
+            let descriptionField = manualAddView.textFields["descriptionField"].firstMatch
+            descriptionField.tap()
+            descriptionField.typeText("test@example.com")
+
+            let secretField = manualAddView.textFields["secretField"].firstMatch
+            secretField.tap()
+            secretField.typeText("mdf3v2s3nzcmwzy5ettbsjq572bpvo5o3wmkfqe7egyktzxufj3hsg7b")
+
+            let nextButton = app.buttons["nextButton"].firstMatch
+            nextButton.tap()
+
+            let uriIconView = app.otherElements["uriIconView"].firstMatch
+            XCTAssert(uriIconView.waitForExistence(timeout: 2.0))
+            uriIconView.cells.firstMatch.tap()
+            sleep(1)
+
+            app.buttons["Next"].firstMatch.tap()
+            sleep(1)
+            app.buttons["Next"].firstMatch.tap()
+            sleep(1)
+        }
+
+        let cell = collectionView.cells.firstMatch
+        XCTAssert(cell.exists)
+
+        // Assert long press does not work without a visible code.
+        cell.press(forDuration: 1.5)
+        let prematureCopy = app.buttons["Copy"].firstMatch
+        XCTAssertFalse(prematureCopy.waitForExistence(timeout: 1.0))
+
+        // Dimiss any action.
+        cell.tap()
+        sleep(1)
+
+        // Assert long press shows copy menu.
+        cell.press(forDuration: 1.5)
+        let copyButton = app.buttons["Copy"].firstMatch
+        XCTAssert(copyButton.waitForExistence(timeout: 2.0))
+        copyButton.tap()
+    }
 }
