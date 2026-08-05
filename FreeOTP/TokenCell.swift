@@ -22,6 +22,7 @@ import UIKit
 
 protocol TokenCellDelegate: AnyObject {
     func share(token: Token, sender: UIView?)
+    func tokenCellDidExpire(_ cell: TokenCell)
 }
 
 class TokenCell: UICollectionViewCell {
@@ -258,6 +259,7 @@ class TokenCell: UICollectionViewCell {
             )
         } else {
             self.state = nil
+            delegate?.tokenCellDidExpire(self)
         }
     }
 

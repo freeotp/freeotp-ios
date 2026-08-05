@@ -163,6 +163,23 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
 
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TokenCell,
+              let code = cell.state?.first(where: {
+                  let now = Date()
+                  return $0.from.timeIntervalSince1970 <= now.timeIntervalSince1970
+                      && now.timeIntervalSince1970 < $0.to.timeIntervalSince1970
+              })?.value
+        else { return nil }
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let copy = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+                UIPasteboard.general.string = code
+            }
+            return UIMenu(children: [copy])
+        }
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
@@ -360,6 +377,15 @@ extension TokensViewController: TokenCellDelegate {
     func share(token: Token, sender: UIView?) {
         let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
         svc.token = token
+    }
+
+    func tokenCellDidExpire(_ cell: TokenCell) {
+        for interaction in collectionView.interactions {
+            if let menuInteraction = interaction as? UIContextMenuInteraction {
+                menuInteraction.dismissMenu()
+                break
+            }
+        }
     }
 }
 
