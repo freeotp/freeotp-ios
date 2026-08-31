@@ -188,12 +188,13 @@ class TokenCell: UICollectionViewCell {
             timer?.invalidate()
             showToken = false
         } else if timer == nil || !timer!.isValid {
+            let isUITesting = ProcessInfo.processInfo.arguments.contains("--ui-testing")
             timer = Timer.scheduledTimer(
                 timeInterval: 0.1,
                 target: self,
                 selector: #selector(timerCallback),
                 userInfo: nil,
-                repeats: true
+                repeats: !isUITesting
             )
 
             showToken = true
