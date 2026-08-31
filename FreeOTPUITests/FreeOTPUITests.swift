@@ -194,6 +194,7 @@ class FreeOTPUITests: XCTestCase {
 
     func testLongPressCopyMenu() throws {
         let app = XCUIApplication()
+        app.launchArguments.append("--ui-testing")
         app.launch()
 
         let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
