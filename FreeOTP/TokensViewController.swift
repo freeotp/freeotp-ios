@@ -163,6 +163,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
         }
     }
 
+    @available(iOS 13.0, *)
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TokenCell,
               let code = cell.state?.first(where: {
@@ -381,9 +382,11 @@ extension TokensViewController: TokenCellDelegate {
 
     func tokenCellDidExpire(_ cell: TokenCell) {
         for interaction in collectionView.interactions {
-            if let menuInteraction = interaction as? UIContextMenuInteraction {
-                menuInteraction.dismissMenu()
-                break
+            if #available(iOS 13.0, *) {
+                if let menuInteraction = interaction as? UIContextMenuInteraction {
+                    menuInteraction.dismissMenu()
+                    break
+                }
             }
         }
     }
