@@ -89,6 +89,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
             cell.imageView.backgroundColor = icon.getBackgroundColor(name: iconName)
 
             cell.token = token
+            cell.secretMissing = token.secretMissing // must be set after cell.token
             cell.delegate = self
         }
 
@@ -156,11 +157,59 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
 
-        if let cell = collectionView.cellForItem(at: indexPath) as! TokenCell? {
-            if let token = getTokenAtIndex(tokenIndex: indexPath.row)  {
-                cell.state = token.codes
-            }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TokenCell,
+              let token = getTokenAtIndex(tokenIndex: indexPath.row) else { return }
+
+        // Must run before token.codes, which triggers the authentication prompt.
+        if token.secretMissing {
+            presentMissingSecretAlert(for: token, at: indexPath)
+            return
         }
+
+        cell.state = token.codes
+    }
+
+    private func presentMissingSecretAlert(for token: Token, at indexPath: IndexPath?) {
+        let alert = UIAlertController(title: "Token unavailable on this device",
+                                      message: "Locked tokens don't transfer to new devices. Re-enroll with your provider, then remove this token.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove token", style: .destructive) { _ in
+            let confirm = UIAlertController(title: "Remove \(token.issuer ?? "")?",
+                message: "This cannot be undone.", preferredStyle: .alert)
+            confirm.addAction(UIAlertAction(title: "Remove", style: .destructive) { _ in
+                self.removeToken(token, at: indexPath)
+            })
+            confirm.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(confirm, animated: true)
+        })
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(alert, animated: true)
+    }
+
+    private func removeToken(_ token: Token, at indexPath: IndexPath?) {
+        TokenStore().erase(token: token)
+
+        if searchingTokens {
+            searchedTokensArray.removeAll { $0.account == token.account }
+        }
+
+        if let indexPath = indexPath {
+            collectionView.deleteItems(at: [indexPath])
+        } else {
+            collectionView.reloadData()
+        }
+
+        tokensArray = store.getAllTokens()
+
+        UIView.animate(withDuration: 0.25) {
+            self.emptyStateView.alpha = self.store.count == 0 ? 1 : 0
+        }
+    }
+
+    private func indexPath(for view: UIView?) -> IndexPath? {
+        guard let view = view else { return nil }
+        let point = view.convert(CGPoint(x: view.bounds.midX, y: view.bounds.midY), to: collectionView)
+        return collectionView.indexPathForItem(at: point)
     }
 
     @available(iOS 13.0, *)
@@ -249,20 +298,7 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
                             let actionSheetController: UIAlertController = UIAlertController(title: token.issuer, message: token.label, preferredStyle: .actionSheet)
 
                             let removeAction: UIAlertAction = UIAlertAction(title: "Remove token", style: .destructive) { action -> Void in
-                                TokenStore().erase(token: token)
-                                var array = [IndexPath]()
-                                array.append(currPath)
-                                
-                                if self.searchingTokens {
-                                    self.searchedTokensArray.remove(at: currPath.row)
-                                    self.collectionView.deleteItems(at: array)
-                                   
-                                } else {
-                                    self.collectionView.deleteItems(at: array)
-                                }
-                                
-                                // also reload the tokens array
-                                self.tokensArray = self.store.getAllTokens()
+                                self.removeToken(token, at: currPath)
                             }
 
                             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
@@ -376,6 +412,11 @@ class TokensViewController : UICollectionViewController, UICollectionViewDelegat
 
 extension TokensViewController: TokenCellDelegate {
     func share(token: Token, sender: UIView?) {
+        if token.secretMissing {
+            presentMissingSecretAlert(for: token, at: indexPath(for: sender))
+            return
+        }
+
         let svc: ShareViewController = self.next("share", sender: sender, dir: [.left, .right])
         svc.token = token
     }

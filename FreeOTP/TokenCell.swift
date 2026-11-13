@@ -104,7 +104,7 @@ class TokenCell: UICollectionViewCell {
     var token: Token? {
         didSet {
             guard let token = token else { return }
-            lockImagView.isHidden = !token.locked
+            updateLockIcon()
             outerProgressView.isHidden = token.kind != .totp
             issuerLabel.text = token.issuer
             subtitleLabel.text = token.label
@@ -112,6 +112,28 @@ class TokenCell: UICollectionViewCell {
     }
 
     weak var delegate: TokenCellDelegate?
+
+    var secretMissing = false {
+        didSet { updateLockIcon() }
+    }
+
+    private func updateLockIcon() {
+        guard let token = token else { return }
+
+        if secretMissing {
+            lockImagView.image = UIImage(systemName: "exclamationmark.triangle.fill")
+            lockImagView.tintColor = .systemOrange
+            lockImagView.isHidden = false
+            lockImagView.isAccessibilityElement = true
+            lockImagView.accessibilityLabel = "Unavailable on this device"
+        } else {
+            lockImagView.image = UIImage(named: "LockIcon")
+            lockImagView.tintColor = UIColor.app.cardBackground
+            lockImagView.isHidden = !token.locked
+            lockImagView.isAccessibilityElement = false
+            lockImagView.accessibilityLabel = nil
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -179,6 +201,7 @@ class TokenCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = defaultIcon
+        secretMissing = false
     }
 
     private func animate() {

@@ -573,7 +573,7 @@
                                         <rect key="frame" x="3" y="102.5" width="332.5" height="175.5"/>
                                         <string key="text">Do you want to require a phone unlock in order to activate this token?
 
-WARNING: Locked tokens are *not* included in backups for security reasons</string>
+WARNING: Locked tokens are *not* included in backups and will *not* transfer to a new phone</string>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
