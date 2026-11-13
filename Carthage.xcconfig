@@ -1,0 +1,2 @@
+// Base32 and SDWebImage declare deployment targets below the minimum current Xcode supports.
+IPHONEOS_DEPLOYMENT_TARGET = 15.0

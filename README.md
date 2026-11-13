@@ -33,7 +33,18 @@ Carthage runs `xcodebuild` under the hood. If builds fail because the wrong tool
 You need to have [Carthage](https://github.com/Carthage/Carthage) installed for managing dependencies. In simple steps:
 
     brew install carthage
-    carthage update --use-xcframeworks --platform iOS
+    XCODE_XCCONFIG_FILE="$PWD/Carthage.xcconfig" carthage bootstrap --use-xcframeworks --platform iOS
+
+`bootstrap` installs the versions pinned in `Cartfile.resolved`, including the signed SDWebImage build the project
+expects. `Carthage.xcconfig` raises the dependencies' deployment target to iOS 15.0.
+
+### Font Awesome fonts
+
+The project references the [Font Awesome Free 6.4.2](https://github.com/FortAwesome/Font-Awesome/releases/tag/6.4.2)
+web fonts at `~/Downloads/fontawesome-free-6.4.2-web/webfonts/`:
+
+    curl -fL -o /tmp/fa.zip https://github.com/FortAwesome/Font-Awesome/releases/download/6.4.2/fontawesome-free-6.4.2-web.zip
+    unzip -q /tmp/fa.zip -d ~/Downloads
 
 ### Additional information
 

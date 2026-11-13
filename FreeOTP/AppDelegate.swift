@@ -23,12 +23,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate : UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let window = UIApplication.shared.windows.first as UIWindow? {
-            window.backgroundColor = UIColor.app.background
-        }
         return true
     }
 
@@ -36,17 +31,37 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        if let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true) {
-            let navigationController = app.windows[0].rootViewController as! UINavigationController
-            if let scanvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "scan") as? ScanViewController {
-                scanvc.urlc = urlc
-                scanvc.urlSent = true
-                navigationController.pushViewController(scanvc, animated: true)
-                return true
-            }
-        }
+    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+}
 
-        return false
+// window is created from the storyboard set by UISceneStoryboardFile in Info.plist.
+class SceneDelegate : UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        window?.backgroundColor = UIColor.app.background
+
+        if let url = connectionOptions.urlContexts.first?.url {
+            open(url)
+        }
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            open(url)
+        }
+    }
+
+    private func open(_ url: URL) {
+        guard let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true),
+              let navigationController = window?.rootViewController as? UINavigationController,
+              let scanvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "scan") as? ScanViewController
+        else { return }
+
+        scanvc.urlc = urlc
+        scanvc.urlSent = true
+        navigationController.pushViewController(scanvc, animated: true)
     }
 }
