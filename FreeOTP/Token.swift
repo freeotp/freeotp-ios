@@ -107,6 +107,10 @@ public final class Token : NSObject, KeychainStorable, Codable, NSItemProviderRe
         return []
     }
 
+    public var secretMissing: Bool {
+        return OTP.store.isMissing(account)
+    }
+
     @objc public var issuer: String! = nil {
         didSet {
             if issuer == nil { issuer = issuerOrig }

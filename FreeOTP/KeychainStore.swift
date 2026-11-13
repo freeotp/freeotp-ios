@@ -20,6 +20,7 @@
 
 import Foundation
 import Security
+import LocalAuthentication
 
 public protocol KeychainStorable : NSCoding {
     static var store: KeychainStore<Self> { get }
@@ -109,6 +110,17 @@ open class KeychainStore<T: KeychainStorable> {
         }
 
         return nil
+    }
+
+    open func isMissing(_ account: String) -> Bool {
+        var dict = query(account)
+
+        // Never prompt for Face ID / Touch ID / passcode.
+        let ctx = LAContext()
+        ctx.interactionNotAllowed = true
+        dict[kSecUseAuthenticationContext as String] = ctx
+
+        return SecItemCopyMatching(dict as CFDictionary, nil) == errSecItemNotFound
     }
 
     @discardableResult open func erase(_ storable: T) -> Bool {

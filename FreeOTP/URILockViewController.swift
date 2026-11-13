@@ -23,7 +23,7 @@ class URILockViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func helpClicked(_ sender: UIButton) {
-        presentAlert(title: "Lock", message: "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.",
+        presentAlert(title: "Lock", message: "The lock parameter is a boolean which will ensure that the token secret is stored in such a way that it can only be accessed by a recent authentication on the device.\n\nLocked token secrets never leave this device: they are not included in backups and are not transferred to a new phone. When you change phones, you will need to re-enroll this token with its provider.",
         actionTitle: "Ok")
     }
 
