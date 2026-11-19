@@ -10,12 +10,81 @@ import XCTest
 
 class FreeOTPUITests: XCTestCase {
 
+    override class func setUp() {
+        let app = XCUIApplication()
+
+        app.launch()
+        addTestToken(app)
+    }
+
+    override class func tearDown() {
+        let app = XCUIApplication()
+
+        app.launch()
+        removeAllTestTokens(app)
+
+    }
+
     override func setUpWithError() throws {
         continueAfterFailure = false
     }
 
+    static func addTestToken(_ app: XCUIApplication) {
+        let manualAddButton = app.buttons["manualAddButton"].firstMatch
+        XCTAssert(manualAddButton.exists)
+        manualAddButton.tap()
+
+        let manualAddView = app.otherElements["manualAddView"].firstMatch
+        XCTAssert(manualAddView.waitForExistence(timeout: 2.0))
+
+        let issuerField = manualAddView.textFields["issuerField"].firstMatch
+        issuerField.tap()
+        issuerField.typeText("CopyTest")
+
+        let descriptionField = manualAddView.textFields["descriptionField"].firstMatch
+        descriptionField.tap()
+        descriptionField.typeText("test@example.com")
+
+        let secretField = manualAddView.textFields["secretField"].firstMatch
+        secretField.tap()
+        secretField.typeText("mdf3v2s3nzcmwzy5ettbsjq572bpvo5o3wmkfqe7egyktzxufj3hsg7b")
+
+        let nextButton = app.buttons["nextButton"].firstMatch
+        nextButton.tap()
+
+        let uriIconView = app.otherElements["uriIconView"].firstMatch
+        XCTAssert(uriIconView.waitForExistence(timeout: 2.0))
+        uriIconView.cells.firstMatch.tap()
+        sleep(1)
+
+        app.buttons["Next"].firstMatch.tap()
+        sleep(1)
+        app.buttons["Next"].firstMatch.tap()
+        sleep(1)
+    }
+
+
+    static func removeAllTestTokens(_ app: XCUIApplication) {
+        let collectionView = app.otherElements.collectionViews.firstMatch
+        XCTAssert(collectionView.exists)
+
+        let cells = collectionView.cells
+        let tokenCount = collectionView.cells.count
+
+        for _ in 1...tokenCount {
+            let cell = cells.element(boundBy: 0)
+            cell.swipeRight()
+            // UIAlertController title sets token.issuer, this reads static text label inside the cell
+            let titleLabel = cell.staticTexts.firstMatch
+
+            let actionBtn = app.sheets[titleLabel.label].buttons["Remove token"]
+            XCTAssert(actionBtn.waitForExistence(timeout: 5))
+
+            actionBtn.tap()
+        }
+    }
+
     func testSearch() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
     
         app.launch()
@@ -38,7 +107,7 @@ class FreeOTPUITests: XCTestCase {
         app.typeText("blah " + String(arc4random()) + " blah")
         XCTAssertFalse(collectionView.cells.count > 0)
     
-        let cancelButton = app.buttons["Cancel"].firstMatch
+        let cancelButton = app.buttons["Clear text"].firstMatch
         XCTAssert(cancelButton.exists)
         cancelButton.tap()
     }
@@ -51,29 +120,15 @@ class FreeOTPUITests: XCTestCase {
         let algorithmsCount = 6
         let intervalsCount = 6
         let testedIssuerName = "blah123"
-        var testedIssuerTokensCount = 0
     
         app.launch()
         
-        //search for the number of old tokens with the issuer name under test
         let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
         XCTAssert(collectionView.exists)
-        collectionView.swipeDown()
-        
-        let searchBarElement = app.searchFields.firstMatch
-        XCTAssert(searchBarElement.exists)
-        searchBarElement.tap()
-        
-        app.typeText(testedIssuerName)
-        testedIssuerTokensCount = collectionView.cells.count
-        
-        let cancelButton = app.buttons["Cancel"].firstMatch
-        XCTAssert(cancelButton.exists)
-        cancelButton.tap()
 
         //test manual add
-        let manualAddButton = app.buttons["manualAddButton"].firstMatch
-        XCTAssert(manualAddButton.exists)
+        let manualAddButton = app.navigationBars.buttons["manualAddButton"]
+        XCTAssert(manualAddButton.waitForExistence(timeout: 5))
         manualAddButton.tap()
         
         let manualAddView = app.otherElements["manualAddView"].firstMatch
@@ -140,7 +195,6 @@ class FreeOTPUITests: XCTestCase {
         let sha1Button = algorithmMenu.buttons["SHA1"].firstMatch
         XCTAssert(sha1Button.exists)
         sha1Button.tap()
-        sleep(1)
         XCTAssert(algorithmButton.label == "SHA1")
         
         //check interval menu
@@ -152,7 +206,6 @@ class FreeOTPUITests: XCTestCase {
         let minuteButton = algorithmMenu.buttons["1m"].firstMatch
         XCTAssert(minuteButton.exists)
         minuteButton.tap()
-        sleep(1)
         XCTAssert(intervalButton.label == "1m")
         
         //check with correct input
@@ -166,29 +219,40 @@ class FreeOTPUITests: XCTestCase {
         let cell = uriIconView.cells.firstMatch
         XCTAssert(cell.exists)
         cell.tap()
-        sleep(1)
         
         let iconNextButton = app.buttons["Next"].firstMatch
         XCTAssert(iconNextButton.exists)
         iconNextButton.tap()
-        sleep(1)
         
         let lockNextButton = app.buttons["Next"].firstMatch
         XCTAssert(lockNextButton.exists)
         lockNextButton.tap()
-        sleep(1)
-        
-        //detecting an increase in the number of cells with the issuer name under test
+
+        XCTAssert(collectionView.cells.count == 2)
+    }
+
+    func testLongPressCopyMenu() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("--ui-testing")
+        app.launch()
+
+        let collectionView = app.otherElements.collectionViews.element(boundBy: 0)
         XCTAssert(collectionView.exists)
-        collectionView.swipeDown()
-        XCTAssert(searchBarElement.exists)
-        searchBarElement.tap()
-        
-        app.typeText(testedIssuerName)
-        let secCollectionView = app.otherElements.collectionViews.element(boundBy: 0)
-        XCTAssert(secCollectionView.exists)
-        
-        //if error - try to remove all "blah123" tokens first
-        XCTAssert(secCollectionView.cells.count == testedIssuerTokensCount + 1)
+        let cell = collectionView.cells.firstMatch
+        XCTAssert(cell.exists)
+
+        // Assert long press does not work without a visible code.
+        cell.press(forDuration: 1.5)
+        let prematureCopy = app.buttons["Copy"].firstMatch
+        XCTAssertFalse(prematureCopy.waitForExistence(timeout: 1.0))
+
+        // Dimiss any action.
+        cell.tap()
+
+        // Assert long press shows copy menu.
+        cell.press(forDuration: 1.5)
+        let copyButton = app.buttons["Copy"].firstMatch
+        XCTAssert(copyButton.waitForExistence(timeout: 2.0))
+        copyButton.tap()
     }
 }
